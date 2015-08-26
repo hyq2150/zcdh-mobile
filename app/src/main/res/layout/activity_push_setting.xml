@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/activityBody"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <!-- 开启推送 -->
+
+    <RelativeLayout
+        android:id="@+id/push_rl"
+        style="@style/simple_listitem"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="开启推送"
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_nomarl" />
+
+        <CheckBox
+            android:id="@+id/pushToggleChk"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="0dp"
+            android:button="@drawable/checkbox_background" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dividerHeight"
+        android:background="@color/divider" />
+
+    <!-- 只在wifi 连接时推送 -->
+
+    <RelativeLayout
+        android:id="@+id/wifi_rl"
+        style="@style/simple_listitem"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="只在wifi 环境下推送"
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_nomarl" />
+
+        <CheckBox
+            android:id="@+id/wifiPushToggleChk"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="0dp"
+            android:button="@drawable/checkbox_background" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dividerHeight"
+        android:background="@color/divider" />
+
+    <!-- 开启推送时间 -->
+
+    <RelativeLayout
+        android:id="@+id/time_rl"
+        style="@style/simple_listitem"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dividerHeightXX" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="设置推送时间"
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_nomarl" />
+
+        <CheckBox
+            android:id="@+id/pushTimeToggleChk"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="0dp"
+            android:button="@drawable/checkbox_background" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dividerHeight"
+        android:background="@color/divider" />
+
+    <!-- 设置推送时间段 -->
+
+    <LinearLayout
+        android:id="@+id/timeLl"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <RelativeLayout
+            android:id="@+id/startTime_rl"
+            style="@style/simple_listitem"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="开始时间"
+                android:textColor="@color/font_color"
+                android:textSize="@dimen/font_size_nomarl" />
+
+            <ImageView
+                android:id="@+id/accessoryImg0"
+                style="@style/listview_accessory"
+                android:layout_width="@dimen/accessory_with"
+                android:layout_height="@dimen/accessory_height"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true" />
+
+            <TextView
+                android:id="@+id/startText"
+                style="@style/fontMiddel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/accessoryImg0"
+                android:ellipsize="end"
+                android:maxWidth="200dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="5dp"
+                android:singleLine="true"
+                android:text="" >
+            </TextView>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dividerHeight"
+            android:background="@color/divider" />
+
+        <RelativeLayout
+            android:id="@+id/endTime_rl"
+            style="@style/simple_listitem"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="结束时间"
+                android:textColor="@color/font_color"
+                android:textSize="@dimen/font_size_nomarl" />
+
+            <ImageView
+                android:id="@+id/accessoryImg1"
+                style="@style/listview_accessory"
+                android:layout_width="@dimen/accessory_with"
+                android:layout_height="@dimen/accessory_height"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true" />
+
+            <TextView
+                android:id="@+id/endText"
+                style="@style/fontMiddel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/accessoryImg1"
+                android:ellipsize="end"
+                android:maxWidth="200dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="5dp"
+                android:singleLine="true"
+                android:text="" >
+            </TextView>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dividerHeight"
+            android:background="@color/divider" />
+    </LinearLayout>
+
+    <!-- 推送间隔 -->
+
+    <RelativeLayout
+        android:id="@+id/interval_rl"
+        style="@style/simple_listitem"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dividerHeightXX"
+        android:clickable="true" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="推送间隔"
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_nomarl" />
+
+        <ImageView
+            android:id="@+id/accessoryImg2"
+            style="@style/listview_accessory"
+            android:layout_width="@dimen/accessory_with"
+            android:layout_height="@dimen/accessory_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:id="@+id/intervalText"
+            style="@style/fontMiddel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/accessoryImg2"
+            android:ellipsize="end"
+            android:maxWidth="200dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="5dp"
+            android:singleLine="true"
+            android:text="" >
+        </TextView>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dividerHeight"
+        android:background="@color/divider" />
+
+</LinearLayout>

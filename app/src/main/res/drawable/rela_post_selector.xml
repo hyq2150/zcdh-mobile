@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+  <item android:state_pressed="true">
+        <layer-list android:shape="rectangle">
+            <item><shape android:shape="rectangle">
+                    <corners android:radius="@dimen/skill_tag_radius" />
+
+                    <stroke android:width="@dimen/stroke_width" android:color="@color/tag_jingtong" />
+
+                    <gradient android:endColor="@color/tag_know" android:startColor="@color/tag_know" />
+                </shape></item>
+            <item android:bottom="1dp" android:left="15dp" android:right="1dp" android:top="1dp"><shape android:shape="rectangle">
+                    <corners android:bottomRightRadius="@dimen/skill_tag_radius" android:topRightRadius="@dimen/skill_tag_radius" />
+
+                    <gradient android:endColor="@color/row_silver" android:startColor="@color/row_silver" />
+                </shape></item>
+        </layer-list>
+        
+   </item>
+    <item  android:drawable="@drawable/rela_post_background" />
+</selector>

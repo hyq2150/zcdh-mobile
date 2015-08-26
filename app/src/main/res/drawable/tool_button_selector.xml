@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true"><shape android:shape="rectangle">
+            <gradient android:endColor="@color/tag_know" android:startColor="@color/tag_know" />
+        </shape></item>
+    <item><shape android:shape="rectangle">
+            <gradient android:endColor="@color/tag_jingtong" android:startColor="@color/tag_jingtong" />
+        </shape></item>
+
+</selector>

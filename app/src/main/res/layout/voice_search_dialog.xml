@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 语音搜索（喊工作）yangjiannan -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/voice_search_dialog_width"
+    android:layout_height="@dimen/voice_search_dialog_height"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:paddingTop="15dp" >
+
+    <RelativeLayout
+        android:id="@+id/body"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" 
+        android:background="@drawable/voice_search_dialog_background">
+
+        <!-- 顶部 -->
+
+        <RelativeLayout
+            android:id="@+id/top"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:padding="@dimen/content_top_bottom" >
+
+            <TextView
+                android:id="@+id/tipsTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="请说话"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_middle" />
+        </RelativeLayout>
+
+        <!-- 中部 -->
+
+        <RelativeLayout
+            android:id="@+id/middel"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/top"
+            android:padding="@dimen/content_top_bottom" 
+            >
+
+            <ImageView
+                android:id="@+id/noMicImg"
+                android:layout_width="@dimen/img_width_middel"
+                android:layout_height="@dimen/img_height_middel"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_no_mic"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/micImg"
+                android:layout_width="@dimen/img_width_middel"
+                android:layout_height="@dimen/img_height_middel"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_speech_1" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <!-- 底部 -->
+
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:padding="@dimen/content_top_bottom" >
+
+        <TextView
+            android:id="@+id/cancelTipsTxt"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/red_btn_background"
+            android:gravity="center"
+            android:text="松开手取消"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_nomarl"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/swipeCancelTipTxt"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/black_btn_background"
+            android:gravity="center"
+            android:text="手指上滑取消"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_nomarl" />
+    </LinearLayout>
+
+</FrameLayout>

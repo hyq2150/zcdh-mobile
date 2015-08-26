@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- scrollview -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/user_info_scrollview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_bg"
+    android:fadingEdge="none"
+    android:scrollbars="vertical"
+    android:paddingTop="10dp"
+     >
+
+    <!-- 所有内容margin 10像素 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="@dimen/content_left_right"
+        android:paddingRight="@dimen/content_left_right"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:paddingBottom="10dp" >
+
+        <RelativeLayout
+            android:id="@+id/rlDigest1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rect_bord_background"
+            android:padding="0.5dp"
+            android:clickable="false" >
+
+            <RelativeLayout
+                android:id="@+id/rlInstitution"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/row_item_style"
+                android:clickable="true" >
+
+                <TextView
+                    android:id="@+id/tvInstitution"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/font_color1"
+                    android:textSize="@dimen/font_size_nomarl"
+                    android:text="学校名称:" />
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    style="@style/listview_accessory"
+                    android:layout_width="@dimen/accessory_with"
+                    android:layout_height="@dimen/accessory_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                     />
+
+                <TextView
+                    android:id="@+id/tvInstitution_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/imageView1"
+                    android:layout_toRightOf="@+id/tvInstitution"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/font_color"
+                    android:textSize="@dimen/font_size_nomarl" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlDigest2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rect_bord_background"
+            android:layout_marginTop="20dp"
+            android:padding="0.5dp"
+            android:clickable="true" >
+
+            <RelativeLayout
+                android:id="@+id/rlStartTime"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                style="@style/row_item_style"
+                android:clickable="true" >
+
+                <TextView
+                    android:id="@+id/tvStartTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/font_color1"
+                    android:textSize="@dimen/font_size_nomarl"
+                    android:text="开始时间:" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    style="@style/listview_accessory"
+                    android:layout_width="@dimen/accessory_with"
+                    android:layout_height="@dimen/accessory_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
+
+                <TextView
+                    android:id="@+id/tvStartTime_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/imageView2"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/font_color"
+                    android:textSize="@dimen/font_size_nomarl" />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/vHDivider2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rlStartTime"
+                android:background="@drawable/divider_horizontal_timeline" />
+
+            <RelativeLayout
+                android:id="@+id/rlEndTime"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/vHDivider2"
+                style="@style/row_item_style"
+                android:clickable="true" >
+
+                <TextView
+                    android:id="@+id/tvEndTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/font_color1"
+                    android:textSize="@dimen/font_size_nomarl"
+                    android:text="结束时间:" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    style="@style/listview_accessory"
+                    android:layout_width="@dimen/accessory_with"
+                    android:layout_height="@dimen/accessory_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    />
+
+                <TextView
+                    android:id="@+id/tvEndTime_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/imageView3"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/font_color"
+                    android:textSize="@dimen/font_size_nomarl" />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/vHDivider3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlEndTime"
+                android:background="@drawable/divider_horizontal_timeline" />
+
+            <RelativeLayout
+                android:id="@+id/rlSpecialty"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/vHDivider3"
+                style="@style/row_item_style"
+                android:clickable="true" >
+
+                <TextView
+                    android:id="@+id/tvSpecialty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/font_color1"
+                    android:textSize="@dimen/font_size_nomarl"
+                    android:text="专业名称:" />
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    style="@style/listview_accessory"
+                    android:layout_width="@dimen/accessory_with"
+                    android:layout_height="@dimen/accessory_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                     />
+
+                <TextView
+                    android:id="@+id/tvSpecialty_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/imageView4"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/font_color"
+                    android:textSize="@dimen/font_size_nomarl" />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/vHDivider7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rlSpecialty"
+                android:background="@drawable/divider_horizontal_timeline" />
+
+            <RelativeLayout
+                android:id="@+id/rlDiploma"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/vHDivider7"
+                style="@style/row_item_style"
+                android:clickable="true" >
+
+                <TextView
+                    android:id="@+id/tvDiploma"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/font_color1"
+                    android:textSize="@dimen/font_size_nomarl"
+                    android:text="学历水平:" />
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    style="@style/listview_accessory"
+                    android:layout_width="@dimen/accessory_with"
+                    android:layout_height="@dimen/accessory_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    />
+
+                <TextView
+                    android:id="@+id/tvDiploma_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/imageView5"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/font_color"
+                    android:textSize="@dimen/font_size_nomarl" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:singleLine="true"
+            android:text="补充内容" />
+
+        <EditText
+            android:id="@+id/et_add_on"
+            style="@style/edittext_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="说些过去职责,获取的奖项及证书信息,可让HR对你加分不少。"
+            android:lines="6" >
+        </EditText>
+    </LinearLayout>
+
+</ScrollView>

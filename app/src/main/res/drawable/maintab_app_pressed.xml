@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:top="@dimen/mainmenu_top">
+        <shape android:shape="rectangle" >
+            <corners android:topLeftRadius="@dimen/mainmenu_topleft_radius" 
+                android:topRightRadius="@dimen/mainmenu_topright_radius"/>
+
+            <stroke android:width="@dimen/mainmenu_stroke_width"
+                android:color="@color/menu_normal"
+                />
+            
+            <gradient
+                android:endColor="@color/menu_pressed"
+                android:startColor="@color/menu_pressed"
+                android:type="linear" />
+        </shape>
+    </item>
+    <item android:top="@dimen/mainmenu_top"
+        android:bottom="@dimen/mainmenu_bottom_mins">
+        <shape android:shape="rectangle" >
+            <corners android:topLeftRadius="@dimen/mainmenu_topleft_radius" 
+                android:topRightRadius="@dimen/mainmenu_topright_radius"/>
+
+            <stroke android:width="@dimen/mainmenu_stroke_width"
+                android:color="@color/menu_normal"
+                />
+            
+            <gradient
+                android:endColor="@color/menu_pressed"
+                android:startColor="@color/menu_pressed"
+                android:type="linear" />
+        </shape>
+    </item>
+    <item android:left="@dimen/mainmenu_left"
+        android:right="@dimen/mainmenu_right">
+        <inset android:drawable="@drawable/icon_app_pressed"
+            android:insetLeft="@dimen/mainmenu_inset_left"
+            android:insetRight="@dimen/mainmenu_inset_right"
+            android:insetTop="@dimen/mainmenu_inset_top"
+            android:insetBottom="@dimen/mainmenu_inset_bottom"/>
+    </item> 
+    
+    
+
+</layer-list>

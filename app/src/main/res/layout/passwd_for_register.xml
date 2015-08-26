@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/activityBody"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
+
+        <EditText
+            android:id="@+id/pwdEditText"
+            style="@style/commom_text_field"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:hint="@string/inputpwd" >
+        </EditText>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/underline" />
+
+        <EditText
+            android:id="@+id/confirmPwdEditText"
+            style="@style/commom_text_field"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:hint="@string/mspwd"
+            android:inputType="textPassword" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/underline" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/content_left_right"
+        android:paddingRight="@dimen/content_left_right"
+        android:weightSum="1" >
+
+        <Button
+            android:id="@+id/registerBtn2"
+            android:layout_width="fill_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/button_normal_bg"
+            android:text="@string/complete"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_middle" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,156 @@
+<resources>
+
+    <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
+         https://developer.android.com/design/patterns/navigation-drawer.html -->
+    <dimen name="navigation_drawer_width">240dp</dimen>
+
+    <dimen name="title_bar_height">44.0dip</dimen>
+    <dimen name="head_size">28.0dip</dimen>
+    <dimen name="top_my_height">40.0dip</dimen>
+    <dimen name="my_tab_text">15.0sp</dimen>
+
+    <!-- 字体大小 -->
+    <dimen name="font_size_small">13sp</dimen>
+    <dimen name="font_size_nomarl">15sp</dimen>
+    <dimen name="font_size_middle">18sp</dimen>
+    <dimen name="font_size_big">20sp</dimen>
+    <dimen name="font_size_big2">19sp</dimen>
+    <dimen name="font_size_middle1">16sp</dimen>
+
+    <!-- icon 大小 -->
+    <dimen name="icon_size_middle">32dp</dimen>
+    <dimen name="icon_size_smal">15dp</dimen>
+
+    <!-- Activity toolbar 内边距 -->
+    <dimen name="toolbar_padding_left_right">5dp</dimen>
+    <dimen name="toolbar_padding_top_bottom">5dp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="common_view_margin_top">10dp</dimen>
+
+    <!-- 圆角矩形框 -->
+    <dimen name="box_radius">5dp</dimen>
+    <dimen name="stroke_width">1dp</dimen>
+    <dimen name="content_left_right">5dp</dimen>
+    <dimen name="content_top_bottom">5dp</dimen>
+    <dimen name="message_box_pading_left_right">15dp</dimen>
+    <dimen name="message_box_pading_top_bottom">7dp</dimen>
+    <dimen name="search_pannel_left_right">15dp</dimen>
+    <dimen name="search_pannel_top_bottom">3dp</dimen>
+
+    <!-- 文本框高度 -->
+    <dimen name="edit_text_height">32dp</dimen>
+    <dimen name="tabbtn_padding_left">15dp</dimen>
+    <dimen name="tabbtn_padding_top">10dp</dimen>
+    <dimen name="margin_left_20dp">20dp</dimen>
+    <dimen name="common_drawablePadding">15dp</dimen>
+    <dimen name="dividerHeight">0.5dp</dimen>
+    <dimen name="dividerHeightXX">10dp</dimen>
+    <dimen name="simple_listiem_padding">10dp</dimen>
+    <dimen name="simple_listiem_top">15dp</dimen>
+    <dimen name="simple_listiem_bottom">15dp</dimen>
+    <dimen name="search_history_top_bottom">15dp</dimen>
+    <dimen name="search_history_left">7dp</dimen>
+    <dimen name="listview_stroke_width">1dp</dimen>
+
+    <!-- accessory -->
+    <dimen name="accessory_with">15dp</dimen>
+    <dimen name="accessory_height">15dp</dimen>
+
+    <!-- item 内元素padding -->
+    <dimen name="item_outer_padding">10dp</dimen>
+    <dimen name="item_padding_top">3dp</dimen>
+    <dimen name="button_text_size">14sp</dimen>
+    <dimen name="expand_tab_item_height">45dp</dimen>
+    <dimen name="expand_tab_eara_height">380dp</dimen>
+    <dimen name="head_bar_height">45dp</dimen>
+    <!-- 主菜单 -->
+    <dimen name="mainmenu_height">64dp</dimen>
+    <dimen name="mainmenu_top">2dp</dimen>
+    <dimen name="mainmenu_bottom_mins">-2dp</dimen>
+    <dimen name="mainmenu_stroke_width">1dp</dimen>
+    <dimen name="mainmenu_topleft_radius">5dp</dimen>
+    <dimen name="mainmenu_topright_radius">5dp</dimen>
+    <dimen name="mainmenu_left">0dp</dimen>
+    <dimen name="mainmenu_right">0dp</dimen>
+    <dimen name="mainmenu_inset_left">0dp</dimen>
+    <dimen name="mainmenu_inset_right">0dp</dimen>
+    <dimen name="mainmenu_inset_top">5dp</dimen>
+    <dimen name="mainmenu_inset_bottom">17dp</dimen>
+    <dimen name="maintab_padding">1dp</dimen>
+    <dimen name="maintab_title_size">10dp</dimen>
+    <dimen name="menu_height">42dp</dimen>
+
+    <!-- ent detail -->
+    <dimen name="default_content_padding">10dp</dimen>
+    <dimen name="ent_view_margin_left">20dp</dimen>
+    <dimen name="ent_padding_top">5dp</dimen>
+
+    <!-- 相册封面 -->
+    <dimen name="album_cover_width">70dp</dimen>
+    <dimen name="album_cover_height">70dp</dimen>
+    <dimen name="large_album_cover_width">120dp</dimen>
+    <dimen name="large_album_cover_height">120dp</dimen>
+    <dimen name="pager_title_height">40dp</dimen>
+    <dimen name="tag_height">35dp</dimen>
+
+    <!-- 职位 详情 -->
+    <dimen name="rows_padding">5dp</dimen> <!-- 行间距 -->
+    <dimen name="skill_tag_radius">1dp</dimen>
+    <dimen name="item_padding">10dp</dimen>
+    <dimen name="font_big">18sp</dimen>
+    <dimen name="img_width_middel">80dp</dimen>
+    <dimen name="img_height_middel">80dp</dimen>
+    <dimen name="img_height_normal">38dp</dimen>
+
+    <dimen name="img_height_small">23dp</dimen>
+    <dimen name="img_width_small">23dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="slidingmenu_offset">250dp</dimen>
+    <dimen name="list_padding">10dp</dimen>
+    <dimen name="shadow_width">15dp</dimen>
+
+    <integer name="num_cols">1</integer>
+    <dimen name="button_big">75dp</dimen>
+
+    <dimen name="detail_content_padding">10dp</dimen>
+    <dimen name="title_content_gap">10dp</dimen>
+    <dimen name="voice_search_dialog_width">230dp</dimen>
+    <dimen name="voice_search_dialog_height">250dp</dimen>
+    <dimen name="radius">8dp</dimen>
+    <dimen name="radius_btn">3dp</dimen>
+    <dimen name="levelPadding">4dp</dimen>
+
+    <dimen name="tag_padding_top">2dp</dimen>
+    <dimen name="tag_padding_bottom">2dp</dimen>
+    <dimen name="tag_padding_right">13dp</dimen>
+
+    <!-- 个人简历 -->
+    <dimen name="resume_header_line_height">4dp</dimen>
+    <dimen name="menu_divile_left">80dp</dimen>
+    <dimen name="menu_item_padding_left">15dp</dimen>
+    <dimen name="menu_item_font_size">16sp</dimen>
+
+    <!-- segmented control -->
+    <dimen name="radio_button_conner_radius">5dp</dimen>
+    <dimen name="delImgWidth">23dp</dimen>
+    <dimen name="delImgHeight">23dp</dimen>
+    <dimen name="main_tab_height">48dip</dimen>
+
+    <dimen name="indicator_right_padding">10dp</dimen>
+    <dimen name="indicator_corner_radius">12dp</dimen>
+    <dimen name="indicator_internal_padding">4dp</dimen>
+    <dimen name="header_footer_left_right_padding">24dp</dimen>
+    <dimen name="header_footer_top_bottom_padding">12dp</dimen>
+
+    <!-- searchbar -->
+    <dimen name="btn_sizes">30dp</dimen>
+
+    <dimen name="header_height">60dp</dimen>
+    <dimen name="footer_height">90dp</dimen>
+    <dimen name="footer_padding">10dp</dimen>
+
+    <dimen name="menu_title">5sp</dimen>
+</resources>

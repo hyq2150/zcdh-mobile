@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/activityBody"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.zcdh.mobile.app.views.EmptyTipView
+        android:id="@+id/emptyView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/contentView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:visibility="gone" 
+        >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/content_top_bottom"
+            android:background="@drawable/rect_bord_background"
+            android:text=""
+            android:textColor="@color/font_color" />
+        
+        <LinearLayout android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/content_left_right"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/content_top_bottom"
+            android:background="@color/grey1"
+            android:weightSum="1">
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_weight="0.5"
+                android:textColor="@color/font_color"
+                android:textSize="@dimen/font_size_nomarl"
+                android:text="未匹配的技能"/>
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="熟悉程度"
+                android:textColor="@color/font_color"
+                android:textSize="@dimen/font_size_nomarl"
+                android:layout_weight="0.5"/>
+        </LinearLayout>
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/matchListView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+             >
+        </com.handmark.pulltorefresh.library.PullToRefreshListView>
+    </LinearLayout>
+
+</LinearLayout>

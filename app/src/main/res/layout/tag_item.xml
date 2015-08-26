@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/tags"
+    android:paddingBottom="@dimen/content_left_right"
+    android:paddingLeft="@dimen/content_left_right"
+    android:paddingRight="@dimen/content_left_right"
+    android:paddingTop="@dimen/content_left_right"
+    android:singleLine="true"
+    android:ellipsize="end"
+    android:text="五险一金"
+    android:gravity="center_vertical"
+    android:textColor="@color/blues"
+    android:textSize="@dimen/font_size_small" />

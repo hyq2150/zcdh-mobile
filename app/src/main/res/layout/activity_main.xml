@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <android.support.v4.view.PagerTitleStrip
+            android:id="@+id/mainTabStrip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:visibility="gone" />
+    </android.support.v4.view.ViewPager>
+
+    <TableLayout
+        android:id="@+id/mainMenu"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/menu_normal"
+        android:stretchColumns="*"
+        android:visibility="visible" >
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/tabItemNearby"
+                style="@style/maintabStyle"
+                android:layout_height="@dimen/mainmenu_height"
+                android:background="@drawable/maintab_nearby_selector"
+                android:text="@string/nearby" >
+            </Button>
+
+            <Button
+                android:id="@+id/tabItemSearch"
+                style="@style/maintabStyle"
+                android:layout_height="@dimen/mainmenu_height"
+                android:background="@drawable/maintab_search_selector"
+                android:text="@string/search1" >
+            </Button>
+
+            <Button
+                android:id="@+id/tabItemMyhome"
+                style="@style/maintabStyle"
+                android:layout_height="@dimen/mainmenu_height"
+                android:background="@drawable/maintab_myhome_selector"
+                android:text="@string/myhome" >
+            </Button>
+
+            <Button
+                android:id="@+id/tabItemNewsmodel"
+                style="@style/maintabStyle"
+                android:layout_height="@dimen/mainmenu_height"
+                android:background="@drawable/maintab_app_selector"
+                android:text="@string/newsmodel" >
+            </Button>
+        </TableRow>
+    </TableLayout>
+
+</RelativeLayout>

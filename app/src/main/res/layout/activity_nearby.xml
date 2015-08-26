@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/bars"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="@dimen/content_top_bottom"
+        android:paddingTop="@dimen/content_top_bottom" >
+
+        <TableLayout
+            android:id="@+id/barTL"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:stretchColumns="*" >
+
+            <TableRow>
+
+                <!-- 公交 -->
+
+                <LinearLayout
+                    android:id="@+id/busBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:clickable="true"
+                    android:orientation="vertical" >
+
+                    <View
+                        android:id="@+id/busImgBtn"
+                        android:layout_width="@dimen/img_height_normal"
+                        android:layout_height="@dimen/img_height_normal"
+                        android:layout_gravity="center"
+                        android:background="@drawable/bus_selector" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="公交站"
+                        android:textColor="@color/font_color"
+                        android:textSize="@dimen/font_size_small" />
+                </LinearLayout>
+
+                <!-- 美食 -->
+
+                <LinearLayout
+                    android:id="@+id/foodBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:clickable="true"
+                    android:orientation="vertical" >
+
+                    <View
+                        android:id="@+id/foodImgBtn"
+                        android:layout_width="@dimen/img_height_normal"
+                        android:layout_height="@dimen/img_height_normal"
+                        android:layout_gravity="center"
+                        android:background="@drawable/food_selector" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="美食"
+                        android:textColor="@color/font_color"
+                        android:textSize="@dimen/font_size_small" />
+                </LinearLayout>
+
+                <!-- 银行 -->
+
+                <LinearLayout
+                    android:id="@+id/bankBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:clickable="true"
+                    android:orientation="vertical" >
+
+                    <View
+                        android:id="@+id/bankImgBtn"
+                        android:layout_width="@dimen/img_height_normal"
+                        android:layout_height="@dimen/img_height_normal"
+                        android:layout_gravity="center"
+                        android:background="@drawable/bank_selector" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="银行"
+                        android:textColor="@color/font_color"
+                        android:textSize="@dimen/font_size_small" />
+                </LinearLayout>
+                <!-- 超市 -->
+
+                <LinearLayout
+                    android:id="@+id/marketBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:clickable="true"
+                    android:orientation="vertical" >
+
+                    <View
+                        android:id="@+id/marketImgBtn"
+                        android:layout_width="@dimen/img_height_normal"
+                        android:layout_height="@dimen/img_height_normal"
+                        android:layout_gravity="center"
+                        android:background="@drawable/market_selector" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="超市"
+                        android:textColor="@color/font_color"
+                        android:textSize="@dimen/font_size_small" />
+                </LinearLayout>
+                <!-- 优惠 -->
+
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/privilegeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <View
+            android:id="@+id/privilegeImgBtn"
+            android:layout_width="@dimen/img_height_normal"
+            android:layout_height="@dimen/img_height_normal"
+            android:layout_gravity="center"
+            android:background="@drawable/privilege_selector" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="优惠"
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_small" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/mapContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/bars" >
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/body"
+    style="@style/activityBody"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <EditText
+            android:id="@+id/msgEditText"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="top"
+            android:hint="输入纠错内容.."
+            android:singleLine="false"
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_nomarl"/>
+
+        <RelativeLayout
+            android:id="@+id/bottom"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/havingLetterTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="描述10-100字"
+                android:textColor="@color/font_color"
+                android:textSize="@dimen/font_size_nomarl" />
+
+            <Button
+                android:id="@+id/yuyinBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/blue_btn"
+                android:drawableLeft="@drawable/microphone_layer"
+                android:text="语音"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_small" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

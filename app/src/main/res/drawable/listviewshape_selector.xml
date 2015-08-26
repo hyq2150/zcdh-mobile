@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" >
+     <item><shape>
+            <gradient android:endColor="#f7f7f7" android:startColor="#f7f7f7" />
+
+            <corners android:radius="10dip" />
+
+        </shape></item>
+<!--     <item android:state_pressed="true" android:drawable="@color/white"></item> -->
+<!--     <item  android:drawable="@color/row_silver" ></item> -->
+
+</selector>

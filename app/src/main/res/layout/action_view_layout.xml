@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+    
+    <com.zcdh.mobile.app.views.ad.MultiDirectionSlidingDrawer
+        xmlns:my="http://schemas.android.com/apk/res/com.zcdh.mobile"
+        android:id="@+id/drawer"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:gravity="end"
+        my:content="@+id/action_pic"
+        my:direction="topToBottom"
+        my:handle="@+id/action_button" >
+        <ImageView 
+		    android:id="@+id/action_pic"
+		    android:layout_width="match_parent"
+		    android:layout_height="300dp"
+		    android:scaleType="centerCrop"
+		    />
+        <FrameLayout 
+		    android:id="@+id/action_button"
+		    android:layout_width="60dp"
+		    android:layout_height="60dp"
+		    android:layout_marginRight="20dp"
+		    android:layout_marginTop="-1dp"
+		    >
+		    <ImageView 
+			    android:id="@+id/action_button_pic"
+			    android:layout_width="60dp"
+			    android:layout_height="60dp"
+			    android:layout_marginTop="-3dp"
+			    android:layout_gravity="center_horizontal"
+			    android:src="@drawable/button_newactivity"
+			    />
+		</FrameLayout>
+    </com.zcdh.mobile.app.views.ad.MultiDirectionSlidingDrawer>
+	
+</LinearLayout>

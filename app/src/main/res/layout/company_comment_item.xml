@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:background="@drawable/message_item_selector"
+    android:orientation="vertical"
+    android:padding="5dp" >
+
+    <!--
+    <LinearLayout
+        android:id="@+id/head"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerVertical="true"
+        android:background="@drawable/head" >
+    </LinearLayout>
+    -->
+
+    <com.zcdh.mobile.app.views.HeadByGender_
+        android:id="@+id/imghead"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignTop="@+id/imghead"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/imghead"
+        android:orientation="vertical" >
+
+        <com.zcdh.mobile.app.views.TagsContainer
+            android:id="@+id/commentsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:id="@+id/tv_comment"
+            style="@style/comment_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="环境还行，同事之间友好，就是工资低！" />
+    </LinearLayout>
+
+</RelativeLayout>

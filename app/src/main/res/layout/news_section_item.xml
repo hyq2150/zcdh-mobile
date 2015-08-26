@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:paddingTop="@dimen/content_top_bottom"
+    android:paddingBottom="@dimen/content_top_bottom"
+    android:paddingLeft="@dimen/content_left_right"
+    android:paddingRight="@dimen/content_left_right">
+    
+    <!-- 日期 -->
+    <TextView android:id="@+id/dateTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:textSize="@dimen/font_size_small"
+        android:padding="3dp"
+        android:textColor="@color/white"
+        android:background="@drawable/date_background"
+        />
+    
+    <!-- 此日期的第一条资讯作为 封面数据 -->
+    <FrameLayout android:id="@+id/coverRowFl"
+         android:layout_width="fill_parent"
+        android:layout_height="90dp">
+        
+        <ImageButton android:id="@+id/coverImgBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+             android:background="@drawable/news_item_selector"
+             android:layout_gravity="center_horizontal|bottom"
+            android:scaleType="fitXY"
+            />
+        
+        <TextView android:id="@+id/coverTitleText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+			android:layout_gravity="bottom"
+			android:gravity="center_horizontal"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_nomarl"
+            android:background="@color/cover_transprant"
+            android:visibility="visible"/>
+        
+        <!-- 用一个Button 在最上层，来达成受点击后的效果 -->
+        <Button android:id="@+id/clickCoverBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/cover_btn_background"
+            />
+    </FrameLayout>
+    
+    <View android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/row_silver"/>
+    
+    <!-- 显示一天的资讯列表 -->
+    <com.zcdh.mobile.framework.views.ListViewInScrollView android:id="@+id/sectionListView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/row_silver"
+        android:listSelector="@android:color/transparent"
+        android:dividerHeight="1dp"/>
+
+</LinearLayout>

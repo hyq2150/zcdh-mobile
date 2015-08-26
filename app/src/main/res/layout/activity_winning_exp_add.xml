@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/activityBody"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/hiddenText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <com.zcdh.mobile.framework.views.ListViewInScrollView
+                android:id="@+id/winningExpAddListView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/listview_background"
+                android:divider="@color/divider"
+                android:dividerHeight="@dimen/dividerHeight" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/winning_description"
+                android:textColor="@color/font_color"
+                android:textSize="@dimen/font_size_nomarl" />
+
+            <EditText
+                android:id="@+id/postDesc"
+                style="@style/edittext_style"
+                android:textSize="@dimen/font_size_nomarl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="请输入实践名称（限500个汉字）"
+                android:minLines="4"
+                android:maxEms="500" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

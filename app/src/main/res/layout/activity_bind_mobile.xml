@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/activityBody"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <!--
+         <TextView android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/font_size_nomarl"
+        android:textColor="@color/font_color"
+        android:text=""/>
+    -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/content_left_right"
+        android:paddingRight="@dimen/content_left_right"
+         android:background="@drawable/listview_background" 
+         android:layout_marginTop="25dp">
+
+        <EditText
+            android:id="@+id/phoneNumEditText"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:hint="请输入手机号码"
+            android:drawablePadding="5dp"
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_nomarl"
+            android:inputType="phone"
+            android:background="@android:color/transparent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:paddingLeft="@dimen/content_left_right"
+        android:paddingRight="@dimen/content_left_right"
+        android:paddingTop="10dp" >
+
+        <Button
+            android:id="@+id/getValidateCodeBtn"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_gravity="right"
+            android:text="获取验证码"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_nomarl"
+            android:background="@drawable/btn_login" />
+    </LinearLayout>
+
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/content_left_right"
+        android:paddingRight="@dimen/content_left_right"
+        android:background="@drawable/listview_background" 
+        android:layout_marginTop="15dp" >
+
+        <EditText
+            android:id="@+id/validateCodeEditText"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:drawablePadding="5dp"
+            android:hint="请输入验证码"
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_nomarl"
+            android:inputType="number"
+            android:background="@android:color/transparent" />
+    </LinearLayout>
+    
+    <LinearLayout android:id="@+id/passwdRowLl"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/content_left_right"
+        android:paddingRight="@dimen/content_left_right"
+        android:background="@drawable/listview_background" 
+        android:layout_marginTop="25dp" >
+
+        <EditText
+            android:id="@+id/passwdEditText"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:drawablePadding="5dp"
+            android:hint="请设置密码"
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_nomarl"
+            android:inputType="textPassword"
+            android:background="@android:color/transparent" />
+    </LinearLayout>
+    <LinearLayout android:id="@+id/passwdRowLl1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/content_left_right"
+        android:paddingRight="@dimen/content_left_right"
+        android:background="@drawable/listview_background"
+        android:layout_marginTop="-2dp"  >
+
+        <EditText
+            android:id="@+id/confirmPasswdEditText"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:drawablePadding="5dp"
+            android:hint="请确认密码"
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_nomarl"
+            android:inputType="textPassword"
+            android:background="@android:color/transparent" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/registerBtn1"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/btn_login"
+        android:text="提 交"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_size_middle" />
+
+    <!-- <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="safe Text"
+        android:textSize="28dp" /> -->
+
+</LinearLayout>

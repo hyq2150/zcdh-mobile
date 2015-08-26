@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/default_background"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/account_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:padding="20dp" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/listview_background"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/phone"
+                style="@style/commom_text_field"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:drawableLeft="@drawable/phone"
+                android:drawablePadding="@dimen/common_drawablePadding"
+                android:ems="10"
+                android:hint="@string/phone"
+                android:inputType="phone" 
+                android:textSize="@dimen/font_size_nomarl"/>
+
+            <View
+                android:id="@+id/divider1"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/divider_horizontal_timeline" />
+
+            <EditText
+                android:id="@+id/pwd"
+                style="@style/commom_text_field"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:drawableLeft="@drawable/password_indicator"
+                android:drawablePadding="@dimen/common_drawablePadding"
+                android:ems="10"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:textSize="@dimen/font_size_nomarl" >
+            </EditText>
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/divider_horizontal_timeline" />
+
+            <EditText
+                android:id="@+id/pwd2"
+                style="@style/commom_text_field"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:drawableLeft="@drawable/password2"
+                android:drawablePadding="@dimen/common_drawablePadding"
+                android:ems="10"
+                android:hint="确认密码"
+                android:inputType="textPassword"
+                android:textSize="@dimen/font_size_nomarl" >
+            </EditText>
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/divider_horizontal_timeline" />
+
+            <EditText
+                android:id="@+id/email"
+                style="@style/commom_text_field"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:drawableLeft="@drawable/email"
+                android:drawablePadding="@dimen/common_drawablePadding"
+                android:ems="10"
+                android:hint="@string/email"
+                android:textSize="@dimen/font_size_nomarl" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/registBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/common_view_margin_top"
+            android:background="@drawable/btn_login"
+            android:text="@string/regist"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_middle" />
+    </LinearLayout>
+
+</LinearLayout>

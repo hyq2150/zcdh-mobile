@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingRight="0dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:paddingLeft="@dimen/simple_listiem_padding"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:background="@drawable/list_item_grey_selector" >
+
+    <TextView
+        android:id="@+id/itemNameText"
+        style="@style/fontNormal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+         android:paddingTop="@dimen/simple_listiem_top"
+	    android:paddingBottom="@dimen/simple_listiem_bottom"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="" />
+
+    <LinearLayout android:id="@+id/delImgBtn" 
+        android:layout_width="45dp"
+        android:layout_height="fill_parent"
+        android:paddingTop="@dimen/simple_listiem_top"
+	    android:paddingBottom="@dimen/simple_listiem_bottom"
+        android:layout_alignParentRight="true"
+	    android:layout_centerVertical="true"
+	    android:clickable="true"
+	    android:gravity="center"
+        android:visibility="gone">
+	        
+	    <ImageView
+	        android:layout_width="23dp"
+	        android:layout_height="23dp"
+	        android:clickable="false"
+	        android:src="@drawable/btn_del_normal"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/accessoryImg"
+        style="@style/listview_accessory"
+        android:layout_width="@dimen/accessory_with"
+        android:layout_height="@dimen/accessory_height"
+        android:layout_marginRight="@dimen/simple_listiem_padding"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" />
+
+    <TextView
+        android:id="@+id/itemValueText"
+        style="@style/fontNormal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/simple_listiem_top"
+	    android:paddingBottom="@dimen/simple_listiem_bottom"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@id/accessoryImg"
+        android:visibility="gone" />
+
+</RelativeLayout>

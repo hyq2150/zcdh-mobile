@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/content_left_right"
+    android:paddingRight="@dimen/content_left_right"
+     >
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp" >
+
+        <com.makeramen.RoundedImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/userPhotoImg"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/default_head"
+            app:border_color="@color/white"
+            app:border_width="2dip"
+            app:corner_radius="0dp"
+            app:is_oval="true" />
+
+        <ImageView
+            android:id="@+id/editHeadBtn"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="25dp"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"
+            android:src="@drawable/grzx18"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/vHDivider1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/divider_horizontal_timeline" />
+    <!-- 绑定手机 -->
+
+    <RelativeLayout
+        android:id="@+id/mobileRowRl"
+        style="@style/row_item_style"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="绑定手机"
+            android:textColor="@color/font_color1"
+            android:textSize="@dimen/font_size_nomarl" />
+
+        <ImageView
+            android:id="@+id/accessoryImg"
+            style="@style/listview_accessory"
+            android:layout_width="@dimen/accessory_with"
+            android:layout_height="@dimen/accessory_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:id="@+id/mobileAccountText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/accessoryImg"
+            android:text="未绑定"
+            android:textColor="@color/font_color1"
+            android:textSize="@dimen/font_size_nomarl" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/vHDivider2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mobileRowRl"
+        android:background="@drawable/divider_horizontal_timeline" />
+
+    <!-- 绑定邮箱 -->
+
+    <RelativeLayout
+        android:id="@+id/emailRowRl"
+        style="@style/row_item_style"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:visibility="visible" >
+
+        <TextView
+            android:id="@+id/bindEmailText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="绑定邮箱"
+            android:textColor="@color/font_color1"
+            android:textSize="@dimen/font_size_nomarl" />
+
+        <ImageView
+            android:id="@+id/accessoryImg1"
+            style="@style/listview_accessory"
+            android:layout_width="@dimen/accessory_with"
+            android:layout_height="@dimen/accessory_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:id="@+id/emailAccountText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/accessoryImg1"
+            android:text="未绑定"
+            android:textColor="@color/font_color1"
+            android:textSize="@dimen/font_size_nomarl" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/vHDivider3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/emailRowRl"
+        android:background="@drawable/divider_horizontal_timeline" />
+    <!-- 修改密码 -->
+
+    <RelativeLayout
+        android:id="@+id/passwdRowRl"
+        style="@style/row_item_style"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:visibility="gone" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="修改密码"
+            android:textColor="@color/font_color1"
+            android:textSize="@dimen/font_size_nomarl" />
+
+        <ImageView
+            android:id="@+id/accessory10"
+            style="@style/listview_accessory"
+            android:layout_width="@dimen/accessory_with"
+            android:layout_height="@dimen/accessory_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:id="@+id/passwdText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/accessory10"
+            android:text="******"
+            android:textColor="@color/font_color1"
+            android:textSize="@dimen/font_size_nomarl" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/vHDivider4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passwdRowRl"
+        android:background="@drawable/divider_horizontal_timeline" />
+
+    <!-- 绑定新浪 -->
+
+    <ImageView
+        android:id="@+id/vHDivider5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/divider_horizontal_timeline" />
+
+    <RelativeLayout
+        android:id="@+id/weiboRowRl"
+        style="@style/row_item_style"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="新浪微博"
+            android:textColor="@color/font_color1"
+            android:textSize="@dimen/font_size_nomarl" />
+
+        <ImageView
+            android:id="@+id/accessoryImg2"
+            style="@style/listview_accessory"
+            android:layout_width="@dimen/accessory_with"
+            android:layout_height="@dimen/accessory_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:id="@+id/weiboStatusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/accessoryImg2"
+            android:text="未绑定"
+            android:textColor="@color/font_color1"
+            android:textSize="@dimen/font_size_nomarl" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/vHDivider8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/weiboRowRl"
+        android:background="@drawable/divider_horizontal_timeline" />
+
+    <!-- 腾讯 -->
+
+    <RelativeLayout
+        android:id="@+id/qqRowRl"
+        style="@style/row_item_style"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="腾讯QQ"
+            android:textColor="@color/font_color1"
+            android:textSize="@dimen/font_size_nomarl" />
+
+        <ImageView
+            android:id="@+id/accessoryImg3"
+            style="@style/listview_accessory"
+            android:layout_width="@dimen/accessory_with"
+            android:layout_height="@dimen/accessory_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:id="@+id/qqStatusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/accessoryImg3"
+            android:text="未绑定"
+            android:textColor="@color/font_color1"
+            android:textSize="@dimen/font_size_nomarl" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/vHDivider6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/divider_horizontal_timeline" />
+    <RelativeLayout
+        android:id="@+id/wechatRowRl"
+        style="@style/row_item_style"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="微信"
+            android:textColor="@color/font_color1"
+            android:textSize="@dimen/font_size_nomarl" />
+
+        <ImageView
+            android:id="@+id/accessoryImg4"
+            style="@style/listview_accessory"
+            android:layout_width="@dimen/accessory_with"
+            android:layout_height="@dimen/accessory_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:id="@+id/wechatStatusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/accessoryImg4"
+            android:text="未绑定"
+            android:textColor="@color/font_color1"
+            android:textSize="@dimen/font_size_nomarl" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/vHDivider7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/wechatRowRl"
+        android:background="@drawable/divider_horizontal_timeline" />
+    
+
+</LinearLayout>

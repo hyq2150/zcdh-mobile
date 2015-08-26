@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:background="@color/default_background"
+    android:padding="5dp" >
+
+    <LinearLayout
+        android:id="@+id/account_info"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:padding="20dp" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/listview_background"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/account"
+                style="@style/commom_text_field"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:drawableLeft="@drawable/login_indicator"
+                android:drawablePadding="@dimen/common_drawablePadding"
+                android:ems="10"
+                android:hint="@string/account" >
+
+                <requestFocus />
+            </EditText>
+
+            <View
+                android:id="@+id/divider1"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/divider_horizontal_timeline" />
+
+            <EditText
+                android:id="@+id/pwd"
+                style="@style/commom_text_field"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:drawableLeft="@drawable/password_indicator"
+                android:drawablePadding="@dimen/common_drawablePadding"
+                android:ems="10"
+                android:hint="@string/password"
+                android:inputType="textPassword" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bindBtn"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/common_view_margin_top"
+            android:background="@drawable/btn_login"
+            android:text="@string/bind_sina_account"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_middle" />
+    </LinearLayout>
+
+</RelativeLayout>

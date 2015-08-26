@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:clickable="true"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:id="@+id/imgIcon"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:duplicateParentState="true"
+        android:layout_gravity="center_vertical"
+        android:padding="5dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/carlinenormal_50x50" />
+
+    <TextView
+        android:id="@+id/detailText"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|center_vertical"
+        android:layout_weight="1"
+        android:duplicateParentState="true"
+        android:gravity="left"
+        android:padding="6dp"
+        android:text="驾车"
+        android:textColor="@color/font_color"
+        android:textSize="@dimen/font_size_nomarl" />
+
+
+</LinearLayout>

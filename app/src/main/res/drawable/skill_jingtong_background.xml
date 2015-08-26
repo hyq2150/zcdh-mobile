@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle" >
+
+    <corners
+        android:bottomLeftRadius="@dimen/skill_tag_radius"
+      />
+
+    <stroke
+        android:width="@dimen/stroke_width"
+        android:color="@color/toolbtn" />
+
+    <solid android:color="@color/white"/>
+    <!-- <gradient
+        android:endColor="@color/tag_jingtong"
+        android:startColor="@color/tag_jingtong" /> -->
+
+</shape>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:gravity="center_vertical"
+    style="@style/simple_listitem">
+
+    <TextView
+        android:id="@+id/itemNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:ellipsize="end"
+        android:singleLine="true"
+        style="@style/fontNormal"
+        android:text="item"></TextView>
+    
+    <ImageView android:id="@+id/accessoryImg" 
+        android:layout_width="@dimen/accessory_with"
+        android:layout_height="@dimen/accessory_height"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        style="@style/listview_accessory"
+        />
+
+    <TextView
+        android:id="@+id/secondItemNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/accessoryImg"
+        android:paddingRight="5dp"
+        android:paddingLeft="15dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:maxWidth="200dp"
+        android:hint="请输入实践名称（限50个汉字）"
+        style="@style/fontNormal"
+        android:text="value"></TextView>
+</RelativeLayout>

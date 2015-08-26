@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/list_item_silver_selector"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="10dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="@dimen/content_left_right"
+    android:paddingTop="10dp" >
+
+    <ImageView
+        android:id="@+id/entLogoIm"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_centerVertical="true"
+        android:scaleType="centerInside"
+        android:src="@drawable/companylogo"
+        android:background="@android:color/transparent" />
+
+    <ImageView
+        android:id="@+id/accessory"
+        style="@style/listview_accessory"
+        android:layout_width="@dimen/accessory_with"
+        android:layout_height="@dimen/accessory_height"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" />
+
+    <LinearLayout
+        android:id="@+id/placeNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/accessory"
+        android:orientation="vertical" 
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/placeNumText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="38dp"
+            android:minHeight="38dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/placenum_bg"
+            android:gravity="center"
+            android:text="7777"
+            android:textColor="@color/placenum"
+            android:textSize="@dimen/font_size_nomarl" />
+        
+        <TextView android:id="@+id/infoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/placenum"
+            android:textSize="@dimen/font_size_small"
+            android:layout_gravity="center_horizontal"
+            android:text="展位"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/ent_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/placeNum"
+        android:layout_toRightOf="@id/entLogoIm"
+        android:padding="5dp"
+        android:text="发出职位申请发出职位申请发出职位申请发出职位申请发出职位申请"
+        android:textColor="@color/font_color"
+        android:textSize="@dimen/font_size_nomarl" />
+
+</RelativeLayout>

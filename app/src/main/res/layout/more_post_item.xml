@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="15dp"
+    android:paddingBottom="15dp"
+    android:orientation="vertical"
+    android:background="@drawable/list_item_grey_selector"
+     >
+    
+    
+    <TextView  android:id="@+id/postNameText"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textSize="@dimen/font_size_nomarl"
+        android:text="asdfasdfasdf"
+        />
+    
+    <TextView  android:id="@+id/degreeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/postNameText"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/font_size_small"
+        android:text="asdfasdfasdf"
+        />
+    
+    
+    <TextView  android:id="@+id/publishDateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/font_color"
+        android:textSize="@dimen/font_size_small"
+        android:text="asdfasdfasdf"
+        />
+    
+    
+    <TextView  android:id="@+id/paymentText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/publishDateText"
+        android:textColor="@color/red"
+        android:textSize="@dimen/font_size_small"
+        android:text="asdfasdfasdf"
+        />
+
+</RelativeLayout>

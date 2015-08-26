@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="title_color">#333333</color>
+
+    <color name="voip_interface_text_color">#bababa</color>
+
+    <color name="top_bar_normal_bg">#00acff</color>
+
+    <color name="gray_normal">#666667</color>
+
+    <color name="btn_gray_normal">#c0c0c0</color>
+
+    <color name="btn_gray_pressed_status">#b5b5b6</color>
+
+    <color name="btn_blue_normal">#1e90ff</color>
+
+    <color name="btn_blue_pressed">#0066FF</color>
+
+    <color name="grid_state_pressed">#1Affffff</color>
+
+    <color name="grid_state_focused">#80000000</color>
+
+    <color name="common_bg">#fcfcfc</color>
+
+    <color name="bottom_text_color_normal">#ffffff</color>
+
+    <color name="btn_pressed_green_solid">#B6DA53</color>
+
+    <color name="btn_logout_pressed">#DA5A4D</color>
+
+    <color name="btn_logout_normal">#d33f3f</color>
+
+    <color name="gray_pressed">#b5b5b6</color>
+
+    <color name="common_top_bar_blue">#4ebcd3</color>
+
+    <color name="divider_list">#d4d4d4</color>
+
+    <color name="btn_green_noraml">#68C270</color>
+
+    <color name="btn_green_pressed">#6FCD78</color>
+
+    <color name="participants">#fd5f21</color>
+
+    <color name="extension">#0072c6</color>
+
+    <color name="fair_sing_up_stop">#DDDDDD</color>
+
+    <color name="default_background">#dedede</color>
+
+    <!-- 通用 -->
+
+
+    <color name="red">#C1272D</color>
+
+    <color name="green">#55AA66</color>
+
+    <color name="grey">#808080</color>
+
+    <color name="grey1">#cccccc</color>
+
+    <color name="blues">#4e8ef3</color>
+
+    <color name="blues_down">#447ccc</color>
+
+    <color name="font_color1">#5a5a5a</color>
+
+    <!-- 字体颜色 -->
+
+
+    <color name="default_font_color">#000000</color>
+
+    <color name="rect_title_font_color">@color/white</color>
+
+    <color name="font_color">#6F6F6F</color>
+
+    <color name="font_color2">#333333</color>
+
+    <color name="activity_bg">#E6E6E6</color>
+
+    <color name="activity_bg1">#F3F3F3</color>
+
+    <color name="link_font">#4E91CC</color>
+
+    <color name="font_grey">#bcbcc4</color>
+
+    <color name="font_edit">#e5e5e5</color>
+
+    <color name="font_ee">#eeeeee</color>
+
+    <color name="greyTxt">#666666</color>
+
+    <color name="font_blue">#205E97</color>
+
+    <color name="font_white">#ffffff</color>
+
+    <color name="alert_red">#935252</color>
+
+    <color name="tab_color">#E6E6E6</color>
+
+    <!-- 菜单颜色 -->
+
+
+    <color name="menu_normal">#4e8ef3</color>
+
+    <!-- 菜单选中颜色 -->
+
+
+    <color name="menu_pressed">#e0e0e0</color>
+
+    <!-- 推广消息矩形边框颜色 -->
+
+
+    <color name="stroke_color">#CCCCCC</color>
+
+    <color name="stroke_color_search_pannel">#5C8C48</color>
+
+    <color name="message_box_background">#F3F4E9</color>
+
+    <!-- 搜索面板 -->
+
+
+    <color name="search_pannel_background">#EAF2E7</color>
+
+    <color name="tabbtn_switch_backgorund">#BDD5B4</color>
+
+    <color name="divider">#DDDDDD</color>
+
+    <color name="listview_stroke_color">#C6C6C6</color>
+
+    <color name="listview_background">#FCFCFC</color>
+
+    <color name="settingtitle_color">#267A53</color>
+
+    <color name="gray_background">#e6e6e6</color>
+
+    <color name="light_gray_background">#F2F2F2</color>
+
+    <!-- 职位列表 -->
+
+
+    <color name="post_tag_background">#4eccb3</color>
+
+    <color name="post_tab_font">#1a5c4d</color>
+
+    <color name="post_item_background_odd">@color/light_gray_background</color>
+
+    <color name="post_item_background_even">@color/gray_background</color>
+
+    <color name="post_item_salary_font">#da7474</color>
+
+    <color name="post_item_salary_font1">#ffb737</color>
+
+    <color name="post_item_welfare_tag_background">#4e91cc</color>
+
+    <color name="post_item_content_font">#6F6F6F</color>
+
+    <color name="post_item_content_font1">#666666</color>
+
+    <color name="post_item_addr_and_edu_font">#A6A6A6</color>
+
+    <color name="post_item_addr_and_edu_font1">#999999</color>
+
+    <!-- filter -->
+
+
+    <color name="choose_eara_item_press_color">#f4f4f4</color>
+
+    <color name="popup_main_background">#b0000000</color>
+
+    <color name="listitem_selected">#FBB147</color>
+
+    <!-- 职位列表页面颜色 -->
+
+
+    <color name="pager_title_background">#4eccb3</color>
+
+    <color name="pager_title">#1a5c4d</color>
+
+    <color name="main_text">#333333</color>
+
+    <color name="sub_title">#666666</color>
+
+    <color name="tag_background">#9dc2e3</color>
+
+    <color name="tag_text">#4d6a99</color>
+
+    <color name="row_silver">#F2F2F2</color>
+
+    <color name="row_grey">#e6e6e6</color>
+
+    <color name="apply_count">#4e91cc</color>
+
+    <!-- 圆点颜色 -->
+
+
+    <color name="reddot">#FF3300</color>
+
+    <color name="yellowdot">#FFCC00</color>
+
+    <color name="greendot">#00CC66</color>
+
+    <color name="greydot">#969696</color>
+
+    <!-- 标签颜色 -->
+
+
+    <color name="tag_jingtong">#4e91cc</color>
+
+    <color name="tag_jingtong1">#9b66d3</color>
+
+    <color name="tag_shu">#66a0d3</color>
+
+    <color name="tag_know">#53c1e2</color>
+
+    <color name="tag_zhidao">#4ea77a</color>
+
+    <color name="toolbtn">#4e91cc</color>
+
+    <!-- 默认背景色 -->
+
+
+    <color name="common_background_color">#DEDEDE</color>
+
+    <!-- 列表颜色相关 -->
+
+
+    <color name="sectionHeader">#DDE3ED</color>
+
+    <color name="list_item_color">#F2F2F2</color>
+
+    <color name="evaluation_blue">#1f6099</color>
+
+    <!-- 1.08 toobar -->
+
+
+    <color name="leftBtnBg">#FF9831</color>
+
+    <color name="leftBtnBgDeep">#DD9222</color>
+
+    <color name="toolbarbg">#ff9831</color>
+
+    <color name="tab_button_text_pressed">@color/white</color>
+
+    <color name="tab_button_text_normal">@color/white</color>
+
+    <color name="blackGray">#535151</color>
+
+    <color name="blue">#ff75a6ff</color>
+
+    <color name="blue1">#4F88BF</color>
+
+    <color name="bg_color_quote">#F7F7F7</color>
+
+    <color name="dialogBg">#90000000</color>
+
+    <color name="black">#000000</color>
+
+    <color name="menu_background">#504c4c</color>
+
+    <color name="menu_selected_bg">#777676</color>
+
+    <color name="orange">#e46c0a</color>
+
+    <color name="white">#ffffff</color>
+
+    <!-- activity 背景色 -->
+
+
+    <!-- <color name="activityBg">#f4f2ef</color> -->
+
+
+    <color name="pressed">#f6f5f5</color>
+
+    <!-- tabtitle 颜色 -->
+
+
+    <color name="tab_title">#2c83bf</color>
+
+    <color name="tab_indicator_bg">#5AB0EB</color>
+
+    <color name="bright_blue">#4e91cc</color>
+
+    <color name="dark_transprant">#50000000</color>
+
+    <color name="cover_transprant">#65000000</color>
+
+    <color name="grey_transprant">#25000000</color>
+
+    <color name="btn_add_text_color">#1B5D97</color>
+
+    <!-- 搜索结果高亮 -->
+
+
+    <color name="result_hightlight">#0084B4</color>
+
+    <color name="head_male">#4e91cc</color>
+
+    <color name="head_female">#ff7bac</color>
+
+    <color name="head_anonymous">#1f6655</color>
+
+    <!-- 匹配度 -->
+
+
+    <color name="match_bg">#9BBFDB</color>
+
+    <color name="match_progress">@color/white</color>
+
+    <color name="match_container_bg">#cccccc</color>
+
+    <color name="match_title">#1f6099</color>
+
+    <!-- 整理中........ -->
+
+
+    <color name="list_item_normal">#F3F3F3</color>
+
+    <color name="empty_bg">#F2F2F2</color>
+
+    <color name="common_card_center_background_highlighted">#E7E7E7</color>
+
+    <!-- segmented control -->
+
+
+    <color name="radio_button_selected_color">@color/blues</color>
+
+    <!-- <color name="radio_button_selected_color">#ff33b5e5</color> -->
+
+
+    <color name="radio_button_unselected_color">@android:color/transparent</color>
+
+    <!-- Qr Scanner -->
+
+
+    <color name="contents_text">#ff000000</color>
+
+    <color name="encode_view">@color/white</color>
+
+    <color name="help_button_view">#ffcccccc</color>
+
+    <color name="help_view">#ff404040</color>
+
+    <color name="possible_result_points">#c0ffff00</color>
+
+    <color name="result_image_border">@color/white</color>
+
+    <color name="result_minor_text">#ffc0c0c0</color>
+
+    <color name="result_points">#c000ff00</color>
+
+    <color name="result_text">@color/white</color>
+
+    <color name="result_view">#b0000000</color>
+
+    <color name="sbc_header_text">#ff808080</color>
+
+    <color name="sbc_header_view">@color/white</color>
+
+    <color name="sbc_list_item">#fffff0e0</color>
+
+    <color name="sbc_layout_view">@color/white</color>
+
+    <color name="sbc_page_number_text">#ff000000</color>
+
+    <color name="sbc_snippet_text">#ff4b4b4b</color>
+
+    <color name="share_text">#ff000000</color>
+
+    <color name="share_view">@color/white</color>
+
+    <color name="status_view">#50000000</color>
+
+    <color name="status_text">@color/white</color>
+
+    <color name="transparent">#00000000</color>
+
+    <color name="viewfinder_frame">#ff000000</color>
+
+    <color name="viewfinder_laser">#ffff0000</color>
+
+    <color name="viewfinder_mask">#60000000</color>
+
+    <color name="placenum">#eb9119</color>
+
+    <color name="activity_bg_color">#fffafafa</color>
+
+    <color name="top_my_bar_background">#ffeeeeee</color>
+
+    <color name="my_tab_text">#ff707070</color>
+
+    <color name="my_tab_text_dark">#fffafafa</color>
+
+    <color name="my_tab_highlight_text">#ED1045</color>
+
+    <color name="my_tab_highlight_text_dark">#ffd43d3d</color>
+
+    <color name="my_tab_highlight_bg">#ffd43d3d</color>
+
+    <color name="my_tab_highlight_dark_bg">#fffafafa</color>
+
+</resources>
+

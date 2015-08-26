@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <group
+        android:id="@+id/action_sort"
+        android:icon="@drawable/more"
+        android:title="action_bar_sort">
+        <menu>
+            <item
+                android:id="@+id/action_fansList"
+                android:title="粉丝列表"/>
+            <item
+                android:id="@+id/action_liuyan"
+                android:title="公司留言"/>
+            <item
+                android:id="@+id/action_jiucuo"
+                android:title="纠错意见"/>
+            <item
+                android:id="@+id/action_blacklist"
+                android:title="加入黑名单"/>
+            <item
+                android:id="@+id/action_jubao"
+                android:title="举报"/>
+            <item
+                android:id="@+id/action_share"
+                android:title="分享"/>
+            <item
+                android:id="@+id/action_showqrcode"
+                android:title="企业二维码"/>
+        </menu>
+    </group>
+
+</menu>

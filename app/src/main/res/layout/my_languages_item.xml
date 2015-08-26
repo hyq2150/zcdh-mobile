@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/evaluation_tag" >
+
+    <TextView
+        android:id="@+id/tvLanguageName"
+        style="@style/userinfo_panel_textview_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10.0dip"
+        android:layout_marginTop="20.0dip"
+        android:gravity="center_vertical"
+        android:text="语言" />
+
+    <TextView
+        android:id="@+id/tvDesc_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15.0dip"
+        android:layout_marginRight="30.0dip"
+        android:layout_toRightOf="@id/tvLanguageName"
+        android:gravity="center_vertical"
+        android:textColor="#ff373737"
+        android:textSize="16.0sp" />
+
+    <ImageView
+        android:id="@+id/remove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="5.0dip"
+        android:clickable="true"
+        android:src="@drawable/input_clear_normal"
+        android:visibility="gone" />
+
+</RelativeLayout>

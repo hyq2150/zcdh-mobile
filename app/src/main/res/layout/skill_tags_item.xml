@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:clickable="true" >
+
+    <RelativeLayout
+        android:id="@+id/ll_skill_tag_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:duplicateParentState="true" >
+
+        <TextView
+            android:id="@+id/skillLevelText"
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content"
+            android:background="@drawable/skill_jingtong_background"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingLeft="@dimen/tag_padding_right"
+            android:paddingRight="@dimen/tag_padding_right"
+            android:paddingTop="10dp"
+            android:singleLine="true"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/font_size_small"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/skillNameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/skillLevelText"
+            android:layout_alignTop="@+id/skillLevelText"
+            android:layout_marginLeft="-1dp"
+            android:layout_toRightOf="@+id/skillLevelText"
+            android:gravity="left|center_vertical"
+            android:paddingBottom="@dimen/tag_padding_top"
+            android:paddingLeft="@dimen/content_left_right"
+            android:paddingRight="@dimen/tag_padding_right"
+            android:paddingTop="@dimen/tag_padding_bottom"
+            android:singleLine="true"
+            android:textColor="@color/toolbtn"
+            android:textSize="@dimen/font_size_small" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="right|center_vertical"
+        android:clickable="true"
+        android:duplicateParentState="true" >
+
+        <ImageView
+            android:id="@+id/iv_indicator"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:background="@drawable/input_clear_normal"
+            android:clickable="true"
+            android:duplicateParentState="true"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</FrameLayout>

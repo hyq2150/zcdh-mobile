@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="25dp" >
+
+    <TextView
+        android:id="@+id/currentVersionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="15dp"
+        android:text="@string/currentVersion"
+        android:textSize="@dimen/font_size_middle"
+        android:textColor="@color/greyTxt"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical|center_horizontal"
+        android:padding="15dp" >
+
+        <ProgressBar
+            android:id="@+id/checkUpgradePB"
+            style="@android:style/Widget.ProgressBar.Inverse"
+            android:layout_width="26dp"
+            android:layout_height="26dp" 
+            />
+
+        <TextView
+            android:id="@+id/msgText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="@string/checkingForUpgrade"
+            android:textColor="@color/greyTxt"
+            android:textSize="@dimen/font_size_nomarl"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/upgradeBtn"
+        style="@style/fontMiddel"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/button_normal_bg"
+        android:text="@string/upgrade_now"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_size_nomarl"
+        android:visibility="gone" />
+
+</LinearLayout>

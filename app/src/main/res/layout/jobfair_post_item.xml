@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_item_silver_selector"
+    android:orientation="horizontal"
+    android:paddingBottom="15dp"
+    android:paddingLeft="@dimen/content_left_right"
+    android:paddingRight="@dimen/content_left_right"
+    android:paddingTop="15dp" >
+
+    <ImageView
+        android:id="@+id/accessory"
+        style="@style/listview_accessory"
+        android:layout_width="@dimen/accessory_with"
+        android:layout_height="@dimen/accessory_height"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" />
+
+    <!--
+        <TextView
+        android:id="@+id/address"
+        style="@style/list_item_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/accessory"
+        android:layout_centerVertical="true"
+        android:paddingRight="5dp" 
+        android:text="珠海"/>
+    -->
+
+    <LinearLayout
+        android:id="@+id/placeNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/accessory"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/placeNumText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/placenum_bg"
+            android:gravity="center"
+            android:minHeight="38dp"
+            android:minWidth="38dp"
+            android:text="777"
+            android:textColor="@color/placenum"
+            android:textSize="@dimen/font_size_nomarl" />
+
+        <TextView android:id="@+id/infoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="展位"
+            android:textColor="@color/placenum"
+            android:textSize="@dimen/font_size_small" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/placeNum"
+        android:orientation="vertical"
+        android:paddingLeft="5dp" >
+
+        <TextView
+            android:id="@+id/post_name"
+            style="@style/list_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="发出职位申请发出职位申请发出职位申请发出职位申请发出职位申请发出职位申请发出职位申请" />
+
+        <TextView
+            android:id="@+id/ent_name"
+            style="@style/list_item_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:text="notenotenotenotenotenotenotenotenotenotenotenotenotenotenotenotenotenotenotenotenotenotenotenotenote" />
+    </LinearLayout>
+
+</RelativeLayout>

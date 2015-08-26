@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/body"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white" >
+
+    <LinearLayout
+        android:id="@+id/contentView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:paddingBottom="50dp" >
+
+        <!-- 列表 -->
+
+        <LinearLayout
+            android:id="@+id/postListContainer"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/activity_bg"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <RelativeLayout
+                android:id="@+id/listbarRl"
+                android:layout_width="fill_parent"
+                android:layout_height="42dp"
+                android:background="@color/grey1"
+                android:padding="@dimen/content_top_bottom"
+                android:visibility="gone" >
+
+                <Button
+                    android:id="@+id/filterBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="26dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/transparent"
+                    android:drawableRight="@drawable/arrow_b"
+                    android:text="筛选"
+                    android:textColor="@color/font_blue" />
+
+                <ImageButton
+                    android:id="@+id/clearnAdvanceConditionBtn"
+                    android:layout_width="@dimen/img_width_small"
+                    android:layout_height="@dimen/img_height_small"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/spiltor"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_garbage"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/resultDescriptionTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/clearnAdvanceConditionBtn"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/font_color"
+                    android:textSize="@dimen/font_size_nomarl" />
+            </RelativeLayout>
+
+            <!-- 职位列表 -->
+
+            <com.zcdh.mobile.app.views.EmptyTipView
+                android:id="@+id/emptyView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+            </com.zcdh.mobile.app.views.EmptyTipView>
+
+            <com.markmao.pulltorefresh.widget.XListView
+                android:id="@+id/postListView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <!-- 地图 -->
+
+        <RelativeLayout
+            android:id="@+id/mapModeContainer"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="visible" >
+
+            <RelativeLayout
+                android:id="@+id/mapContainer"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+                <!-- 在这里添加地图 -->
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!-- 地图中的按钮 -->
+
+    <RelativeLayout
+        android:id="@+id/widgetsContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <RelativeLayout
+            android:id="@+id/conditionPannelLl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/translucent_btn_background"
+            android:padding="@dimen/content_left_right"
+            android:visibility="gone" >
+
+            <ImageButton
+                android:id="@+id/clearBtn"
+                android:layout_width="@dimen/img_width_small"
+                android:layout_height="@dimen/img_height_small"
+                android:layout_alignParentRight="true"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_del_white" />
+
+            <TextView
+                android:id="@+id/conditionText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@id/clearBtn"
+                android:singleLine="true"
+                android:text="珠海 + 软件工程师 36个岗位"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_nomarl" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/btnsContainerRl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical"
+            android:padding="@dimen/content_top_bottom" >
+
+            <!-- 切换城市 -->
+
+            <RelativeLayout
+                android:id="@+id/cityBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="6dp"
+                android:clickable="true" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/city_place" />
+            </RelativeLayout>
+            <!-- 定位 -->
+
+            <RelativeLayout
+                android:id="@+id/locationBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="14dp"
+                android:clickable="true" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/location_place" />
+            </RelativeLayout>
+
+            <!-- 地图设置 -->
+
+            <RelativeLayout
+                android:id="@+id/mapSettingBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="14dp"
+                android:clickable="true" >
+
+                <ImageView
+                    android:id="@+id/mapTypeFlagImg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/map_setting_btn" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!-- 放大与缩小地图 -->
+
+        <LinearLayout
+            android:id="@+id/zoomBtnsContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="32dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/rect_bord_background"
+            android:orientation="vertical"
+            android:padding="1dp"
+            android:visibility="gone" >
+
+            <ImageButton
+                android:id="@+id/zoomInBtn"
+                android:layout_width="32dp"
+                android:layout_height="42dp"
+                android:background="@android:color/white"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_zoom" />
+
+            <View
+                android:layout_width="15dp"
+                android:layout_height="0.5dp"
+                android:layout_gravity="center"
+                android:background="@color/blues" />
+
+            <ImageButton
+                android:id="@+id/zoomOutBtn"
+                android:layout_width="32dp"
+                android:layout_height="42dp"
+                android:background="@android:color/white"
+                android:src="@drawable/icon_minus" />
+        </LinearLayout>
+    </RelativeLayout> <!-- Loader -->
+
+    <com.zcdh.mobile.app.views.ad.ActionView
+        android:id="@+id/action_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/loaderContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" >
+
+        <ImageView
+            android:id="@+id/loaderImg"
+            android:layout_width="@dimen/img_width_small"
+            android:layout_height="@dimen/img_height_small"
+            android:src="@drawable/placeholder_loading"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#e0000000"
+        android:orientation="vertical"
+        android:visibility="visible" >
+
+        <!-- 点击标识点，显示相应地职位 -->
+
+        <LinearLayout
+            android:id="@+id/pointDetailContainer"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:visibility="gone" >
+
+            <LinearLayout
+                android:id="@+id/currentPostCountLl"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:clickable="true"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+
+            </LinearLayout>
+
+            <com.markmao.pulltorefresh.widget.XListView
+                android:id="@+id/pointDetailsListView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <include layout="@layout/search_bar" />
+    </LinearLayout>
+
+</FrameLayout>

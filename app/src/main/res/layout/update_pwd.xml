@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/default_background"
+    android:padding="5dp" >
+
+    <LinearLayout
+        android:id="@+id/account_info"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/listview_background"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+                android:paddingLeft="3dp" >
+
+
+                <!-- <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="40dp"
+                    android:layout_weight="3"
+                    android:gravity="left|center_vertical"
+                    android:padding="5dp"
+                    android:text="验 证 码："
+                    android:textSize="@dimen/font_size_nomarl" /> -->
+
+                <EditText
+                    android:id="@+id/old_pass"
+                    style="@style/commom_text_field"
+                    android:layout_width="0dip"
+                    android:layout_height="50dp"
+                    android:layout_weight="7"
+                    android:ems="10"
+                    android:hint="输入旧密码"
+                    android:inputType="textPassword" />
+        </LinearLayout>
+
+        
+
+        <TextView
+            android:id="@+id/tvtips"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="提示：为了密码安全,请设置新密码用6位以上数字字母区分大小写！"
+            android:textColor="@color/alert_red"
+            android:textSize="@dimen/font_size_small"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/listview_background"
+            android:orientation="vertical" >
+
+            <View
+                android:id="@+id/divider1"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/divider_horizontal_timeline" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="3dp" >
+
+                <!-- <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="40dp"
+                    android:layout_weight="3"
+                    android:gravity="left|center_vertical"
+                    android:padding="5dp"
+                    android:text="@string/new_pass"
+                    android:textSize="@dimen/font_size_nomarl" /> -->
+
+                <EditText
+                    android:id="@+id/pwd"
+                    style="@style/commom_text_field"
+                    android:layout_width="0dip"
+                    android:layout_height="50dp"
+                    android:layout_weight="7"
+                    android:ems="10"
+                    android:hint="请输入新密码"
+                    android:inputType="textPassword" >
+                </EditText>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/divider_horizontal_timeline" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="3dp" >
+
+               <!--  <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="40dp"
+                    android:layout_weight="3"
+                    android:gravity="left|center_vertical"
+                    android:padding="5dp"
+                    android:text="@string/password_confirm"
+                    android:textSize="@dimen/font_size_nomarl" /> -->
+
+                <EditText
+                    android:id="@+id/pwd2"
+                    style="@style/commom_text_field"
+                    android:layout_width="0dip"
+                    android:layout_height="50dp"
+                    android:layout_weight="7"
+                    android:ems="10"
+                    android:hint="再次输入新密码"
+                    android:inputType="textPassword" >
+                </EditText>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/divider_horizontal_timeline" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/upateBtn"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/account_info"
+        android:layout_marginTop="@dimen/common_view_margin_top"
+        android:background="@drawable/btn_login"
+        android:text="提 交"
+        android:textColor="@color/white" />
+
+</RelativeLayout>

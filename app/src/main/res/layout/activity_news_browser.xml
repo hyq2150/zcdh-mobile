@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.zcdh.mobile.app.views.EmptyTipView
+        android:id="@+id/emptyTipView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+    <!-- 底部操作按钮 -->
+
+    <LinearLayout
+        android:id="@+id/bottomBarLl"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:background="@color/activity_bg"
+        android:visibility="gone" >
+        
+    </LinearLayout>
+
+    <WebView
+        android:id="@+id/browser"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+         android:layout_above="@id/bottomBarLl"
+        android:visibility="gone" />
+
+</RelativeLayout>

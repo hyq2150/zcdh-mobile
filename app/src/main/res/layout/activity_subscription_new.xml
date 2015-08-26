@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_bg"
+    android:orientation="vertical" >
+    
+        <FrameLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            
+            <ImageView 
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/summerjobs"/>
+            <LinearLayout 
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="bottom">
+                <TextView 
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:paddingRight="10dp"
+                    android:text="本轮暑假工开放时间为："
+                    android:textSize="9sp"
+                    android:textColor="@color/activity_bg"/>
+                
+	            <TextView 
+	                android:id="@+id/summerjob_opentime_text"
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:text="暂无"
+	                android:textColor="@color/white"
+	                android:textSize="13sp"
+	                android:gravity="right"
+	                android:textStyle="bold"
+	                android:paddingRight="18dp"
+	                android:paddingBottom="5dp"/>
+            </LinearLayout>
+        </FrameLayout>  
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp"> 
+        <TextView 
+            android:id="@+id/ent_count_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="进驻企业：0家"
+            android:textColor="@color/blackGray"
+            android:textSize="15sp"
+            android:layout_weight="1"
+            android:gravity="center"/>
+        <View 
+            android:layout_width="0.8dp"
+            android:layout_height="15dp"
+            android:background="@color/blackGray"/> 
+        <TextView 
+            android:id="@+id/post_total_count_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="提供岗位：0个"
+            android:textColor="@color/blackGray"
+            android:textSize="15sp"
+            android:layout_weight="1"
+            android:gravity="center"/>      
+    </LinearLayout>
+    <LinearLayout 
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content" 
+		    android:layout_marginTop="5dp"
+		    android:paddingLeft="20dp"
+		    android:orientation="horizontal"
+		    android:gravity="center_horizontal">
+		    <TextView 
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:paddingTop="5dp"
+		        android:text="有"
+		        android:textColor="@color/black"
+		        android:textSize="19sp"/>
+		     <TextView 
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="0"
+		        android:textColor="#EE7621"
+		        android:textSize="24sp"
+		        android:id="@+id/post_count_suitable_for_user"/>
+		      <TextView 
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:paddingTop="5dp"
+		        android:text="个岗位适合您！"
+		        android:textColor="@color/black"
+		        android:textSize="19sp"/>
+		</LinearLayout>
+		<TextView
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:padding="3dp"
+		        android:text="@string/see_fitpostlist"
+		        android:textSize="15sp"
+		        android:gravity="center"
+		        android:id="@+id/post_detail_ditribution_list_text"/>
+		<RelativeLayout 
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content">
+		<TextView
+		        android:id="@+id/num_have_appointed"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="20dp"
+		        android:text="已有0人预约"
+		        android:textSize="15sp"/>
+		<Button
+		        android:id="@+id/advance_appointment_btn"
+		        android:layout_below="@id/num_have_appointed"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:background="@drawable/advance_appointmentbtnbg"
+		        android:layout_centerHorizontal="true"
+		        android:text="马上预约，立减5元"
+		        android:textSize="20sp"
+		        android:textColor="@color/white"
+				android:scaleX="0.85"
+				android:scaleY="0.85"/>
+		
+		</RelativeLayout>
+		<TextView
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:padding="5dp"
+		    android:layout_marginLeft="15dp"
+		    android:text="请您仔细阅读以下合同条款："
+		    android:textColor="@color/red"
+		    android:textSize="14sp" />
+		
+		<ScrollView 
+		    android:layout_width="fill_parent"
+		    android:layout_height="match_parent">
+		    <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_color_quote"
+                    android:orientation="vertical"
+                    android:layout_margin="10dp" >
+
+                    <TextView
+                        android:id="@+id/tv_contract_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="假期工合同条款："
+                        android:textColor="@color/blackGray"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/agreement_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_contract_title"
+                        android:maxLines="2"
+                        android:padding="5dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:text="诚意金将由职场导航代收，由企业返还......x\nx\nx\nx\nx\nx\nx\nx\nx\n"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@id/agreement_content"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal"
+                        android:paddingRight="10dp" >
+
+                    </LinearLayout>
+                </RelativeLayout>
+		</ScrollView>
+
+</LinearLayout>

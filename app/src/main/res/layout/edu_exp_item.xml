@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rect_listitem_bg" 
+    android:layout_marginTop="@dimen/dividerHeightXX"
+    android:padding="0.5dp">
+
+    <RelativeLayout
+        android:id="@+id/rl_exp_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/list_item_silver_selector"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/content_left_right"
+        android:paddingRight="@dimen/content_left_right"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+         >
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:duplicateParentState="true"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/font_size_nomarl"
+            android:textColor="@color/font_color"
+            android:text="姓        名" />
+
+        <TextView
+            android:id="@+id/tvNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:layout_alignLeft="@id/tvTitle"
+            android:layout_below="@id/tvTitle"
+            android:duplicateParentState="true"
+            android:text="姓        名"
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_nomarl" />
+
+        <ImageView
+            android:layout_width="@dimen/accessory_with"
+            android:layout_height="@dimen/accessory_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5.0dip"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_accssory"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_delete"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/btn_delete"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:clickable="true"
+            android:src="@drawable/btn_del_normal"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+</FrameLayout>

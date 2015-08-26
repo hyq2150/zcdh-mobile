@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rect_listitem_bg"
+    android:gravity="center_vertical"
+    android:paddingLeft="@dimen/content_left_right"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/industryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/simple_listiem_top"
+        android:singleLine="true"
+        android:text="asdfasd"
+        android:textColor="@color/font_color"
+        android:textSize="@dimen/font_size_nomarl" />
+
+    <TextView
+        android:id="@+id/postText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/industryText"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:singleLine="true"
+        android:text="asdfsadf"
+        android:textColor="@color/font_color"
+        android:textSize="@dimen/font_size_nomarl" />
+
+    <TextView
+        android:id="@+id/areaTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/postText"
+        android:paddingBottom="@dimen/simple_listiem_bottom"
+        android:singleLine="true"
+        android:text="asdfsadf"
+        android:textColor="@color/font_color"
+        android:textSize="@dimen/font_size_nomarl" />
+
+    <LinearLayout
+        android:id="@+id/delImgBtn"
+        android:layout_width="45dp"
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:clickable="true"
+        android:gravity="center"
+        android:paddingBottom="@dimen/simple_listiem_bottom"
+        android:paddingTop="@dimen/simple_listiem_top"
+        android:visibility="gone" >
+
+        <ImageView
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:clickable="false"
+            android:src="@drawable/btn_del_normal" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/accessoryImg"
+        style="@style/listview_accessory"
+        android:layout_width="@dimen/accessory_with"
+        android:layout_height="@dimen/accessory_height"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/simple_listiem_padding" />
+
+    <TextView
+        android:id="@+id/itemValueText"
+        style="@style/fontMiddel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@id/accessoryImg"
+        android:paddingBottom="@dimen/simple_listiem_bottom"
+        android:paddingTop="@dimen/simple_listiem_top"
+        android:visibility="gone" />
+
+</RelativeLayout>

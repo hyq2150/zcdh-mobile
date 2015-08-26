@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="50dp"
+    android:background="@drawable/list_item_silver_selector"
+    android:clickable="true" >
+
+
+        <ImageView
+            android:id="@+id/imgIcon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/carlinenormal_50x50" />
+
+        <ImageView
+            android:id="@+id/accessoryImg"
+            style="@style/listview_accessory"
+            android:layout_width="@dimen/accessory_with"
+            android:layout_height="@dimen/accessory_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:id="@+id/nextLineText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/accessoryImg"
+            android:text=""
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_nomarl" 
+            android:visibility="visible"/>
+
+        <TextView
+            android:id="@+id/detailText"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:paddingLeft="10dp"
+            android:gravity="center_vertical|left"
+            android:layout_toLeftOf="@id/nextLineText"
+            android:layout_toRightOf="@id/imgIcon"
+            android:layout_centerVertical="true"
+            android:text=""
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_nomarl" />
+
+</RelativeLayout>

@@ -1,0 +1,35 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/activity_bg_color">
+
+
+    <com.zcdh.mobile.widget.TabStrip
+        android:id="@+id/my_strip"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_my_height"
+        android:background="@drawable/bg_my_bar"
+        android:clipToPadding="false">
+
+        <FrameLayout
+            android:id="@+id/indicating_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/my_strip"
+            android:layout_gravity="bottom">
+
+            <ImageView
+                android:id="@+id/indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:background="@color/my_tab_text" />
+        </FrameLayout>
+    </com.zcdh.mobile.widget.TabStrip>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/my_strip" />
+</RelativeLayout>

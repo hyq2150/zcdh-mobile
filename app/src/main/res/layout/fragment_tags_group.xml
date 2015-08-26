@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center" 
+    android:id="@+id/tagContainer">
+    
+     <!-- 用于显示加载数据动画 -->
+     <ImageView android:id="@+id/loadingImg"
+	   android:layout_width="wrap_content"
+	   android:layout_height="wrap_content"
+	   android:src="@drawable/placeholder_loading"
+	   android:layout_centerInParent="true"
+	   android:visibility="visible"
+	   />
+   
+
+    <GridView
+        android:id="@+id/tagsGrideview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:columnWidth="70dp"
+        android:gravity="center"
+        android:horizontalSpacing="5dp"
+        android:numColumns="auto_fit"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="5dp"
+        android:visibility="visible"
+         />
+
+</LinearLayout>

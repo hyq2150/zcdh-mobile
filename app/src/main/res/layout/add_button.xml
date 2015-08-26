@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/blue_dash_rect"
+    android:clickable="true"
+    android:orientation="horizontal"
+    android:paddingBottom="7dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="7dp" >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:clickable="true"
+        android:duplicateParentState="true"
+        android:src="@drawable/btn_addmini" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:paddingLeft="5dp"
+        android:text="添加"
+        android:singleLine="true"
+        android:ellipsize="none"
+        android:textColor="#657ea7"
+        android:textSize="@dimen/font_size_nomarl"
+        android:textStyle="bold" />
+
+</LinearLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rect_listitem_bg"
+    android:gravity="center_vertical"
+    android:orientation="horizontal" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:padding="5dp" >
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/icon"
+            android:paddingLeft="5dp"
+            android:text="上海亿业网络科技发展有限公司"
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_nomarl" />
+
+        <LinearLayout
+            android:id="@+id/rl_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_title"
+            android:layout_toRightOf="@id/icon"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/tv_note"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:gravity="center_vertical"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="上海亿业网络科技发展有限公司"
+                android:textColor="@color/sub_title"
+                android:textSize="@dimen/font_size_nomarl" />
+
+            <TextView
+                android:id="@+id/flag"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="0.0dip"
+                android:layout_weight="3"
+                android:text="简历已查阅"
+                android:textColor="@color/evaluation_blue"
+                android:textSize="@dimen/font_size_nomarl" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_detail"
+            android:layout_toRightOf="@id/icon"
+            android:gravity="left"
+            android:paddingLeft="5dp"
+            android:text="申请时间：2014-3-14"
+            android:textColor="#ff999999"
+            android:textSize="@dimen/font_size_nomarl" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/accessoryImg"
+        style="@style/listview_accessory"
+        android:layout_width="@dimen/accessory_with"
+        android:layout_height="@dimen/accessory_height"
+        android:layout_gravity="center_vertical|right"
+        android:layout_marginRight="@dimen/simple_listiem_padding" />
+
+</LinearLayout>

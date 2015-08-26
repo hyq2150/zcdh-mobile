@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.handmark.pulltorefresh.library.PullToRefreshScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        style="@style/activityBody"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <com.zcdh.mobile.app.views.EmptyTipView
+            android:id="@+id/emptyTipView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+        </com.zcdh.mobile.app.views.EmptyTipView>
+
+        <LinearLayout
+            android:id="@+id/contentView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/item_padding"
+                android:background="#cccccc"
+                android:orientation="vertical" >
+
+                <!-- 意向行业 -->
+
+                <com.zcdh.mobile.framework.views.ListViewInScrollView
+                    android:id="@+id/industryListView"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:divider="@color/divider"
+                    android:dividerHeight="@dimen/dividerHeight"
+                    android:listSelector="@android:color/transparent" />
+            </LinearLayout>
+            <!-- 意向职位 -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/item_padding"
+                android:background="#cccccc"
+                android:orientation="vertical" >
+
+                <com.zcdh.mobile.framework.views.ListViewInScrollView
+                    android:id="@+id/postListView"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:divider="@color/divider"
+                    android:dividerHeight="@dimen/dividerHeight"
+                    android:listSelector="@android:color/transparent" />
+            </LinearLayout>
+
+            <!-- 期望工作地点 -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/item_padding"
+                android:background="#cccccc"
+                android:orientation="vertical" >
+
+                <com.zcdh.mobile.framework.views.ListViewInScrollView
+                    android:id="@+id/areaListView"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:divider="@color/divider"
+                    android:dividerHeight="@dimen/dividerHeight"
+                    android:listSelector="@android:color/transparent" />
+            </LinearLayout>
+            <!-- 工作类型 、 期望月薪 -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/item_padding"
+                android:background="#cccccc"
+                android:orientation="vertical" >
+
+                <com.zcdh.mobile.framework.views.ListViewInScrollView
+                    android:id="@+id/metaDataListView"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:divider="@color/divider"
+                    android:dividerHeight="@dimen/dividerHeight" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</com.handmark.pulltorefresh.library.PullToRefreshScrollView>

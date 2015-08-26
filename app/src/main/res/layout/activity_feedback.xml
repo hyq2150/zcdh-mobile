@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.handmark.pulltorefresh.library.PullToRefreshScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/activityBody"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/feedBackListView"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="@dimen/dividerHeightXX"
+            android:listSelector="@android:color/transparent"
+            android:scrollbars="none"
+            android:stackFromBottom="true"
+            android:transcriptMode="alwaysScroll" >
+        </ListView>
+
+        <RelativeLayout
+            android:id="@+id/inputbar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom" >
+
+            <EditText
+                android:id="@+id/feedBackEditText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/common_textfield_background"
+                android:gravity="left|top"
+                android:hint="@string/your_suggestion_makes_better_improvement"
+                android:lines="3"
+                android:padding="3dp"
+                android:singleLine="false"
+                android:textColor="@color/font_color"
+                android:textSize="@dimen/font_size_nomarl" />
+
+            <RelativeLayout
+                android:id="@+id/bottom"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/feedBackEditText"
+                android:orientation="vertical" >
+
+                <!-- <TextView
+                    android:id="@+id/havingLetterTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="描述10-100字"
+                    android:textColor="@color/font_color"
+                    android:textSize="@dimen/font_size_nomarl" /> -->
+
+                <Button
+                    android:id="@+id/sendBtn"
+                    android:layout_width="90dp"
+                    android:layout_height="36dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/blue_btn"
+                    android:text="@string/submit"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_small" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</com.handmark.pulltorefresh.library.PullToRefreshScrollView>

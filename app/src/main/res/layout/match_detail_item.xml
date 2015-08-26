@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/content_top_bottom"
+    android:paddingLeft="@dimen/content_left_right"
+    android:paddingRight="@dimen/content_left_right"
+    android:paddingTop="@dimen/content_top_bottom" >
+
+    <TextView
+        android:id="@+id/skillNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:textColor="@color/font_color"
+        android:textSize="@dimen/font_size_nomarl" />
+
+    <TextView
+        android:id="@+id/matchRateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/font_color"
+        android:textSize="@dimen/font_size_nomarl" />
+
+</RelativeLayout>

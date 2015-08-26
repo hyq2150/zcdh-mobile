@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@color/activity_bg"
+    >
+
+    <LinearLayout
+        android:id="@+id/account_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+         >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/listview_background"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/userEditText"
+                style="@style/commom_text_field"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:drawableLeft="@drawable/login_indicator"
+                android:drawablePadding="15dp"
+                android:hint="@string/input_phone"
+                android:inputType="phone" >
+
+                <requestFocus />
+            </EditText>
+
+            <View
+                android:id="@+id/divider1"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/divider_horizontal_timeline" />
+
+            <EditText
+                android:id="@+id/pwdEditText"
+                style="@style/commom_text_field"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:drawableLeft="@drawable/password_indicator"
+                android:drawablePadding="15dp"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bindAccountBtn"
+            style="@style/fontMiddel"
+            android:layout_width="fill_parent"
+            android:layout_height="42dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/btn_login"
+            android:text="完 成"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:padding="20dp" >
+
+            <Button
+                android:id="@+id/skipedBtn"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_nomarl"
+                android:background="@drawable/btn_login"
+                android:text="跳过 >>" />
+    </LinearLayout>
+
+</LinearLayout>

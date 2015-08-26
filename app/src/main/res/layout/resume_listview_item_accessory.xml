@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/simple_listiem_padding"
+    android:paddingRight="@dimen/simple_listiem_padding"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:background="@drawable/list_item_silver_selector" >
+
+    <RelativeLayout
+        android:id="@+id/head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="32dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:background="@android:color/transparent" >
+
+        <ImageView
+            android:id="@+id/checkImg"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:scaleType="centerInside"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/itemNameText"
+        style="@style/fontNormal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/head"
+        android:ellipsize="end"
+        android:paddingLeft="15dp"
+        android:singleLine="true"
+        android:text="testsdfsdfsd"/>
+
+<!--     <ImageView android:id="@+id/accessoryImg"
+        style="@style/listview_accessory"
+        android:layout_width="@dimen/accessory_with"
+        android:layout_height="@dimen/accessory_height"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" /> -->
+
+     <TextView
+         android:id="@+id/descText"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentRight="true"
+         android:layout_centerVertical="true"
+         android:gravity="left"
+         android:text="请完善资料"
+         android:textColor="@color/red"
+         android:visibility="gone"
+         android:textSize="@dimen/font_size_nomarl" />
+
+</RelativeLayout>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     <com.handmark.pulltorefresh.library.PullToRefreshScrollView 
+    android:id="@+id/scrollView"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/body"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/activity_bg"
+    android:focusableInTouchMode="true" >
+
+    <LinearLayout
+        android:id="@+id/llpost_item"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="@dimen/content_top_bottom"
+        android:layout_marginLeft="@dimen/content_left_right"
+        android:layout_marginRight="@dimen/content_left_right"
+        android:layout_marginTop="@dimen/content_top_bottom"
+        android:background="@drawable/rect_listitem_bg"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/content_left_right" >
+
+        <TextView
+            android:id="@+id/postNameText"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/content_left_right"
+            android:text="期望职位: "
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_nomarl" />
+
+        <ImageView
+            android:layout_width="@dimen/accessory_with"
+            android:layout_height="@dimen/accessory_height"
+            android:src="@drawable/ic_accssory" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/liuyanListView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottom"
+        android:layout_below="@id/llpost_item"
+        android:layout_marginBottom="@dimen/content_top_bottom"
+        android:layout_marginLeft="@dimen/content_left_right"
+        android:layout_marginRight="@dimen/content_left_right"
+        android:layout_marginTop="@dimen/content_top_bottom"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="@dimen/dividerHeightXX"
+        android:listSelector="@android:color/transparent"
+        android:scrollbars="none"
+        android:stackFromBottom="true"
+        android:transcriptMode="normal" >
+    </ListView>
+
+    <RelativeLayout
+        android:id="@+id/bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="147dp"
+        android:layout_alignParentBottom="true"
+        android:background="#cccccc"
+        android:orientation="vertical"
+        android:padding="@dimen/content_top_bottom" >
+
+        <EditText
+            android:id="@+id/msgEditText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="left|top"
+            android:hint="说些公司意见..."
+            android:lines="3"
+            android:padding="3dp"
+            android:singleLine="false"
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_nomarl" />
+
+        <Button
+            android:id="@+id/yuyinBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/msgEditText"
+            android:background="@drawable/blue_btn"
+            android:drawableLeft="@drawable/microphone_layer"
+            android:paddingRight="10dp"
+            android:text="语音"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_small" />
+
+        <Button
+            android:id="@+id/submitBtn"
+            android:layout_width="90dp"
+            android:layout_height="36dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/msgEditText"
+            android:layout_marginBottom="@dimen/common_view_margin_top"
+            android:layout_marginLeft="@dimen/common_view_margin_top"
+            android:layout_marginRight="@dimen/common_view_margin_top"
+            android:background="@drawable/blue_btn"
+            android:text="@string/submit"
+            android:textColor="@color/white" />
+
+        <!-- <TextView
+            android:id="@+id/havingLetterTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/yuyinBtn"
+            android:gravity="center_vertical"
+            android:text="描述10~100个字"
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_nomarl" /> -->
+    </RelativeLayout>
+
+</RelativeLayout> <!-- </com.handmark.pulltorefresh.library.PullToRefreshScrollView> -->

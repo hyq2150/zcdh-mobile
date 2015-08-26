@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/tallContainer1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        
+         <TextView
+            android:id="@+id/taller1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            
+            android:text="  2014-05-21 12:12  我"
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_nomarl" />
+        
+        <TextView
+            android:id="@+id/tall1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/Head"
+            android:layout_below="@id/taller1"
+            android:paddingBottom="18dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="18dp"
+            android:paddingTop="5dp"
+            android:text="asdfasdf"
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_nomarl" />
+
+       
+
+        <com.zcdh.mobile.app.views.HeadByGender_
+            android:id="@+id/Head"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/tall1"
+            android:clickable="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/tallContainer2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:orientation="vertical" >
+
+        
+         <TextView
+            android:id="@+id/taller2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="客服  2014-05-21 12:12 "
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_nomarl" />
+        
+        <TextView
+            android:id="@+id/tall2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/Head1"
+            android:layout_below="@id/taller2"
+            android:paddingBottom="18dp"
+            android:paddingLeft="18dp"
+            android:paddingRight="8dp"
+            android:paddingTop="5dp"
+            android:text="asfdasdfasdfasdf"
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_nomarl" />
+
+       
+
+        <com.zcdh.mobile.app.views.HeadByGender_
+            android:id="@+id/Head1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignTop="@+id/tall2"
+            android:clickable="true" />
+    </RelativeLayout>
+
+</RelativeLayout>

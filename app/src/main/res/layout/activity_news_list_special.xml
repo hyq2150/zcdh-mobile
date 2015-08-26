@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@color/activity_bg"
+    android:id="@+id/body">
+    
+    <com.zcdh.mobile.app.views.EmptyTipView android:id="@+id/emptyView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"/>
+    
+      <include
+        android:id="@+id/searchbar"
+        layout="@layout/search_comm_bar" />
+    
+     <com.markmao.pulltorefresh.widget.XListView
+          android:id="@+id/newsListView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone" />
+
+</LinearLayout>
+

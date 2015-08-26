@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:id="@+id/multSelectionPannel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="#cccccc"
+        android:visibility="gone">
+        <RelativeLayout android:id="@+id/pannelBar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+            
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:textColor="@color/font_color"
+                android:textSize="@dimen/font_size_nomarl"
+                android:text="编辑已选条件"/>
+            
+            
+            <ImageButton android:id="@+id/toggleBtn"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/xiabian_50x50"
+                android:scaleType="centerCrop"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:clickable="false"
+                android:layout_marginLeft="10dp"
+                />
+            
+            <TextView android:id="@+id/countIndicatorText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/toggleBtn"
+                android:textColor="@color/font_color"
+                android:textSize="@dimen/font_size_nomarl"
+                android:text=""/>
+            
+        </RelativeLayout>
+        
+        <RelativeLayout android:id="@+id/selectedItemsContainer"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pannelBar"
+            android:visibility="gone"
+            android:orientation="vertical">
+            
+        </RelativeLayout>
+    </RelativeLayout>

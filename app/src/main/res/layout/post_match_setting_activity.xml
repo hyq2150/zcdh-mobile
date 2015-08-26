@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.handmark.pulltorefresh.library.PullToRefreshScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    style="@style/activityBody"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+     >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <com.zcdh.mobile.app.views.EmptyTipView
+            android:id="@+id/emptyView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        </com.zcdh.mobile.app.views.EmptyTipView>
+
+        <LinearLayout
+            android:id="@+id/contentView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <!-- 开启匹配 -->
+
+            <RelativeLayout
+                android:id="@+id/push_rl"
+                style="@style/simple_listitem"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="开启岗位匹配模式"
+                    android:textColor="@color/font_color"
+                    android:textSize="@dimen/font_size_nomarl" />
+
+                <CheckBox
+                    android:id="@+id/matchRateToggleChk"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="0dp"
+                    android:button="@drawable/checkbox_background" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/matchSettingLl"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="30dp" >
+
+                    <TextView
+                        android:id="@+id/matchTitleText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="15dp"
+                        android:padding="5dp"
+                        android:text="设置匹配度"
+                        android:textColor="@color/font_color"
+                        android:textSize="@dimen/font_size_nomarl" />
+
+                    <TextView
+                        android:id="@+id/minMatchRateText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/matchTitleText"
+                        android:text="0%"
+                        android:textColor="@color/font_color"
+                        android:textSize="@dimen/font_size_middle"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/dividerHeight"
+                    android:background="@color/divider" />
+
+                <RelativeLayout
+                    android:id="@+id/match_sk"
+                    style="@style/simple_listitem"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp" >
+
+                    <SeekBar
+                        android:id="@+id/minMatchRateSB"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</com.handmark.pulltorefresh.library.PullToRefreshScrollView>

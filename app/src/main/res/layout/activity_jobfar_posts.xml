@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/searchPannel"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/blue"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <RelativeLayout
+            android:id="@+id/searchBar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical" >
+
+            <ImageButton
+                android:id="@+id/searchBtn"
+                android:layout_width="46dp"
+                android:layout_height="36dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:src="@drawable/icon_search" />
+
+            <RelativeLayout
+                android:id="@+id/filterBtn"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:background="@color/blue"
+                android:padding="5dp" >
+
+                <TextView
+                    android:id="@+id/toggleLable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:paddingRight="10dp"
+                    android:text="分类"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_nomarl" />
+
+                <ImageView
+                    android:id="@+id/toggleIcon"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/arrow_w" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_toLeftOf="@id/searchBtn"
+                android:layout_toRightOf="@id/filterBtn"
+                android:background="@drawable/search_background"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:padding="@dimen/content_left_right" >
+
+                <EditText
+                    android:id="@+id/keywordEditText"
+                    android:layout_width="fill_parent"
+                    android:layout_height="36dp"
+                    android:background="@android:color/transparent"
+                    android:hint="搜索全部"
+                    android:paddingLeft="@dimen/content_left_right"
+                    android:textColor="@color/font_color"
+                    android:textSize="@dimen/font_size_nomarl" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/categoryTipsView"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:background="@color/white"
+                android:paddingLeft="15dp"
+                android:paddingRight="10dp"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/categorySelectedvalueText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="@color/font_color" />
+
+                <ImageButton
+                    android:id="@+id/clearBtn"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:scaleType="centerInside"
+                    android:background="@null"
+                    android:src="@drawable/icon_clear" />
+            </RelativeLayout>
+
+            <com.markmao.pulltorefresh.widget.XListView
+                android:id="@+id/listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:listSelector="@null" />
+
+            <com.zcdh.mobile.app.views.EmptyTipView
+                android:id="@+id/emptyView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone" >
+            </com.zcdh.mobile.app.views.EmptyTipView>
+        </LinearLayout>
+
+        <com.zcdh.mobile.app.activities.job_fair.CategoryDropDownFilter
+            android:id="@+id/filterView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" >
+        </com.zcdh.mobile.app.activities.job_fair.CategoryDropDownFilter>
+    </FrameLayout>
+
+</LinearLayout>

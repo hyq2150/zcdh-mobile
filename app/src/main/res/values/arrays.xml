@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ExtensionView">
+        <attr name="borderWidth" format="dimension"/>
+        <attr name="borderColor" format="color"/>
+        <attr name="borderRadius" format="dimension"/>
+        <attr name="extensionLength" format="integer"/>
+        <attr name="extensionWidth" format="dimension"/>
+        <attr name="extensionColor" format="color"/>
+        <attr name="extensionRadius" format="dimension"/>
+    </declare-styleable>
+    
+    <string-array name="search_result_tags">
+        <item>地区</item>
+        <item>规模</item>
+        <item>时间</item>
+        <item>性质</item>
+    </string-array>
+    <string-array name="genders">
+        <item>男</item>
+        <item>女</item>
+        <item>不限</item>
+    </string-array>
+    <string-array name="genders_code">
+        <item>003.001</item>
+        <item>003.002</item>
+        <item>003.003</item>
+    </string-array>
+    <string-array name="jobStatuses">
+        <item>求职中</item>
+        <item>想换岗</item>
+        <item>在职中</item>
+    </string-array>
+    <string-array name="jobStatusCodes">
+        <item>013.001</item>
+        <item>013.002</item>
+        <item>013.003</item>
+    </string-array>
+    <string-array name="marriage">
+        <item>未婚</item>
+        <item>已婚</item>
+        <item>离异</item>
+        <item>丧偶</item>
+    </string-array>
+    <string-array name="marriage_code">
+        <item>008.001</item>
+        <item>008.002</item>
+        <item>008.003</item>
+        <item>008.004</item>
+    </string-array>
+    <string-array name="diploma">
+
+        <!-- <item>不限</item> -->
+        <item>初中</item>
+        <item>高中</item>
+        <item>中专</item>
+        <item>大专</item>
+        <item>本科</item>
+        <item>硕士</item>
+        <item>博士</item>
+        <item>培训</item>
+    </string-array>
+    <string-array name="diploma_codes">
+        <!-- <item>004.011</item> -->
+        <item>004.001</item>
+        <item>004.002</item>
+        <item>004.004</item>
+        <item>004.005</item>
+        <item>004.006</item>
+        <item>004.007</item>
+        <item>004.009</item>
+        <item>004.010</item>
+    </string-array>
+    <string-array name="ID_type">
+        <item>身份证</item>
+        <item>军人证</item>
+        <item>护照证</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="ID_type_value">
+        <!-- 009.001 身份证 009.002 军人证 009.003 护照 009.004 其他 -->
+        <item>009.001</item>
+        <item>009.002</item>
+        <item>009.003</item>
+        <item>009.004</item>
+    </string-array>
+    <string-array name="service_years">
+        <item>在读学生</item>
+        <item>应届毕业生</item>
+        <item>一年以上</item>
+        <item>二年以上</item>
+        <item>三年以上</item>
+        <item>五年以上</item>
+        <item>八年以上</item>
+        <item>十年以上</item>
+        <item>不限</item>
+    </string-array>
+    <string-array name="service_years_code">
+        <item>005.001</item>
+        <item>005.002</item>
+        <item>005.003 </item>
+        <item>005.004</item>
+        <item>005.005</item>
+        <item>005.006</item>
+        <item>005.007</item>
+        <item>005.008</item>
+        <item>005.009</item>
+    </string-array>
+    <string-array name="rencai_type">
+        <item>普工</item>
+        <item>应届大学生</item>
+    </string-array>
+    <string-array name="rencai_type_codes">
+        <item>021.001</item>
+        <item>021.002</item>
+    </string-array>
+
+</resources>

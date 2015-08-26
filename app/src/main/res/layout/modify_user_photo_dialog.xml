@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/light_gray_background"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/content_top_bottom"
+        android:paddingLeft="@dimen/content_left_right"
+        android:paddingRight="@dimen/content_left_right"
+        android:paddingTop="@dimen/content_top_bottom" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:padding="7dp"
+            android:text="设置头像"
+            android:textColor="@color/font_color1"
+            android:textSize="@dimen/font_size_middle" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4" >
+
+            <!-- 拍照 -->
+
+            <LinearLayout
+                android:id="@+id/capturePhotoLL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/grey_border_rectangle_bg"
+                android:orientation="vertical"
+                android:padding="7dp" 
+                android:clickable="true"
+                android:onClick="onButtonClick">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/grzx20" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="拍照"
+                    android:textColor="@color/font_color1"
+                    android:textSize="@dimen/font_size_nomarl" />
+            </LinearLayout>
+
+            <!-- 图库 -->
+
+            <LinearLayout
+                android:id="@+id/galleryPhotoLL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/grey_border_rectangle_bg"
+                android:orientation="vertical"
+                android:padding="7dp" 
+                android:onClick="onButtonClick">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/grzx21" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="图库"
+                    android:textColor="@color/font_color1"
+                    android:textSize="@dimen/font_size_nomarl" />
+            </LinearLayout>
+
+            <!-- qq -->
+
+            <LinearLayout
+                android:id="@+id/qqPhotoLL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/grey_border_rectangle_bg"
+                android:orientation="vertical"
+                android:padding="7dp" 
+                android:clickable="true"
+                android:onClick="onButtonClick">
+
+                <ImageView android:id="@+id/qqPhoto"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/grzx20" />
+
+                <TextView 
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="QQ"
+                    android:textColor="@color/font_color1"
+                    android:textSize="@dimen/font_size_nomarl" />
+            </LinearLayout>
+            <!-- 新浪 -->
+
+            <LinearLayout
+                android:id="@+id/weiboPhotoLL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/grey_border_rectangle_bg"
+                android:orientation="vertical"
+                android:padding="7dp" 
+                android:clickable="true"
+                android:onClick="onButtonClick">
+
+                <ImageView android:id="@+id/weiboPhoto"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/grzx20" />
+
+                <TextView android:id="@+id/photo2NameText"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="新浪"
+                    android:textColor="@color/font_color1"
+                    android:textSize="@dimen/font_size_nomarl" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/wechatPhotoLL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/grey_border_rectangle_bg"
+                android:orientation="vertical"
+                android:padding="7dp" 
+                android:clickable="true"
+                android:onClick="onButtonClick">
+
+                <ImageView android:id="@+id/wechatPhoto"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/grzx20" />
+
+                <TextView android:id="@+id/photo3NameText"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="微信"
+                    android:textColor="@color/font_color1"
+                    android:textSize="@dimen/font_size_nomarl" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

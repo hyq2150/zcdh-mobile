@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rect_bord_background"
+    android:orientation="vertical"
+    android:paddingBottom="8dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="8dp" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/tagType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="职位技能类"
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_nomarl" />
+
+        <TextView
+            android:id="@+id/shift"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:clickable="true"
+            android:inputType="textUri"
+            android:text="换一组"
+            android:textColor="@color/evaluation_blue"
+            android:textSize="@dimen/font_size_middle" >
+        </TextView>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/search_edit_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-5dip"
+        android:layout_marginTop="1dip"
+        android:addStatesFromChildren="true"
+        android:baselineAligned="false"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="7dp" >
+
+        <include layout="@layout/search_comm_bar"/>
+       <!--  <EditText
+            android:id="@+id/search_text"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1.0"
+            android:background="@drawable/common_textfield_background"
+            android:hint="请输入技能名称"
+            android:paddingBottom="5dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="5dp"
+            android:singleLine="true"
+            android:textSize="@dimen/font_size_nomarl" />
+
+        <Button
+            android:id="@+id/search_go_btn"
+            android:layout_width="42dp"
+            android:layout_height="32dp"
+            android:background="@drawable/blue_btn"
+            android:text="搜索"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_nomarl" /> -->
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <com.zcdh.mobile.app.views.TagsContainer
+                android:id="@+id/skill_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/customize_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/blue_dash_rect"
+        android:clickable="true"
+        android:drawableLeft="@drawable/icon_pen"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="自定义标签"
+        android:textColor="@color/evaluation_blue"
+        android:visibility="gone" />
+
+</LinearLayout>

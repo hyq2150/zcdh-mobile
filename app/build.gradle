@@ -1,0 +1,72 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'com.neenbedankt.android-apt'
+
+def AAVersion = '3.2+'//这里定义AA版本
+
+android {
+    signingConfigs {
+        debug {
+            storeFile file('D:/SVN/project/zcdh-android3/ZCDH2/debug.keystore')
+        }
+    }
+    compileSdkVersion 23
+    buildToolsVersion '23.0.0'
+
+    defaultConfig {
+        applicationId "com.zcdh.mobile"
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode 40
+        versionName "2.2.0"
+        multiDexEnabled true
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'src/main/AndroidManifest.xml'
+            java.srcDirs = ['src/main/java', 'build/generated/source/apt/${variant.dirName}']
+            resources.srcDirs = ['src/main/res']
+            res.srcDirs = ['src/main/res']
+            assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    dexOptions {
+        incremental true
+        javaMaxHeapSize "2048M"
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/DEPENDENCIES'
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.0.0'
+    apt "org.androidannotations:androidannotations:$AAVersion"
+    compile "org.androidannotations:androidannotations:$AAVersion"
+    compile 'com.android.support:multidex:1.0.1'
+    compile project(':weiboSDK')
+}
+
+apt {
+    arguments {
+        androidManifestFile variant.outputs[0].processResources.manifestFile
+        resourcePackageName "com.zcdh.mobile"
+    }
+}
+
+

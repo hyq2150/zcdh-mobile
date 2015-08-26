@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+     <LinearLayout
+        android:id="@+id/postListContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/bottom"
+        android:background="@color/activity_bg"
+        android:orientation="vertical"
+        android:visibility="visible" >
+
+        <RelativeLayout
+            android:id="@+id/listbarRl"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grey1"
+            android:padding="@dimen/content_top_bottom" 
+            android:visibility="gone" >
+
+            <Button
+                android:id="@+id/filterBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:layout_alignParentRight="true"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/ic_filter"
+                android:text="筛选"
+                android:textColor="@color/font_blue" />
+
+            <View
+                android:id="@+id/spiltor"
+                android:layout_width="1dp"
+                android:layout_height="26dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/filterBtn"
+                android:background="@color/font_blue" />
+
+            <ImageButton
+                android:id="@+id/clearnAdvanceConditionBtn"
+                android:layout_width="@dimen/img_width_small"
+                android:layout_height="@dimen/img_height_small"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/spiltor"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_garbage"
+                android:clickable="true"
+                android:visibility="gone" />.
+                
+                 <TextView
+                android:id="@+id/resultDescriptionTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/clearnAdvanceConditionBtn"
+                android:text=""
+                android:textColor="@color/font_color"
+                android:textSize="@dimen/font_size_nomarl" />
+        </RelativeLayout>
+
+        <!-- 职位列表 -->
+
+        <com.zcdh.mobile.app.views.EmptyTipView
+            android:id="@+id/emptyView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+            
+        </com.zcdh.mobile.app.views.EmptyTipView>
+
+        <com.markmao.pulltorefresh.widget.XListView
+            android:id="@+id/postListView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="gone" />
+    </LinearLayout>
+    
+
+</RelativeLayout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+     >
+
+    <RelativeLayout
+        android:id="@+id/ll_app_item"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/white_corner_rect"
+        android:padding="5dp" >
+
+        <TextView
+            android:id="@+id/tv_app_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:duplicateParentState="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:singleLine="true"
+            android:text="title"
+            android:textSize="12dp" 
+            android:visibility="visible"/>
+        <ImageView
+            android:id="@+id/iv_app_icons"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_above="@id/tv_app_title"
+            android:layout_centerInParent="true"
+            android:src="@drawable/icon_add_app"
+            android:duplicateParentState="true"
+            android:scaleType="centerCrop" />
+
+        
+    </RelativeLayout>
+    
+    <ImageView android:id="@+id/hotImg"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_gravity="top|right"
+        android:src="@drawable/new_54x31"
+        android:scaleType="centerInside"/>
+
+</FrameLayout>

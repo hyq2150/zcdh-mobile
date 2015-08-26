@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="职位跟踪状态"
+        android:textColor="@color/default_font_color"
+        android:textSize="@dimen/font_size_middle" />
+    
+    <Button android:id="@+id/postDetailBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/simple_listiem_padding"
+        android:layout_toLeftOf="@+id/accessoryImg"
+        android:duplicateParentState="true"
+        android:text="查看职位详情"
+        android:textSize="@dimen/font_size_nomarl" 
+        android:textColor="@color/default_font_color"
+        android:background="@null"/>
+
+    <ImageView
+        android:id="@+id/accessoryImg"
+        style="@style/listview_accessory"
+        android:layout_width="@dimen/accessory_with"
+        android:layout_height="@dimen/accessory_height"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/simple_listiem_padding"
+        android:duplicateParentState="true" />
+
+</RelativeLayout>

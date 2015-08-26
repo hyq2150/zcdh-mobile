@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/ll_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:text="订单状态："
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/order_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    
+                    android:textColor="#e46c0a" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:text="订单编号：" 
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/order_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:textColor="@android:color/black"  />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:text="订单金额：" 
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/order_totalmoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:textColor="@android:color/black"  />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:text="下单时间："
+                    android:textColor="@android:color/black"  />
+
+                <TextView
+                    android:id="@+id/order_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/seperator"
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:background="@drawable/divider_horizontal_timeline"
+            android:padding="10dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/order_contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:text="客服支持：已为您安排专属客服经理："
+                android:textSize="15sp" 
+                android:textColor="@color/blackGray"/>
+            <LinearLayout 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal"
+                 android:visibility="gone">
+                 <TextView 
+                     android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:paddingLeft="3dp"
+	                android:text="联系方式："
+	                android:textSize="15sp"
+	                android:textColor="@color/blackGray"/>
+                 <TextView 
+	                android:id="@+id/customer_service_phone"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:paddingLeft="8dp"
+	                android:text="暂无"
+	                android:textSize="18sp"
+	                android:textColor="@color/blue"/>
+            </LinearLayout>
+            <LinearLayout 
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal"
+                 android:visibility="gone">
+                 <TextView 
+                     android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:paddingLeft="3dp"
+	                android:text="QQ："
+	                android:textSize="15sp"
+	                android:textColor="@color/blackGray"/>
+                 <TextView 
+	                android:id="@+id/customer_service_QQ"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:paddingLeft="3dp"
+	                android:text="暂无"
+	                android:textSize="15sp"
+	                android:textColor="@color/blackGray"/>
+                 <TextView 
+                     android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:paddingLeft="3dp"
+	                android:text="公众号："
+	                android:textSize="15sp"
+	                android:textColor="@color/blackGray"/>
+                  <TextView 
+                    android:id="@+id/customer_service_public"
+                    android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:paddingLeft="3dp"
+	                android:text="暂无"
+	                android:textSize="15sp"
+	                android:textColor="@color/blackGray"/>
+            </LinearLayout>
+           
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/order_status_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:background="@drawable/listview_background"
+            android:orientation="vertical" >
+        </ListView>
+
+</LinearLayout>

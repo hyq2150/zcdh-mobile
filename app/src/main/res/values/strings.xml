@@ -1,0 +1,535 @@
+<resources>
+
+    <string name="my_hot">附近</string>
+    <string name="my_video">消息</string>
+    <string name="my_graduate">发现</string>
+    <string name="my_hug">热点</string>
+
+    <string name="Is_download_voice_click_later">正在下载语音，稍后点击</string>
+    <string name="button_pushtotalk">按住说话</string>
+    <string name="button_send">发送</string>
+    <string name="attach_take_pic">拍照</string>
+    <string name="attach_picture">图片</string>
+    <string name="attach_location">位置</string>
+    <string name="attach_video">视频</string>
+    <string name="attach_file">文件</string>
+    <string name="attach_voice_call">语音电话</string>
+    <string name="attach_video_call">视频通话</string>
+    <string name="move_up_to_cancel">手指上滑，取消发送</string>
+    <string name="prompt">提示</string>
+    <string name="Download_the_pictures">下载图片: 0%</string>
+    <string name="Download_the_pictures_new">下载图片:</string>
+    <string name="is_down_please_wait">正在下载视频请稍候</string>
+    <string name="Network_error">网络出错</string>
+    <string name="Making_sure_your_location">正在确定你的位置...</string>
+    <string name="get_failed_please_check">获取失败,请检查网络或稍后再试</string>
+    <string name="please_check">key 验证出错! 请在 AndroidManifest.xml 文件中检查 key 设置</string>
+    <string name="ok">确定</string>
+    <string name="unable_to_get_loaction">无法获取到您的位置信息!</string>
+    <string name="not_connect_to_server">尚未连接至服务器，请稍后重试</string>
+    <string name="sd_card_does_not_exist">SD卡不存在，不能拍照</string>
+    <string name="cant_find_pictures">找不到图片</string>
+    <string name="File_does_not_exist">文件不存在</string>
+    <string name="The_file_is_not_greater_than_10_m">文件不能大于10M</string>
+    <string name="Whether_to_empty_all_chats">是否清空所有聊天记录</string>
+    <string name="gorup_not_found">找不到这个群组</string>
+    <string name="Send_voice_need_sdcard_support">发送语音需要sdcard支持</string>
+    <string name="select_contacts">选择联系人</string>
+    <string name="logout_hint">退出后不会删除任何历史数据，下次登录依然可以使用本账号</string>
+    <string name="dissolution_group_hint">退出后，此群将被解散</string>
+    <string name="Exit_the_group_chat_failure">退出群聊失败:</string>
+    <string name="button_logout">退出登录</string>
+    <string name="Dissolve_group_chat_tofail">解散群聊失败:</string>
+    <string name="failed_to_load_data">加载数据失败，请检查网络或稍后重试</string>
+    <string name="Removed_from_the_failure">移出失败</string>
+    <string name="move_out_backlist">移出黑名单</string>
+    <string name="button_save">保存</string>
+    <string name="Failed_to_join_the_group_chat">加入群聊失败:</string>
+    <string name="add_public_chat_room">添加聊天室</string>
+    <string name="newchat">新建聊天</string>
+    <string name="Select_the_contact">选择联系人</string>
+    <string name="search_pubic_group">搜索公开群</string>
+    <string name="button_search">查找</string>
+    <string name="searching">正在搜索..</string>
+    <string name="group_not_existed">群组不存在</string>
+    <string name="group_search_failed">搜索失败</string>
+    <string name="Group_chat_information">群聊资料</string>
+    <string name="Group_of_Lord">群主</string>
+    <string name="Introduction">简介</string>
+    <string name="To_join_the_chat">加入群聊</string>
+    <string name="Is_sending_a_request">正在发送请求...</string>
+    <string name="Request_to_join">请求加入</string>
+    <string name="send_the_request_is">发送请求成功，等待群主同意</string>
+    <string name="Join_the_group_chat">加入群聊成功</string>
+    <string name="group_id">群ID</string>
+    <string name="logout">退出登录</string>
+    <string name="exit_group_hint">退出后，将不再接收此群聊信息</string>
+    <string name="exit_group">退出</string>
+    <string name="Add_group_members_fail">添加群成员失败:</string>
+    <string name="Is_unblock">正在解除屏蔽...</string>
+    <string name="remove_group_of">解除群屏蔽失败，请检查网络或稍后重试</string>
+    <string name="group_is_blocked">正在屏蔽群组...</string>
+    <string name="group_of_shielding">群屏蔽失败，请检查网络或稍后重试</string>
+    <string name="sure_to_empty_this">确定清空此群的聊天记录吗？</string>
+    <string name="The_delete_button_is_clicked">删除按钮被点击</string>
+    <string name="Add_a_button_was_clicked">添加按钮被点击</string>
+    <string name="not_delete_myself">不能删除自己</string>
+    <string name="Are_removed">正在移除...</string>
+    <string name="confirm_the_members">确认将此成员加入至此群黑名单?</string>
+    <string name="Failed_to_get_group_chat_information">获取群聊信息失败:</string>
+    <string name="Delete_failed">删除失败:</string>
+    <string name="network_unavailable">网络连接不可用，请检查网络</string>
+    <string name="Open_group_chat">公开的群聊</string>
+    <string name="chat_room">聊天室</string>
+    <string name="Empty_the_chat_record">清空聊天记录</string>
+    <string name="Change_the_group_name">改变群名称</string>
+    <string name="blacklist">黑名单列表</string>
+    <string name="Shielding_of_the_message">屏蔽群消息</string>
+    <string name="Exit_the_group_chat">退出群聊</string>
+    <string name="dismiss_group">解散群聊</string>
+    <string name="people">人)</string>
+    <string name="being_added">正在添加...</string>
+    <string name="is_quit_the_group_chat">正在退出群聊...</string>
+    <string name="chatting_is_dissolution">正在解散群聊...</string>
+    <string name="are_empty_group_of_news">正在清空群消息...</string>
+    <string name="is_modify_the_group_name">正在修改群名称...</string>
+    <string name="Modify_the_group_name_successful">修改群名称成功</string>
+    <string name="change_the_group_name_failed_please">改变群名称失败，请检查网络或稍后重试</string>
+    <string name="Are_moving_to_blacklist">正在移入至黑名单</string>
+    <string name="failed_to_move_into">移入黑名单失败,请检查网络或稍后重试</string>
+    <string name="recoding_fail">录音失败，请重试！</string>
+    <string name="release_to_cancel">松开手指，取消发送</string>
+    <string name="Recording_without_permission">无录音权限</string>
+    <string name="The_recording_time_is_too_short">录音时间太短</string>
+    <string name="send_failure_please">发送失败，请检测服务器是否连接</string>
+    <string name="Is_moved_into_blacklist">正在移入黑名单...</string>
+    <string name="Move_into_blacklist_success">移入黑名单成功</string>
+    <string name="Move_into_blacklist_failure">移入黑名单失败</string>
+    <string name="you_are_group">你被群创建者从此群中移除</string>
+    <string name="the_current_group">当前群聊已被群创建者解散</string>
+    <string name="confirm_forward_to">确定转发到：%1$s ?</string>
+    <string name="search_new">搜</string>
+    <string name="search_header">搜</string>
+    <string name="Send_the_following_pictures">发送以下图片？</string>
+    <string name="The_video_to_start">录像开始</string>
+    <string name="Whether_to_send">是否发送？</string>
+    <string name="Open_the_equipment_failure">打开设备失败!</string>
+    <string name= "no_more_messages">没有更多的消息了</string>
+    <string name="location_recv">[%1$s的位置]</string>
+    <string name="location_message">位置信息</string>
+    <string name="recording_video">录制视频</string>
+    <string name="location_prefix">[我的位置]</string>
+    <string name="picture">[图片]</string>
+    <string name="Failed_to_download_file">下载文件失败:</string>
+    <string name="video">[视频]</string>
+    <string name="file">[文件]</string>
+    <string name="voice_call">[语音通话]</string>
+    <string name="voice">声音</string>
+    <string name="temporary_does_not">暂不支持大于10M的视频！</string>
+    <string name="Video_footage">拍摄录像</string>
+    <string name="call_duration">通话时长</string>
+    <string name="Refused">已拒绝</string>
+    <string name="The_other_party_has_refused_to">对方已拒绝</string>
+    <string name="The_other_is_not_online">对方不在线</string>
+    <string name="The_other_is_on_the_phone">对方正在通话中</string>
+    <string name="The_other_party_did_not_answer">对方未接听</string>
+    <string name="did_not_answer">未接听</string>
+    <string name="Has_been_cancelled">已取消</string>
+    <string name="mute">静音</string>
+    <string name="Hands_free">免提</string>
+    <string name="hang_up">挂断</string>
+    <string name="answer">接听</string>
+    <string name="Are_connected_to_each_other">正在连接对方...</string>
+    <string name="Is_not_yet_connected_to_the_server">尚未连接至服务器</string>
+    <string name="have_connected_with">已经和对方建立连接，等待对方接受...</string>
+    <string name="direct_call">Direct</string>
+    <string name="relay_call">Relay</string>
+    <string name="In_the_call">通话中...</string>
+    <string name="The_other_party_refused_to_accept">对方拒绝接受！...</string>
+    <string name="Connection_failure">连接建立失败！...</string>
+    <string name="The_other_party_is_not_online">对方不在线，请稍后再拨...</string>
+    <string name="The_other_is_on_the_phone_please">对方正在通话中，请稍后再拨</string>
+    <string name="The_other_is_hang_up">对方已经挂断</string>
+    <string name="hanging_up">正在挂断..</string>
+    <string name="text_ack_msg">已读</string>
+    <string name="text_delivered_msg">送达</string>
+    <string name="receive_the_passthrough">收到透传：action：</string>
+    <string name="The_other_party_did_not_answer_new">对方未接听</string>
+    <string name="not_download">未下载:</string>
+    <string name="resend">重发</string>
+    <string name="confirm_resend">确认重发该信息？</string>
+    <string name="Into_the_blacklist">移入到黑名单？</string>
+    <string name="send_fail">发送消息失败,</string>
+    <string name="connect_failuer_toast">请检查网络或稍候重试</string>
+    <string name="Have_downloaded">已下载</string>
+    <string name="Did_not_download">未下载</string>
+    <string name="error_send_invalid_content">你发送了不合法的消息内容</string>
+    <string name="error_send_not_in_the_group">你已经不在此群了</string>
+    <string name="downwaiting">正在下载文件请稍后</string>
+
+    <string name="all_fairs">全部</string>
+    <string name="my_fairs">我的</string>
+    <string name="no_more_data">暂无更多数据</string>
+
+    <string name="extension_error">无效邀请码，请检查后重新输入</string>
+    <string name="extension_input">请输入邀请码</string>
+    <string name="extension">邀请码</string>
+    <string name="network_suck">网络不给力，请检查后再试试</string>
+    <string name="service_error">服务器出错</string>
+    <!-- 主页 tabs title -->
+    <string name="your_suggestion_makes_better_improvement">你的意见让我们更强大.</string>
+    <string name="myhome">个人中心</string>
+    <string name="search1">搜 索</string>
+    <string name="nearby">附近</string>
+    <string name="newsmodel">应用</string>
+    <string name="search_hint">职位/ 企业/ 技能名称</string>
+    <string name="chosen_area">工作地点</string>
+    <string name="sure">确定</string>
+    <string name="cancel">取消</string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="app_name">职场导航</string>
+    <string name="find_pass">忘记密码</string>
+    <string name="search">搜一搜</string>
+    <string name="advance">高级</string>
+    <string name="renli">人力</string>
+    <string name="changyon">常用</string>
+    <string name="yingjie">应届</string>
+    <string name="find_password">忘记密码</string>
+    <string name="account">账号</string>
+    <string name="password">密码</string>
+    <string name="hint_password">请输入密码</string>
+    <string name="current_pass">旧  密  码:</string>
+    <string name="new_pass">新  密  码:</string>
+    <string name="new_email">新邮箱地址:</string>
+    <string name="email2">再次输入邮箱地址</string>
+    <string name="phone">电话</string>
+    <string name="input_phone">请输入手机号码或邮箱</string>
+    <string name="input_name">用户名</string>
+    <string name="phone_or_email">电话或邮箱</string>
+    <string name="login">登 录</string>
+    <string name="loging">正在登录...</string>
+    <string name="thirdpart_login_desc">使用合作网站账号登录</string>
+    <string name="password_confirm">确认密码:</string>
+    <string name="regist">注 册</string>
+    <string name="reset_pwd">重置密码</string>
+    <string name="update_pwd">更改密码</string>
+    <string name="update_email">更改邮箱</string>
+    <string name="bind_successfully">绑定成功</string>
+    <string name="qq_uid_has_bound_another_zcdh_account">QQ已绑定其他账号</string>
+    <string name="weibo_uid_has_bound_another_zcdh_account">微博已绑定其他账号</string>
+    <string name="zcdh_uid_has_been_bound">此账号已被绑定</string>
+    <string name="bind_failed_account_exists">绑定失败,邮箱或手机已被注册</string>
+    <string name="regist_failed_phone_exists">注册失败,手机号码已被注册</string>
+    <string name="regist_failed_email_exists">注册失败,Email已注册</string>
+    <string name="bind_failed_account_login_failed">绑定失败,账号不存在或密码错误</string>
+    <string name="account_binding">账号绑定</string>
+    <string name="bind_sina_account">绑定新浪账号</string>
+    <string name="bind_existing">已有职场导航账号</string>
+    <string name="bind_new">没有职场导航帐号</string>
+    <string name="bind_qq_account">绑定QQ账号</string>
+    <string name="please_complete_all_info">请完整填写注册信息</string>
+    <string name="please_complete_all_field">请完整填写信息</string>
+    <string name="password_length_too_short">密码长度至少6位</string>
+    <string name="please_complete_all_login_field">请完整填写登录信息</string>
+    <string name="invalid_phone_format">无效手机号码</string>
+    <string name="invalid_email_format">无效的电邮地址</string>
+    <string name="invalid_email_or_phone_format">无效手机号码或email格式</string>
+    <string name="not_the_same_password">两次密码输入不一致</string>
+    <string name="not_the_same_email">两次email输入不一致</string>
+    <string name="title_login">登录</string>
+    <string name="title_settings_home">系统设置</string>
+    <string name="singout">退出登录</string>
+    <string name="view_on_map">在地图上查看</string>
+
+    <!-- filter -->
+    <string name="no_data">没有找到符合条件的职位</string>
+    <!-- Activity 标题 -->
+    <string name="activity_main_search_title">职场导航</string>
+    <string name="title_advanced">高级搜索</string>
+    <string name="title_category_posts">职位类别</string>
+    <string name="title_industry">行业</string>
+    <string name="actionbar_back">返回</string>
+    <string name="title_purpose">求职意向</string>
+    <string name="activity_resume">个人简历</string>
+    <string name="title_category_majors">专业类别</string>
+    <string name="activity_title_basic_info">基本信息</string>
+    <string name="activity_title_work_experience">工作经验</string>
+    <string name="activity_title_winning_experience">获奖经历</string>
+    <string name="activity_title_practical_experience">实践经历</string>
+    <string name="activiyt_work_exp_add">新增工作经验</string>
+    <string name="activiyt_work_exp_edit">编辑工作经验</string>
+    <string name="activiyt_winning_exp_add">新增获奖经历</string>
+    <string name="activiyt_winning_exp_edit">编辑获奖经历</string>
+    <string name="activiyt_practical_exp_add">新增实践经历</string>
+    <string name="activiyt_practical_exp_edit">编辑实践经历</string>
+    <string name="activity_title_about">关于我们</string>
+    <string name="activity_title_push">订阅设置</string>
+    <string name="activity_title_match">岗位匹配</string>
+    <string name="activity_title_main_ent">公司主页</string>
+    <string name="activity_title_product_detal">产品详细</string>
+    <string name="activity_title_fans">粉丝列表</string>
+    <string name="activity_title_liuyan">公司留言</string>
+    <string name="activity_title_zixun">岗位咨询</string>
+    <string name="activity_title_jiucuo">纠错意见</string>
+    <string name="activity_title_newslist">资讯列表</string>
+    <string name="title_filter">结果筛选</string>
+    <string name="filter">筛选</string>
+
+    <!-- 设置 -->
+    <string name="customVersion">版本定制</string>
+    <string name="subscrieSetting">订阅设置</string>
+    <string name="setting_feedback">意见反馈</string>
+    <string name="gradeForApp">软件评分</string>
+    <string name="about">关于我们</string>
+    <string name="failed_to_reset_pwd">当前密码不对</string>
+    <string name="reset_pwd_successfully">重置密码成功，请查收您的注册邮件</string>
+    <string name="update_pwd_successfully">重置密码成功</string>
+    <string name="reset_pwd_failed_due_to_a_none_email_registed_account">重置失败,尚未设置邮箱</string>
+    <string name="login_successfully">登录成功</string>
+    <string name="account_not_exists">账号不存在</string>
+    <string name="wrong_password">密码错误</string>
+    <string name="account_banned">账号已经停用</string>
+    <string name="checkForUpgrade">检查更新</string>
+    <string name="gettingStart">系统引导</string>
+    <!-- 检查更新 -->
+    <string name="currentVersion">当前版本</string>
+    <string name="newed_version_msg">已是最新版本!</string>
+    <string name="newest_version">最新版本</string>
+    <string name="checkingForUpgrade">正在检查更新...</string>
+    <string name="upgrade_now">立即更新</string>
+    <string name="upgrading">正在更新...</string>
+    <string name="installation">安装最新版</string>
+
+    <!-- 高级搜索列表 -->
+    <string name="search_area">工作地点</string>
+    <string name="search_post">职位类别</string>
+    <string name="search_industry">行业类别</string>
+    <string name="search_publish_date">发布时间</string>
+    <string name="search_payment">薪酬范围</string>
+    <string name="search_company_nature">公司性质</string>
+    <string name="search_company_scale">公司规模</string>
+    <string name="search_area_hint">请选择工作地点</string>
+    <string name="search_post_hint">请选择职位类别</string>
+    <string name="search_industry_hint">请选择行业类别</string>
+    <string name="search_publish_date_hint">请选择发布时间</string>
+    <string name="search_payment_hint">请选择薪酬范围</string>
+    <string name="search_company_nature_hint">请选择公司性质</string>
+    <string name="search_company_scale_hint">请选择公司规模</string>
+    <string name="chosen">请选择</string>
+    <string name="complete">完成</string>
+    <string name="selected_area_count">已选择地区</string>
+
+    <!-- 参会 -->
+    <string name="participants_position">参会职位</string>
+    <string name="participants_enterprises">参会企业</string>
+    <string name="more_recruitment_details">招聘会详情</string>
+    <string name="view_the_process">参会流程</string>
+    <string name="sweep_resume">扫一扫投简历</string>
+    <string name="interview_results">面试结果</string>
+    <string name="real_time_data">实时数据</string>
+    <string name="enterprise_login">面试系统（企业登录）</string>
+    <string name="fair_category">招聘会类别</string>
+    <string name="social_recruitment">社会招聘</string>
+    <string name="campus_recruitment">校园招聘</string>
+    <string name="other_recruitment">其他</string>
+    <string name="holiday_recruitment"> 假期工</string>
+
+    <!-- 职位详情titles -->
+    <string name="post_detail">职位详情</string>
+    <string name="ent_detail">公司详情</string>
+    <string name="all_posts">所有职位</string>
+    <string name="jubao">举报</string>
+    <string name="area">地区</string>
+
+    <!-- 签到 -->
+    <string name="sign_success">签到成功</string>
+    <string name="sign">签到</string>
+    <string name="signed">已签到</string>
+    <string name="signed_today">您今天已签到</string>
+    <string name="site_attendance">现场签到</string>
+
+    <!-- 职位详情 -->
+    <string name="employ_count">招聘</string>
+    <string name="workplace_area">工作地点</string>
+    <string name="access_count">浏览</string>
+    <string name="apply_count">已申请</string>
+    <string name="post_description">职位描述</string>
+    <string name="skill_req">技能要求</string>
+    <string name="other_posts">公司其他职位</string>
+    <string name="more">更多</string>
+    <string name="recommend_posts">相关职位推荐</string>
+    <string name="post_apply">申请职位</string>
+    <string name="follow">关注</string>
+    <string name="followed">已关注</string>
+    <string name="home_page">公司主页</string>
+    <string name="sign_up">报名</string>
+    <string name="job_fair_sign_up">个人报名</string>
+    <string name="jbo_you_have_signed_up">已报名</string>
+    <string name="job_sign_up_success">报名成功</string>
+    <string name="msg">留言</string>
+    <string name="message">消息</string>
+    <string name="favorites">收藏</string>
+    <string name="comment">评论</string>
+    <string name="go_comment">我要评价</string>
+    <string name="send_apply">发送申请</string>
+    <string name="no_degree">无学历和经验要求</string>
+    <string name="favorited">已收藏</string>
+    <string name="post_applied">已申请</string>
+    <string name="post_applied_msg">此职位已经申请了</string>
+    <string name="post_favorited_msg">此职位已经收藏了</string>
+    <string name="extenion">展开</string>
+    <string name="pack_up">收起</string>
+
+    <!-- 提示 -->
+    <string name="no_content">暂无内容</string>
+    <string name="search_result">搜索的职位</string>
+    <string name="supervise">举报</string>
+
+    <!-- pull to refresh -->
+
+    <string name="pull_down_to_previous">下拉查看上一条</string>
+    <string name="release_to_previous">释放查看上一条</string>
+    <string name="pull_up_to_next">上拉查看下一条</string>
+    <string name="release_to_next">释放查看下一条</string>
+    <string name="save">保存</string>
+    <string name="edit">编辑</string>
+    <string name="done">完成</string>
+
+    <!-- 教育经历 -->
+    <string name="edu_bg">教育经历</string>
+    <!-- 选择性别 -->
+    <string name="gender_select">请选择性别</string>
+    <string name="area_select">请选择地区</string>
+    <string name="work_status">求职状态</string>
+    <string name="marriage">婚姻状态</string>
+    <string name="service_year">工作年限</string>
+    <string name="rencai_type">人才类型</string>
+    <string name="diploma">最高学历</string>
+    <string name="IDType">身份类型</string>
+    <string name="confirm">确认</string>
+    <string name="mianyi">面议</string>
+
+    <!-- 获奖经历 -->
+    <string name="add_winning_exp">添加获奖经历</string>
+    <string name="winningName">奖项名称</string>
+    <string name="winningTime">获奖时间</string>
+    <string name="winning_description">奖项描述</string>
+
+    <!-- 实践经历 -->
+    <string name="add_practical_exp">添加实践经历</string>
+    <string name="practicalName">实践名称</string>
+    <string name="practical_description">实践描述</string>
+
+    <!-- 工作经验 -->
+    <string name="add_work_exp">添加工作经验</string>
+    <string name="companyName">公司名称</string>
+    <string name="startTime">开始时间</string>
+    <string name="endTime">结束时间</string>
+    <string name="industry_category">行业类别</string>
+    <string name="post_category">职位类别</string>
+    <string name="job_description">工作描述</string>
+    <string name="evaluation_hint">说说自己最大的优势是什么，打动HR。</string>
+    <string name="company_comment_hint">分享一些公司环境\\管理\\工作的事情</string>
+
+    <!-- 对话框标题 -->
+    <string name="dialog_title_commpany_name">公司名称</string>
+
+    <!-- 关于 -->
+    <string name="about_company_website">公司网站:http://www.zcdhjo.com/</string>
+    <string name="about_company_weibo">公司微博:http://weibo.com/</string>
+    <string name="about_company_contact">联系我们:0756-3350009</string>
+    <string name="preparing_card">Preparing card</string>
+    <string name="no_storage_card">No storage card</string>
+    <string name="not_enough_space">Not enough space</string>
+    <string name="info_center">信息中心</string>
+    <string name="applications_tracking">申请跟踪</string>
+    <string name="feedback_from_hr">人事经理来信</string>
+    <string name="hr_visitors">谁访问我</string>
+    <string name="favorite_posts">职位收藏</string>
+    <!-- WXPayActivity -->
+    <string name="app_tip">提示</string>
+    <string name="pay_by_wx">通过微信支付</string>
+    <string name="check_pay">检查微信版本是否支持支付</string>
+    <string name="input_reqkey">输入reqkey</string>
+    <string name="input_package_value">输入package value</string>
+    <string name="input_sign">输入sign</string>
+    <string name="getting_access_token">正在获取access token...</string>
+    <string name="get_access_token_succ">获取access token成功</string>
+    <string name="get_access_token_fail" formatted="false">获取access token失败，原因%s</string>
+    <string name="getting_prepayid">正在获取预支付订单...</string>
+    <string name="paying">支付中</string>
+    <string name="get_prepayid_succ">获取prepayid成功</string>
+    <string name="get_prepayid_fail" formatted="false">获取prepayid失败，原因%s</string>
+
+    <!-- WXPayEntryActivity -->
+    <string name="pay_result_tip">这个界面用于显示第三方app通过微信支付的结果</string>
+    <string name="pay_result_callback_msg" formatted="false">微信支付结果：%s</string>
+    <string name="backBtn">返回</string>
+    <string name="my_orders">我的订单</string>
+    <string name="search_key">请输入岗位/企业名称</string>
+    <string name="search_job_fair">搜索</string>
+    <string name="no_result">暂无数据</string>
+    <string name="activity_title_subscription">订阅服务</string>
+    <string name="action_to_orders">订单</string>
+    <string name="see_fitpostlist"><u>点击查看岗位分布</u></string>
+    <string name="edit_mode_exit">编辑未提交,确定退出编辑？</string>
+    <string name="friendly_hint">温馨提示</string>
+    <string name="exit">退出</string>
+
+    <!-- 企业主页 -->
+    <string name="foucs">关注</string>
+    <string name="ent_main">主页</string>
+    <string name="ent_products">产品</string>
+    <string name="ent_comments">评价</string>
+    <string name="ent_job_fair">招聘</string>
+    <string name="submit">提交</string>
+    <string name="tijiao">提交</string>
+    <string name="submit_successfully">提交成功</string>
+    <string name="discover">发现</string>
+
+    <!-- 招聘会 -->
+
+    <string name="jobfair_detail">招聘会详情</string>
+    <string name="jobfair_entlist">参会企业</string>
+    <string name="jobfair_postlist">所有职位</string>
+
+    <!--  -->
+    <string name="perfect_info">完善资料</string>
+    <string name="bind_exsiting_account">已有账号</string>
+    <string name="resume_preview">预览</string>
+
+    <string name="scan_tips">将二维码图片对准扫描框即可自动扫描</string>
+
+    <string name="loading">加载中 ...</string>
+
+    <string name="login_first">请先登录</string>
+    <string name="login_first_then_call">请先登录再拨打电话</string>
+    <string name="login_first_then_message">请先登录再留言</string>
+
+    <string name="jobfair_status_end_">报名已结束</string>
+
+    <string name="jobfair_status_end">已结束</string>
+    <!--     <string name="jobfair_status_pause">已暂停</string> -->
+    <string name="jobfair_status_normal">进行中</string>
+
+    <string name="userid_found">用户信息已存在，正在跳转登录操作…</string>
+    <string name="logining">使用%s帐号登录中…</string>
+    <string name="auth_cancel">授权操作已取消</string>
+    <string name="auth_error">授权操作遇到错误，请阅读Logcat输出</string>
+    <string name="auth_complete">授权成功，正在跳转登录操作…</string>
+
+    <!-- 注册 -->
+    <string name="registertips">请绑定手机号码，并进行验证</string>
+    <string name="phonen">手机号码</string>
+    <string name="codes">验证码</string>
+    <string name="getcodes">获取验证码</string>
+    <string name="nextstep">下一步</string>
+    <string name="inputpwd">请输入密码</string>
+    <string name="mspwd">请确认密码</string>
+    <string name="str_last_item">已经是最后一项了</string>
+    <string name="str_latest_item">已经是最顶了</string>
+    <string name="str_no_related_post_details">无相关职位详情</string>
+
+
+</resources>

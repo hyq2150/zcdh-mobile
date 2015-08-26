@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/body"
+    style="@style/activityBody"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="0dp" >
+
+    <include layout="@layout/mult_selection_pannel" />
+
+    <include layout="@layout/search_comm_bar" />
+
+    <!-- 显示搜索结果面板 -->
+    <LinearLayout
+        android:id="@+id/resultPannel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/resultCountText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/content_left_right"
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_nomarl" />
+
+        <ListView
+            android:id="@+id/postsListView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/listview_background"
+            android:divider="@color/divider"
+            android:dividerHeight="@dimen/dividerHeight" >
+        </ListView>
+    </LinearLayout>
+
+    <!-- 所有职位类别 -->
+    <se.emilsjolander.stickylistheaders.StickyListHeadersListView
+        android:id="@+id/categoryListView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@android:color/white" />
+
+</LinearLayout>

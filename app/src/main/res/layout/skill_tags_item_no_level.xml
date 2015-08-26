@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:clickable="true" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:duplicateParentState="true" >
+
+        <TextView
+            android:id="@+id/skillNameText"
+            style="@style/fontNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:duplicateParentState="true"
+            android:gravity="center"
+            android:padding="@dimen/content_left_right"
+            android:singleLine="true"
+            android:text="afasdfadf"
+            android:textColor="@color/tag_jingtong"
+            android:textSize="@dimen/font_size_nomarl" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="right|center_vertical"
+        android:duplicateParentState="true" >
+
+        <ImageView
+            android:id="@+id/iv_indicator"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:background="@drawable/icon_yes"
+            android:clickable="true"
+            android:duplicateParentState="true"
+            android:paddingRight="10dp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</FrameLayout>

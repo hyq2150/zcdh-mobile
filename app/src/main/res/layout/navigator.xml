@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout android:id="@+id/barContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" 
+        android:background="@color/menu_normal"
+        android:layout_alignParentTop="true">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="left|center_vertical"
+            android:src="@drawable/menu_back"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"
+            android:padding="5dp" />
+
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageButton
+                android:id="@+id/btn_transit"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@android:color/transparent"
+                android:padding="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/btn_transit"
+                android:textColor="@color/white" />
+
+            <ImageButton
+                android:id="@+id/btn_driving"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                 android:layout_marginLeft="20dp"
+                android:background="@android:color/transparent"
+                android:padding="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/btn_driving"
+                android:textColor="@color/white" />
+
+            <ImageButton
+                android:id="@+id/btn_walk"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                 android:layout_marginLeft="20dp"
+                android:background="@android:color/transparent"
+                android:padding="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/btn_walking"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </LinearLayout>
+
+    
+
+    <LinearLayout
+        android:id="@+id/routeDetail"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+       
+        android:background="@color/activity_bg"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/lvDetail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            android:fadeScrollbars="false"
+            android:background="@color/white" >
+        </ListView>
+    </LinearLayout>
+    
+      <LinearLayout
+        android:id="@+id/mapContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:orientation="vertical"
+        android:layout_below="@id/barContainer"
+        android:layout_above="@id/routeDetail">
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:gravity="center_vertical"
+    android:descendantFocusability="blocksDescendants"
+    style="@style/simple_listitem">
+
+    <TextView
+        android:id="@+id/itemNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="@dimen/content_left_right"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:ellipsize="end"
+        android:singleLine="true"
+        style="@style/fontNormal"
+        android:text=""></TextView>
+    
+    <LinearLayout android:id="@+id/accessory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        >
+        
+	    <ImageView android:id="@+id/accessoryImg" 
+	        android:layout_width="@dimen/accessory_with"
+	        android:layout_height="@dimen/accessory_height"
+	        style="@style/listview_accessory"
+	        android:visibility="gone"
+	        android:clickable="false"
+	        />
+	    <ImageButton android:id="@+id/clearBtn" 
+	        android:layout_width="26dp"
+	        android:layout_height="26dp"
+	        android:src="@drawable/icon_clear"
+	        android:scaleType="centerInside"
+	        android:visibility="gone"
+	        android:focusable="false"
+	        android:background="@android:color/transparent"
+	        />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/secondItemNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:gravity="right"
+        android:layout_toLeftOf="@id/accessory"
+        android:layout_toRightOf="@id/itemNameText"
+        android:paddingRight="5dp"
+        android:paddingLeft="15dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:maxWidth="200dp"
+        style="@style/fontNormal"
+        android:text=""></TextView>
+</RelativeLayout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/news_item_selector"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/content_left_right"
+    android:paddingRight="@dimen/content_left_right"
+    android:paddingTop="@dimen/content_top_bottom"
+    android:paddingBottom="@dimen/content_top_bottom" >
+
+    <ImageView
+        android:id="@+id/newsImg"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_alignParentRight="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/default_group" />
+
+    <TextView
+        android:id="@+id/titleTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/newsImg"
+        android:paddingBottom="@dimen/content_top_bottom"
+        android:paddingLeft="@dimen/content_left_right"
+        android:paddingRight="@dimen/content_left_right"
+        android:paddingTop="@dimen/content_top_bottom"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:text=""
+        android:textColor="@color/font_color"
+        android:textSize="@dimen/font_size_nomarl" />
+
+    <!--
+    <TextView android:id="@+id/dateTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/newsImg"
+        android:layout_alignBottom="@id/newsImg"
+        android:paddingLeft="@dimen/content_left_right"
+        android:textSize="@dimen/font_size_small"
+        android:textColor="@color/grey"
+        android:text="2014-06-06"
+        />
+    
+    <TextView android:id="@+id/readedCountTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:layout_alignParentRight="true"
+		android:layout_alignBottom="@id/newsImg"
+		android:paddingRight="25dp"
+		android:textSize="@dimen/font_size_small"
+		android:textColor="@color/grey"
+		android:text="已阅读121次"
+    	/>
+    
+    <ImageView
+        android:id="@+id/iv_right"
+        style="@style/listview_accessory"
+        android:layout_width="@dimen/accessory_with"
+        android:layout_height="@dimen/accessory_height"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" />
+    -->
+
+</RelativeLayout>

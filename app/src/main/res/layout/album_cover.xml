@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center" >
+
+    <ImageView
+        android:id="@+id/iv_cover"
+        style="@style/large_album_cover"
+        android:layout_centerHorizontal="true"
+        android:background="@null"
+        android:src="@drawable/ic_launcher"
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_cover"
+        android:layout_centerHorizontal="true"
+        android:singleLine="true"
+        android:text="相册描述"
+        android:textColor="@color/abs__background_holo_dark"
+        android:textSize="13sp"/>
+
+</RelativeLayout>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/content"
+    android:layout_width="280dp"
+    android:layout_height="270dp"
+    android:background="@drawable/voice_recognizer_draw"
+    android:orientation="vertical" >
+    
+    
+
+    <RelativeLayout
+        android:id="@+id/micContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp" >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:maxHeight="60dp"
+            android:minHeight="50dp"
+            android:text="现在大声说出想找的职位~"
+            android:textColor="@color/greyTxt"
+            android:textSize="20sp" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:layout_marginTop="15dp" >
+
+            <ImageView
+                android:id="@+id/recodeImg"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_speech_1"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/recogniztionImg"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_centerInParent="true"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+   
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/micContainer"
+        android:padding="0dp"> 
+
+        <RelativeLayout
+            android:id="@+id/buttonsContainer"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:visibility="visible" 
+            >
+
+            <Button
+                android:id="@+id/overBtn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/dialog_left_button"
+                android:paddingBottom="13dp"
+                android:paddingTop="13dp"
+                android:text="重试"
+                android:textColor="@color/font_color"
+                android:textSize="17sp" 
+                android:visibility="gone"/>
+            <Button
+                android:id="@+id/cancelBtn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/dialog_left_button"
+                android:paddingBottom="13dp"
+                android:paddingTop="13dp"
+                android:textColor="@color/font_color"
+                android:textSize="17sp"
+                android:text="取消"
+                 />
+
+        </RelativeLayout>
+    </RelativeLayout>
+    
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:textColor="#eeeeee"
+        android:text="科大讯飞"
+        android:padding="5dp"
+        android:clickable="false"
+        />
+
+</RelativeLayout>

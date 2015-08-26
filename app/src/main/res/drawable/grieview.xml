@@ -1,0 +1,19 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item>
+        <shape android:shape="rectangle" >
+
+            <!-- //框为矩形 -->
+          <solid android:color="@color/font_ee" />
+            <!-- //用白色来填充里面 -->
+            <!-- //边框是1dp的线 -->
+            <stroke
+                android:width="0.5dp"
+                android:color="@color/blues" />
+
+            <corners android:radius="10dp" />
+            <!-- //边框的圆角的弧度 -->
+        </shape>
+    </item>
+
+</layer-list>

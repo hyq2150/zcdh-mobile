@@ -1,0 +1,926 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zcdh.mobile.app.views.PostSwitcherView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/switch_container"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/light_gray_background"
+    android:gravity="center" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp" >
+
+        <com.zcdh.mobile.app.views.EmptyTipView
+            android:id="@+id/emptyTipView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+        </com.zcdh.mobile.app.views.EmptyTipView>
+
+        <!-- 职位基本信息 -->
+
+        <ScrollView
+            android:id="@+id/contentScroll"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="gone" >
+
+            <!-- 基本信息 -->
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <!-- 假期工 / 兼职 -->
+
+                <TableLayout
+                    android:id="@+id/postInfos_1"
+                    style="@style/row_silver"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="*"
+                    android:visibility="gone" >
+
+                    <TableRow android:paddingTop="@dimen/rows_padding" >
+
+                        <TextView
+                            android:id="@+id/postNameText_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:text="高级程序员"
+                            android:textColor="@color/main_text"
+                            android:textSize="@dimen/font_size_middle" />
+
+                        <TextView
+                            android:id="@+id/publishDateTxt_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:gravity="right"
+                            android:text="2014-04-14"
+                            android:textColor="@color/sub_title"
+                            android:textSize="@dimen/font_size_nomarl" />
+                    </TableRow>
+                    <!-- 公司 -->
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:shrinkColumns="0"
+                        android:stretchColumns="1" >
+
+                        <TableRow android:paddingTop="@dimen/rows_padding" >
+
+                            <TextView
+                                android:id="@+id/companyTxt_1"
+                                style="@style/list_item_content"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="left"
+                                android:maxLines="4"
+                                android:text="珠海新宇合创金融软件股份有限公司"
+                                android:textColor="@color/sub_title"
+                                android:textSize="@dimen/font_size_nomarl"
+                                android:visibility="visible" />
+
+                            <ImageView
+                                android:id="@+id/renzhengImg1"
+                                android:layout_width="23dp"
+                                android:layout_height="23dp"
+                                android:layout_gravity="left"
+                                android:layout_marginLeft="5dp"
+                                android:src="@drawable/yrzicon" />
+                        </TableRow>
+                    </TableLayout>
+                    <!-- 地址 -->
+
+                    <LinearLayout
+                        android:id="@+id/tr_addressTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/rows_padding"
+                        android:visibility="visible" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="地址："
+                            android:textColor="@color/main_text"
+                            android:textSize="@dimen/font_size_nomarl" />
+
+                        <TextView
+                            android:id="@+id/addressTxt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="slkdfjlksdfj"
+                            android:textColor="@color/greyTxt"
+                            android:textSize="@dimen/font_size_nomarl" />
+                    </LinearLayout>
+                    <!-- 时间 -->
+
+                    <LinearLayout
+                        android:id="@+id/tr_duration_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/rows_padding"
+                        android:visibility="visible" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="时间："
+                            android:textColor="@color/main_text"
+                            android:textSize="@dimen/font_size_nomarl" />
+
+                        <TextView
+                            android:id="@+id/durationText_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="slkdfjlksdfj"
+                            android:textColor="@color/font_color"
+                            android:textSize="@dimen/font_size_nomarl" />
+                    </LinearLayout>
+                    <!-- 专业 -->
+
+                    <LinearLayout
+                        android:id="@+id/tr_zhuanye"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/rows_padding"
+                        android:visibility="visible" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="专业："
+                            android:textColor="@color/main_text"
+                            android:textSize="@dimen/font_size_nomarl" />
+
+                        <TextView
+                            android:id="@+id/zhuanyeTxt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="slkdfjlksdfj"
+                            android:textColor="@color/font_color"
+                            android:textSize="@dimen/font_size_nomarl" />
+                    </LinearLayout>
+                    <!-- 招聘 -->
+
+                    <LinearLayout
+                        android:id="@+id/tr_zhaopin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/rows_padding"
+                        android:visibility="visible" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="招聘："
+                            android:textColor="@color/main_text"
+                            android:textSize="@dimen/font_size_nomarl" />
+
+                        <TextView
+                            android:id="@+id/zhaopinTxt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="slkdfjlksdfj"
+                            android:textColor="@color/font_color"
+                            android:textSize="@dimen/font_size_nomarl" />
+                    </LinearLayout>
+                    <!-- 待遇 -->
+
+                    <LinearLayout
+                        android:id="@+id/tr_daiyu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/rows_padding"
+                        android:visibility="visible" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="待遇："
+                            android:textColor="@color/main_text"
+                            android:textSize="@dimen/font_size_nomarl" />
+
+                        <TextView
+                            android:id="@+id/daiyuTxt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="slkdfjlksdfj"
+                            android:textColor="@color/font_color"
+                            android:textSize="@dimen/font_size_nomarl" />
+                    </LinearLayout>
+                </TableLayout>
+
+                <!-- 常规 -->
+
+                <TableLayout
+                    android:id="@+id/postInfos"
+                    style="@style/row_silver"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:shrinkColumns="0"
+                    android:stretchColumns="*" >
+
+                    <TableRow android:paddingTop="@dimen/rows_padding" >
+
+                        <TextView
+                            android:id="@+id/postNameText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:text="高级程序员"
+                            android:textColor="@color/main_text"
+                            android:textSize="@dimen/font_size_middle" />
+
+                        <TextView
+                            android:id="@+id/publishDateTxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:gravity="right"
+                            android:text="2014-04-14"
+                            android:textColor="@color/sub_title"
+                            android:textSize="@dimen/font_size_nomarl" />
+                    </TableRow>
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:shrinkColumns="0"
+                        android:stretchColumns="1" >
+
+                        <TableRow android:paddingTop="@dimen/rows_padding" >
+
+                            <TextView
+                                android:id="@+id/entNameText"
+                                style="@style/list_item_content"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="left"
+                                android:maxLines="4"
+                                android:text="珠海新宇合创金融软件股份有限公司"
+                                android:textColor="@color/sub_title"
+                                android:textSize="@dimen/font_size_nomarl"
+                                android:visibility="visible" />
+
+                            <ImageView
+                                android:id="@+id/renzhengImg"
+                                android:layout_width="23dp"
+                                android:layout_height="23dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_gravity="left"
+                                android:src="@drawable/yrzicon" />
+                        </TableRow>
+                    </TableLayout>
+
+                    <LinearLayout
+                        android:id="@+id/tr_duration"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="工作时间范围："
+                            android:textColor="@color/sub_title"
+                            android:textSize="@dimen/font_size_nomarl" />
+
+                        <TextView
+                            android:id="@+id/duration"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/font_color"
+                            android:textSize="@dimen/font_size_nomarl" />
+                    </LinearLayout>
+
+                    <TableRow android:paddingTop="@dimen/rows_padding" >
+
+                        <TextView
+                            android:id="@+id/jobCategoryText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:text="工作地点:珠海"
+                            android:textColor="@color/sub_title"
+                            android:textSize="@dimen/font_size_nomarl" />
+
+                        <TextView
+                            android:id="@+id/jingyangText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:text="3年经验"
+                            android:textColor="@color/sub_title"
+                            android:textSize="@dimen/font_size_nomarl" />
+                    </TableRow>
+
+                    <TableRow android:paddingTop="@dimen/rows_padding" >
+
+                        <TextView
+                            android:id="@+id/areaText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:text="工作地点:珠海"
+                            android:textColor="@color/sub_title"
+                            android:textSize="@dimen/font_size_nomarl" />
+
+                        <TextView
+                            android:id="@+id/degreeText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:text="本科/ 全职 / 3年以上经验"
+                            android:textColor="@color/sub_title"
+                            android:textSize="@dimen/font_size_nomarl" />
+                    </TableRow>
+
+                    <TableRow android:paddingTop="@dimen/rows_padding" >
+
+                        <TextView
+                            android:id="@+id/employCountText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:text="招聘人数:3"
+                            android:textColor="@color/sub_title"
+                            android:textSize="@dimen/font_size_nomarl" />
+
+                        <TextView
+                            android:id="@+id/paymentText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:text="6000~90000"
+                            android:textColor="@color/sub_title"
+                            android:textSize="@dimen/font_size_nomarl" />
+                    </TableRow>
+
+                    <TableRow android:paddingTop="@dimen/rows_padding" >
+
+                        <TextView
+                            android:id="@+id/appliedCountTxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:text="申请人数8人"
+                            android:textColor="@color/sub_title"
+                            android:textSize="@dimen/font_size_nomarl" />
+
+                        <TextView
+                            android:id="@+id/accessText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:text="已有61人查阅"
+                            android:textColor="@color/sub_title"
+                            android:textSize="@dimen/font_size_nomarl" />
+                    </TableRow>
+
+                    <TableRow android:paddingTop="@dimen/rows_padding" >
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_span="2"
+                            android:orientation="horizontal" >
+
+                            <com.zcdh.mobile.app.views.TagsContainer
+                                android:id="@+id/tagsContainer"
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent" >
+                            </com.zcdh.mobile.app.views.TagsContainer>
+                        </LinearLayout>
+                    </TableRow>
+                </TableLayout>
+
+                <!-- 匹配度 -->
+
+                <RelativeLayout
+                    android:id="@+id/matchContainer"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/content_top_bottom"
+                    android:layout_marginLeft="@dimen/content_left_right"
+                    android:layout_marginRight="@dimen/content_left_right"
+                    android:background="@color/match_container_bg"
+                    android:clickable="true"
+                    android:paddingBottom="@dimen/content_top_bottom"
+                    android:paddingLeft="@dimen/content_left_right"
+                    android:paddingRight="@dimen/content_left_right"
+                    android:paddingTop="@dimen/content_top_bottom"
+                    android:visibility="gone" >
+
+                    <TextView
+                        android:id="@+id/matchTitleText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:text="你和职位匹配度"
+                        android:textColor="@color/match_title"
+                        android:textSize="@dimen/font_size_small" />
+
+                    <ImageView
+                        android:id="@+id/matchAccssoryImg"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="right|center_vertical"
+                        android:background="@android:color/transparent"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/youbian_50x50" />
+
+                    <FrameLayout
+                        android:id="@+id/progressContainer"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/content_left_right"
+                        android:layout_marginRight="@dimen/content_left_right"
+                        android:layout_toLeftOf="@id/matchAccssoryImg"
+                        android:layout_toRightOf="@id/matchTitleText"
+                        android:background="@color/white"
+                        android:padding="0.5dp" >
+
+                        <ProgressBar
+                            android:id="@+id/matchRatePb"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="fill_parent"
+                            android:layout_height="32dp"
+                            android:indeterminateDuration="1000"
+                            android:progress="40"
+                            android:progressDrawable="@drawable/matchrate_progressbar_bg" />
+
+                        <TextView
+                            android:id="@+id/matchDescText"
+                            android:layout_width="fill_parent"
+                            android:layout_height="32dp"
+                            android:layout_gravity="left"
+                            android:background="@android:color/transparent"
+                            android:gravity="left|center_vertical"
+                            android:paddingLeft="@dimen/content_left_right"
+                            android:text="40%"
+                            android:textColor="@color/match_title"
+                            android:textSize="@dimen/font_size_small" />
+                    </FrameLayout>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/dividerHeight"
+                    android:background="@color/divider" />
+
+                <!-- 职位描述 -->
+
+                <TableLayout
+                    style="@style/row_silver"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="*" >
+
+                    <TableRow>
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/post_description"
+                            android:textSize="@dimen/font_size_middle" />
+                    </TableRow>
+
+                    <TableRow>
+
+                        <TextView
+                            android:id="@+id/postDescription"
+                            android:layout_width="0dp"
+                            android:layout_height="fill_parent"
+                            android:lineSpacingExtra="4dp"
+                            android:paddingLeft="@dimen/content_left_right"
+                            android:paddingRight="@dimen/content_left_right"
+                            android:text="@string/post_description"
+                            android:textColor="@color/sub_title"
+                            android:textSize="@dimen/font_size_nomarl" />
+                    </TableRow>
+                </TableLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/dividerHeight"
+                    android:background="@color/divider" />
+
+                <!-- 技能要求 -->
+
+                <RelativeLayout
+                    style="@style/row_silver"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" >
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/skill_req"
+                        android:textSize="@dimen/font_size_middle" />
+
+                    <LinearLayout
+                        android:id="@+id/moreTagsBtnLl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:clickable="true"
+                        android:orientation="horizontal"
+                        android:tag="1" >
+
+                        <TextView
+                            android:id="@+id/moreTagsText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="展开"
+                            android:textSize="@dimen/font_size_middle" />
+
+                        <ImageView
+                            android:id="@+id/moreTagsBtn"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@android:color/transparent"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/xiabian_50x50" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/skillsContainer"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/light_gray_background"
+                    android:orientation="vertical"
+                    android:paddingBottom="12dp"
+                    android:visibility="gone" >
+
+                    <com.zcdh.mobile.app.views.TagsContainer
+                        android:id="@+id/skillsLayout"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/dividerHeight"
+                    android:background="@color/divider"
+                    android:visibility="gone" />
+                <!-- 其他职位 -->
+
+                <RelativeLayout
+                    style="@style/row_silver"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/other_posts"
+                        android:textSize="@dimen/font_size_middle" />
+
+                    <LinearLayout
+                        android:id="@+id/moreBtnLl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:clickable="true"
+                        android:orientation="horizontal"
+                        android:tag="1" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="@string/more"
+                            android:textSize="@dimen/font_size_middle" />
+
+                        <ImageView
+                            android:id="@+id/moreBtn"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@android:color/transparent"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/youbian_50x50" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/light_gray_background"
+                    android:orientation="vertical"
+                    android:paddingBottom="12dp" >
+
+                    <GridView
+                        android:id="@+id/otherPostsGridView"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:horizontalSpacing="4dp"
+                        android:listSelector="@android:color/transparent"
+                        android:numColumns="3"
+                        android:paddingLeft="@dimen/content_left_right"
+                        android:paddingRight="@dimen/content_left_right"
+                        android:stretchMode="columnWidth"
+                        android:verticalSpacing="5dp"
+                        android:visibility="visible" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/dividerHeight"
+                    android:background="@color/divider" />
+                <!-- 相关职位 -->
+
+                <LinearLayout
+                    style="@style/row_silver"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="30dp" >
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="38dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/recommend_posts"
+                        android:textSize="@dimen/font_size_middle" />
+
+                    <LinearLayout
+                        android:id="@+id/relaPostRow1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/rela_post_selector"
+                        android:clickable="true"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/content_left_right"
+                        android:paddingLeft="@dimen/content_left_right"
+                        android:paddingRight="@dimen/content_left_right"
+                        android:paddingTop="@dimen/content_left_right" >
+
+                        <TextView
+                            android:id="@+id/relaPostName1"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:text="abcabcabc"
+                            android:textColor="@color/tag_jingtong"
+                            android:textSize="@dimen/font_size_nomarl" />
+
+                        <TextView
+                            android:id="@+id/relaEnt1"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:text="lklfkasdfjlkdfjlksdf"
+                            android:textColor="@color/sub_title"
+                            android:textSize="@dimen/font_size_nomarl" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/relaPostRow2"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/rela_post_selector"
+                        android:clickable="true"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/content_left_right"
+                        android:paddingLeft="@dimen/content_left_right"
+                        android:paddingRight="@dimen/content_left_right"
+                        android:paddingTop="@dimen/content_left_right" >
+
+                        <TextView
+                            android:id="@+id/relaPostName2"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:text="abcabcabc"
+                            android:textColor="@color/tag_jingtong"
+                            android:textSize="@dimen/font_size_nomarl" />
+
+                        <TextView
+                            android:id="@+id/relaEnt2"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:text="lklfkasdfjlkdfjlksdf"
+                            android:textColor="@color/sub_title"
+                            android:textSize="@dimen/font_size_nomarl" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/relaPostRow3"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/rela_post_selector"
+                        android:clickable="true"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/content_left_right"
+                        android:paddingLeft="@dimen/content_left_right"
+                        android:paddingRight="@dimen/content_left_right"
+                        android:paddingTop="@dimen/content_left_right" >
+
+                        <TextView
+                            android:id="@+id/relaPostName3"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:text="abcabcabc"
+                            android:textColor="@color/tag_jingtong"
+                            android:textSize="@dimen/font_size_nomarl" />
+
+                        <TextView
+                            android:id="@+id/relaEnt3"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:text="lklfkasdfjlkdfjlksdf"
+                            android:textColor="@color/sub_title"
+                            android:textSize="@dimen/font_size_nomarl" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 工具栏 -->
+
+                <TableLayout
+                    style="@style/row_silver"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/row_silver"
+                    android:padding="0dp"
+                    android:stretchColumns="*" >
+
+                    <TableRow>
+
+                        <!-- 收藏 -->
+
+                        <LinearLayout
+                            android:id="@+id/favriteClickRl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/tool_button_selector"
+                            android:clickable="true"
+                            android:orientation="vertical"
+                            android:paddingBottom="@dimen/content_top_bottom"
+                            android:paddingTop="@dimen/content_top_bottom" >
+
+                            <ImageView
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center_horizontal"
+                                android:src="@drawable/icon_fav" />
+
+                            <TextView
+                                android:id="@+id/favriteBtn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:text="@string/favorites"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/font_size_small" />
+                        </LinearLayout>
+
+                        <!-- 分享 -->
+
+                        <LinearLayout
+                            android:id="@+id/shareClickRl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/tool_button_selector"
+                            android:clickable="true"
+                            android:orientation="vertical"
+                            android:paddingBottom="@dimen/content_top_bottom"
+                            android:paddingTop="@dimen/content_top_bottom" >
+
+                            <ImageView
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center_horizontal"
+                                android:src="@drawable/icon_share" />
+
+                            <TextView
+                                android:id="@+id/shareBtn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:text="@string/share"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/font_size_small" />
+                        </LinearLayout>
+
+                        <!-- 岗位咨询 -->
+
+                        <LinearLayout
+                            android:id="@+id/zixunClickRl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/tool_button_selector"
+                            android:clickable="true"
+                            android:orientation="vertical"
+                            android:paddingBottom="@dimen/content_top_bottom"
+                            android:paddingTop="@dimen/content_top_bottom" >
+
+                            <ImageView
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center_horizontal"
+                                android:src="@drawable/icon_advisory" />
+
+                            <TextView
+                                android:id="@+id/zixunBtn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:text="岗位咨询"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/font_size_small" />
+                        </LinearLayout>
+
+                        <!-- 申请 -->
+
+                        <LinearLayout
+                            android:id="@+id/applyClickRl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/tool_button_selector"
+                            android:clickable="true"
+                            android:orientation="vertical"
+                            android:paddingBottom="@dimen/content_top_bottom"
+                            android:paddingTop="@dimen/content_top_bottom" >
+
+                            <ImageView
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center_horizontal"
+                                android:src="@drawable/icon_apply_job" />
+
+                            <TextView
+                                android:id="@+id/applyBtn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:text="@string/post_apply"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/font_size_small" />
+                        </LinearLayout>
+                    </TableRow>
+                </TableLayout>
+
+                <LinearLayout
+                    android:id="@+id/pullTipsLl"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/content_top_bottom" >
+
+                    <TextView
+                        android:id="@+id/pullTips"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:text="向下滑动查看下一条"
+                        android:textColor="@color/sub_title"
+                        android:textSize="@dimen/font_size_nomarl" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</com.zcdh.mobile.app.views.PostSwitcherView>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="#4e91cc"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:paddingTop="5dp"
+        android:text="读写能力"
+        android:textColor="@color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" >
+
+        <RadioGroup
+            android:id="@+id/rwskill"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*" >
+
+                <TableRow>
+
+                    <RadioButton
+                        android:id="@+id/master_in_reading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:button="@null"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/level_btn"
+                        android:paddingTop="@dimen/levelPadding"
+                        android:paddingBottom="@dimen/levelPadding"
+                        android:tag="rw"
+                        android:text="精通" 
+                        android:textColor="@color/level_title_selector"/>
+
+                    <RadioButton
+                        android:id="@+id/advanced_in_reading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/level_btn"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/levelPadding"
+                        android:paddingBottom="@dimen/levelPadding"
+                         android:tag="rw"
+                        android:text="熟悉" 
+                        android:textColor="@color/level_title_selector"/>
+
+                    <RadioButton
+                        android:id="@+id/premium_in_reading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/level_btn"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/levelPadding"
+                        android:paddingBottom="@dimen/levelPadding"
+                         android:tag="rw"
+                        android:text="会些" 
+                        android:textColor="@color/level_title_selector"/>
+
+                    <RadioButton
+                        android:id="@+id/not_much_in_reading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/level_btn"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/levelPadding"
+                        android:paddingBottom="@dimen/levelPadding"
+                         android:tag="rw"
+                        android:text="知道"
+                        android:textColor="@color/level_title_selector"/>
+                </TableRow>
+            </TableLayout>
+        </RadioGroup>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dip"
+        android:background="@drawable/divider_horizontal_timeline" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:paddingTop="5dp"
+        android:text="听说能力"
+        android:textColor="@color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" >
+
+        <RadioGroup
+            android:id="@+id/lwskill"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*" >
+
+                <TableRow>
+
+                    <RadioButton
+                        android:id="@+id/master_in_listening_and_speaking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" 
+                        android:button="@null"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/level_btn"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/levelPadding"
+                        android:paddingBottom="@dimen/levelPadding"
+                        android:tag="lw"
+                        android:text="精通"
+                        android:textColor="@color/level_title_selector"/>
+
+                    <RadioButton
+                        android:id="@+id/advanced_in_listening_and_speaking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/level_btn"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/levelPadding"
+                        android:paddingBottom="@dimen/levelPadding"
+                        android:tag="lw"
+                        android:text="熟悉"
+                        android:textColor="@color/level_title_selector" />
+
+                    <RadioButton
+                        android:id="@+id/premium_in_listening_and_speaking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" 
+                        android:button="@null"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/level_btn"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/levelPadding"
+                        android:paddingBottom="@dimen/levelPadding"
+                        android:tag="lw"
+                        android:text="会些"
+                        android:textColor="@color/level_title_selector"/>
+
+                    <RadioButton
+                        android:id="@+id/not_much_in_listening_and_speaking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" 
+                        android:button="@null"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/level_btn"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/levelPadding"
+                        android:paddingBottom="@dimen/levelPadding"
+                        android:tag="lw"
+                        android:text="知道"
+                        android:textColor="@color/level_title_selector"/>
+                </TableRow>
+            </TableLayout>
+        </RadioGroup>
+    </LinearLayout>
+
+</LinearLayout>

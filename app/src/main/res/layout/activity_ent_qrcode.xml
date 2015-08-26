@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:padding="15dp" >
+
+        <ImageView
+            android:id="@+id/entLogoImg"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/companylogo" />
+
+        <TextView
+            android:id="@+id/entNameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/entLogoImg"
+            android:padding="10dp"
+            android:text=""
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_middle" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/qrcodeImg"
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        android:layout_centerInParent="true"
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/qrcodeImg"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="扫描上面的二维码，获取企业信息"
+        android:textColor="@color/font_color"
+        android:textSize="@dimen/font_size_nomarl" />
+
+</RelativeLayout>

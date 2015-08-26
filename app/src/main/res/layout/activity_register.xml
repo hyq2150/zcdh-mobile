@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/activityBody"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           	android:layout_centerInParent="true"
+            android:text="@string/registertips"
+            android:textColor="@color/blues" />
+
+    </RelativeLayout>
+			<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:orientation="vertical"
+            android:padding="20dp" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" >
+
+                <EditText
+                    android:id="@+id/phoneNumEditText"
+                    style="@style/commom_text_field"
+                    android:layout_width="fill_parent"
+                    android:layout_height="30dp"
+                    android:hint="@string/phonen" >
+                </EditText>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/underline" />
+                
+				<RelativeLayout 
+			    android:layout_height="wrap_content"
+			    android:layout_width="match_parent"
+			    android:layout_marginTop="6dp">
+                <EditText
+                    android:id="@+id/validateCodeEditText"
+                    style="@style/commom_text_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:hint="@string/codes"
+                    android:layout_alignParentLeft="true"
+                    android:inputType="numberPassword" />
+					
+                <Button
+                    android:id="@+id/getValidateCodeBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/tags"
+                    android:text="@string/getcodes"
+                    android:padding="5dp"
+                    android:textColor="@color/blues"
+                    android:textSize="@dimen/font_size_nomarl" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/underline" />
+            </LinearLayout>
+            <Button
+        android:id="@+id/submitBtn"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button_normal_bg"
+        android:text="@string/nextstep"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_size_middle" />
+             </LinearLayout>
+                 
+            
+</LinearLayout>

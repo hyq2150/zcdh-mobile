@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/barContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+
+    <!-- toolbar -->
+    <RelativeLayout
+        android:id="@+id/tool_bar_rl"
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="3dp"
+        android:paddingRight="@dimen/content_left_right" >
+
+        <ImageView
+            android:id="@+id/indicatorSwitcher"
+            android:layout_width="13dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_map_switcher_01"
+            android:visibility="gone" />
+
+        <!-- 切换列表 -->
+
+        <ImageButton
+            android:id="@+id/switchModeBtn"
+            android:layout_width="@dimen/btn_sizes"
+                android:layout_height="@dimen/btn_sizes"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"
+            android:src="@drawable/list_normal" />
+
+        <RelativeLayout
+            android:id="@+id/inputTypeContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_toRightOf="@id/switchModeBtn" >
+
+            <!-- 语音按钮 -->
+
+            <ImageButton
+                android:id="@+id/micBtn"
+                android:layout_width="@dimen/btn_sizes"
+                android:layout_height="@dimen/btn_sizes"
+                android:layout_centerInParent="true"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_mic" 
+                android:visibility="gone" />
+            <!-- 键盘输入按钮 -->
+
+            <ImageButton
+                android:id="@+id/keybordBtn"
+                android:layout_width="@dimen/btn_sizes"
+                android:layout_height="@dimen/btn_sizes"
+                android:layout_centerInParent="true"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_keyborad" />
+            
+        </RelativeLayout>
+        <!-- 更多功能的加号 -->
+
+        <RelativeLayout
+            android:id="@+id/rightBtnsContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp" >
+
+            <ImageButton
+                android:id="@+id/moreBtn"
+                android:layout_width="@dimen/btn_sizes"
+                android:layout_height="@dimen/btn_sizes"
+                android:layout_centerVertical="true"
+                android:background="@android:color/transparent"
+            	android:scaleType="centerInside"
+            	android:src="@drawable/more_btn_selector"
+             />
+
+            <Button
+                android:id="@+id/searchBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@color/white"
+                android:text="搜索"
+                android:textColor="@color/greyTxt"
+                android:textSize="@dimen/font_size_small"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <!-- 喊工作长按按钮 -->
+
+        <Button
+            android:id="@+id/voiceSearchBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="38dp"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="6dp"
+            android:layout_toLeftOf="@id/rightBtnsContainer"
+            android:layout_toRightOf="@id/inputTypeContainer"
+            android:background="@drawable/search_btn_selector"
+            android:text="长按 喊工作"
+            android:textColor="@color/greyTxt"
+            android:textSize="@dimen/font_size_nomarl" />
+
+        <FrameLayout
+            android:id="@+id/keywordContainer"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/rightBtnsContainer"
+            android:layout_toRightOf="@id/inputTypeContainer"
+            android:focusableInTouchMode="true"
+            android:visibility="gone" >
+
+            <!-- 输入框 -->
+
+            <EditText
+                android:id="@+id/keyWorkEditText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|bottom"
+                android:background="@drawable/edittext"
+                android:minHeight="30dp"
+                android:paddingRight="40dp"
+                android:singleLine="false"
+                android:paddingLeft="5dp"
+                android:textColor="@color/font_color"
+                android:textSize="@dimen/font_size_nomarl" />
+
+            <!-- 标签按钮 -->
+
+            <ImageButton
+                android:id="@+id/tagToggleBtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="10dp"
+                android:background="@color/transparent"
+                android:src="@drawable/tag_toggle_normal"
+                android:scaleType="centerInside" />
+        </FrameLayout>
+    </RelativeLayout>
+
+    <!-- 点击标签或加号按钮弹出内容 -->
+
+    <RelativeLayout
+        android:id="@+id/relContentRl"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/font_ee"
+        android:visibility="gone" >
+
+        <!-- 标签容器 -->
+
+        <RelativeLayout
+            android:id="@+id/tagsContainerRl"
+            android:layout_width="fill_parent"
+            android:layout_height="180dp"
+            android:visibility="gone" >
+
+            <!-- 标签 -->
+
+            <GridView
+                android:id="@+id/tagsGrideview"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:columnWidth="70dp"
+                android:gravity="center"
+                android:horizontalSpacing="5dp"
+                android:numColumns="auto_fit"
+                android:padding="@dimen/content_top_bottom"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="20dp" />
+
+            <!-- 标签类别 -->
+
+            <TableLayout
+                android:id="@+id/tagCategoryTl"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/white"
+                android:stretchColumns="*" >
+
+                <TableRow>
+
+                    <Button
+                        android:id="@+id/tagCategoryBtn1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/activity_bg"
+                        android:paddingBottom="@dimen/content_top_bottom"
+                        android:paddingTop="@dimen/content_top_bottom"
+                        android:text="Button2"
+                        android:textColor="@color/font_white"
+                        android:textSize="@dimen/font_size_nomarl"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/tagCategoryBtn2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:paddingBottom="@dimen/content_top_bottom"
+                        android:paddingTop="@dimen/content_top_bottom"
+                        android:text="Button3"
+                        android:textColor="@color/font_color"
+                        android:textSize="@dimen/font_size_nomarl"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/tagCategoryBtn3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:paddingBottom="@dimen/content_top_bottom"
+                        android:paddingTop="@dimen/content_top_bottom"
+                        android:text="Button1"
+                        android:textColor="@color/font_color"
+                        android:textSize="@dimen/font_size_nomarl"
+                        android:visibility="gone" />
+                </TableRow>
+            </TableLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/dividerHeight"
+                android:layout_above="@id/tagCategoryTl"
+                android:background="@color/activity_bg" />
+
+            <!-- 页数指示 -->
+
+            <com.zcdh.mobile.framework.views.CustomIndicator
+                android:id="@+id/indicator"
+                android:layout_width="150dp"
+                android:layout_height="20dp"
+                android:layout_above="@id/tagCategoryTl"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/moreFunContainer"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/content_left_right"
+            android:paddingRight="@dimen/content_left_right"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp"
+            android:visibility="gone" >
+
+            <GridView
+                android:id="@+id/moreFuncGridView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="true"
+                android:columnWidth="60dp"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:gravity="center"
+                android:horizontalSpacing="8dp"
+                android:listSelector="@android:color/transparent"
+                android:numColumns="4"
+                android:padding="2dp"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="8dp" >
+            </GridView>
+
+            <!-- 投区域 -->
+
+            <RelativeLayout
+                android:id="@+id/sendByAreaRl"
+                android:layout_width="@dimen/button_big"
+                android:layout_height="@dimen/button_big"
+                android:background="@color/activity_bg"
+                android:clickable="true"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/sendByAreaTitleTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:padding="@dimen/content_top_bottom"
+                    android:text="投区域"
+                    android:textColor="@color/greyTxt"
+                    android:textSize="@dimen/font_size_small" />
+
+                <ImageView
+                    android:id="@+id/sendByAreaImg"
+                    android:layout_width="@dimen/img_height_normal"
+                    android:layout_height="@dimen/img_height_normal"
+                    android:layout_above="@id/sendByAreaTitleTxt"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/send_by_area_normal" />
+            </RelativeLayout>
+
+            <!-- 周边 -->
+
+            <RelativeLayout
+                android:id="@+id/nearbyRl"
+                android:layout_width="@dimen/button_big"
+                android:layout_height="@dimen/button_big"
+                android:layout_marginLeft="@dimen/content_top_bottom"
+                android:layout_toRightOf="@id/sendByAreaRl"
+                android:background="@color/activity_bg"
+                android:clickable="true"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/nearbyRlTitleTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:padding="@dimen/content_top_bottom"
+                    android:text="周边"
+                    android:textColor="@color/greyTxt"
+                    android:textSize="@dimen/font_size_small" />
+
+                <ImageView
+                    android:id="@+id/nearbyImg"
+                    android:layout_width="@dimen/img_height_normal"
+                    android:layout_height="@dimen/img_height_normal"
+                    android:layout_above="@id/nearbyRlTitleTxt"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/near_by_normal" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

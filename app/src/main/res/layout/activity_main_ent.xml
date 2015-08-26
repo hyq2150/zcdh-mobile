@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/content_top_bottom"
+        android:paddingLeft="@dimen/content_left_right"
+        android:paddingRight="@dimen/content_left_right"
+        android:paddingTop="@dimen/content_top_bottom"
+        android:background="@drawable/companybackground_1080">
+
+        <ImageView
+            android:id="@+id/entLogoImg"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/companylogo" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/entLogoImg"
+            android:layout_toRightOf="@id/entLogoImg"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/content_left_right" >
+
+            <TextView
+                android:id="@+id/entNameTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_nomarl"
+                android:visibility="gone" />
+            
+            <ImageView
+                android:id="@+id/renzhengImg"
+                android:layout_width="wrap_content"
+                android:layout_height="23dp"
+                android:layout_marginTop="@dimen/ent_padding_top"
+                android:src="@drawable/yrz" />
+
+            <TextView
+                android:id="@+id/entIndustryTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_nomarl" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/foucsRl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" >
+
+            <ImageView
+                android:id="@+id/foucsImg"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:src="@drawable/icon_yes"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/foucsTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/foucsImg"
+                android:text="@string/foucs"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_nomarl" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <!-- <com.viewpagerindicator.TabPageIndicator
+        android:id="@+id/indicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" >
+    </com.viewpagerindicator.TabPageIndicator>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1" >
+    </android.support.v4.view.ViewPager> -->
+    
+    <include layout="@layout/fw_tab_layout" />
+
+</LinearLayout>

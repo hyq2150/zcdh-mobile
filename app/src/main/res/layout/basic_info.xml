@@ -1,0 +1,781 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- scrollview -->
+<com.handmark.pulltorefresh.library.PullToRefreshScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:background="#E6E6E6"
+    android:fadingEdge="none"
+    android:scrollbars="vertical" >
+
+    <!-- 所有内容margin 10像素 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:paddingBottom="10dp" >
+
+        <com.zcdh.mobile.app.views.EmptyTipView
+            android:id="@+id/emptyTipView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:id="@+id/contentView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/activity_bg"
+            android:orientation="vertical"
+            android:padding="5dp"
+            android:visibility="visible" >
+
+            <RelativeLayout
+                android:id="@+id/rlDigest1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rect_bord_red_background"
+                android:clickable="false"
+                android:padding="0.5dp" >
+
+                <TextView
+                    android:id="@+id/tv_mustfield_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:background="#f15a24"
+                    android:padding="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="必填项"
+                    android:textColor="@color/white" />
+
+                <RelativeLayout
+                    android:id="@+id/rlName"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_mustfield_title"
+                    android:background="@drawable/list_item_silver_selector"
+                    android:clickable="true"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp" >
+
+                    <TextView
+                        android:id="@+id/tvName"
+                        style="@style/userinfo_panel_textview_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_marginTop="20.0dip"
+                        android:gravity="center_vertical"
+                        android:text="姓        名:" />
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        style="@style/listview_accessory"
+                        android:layout_width="@dimen/accessory_with"
+                        android:layout_height="@dimen/accessory_height"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:id="@+id/tvName_content"
+                        style="@style/fontNormal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dip"
+                        android:layout_toLeftOf="@+id/imageView1"
+                        android:layout_toRightOf="@+id/tvName"
+                        android:gravity="center_vertical|right" />
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/vHDivider1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@+id/rlName"
+                    android:background="@color/red" />
+
+                <RelativeLayout
+                    android:id="@+id/rlGender"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/vHDivider1"
+                    android:background="@drawable/list_item_silver_selector"
+                    android:clickable="true"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp" >
+
+                    <TextView
+                        android:id="@+id/tvGender"
+                        style="@style/userinfo_panel_textview_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_marginTop="20.0dip"
+                        android:gravity="center_vertical"
+                        android:text="性        别:" />
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        style="@style/listview_accessory"
+                        android:layout_width="@dimen/accessory_with"
+                        android:layout_height="@dimen/accessory_height"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:id="@+id/tvGender_content"
+                        style="@style/fontNormal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dip"
+                        android:layout_toLeftOf="@+id/imageView2"
+                        android:gravity="center_vertical" />
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/vHDivider36"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@+id/rlGender"
+                    android:background="@color/red"
+                    android:visibility="visible" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_phone"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/vHDivider36"
+                    android:background="@drawable/list_item_silver_selector"
+                    android:clickable="true"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:visibility="visible" >
+
+                    <TextView
+                        android:id="@+id/tvPhoneText"
+                        style="@style/userinfo_panel_textview_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_marginTop="20.0dip"
+                        android:gravity="center_vertical"
+                        android:text="手机号码:" />
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        style="@style/listview_accessory"
+                        android:layout_width="@dimen/accessory_with"
+                        android:layout_height="@dimen/accessory_height"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:id="@+id/phoneValueText"
+                        style="@style/fontNormal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dip"
+                        android:layout_toLeftOf="@+id/imageView3"
+                        android:gravity="center_vertical" />
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/vHDivider22"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@+id/rl_phone"
+                    android:background="@color/red"
+                    android:visibility="visible" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_how_long"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/vHDivider22"
+                    android:background="@drawable/list_item_silver_selector"
+                    android:clickable="true"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp" >
+
+                    <TextView
+                        android:id="@+id/tvHowlong"
+                        style="@style/userinfo_panel_textview_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_marginTop="20.0dip"
+                        android:gravity="center_vertical"
+                        android:text="工作年限:" />
+
+                    <ImageView
+                        android:id="@+id/imageView33"
+                        style="@style/listview_accessory"
+                        android:layout_width="@dimen/accessory_with"
+                        android:layout_height="@dimen/accessory_height"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:id="@+id/tvHowlong_content"
+                        style="@style/fontNormal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dip"
+                        android:layout_toLeftOf="@+id/imageView33"
+                        android:gravity="center_vertical" />
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/vHDivider3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@id/rl_how_long"
+                    android:background="@color/red" />
+
+                <RelativeLayout
+                    android:id="@+id/rlBirthplace"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/vHDivider3"
+                    android:background="@drawable/list_item_silver_selector"
+                    android:clickable="true"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp" >
+
+                    <TextView
+                        android:id="@+id/tvBirthplace"
+                        style="@style/userinfo_panel_textview_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_marginTop="20.0dip"
+                        android:gravity="center_vertical"
+                        android:text="户        口:" />
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        style="@style/listview_accessory"
+                        android:layout_width="@dimen/accessory_with"
+                        android:layout_height="@dimen/accessory_height"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:id="@+id/tvBirthplace_content"
+                        style="@style/fontNormal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dip"
+                        android:layout_toLeftOf="@+id/imageView4"
+                        android:gravity="center_vertical" />
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/vHDivider4"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@id/rlBirthplace"
+                    android:background="@color/red" />
+
+                <RelativeLayout
+                    android:id="@+id/rlType"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/vHDivider4"
+                    android:background="@drawable/list_item_silver_selector"
+                    android:clickable="true"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp" >
+
+                    <TextView
+                        android:id="@+id/tvType"
+                        style="@style/userinfo_panel_textview_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_marginTop="20.0dip"
+                        android:gravity="center_vertical"
+                        android:text="人才类型:" />
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        style="@style/listview_accessory"
+                        android:layout_width="@dimen/accessory_with"
+                        android:layout_height="@dimen/accessory_height"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:id="@+id/tvType_content"
+                        style="@style/fontNormal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dip"
+                        android:layout_toLeftOf="@+id/imageView5"
+                        android:gravity="center_vertical" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rlDigest2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/rect_bord_background"
+                android:clickable="true"
+                android:padding="0.5dp" >
+                
+                <RelativeLayout
+                    android:id="@+id/rlMail"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/list_item_silver_selector"
+                    android:clickable="true"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp" >
+
+                    <TextView
+                        android:id="@+id/tvMail"
+                        style="@style/userinfo_panel_textview_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_marginTop="20.0dip"
+                        android:gravity="center_vertical"
+                        android:text="邮        箱:" />
+
+                    <ImageView
+                        android:id="@+id/imageView50"
+                        style="@style/listview_accessory"
+                        android:layout_width="@dimen/accessory_with"
+                        android:layout_height="@dimen/accessory_height"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:id="@+id/tvMail_content"
+                        style="@style/fontNormal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dip"
+                        android:layout_toLeftOf="@+id/imageView50"
+                        android:gravity="center_vertical" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/vHDivider50"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/rlMail"
+                    android:background="@drawable/divider_horizontal_timeline" />
+
+                <RelativeLayout
+                    android:id="@+id/rlWorkStatus"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/list_item_silver_selector"
+                    android:clickable="true"
+                    android:layout_below="@id/vHDivider50"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp" >
+
+                    <TextView
+                        android:id="@+id/tvWorkStatus"
+                        style="@style/userinfo_panel_textview_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_marginTop="20.0dip"
+                        android:gravity="center_vertical"
+                        android:text="求职状态:" />
+
+                    <ImageView
+                        android:id="@+id/imageView7"
+                        style="@style/listview_accessory"
+                        android:layout_width="@dimen/accessory_with"
+                        android:layout_height="@dimen/accessory_height"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:id="@+id/tvWorkStatus_content"
+                        style="@style/fontNormal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dip"
+                        android:layout_toLeftOf="@+id/imageView7"
+                        android:gravity="center_vertical" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/vHDivider19"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/rlWorkStatus"
+                    android:background="@drawable/divider_horizontal_timeline" />
+
+                <RelativeLayout
+                    android:id="@+id/rlMarriage"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/vHDivider19"
+                    android:background="@drawable/list_item_silver_selector"
+                    android:clickable="true"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp" >
+
+                    <TextView
+                        android:id="@+id/tvMarriage"
+                        style="@style/userinfo_panel_textview_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_marginTop="20.0dip"
+                        android:gravity="center_vertical"
+                        android:text="婚        姻:" />
+
+                    <ImageView
+                        android:id="@+id/imageView77"
+                        style="@style/listview_accessory"
+                        android:layout_width="@dimen/accessory_with"
+                        android:layout_height="@dimen/accessory_height"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:id="@+id/tvMarriage_content"
+                        style="@style/fontNormal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dip"
+                        android:layout_toLeftOf="@+id/imageView77"
+                        android:gravity="center_vertical" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/vHDivider5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rlMarriage"
+                    android:background="@drawable/divider_horizontal_timeline" />
+
+                <RelativeLayout
+                    android:id="@+id/rlIDType"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/vHDivider5"
+                    android:background="@drawable/list_item_silver_selector"
+                    android:clickable="true"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp" >
+
+                    <TextView
+                        android:id="@+id/tvIDType"
+                        style="@style/userinfo_panel_textview_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_marginTop="20.0dip"
+                        android:gravity="center_vertical"
+                        android:text="证件类型:" />
+
+                    <ImageView
+                        android:id="@+id/imageView8"
+                        style="@style/listview_accessory"
+                        android:layout_width="@dimen/accessory_with"
+                        android:layout_height="@dimen/accessory_height"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:id="@+id/tvIDType_content"
+                        style="@style/fontNormal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dip"
+                        android:layout_toLeftOf="@+id/imageView8"
+                        android:gravity="center_vertical" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/vHDivider7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rlIDType"
+                    android:background="@drawable/divider_horizontal_timeline" />
+
+                <RelativeLayout
+                    android:id="@+id/rlID"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/vHDivider7"
+                    android:background="@drawable/list_item_silver_selector"
+                    android:clickable="true"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp" >
+
+                    <TextView
+                        android:id="@+id/tvID"
+                        style="@style/userinfo_panel_textview_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_marginTop="20.0dip"
+                        android:gravity="center_vertical"
+                        android:text="证件号码:" />
+
+                    <ImageView
+                        android:id="@+id/imageView9"
+                        style="@style/listview_accessory"
+                        android:layout_width="@dimen/accessory_with"
+                        android:layout_height="@dimen/accessory_height"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:id="@+id/tvID_content"
+                        style="@style/fontNormal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dip"
+                        android:singleLine="true"
+                        android:layout_toLeftOf="@+id/imageView9"
+                        android:layout_toRightOf="@+id/tvID"
+                        android:gravity="center_vertical|right" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/vHDivider8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rlID"
+                    android:background="@drawable/divider_horizontal_timeline" />
+
+                <RelativeLayout
+                    android:id="@+id/rlBirthday"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/vHDivider8"
+                    android:background="@drawable/list_item_silver_selector"
+                    android:clickable="true"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp" >
+
+                    <TextView
+                        android:id="@+id/tvBirthday"
+                        style="@style/userinfo_panel_textview_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_marginTop="20.0dip"
+                        android:gravity="center_vertical"
+                        android:text="出生年月:" />
+
+                    <ImageView
+                        android:id="@+id/imageView10"
+                        style="@style/listview_accessory"
+                        android:layout_width="@dimen/accessory_with"
+                        android:layout_height="@dimen/accessory_height"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:id="@+id/tvBirthday_content"
+                        style="@style/fontNormal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dip"
+                        android:layout_toLeftOf="@+id/imageView10"
+                        android:gravity="center_vertical" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/vHDivider18"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rlBirthday"
+                    android:background="@drawable/divider_horizontal_timeline" />
+
+                <RelativeLayout
+                    android:id="@+id/rlAddress"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/vHDivider18"
+                    android:background="@drawable/list_item_silver_selector"
+                    android:clickable="true"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp" >
+
+                    <TextView
+                        android:id="@+id/tvAddress"
+                        style="@style/userinfo_panel_textview_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_marginTop="20.0dip"
+                        android:gravity="center_vertical"
+                        android:text="现所在地:" />
+
+                    <ImageView
+                        android:id="@+id/imageView13"
+                        style="@style/listview_accessory"
+                        android:layout_width="@dimen/accessory_with"
+                        android:layout_height="@dimen/accessory_height"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:id="@+id/tvAddress_content"
+                        style="@style/fontNormal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dip"
+                        android:layout_toLeftOf="@+id/imageView13"
+                        android:gravity="center_vertical" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/vHDivider9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rlAddress"
+                    android:background="@drawable/divider_horizontal_timeline" />
+
+                <RelativeLayout
+                    android:id="@+id/rlHighestEdu"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/vHDivider9"
+                    android:background="@drawable/list_item_silver_selector"
+                    android:clickable="true"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp" >
+
+                    <TextView
+                        android:id="@+id/tvHighestEdu"
+                        style="@style/userinfo_panel_textview_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_marginTop="20.0dip"
+                        android:gravity="center_vertical"
+                        android:text="最高学历:" />
+
+                    <ImageView
+                        android:id="@+id/imageView12"
+                        style="@style/listview_accessory"
+                        android:layout_width="@dimen/accessory_with"
+                        android:layout_height="@dimen/accessory_height"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:id="@+id/tvHighestEdu_content"
+                        style="@style/fontNormal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dip"
+                        android:layout_toLeftOf="@+id/imageView12"
+                        android:gravity="center_vertical" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/vHDivider10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/rlHighestEdu"
+                    android:background="@drawable/divider_horizontal_timeline" />
+
+                <RelativeLayout
+                    android:id="@+id/rlLanguage"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/vHDivider10"
+                    android:background="@drawable/list_item_silver_selector"
+                    android:clickable="true"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp" >
+
+                    <TextView
+                        android:id="@+id/tvLanguage"
+                        style="@style/userinfo_panel_textview_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5.0dip"
+                        android:layout_marginTop="20.0dip"
+                        android:gravity="center_vertical"
+                        android:text="语言掌握:" />
+
+                    <ImageView
+                        android:id="@+id/imageView11"
+                        style="@style/listview_accessory"
+                        android:layout_width="@dimen/accessory_with"
+                        android:layout_height="@dimen/accessory_height"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:id="@+id/tvLanguage_content"
+                        style="@style/fontNormal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dip"
+                        android:layout_toLeftOf="@+id/imageView11"
+                        android:gravity="center_vertical" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</com.handmark.pulltorefresh.library.PullToRefreshScrollView>

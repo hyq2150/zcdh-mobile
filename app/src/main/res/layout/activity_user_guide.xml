@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/activityBody"
+    android:orientation="vertical" >
+    
+    <Button android:id="@+id/showGuideStepBtn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/content_left_right"
+        android:paddingRight="@dimen/content_left_right"
+        android:paddingTop="@dimen/content_top_bottom"
+        android:paddingBottom="@dimen/content_top_bottom"
+        android:background="@drawable/list_item_silver_selector"
+        android:text="查看欢迎页"
+        android:textSize="@dimen/font_size_nomarl"
+        android:textColor="@color/font_color"
+        />
+    <View android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider"/>
+    <Button android:id="@+id/resetUsageGuideBtn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/content_left_right"
+        android:paddingRight="@dimen/content_left_right"
+        android:paddingTop="@dimen/content_top_bottom"
+        android:paddingBottom="@dimen/content_top_bottom"
+        android:background="@drawable/list_item_silver_selector"
+        android:text="重置操作指引"
+        android:textSize="@dimen/font_size_nomarl"
+        android:textColor="@color/font_color"
+        />
+    
+    <FrameLayout android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/red">
+         <WebView
+        android:id="@+id/browser"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    </FrameLayout>
+
+</LinearLayout>

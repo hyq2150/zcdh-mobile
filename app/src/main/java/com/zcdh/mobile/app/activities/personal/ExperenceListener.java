@@ -9,12 +9,12 @@ package com.zcdh.mobile.app.activities.personal;
  * 教育经历 培训经历操作监听器
  */
 public interface ExperenceListener {
-	public void onEduExpItemClick(long id);
+	void onEduExpItemClick(long id);
 	
-	public void onEduExpItemDelete(long id);
+	void onEduExpItemDelete(long id);
 
-	public void onTranningExpItemDelete(long id);
+	void onTranningExpItemDelete(long id);
 	
-	public void onTranningExpItemClick(long id);
+	void onTranningExpItemClick(long id);
 
 }

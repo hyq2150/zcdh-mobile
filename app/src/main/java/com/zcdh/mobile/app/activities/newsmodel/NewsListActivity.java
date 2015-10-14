@@ -84,7 +84,7 @@ public class NewsListActivity extends BaseActivity implements RequestListener,
 	/**
 	 * 以日期分组
 	 */
-	HashMap<Long, List<InformationTitleInfoDTO>> newsList = new HashMap<Long, List<InformationTitleInfoDTO>>();
+	HashMap<Long, List<InformationTitleInfoDTO>> newsList = new HashMap<>();
 
 	int currentPage = 1;
 	int pageSize = 20;
@@ -112,8 +112,8 @@ public class NewsListActivity extends BaseActivity implements RequestListener,
 		appService = RemoteServiceManager
 				.getRemoteService(IRpcJobAppService.class);
 
-		SystemServicesUtils.setActionBarCustomTitle(this,
-				getSupportActionBar(), title);
+		SystemServicesUtils.displayCustomTitle(this,
+			getSupportActionBar(), title);
 		newsListView.setOnItemClickListener(this);
 		newsListView.setOnRefreshListener(this);
 		newsListView.setMode(Mode.PULL_FROM_START);
@@ -252,7 +252,7 @@ public class NewsListActivity extends BaseActivity implements RequestListener,
 				List<InformationTitleInfoDTO> sectionItem = this.newsList
 						.get(key);
 				if (sectionItem == null) {
-					sectionItem = new ArrayList<InformationTitleInfoDTO>();
+					sectionItem = new ArrayList<>();
 					this.newsList.put(key, sectionItem);
 				}
 
@@ -272,7 +272,7 @@ public class NewsListActivity extends BaseActivity implements RequestListener,
 	 */
 	class SectionItemAdapter extends BaseAdapter implements OnItemClickListener {
 
-		List<InformationTitleInfoDTO> sectionNewsList = new ArrayList<InformationTitleInfoDTO>();
+		List<InformationTitleInfoDTO> sectionNewsList = new ArrayList<>();
 		private DisplayImageOptions options;
 
 		public SectionItemAdapter(List<InformationTitleInfoDTO> sectionNewsList) {
@@ -302,7 +302,7 @@ public class NewsListActivity extends BaseActivity implements RequestListener,
 			ViewHolder h = null;
 			if (convertView == null) {
 				convertView = LayoutInflater.from(getApplicationContext())
-						.inflate(R.layout.news_item, null);
+						.inflate(R.layout.news_item, parent,false);
 				h = new ViewHolder();
 				h.newsImg = (ImageView) convertView.findViewById(R.id.newsImg);
 				h.titleTxt = (TextView) convertView.findViewById(R.id.titleTxt);
@@ -390,8 +390,10 @@ public class NewsListActivity extends BaseActivity implements RequestListener,
 		public View getView(int position, View convertView, ViewGroup parent) {
 			ViewHolder h = null;
 
-			convertView = LayoutInflater.from(NewsListActivity.this).inflate(
-					R.layout.news_section_item, null);
+		    	if (convertView==null) {
+			    convertView = LayoutInflater.from(NewsListActivity.this).inflate(
+				    R.layout.news_section_item, parent,false);
+			}
 			h = new ViewHolder();
 			h.coverRowFl = (FrameLayout) convertView
 					.findViewById(R.id.coverRowFl);

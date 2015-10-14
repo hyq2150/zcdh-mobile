@@ -1,7 +1,7 @@
 /** 
 *  JobUserInfoDTO 
 * 
-*  Created Date: 2015-08-12 17:07:57 
+*  Created Date: 2015-10-12 17:31:51 
 *  
 */  
 package com.zcdh.mobile.api.model;  
@@ -77,6 +77,7 @@ public class JobUserInfoDTO  implements Serializable {
     private String specialty  ; 
     private String en_level_code  ; 
     private String ots_languages  ; 
+    private String tempBirth  ; 
     /**
     *无功能描述
     */
@@ -472,6 +473,18 @@ public class JobUserInfoDTO  implements Serializable {
     */
     public String getOts_languages() { 
         return  this.ots_languages;
+     }
+    /**
+    *无功能描述
+    */
+    public void setTempBirth(String tempBirth) { 
+        this.tempBirth=tempBirth;
+     }
+    /**
+    *无功能描述
+    */
+    public String getTempBirth() { 
+        return  this.tempBirth;
      }
 
  } 

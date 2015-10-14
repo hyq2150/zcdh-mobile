@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="ExtensionView">
-        <attr name="borderWidth" format="dimension"/>
-        <attr name="borderColor" format="color"/>
-        <attr name="borderRadius" format="dimension"/>
-        <attr name="extensionLength" format="integer"/>
-        <attr name="extensionWidth" format="dimension"/>
-        <attr name="extensionColor" format="color"/>
-        <attr name="extensionRadius" format="dimension"/>
-    </declare-styleable>
+
     
     <string-array name="search_result_tags">
         <item>地区</item>

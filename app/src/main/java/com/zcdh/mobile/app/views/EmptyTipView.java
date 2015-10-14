@@ -1,5 +1,10 @@
 package com.zcdh.mobile.app.views;
 
+import com.zcdh.core.nio.except.ZcdhException;
+import com.zcdh.mobile.R;
+import com.zcdh.mobile.app.DataLoadInterface;
+import com.zcdh.mobile.framework.nio.RequestException;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -10,11 +15,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import com.zcdh.core.nio.except.ZcdhException;
-import com.zcdh.mobile.R;
-import com.zcdh.mobile.app.DataLoadInterface;
-import com.zcdh.mobile.framework.nio.RequestException;
 
 /**
  * 空列表提示View
@@ -127,7 +127,7 @@ public class EmptyTipView extends LinearLayout implements OnClickListener {
 		loadingPB.setVisibility(View.GONE);
 	}
 	
-	public void showException(ZcdhException exc, DataLoadInterface retryDataLoader){
+	public void showException(ZcdhException exc, DataLoadInterface retryDataLoader){L:
 		showException(exc.getErrCode(), retryDataLoader);
 	}
 

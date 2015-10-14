@@ -66,17 +66,16 @@ import com.zcdh.mobile.utils.DeviceIDFactory;
 import com.zcdh.mobile.utils.NetworkUtils;
 import com.zcdh.mobile.utils.SharedPreferencesUtil;
 import com.zcdh.mobile.utils.StringUtils;
+import com.zcdh.mobile.utils.ToastUtil;
 import com.zcdh.mobile.utils.UnitTransfer;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.OnActivityResult;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
@@ -293,7 +292,7 @@ public class NearbyMapFragment extends BaseFragment implements
     /**
      * 职位标注点
      */
-    private List<Marker> pointMarkers = new ArrayList<Marker>();
+    private List<Marker> pointMarkers = new ArrayList<>();
 
     /**
      * 加载提示
@@ -371,7 +370,7 @@ public class NearbyMapFragment extends BaseFragment implements
     /**
      * 标注点详细
      */
-    private ArrayList<JobEntPostDTO> pointDetailOfPosts = new ArrayList<JobEntPostDTO>();
+    private ArrayList<JobEntPostDTO> pointDetailOfPosts = new ArrayList<>();
 
     /**
      * 搜索bar 容器
@@ -480,12 +479,12 @@ public class NearbyMapFragment extends BaseFragment implements
     /**
      * 高级搜索条件选择的值名称
      */
-    private HashMap<Integer, String> conditionValuesName = new HashMap<Integer, String>();
+    private HashMap<Integer, String> conditionValuesName = new HashMap<>();
 
     private HashMap<String, JobObjectiveAreaDTO> selectedAreas
-            = new HashMap<String, JobObjectiveAreaDTO>();
+            = new HashMap<>();
 
-    private ArrayList<String> selectedWeek = new ArrayList<String>();
+    private ArrayList<String> selectedWeek = new ArrayList<>();
 
     private int postDetailPage = 1;
 
@@ -496,7 +495,7 @@ public class NearbyMapFragment extends BaseFragment implements
     /**
      * 职位
      */
-    private ArrayList<JobEntPostDTO> posts = new ArrayList<JobEntPostDTO>();
+    private ArrayList<JobEntPostDTO> posts = new ArrayList<>();
 
     /**
      * 标识列表是否只加载地图中显示职位
@@ -543,7 +542,7 @@ public class NearbyMapFragment extends BaseFragment implements
 
     private final static int NEW_USER_GUIDE_MAP = 1002;
 
-    private final static int NEW_USER_GUIDE_DELAYED = 2000;
+    private final static int NEW_USER_GUIDE_DELAYED = 800;
 
     private final MyHandler mHandler = new MyHandler(this);
 
@@ -603,7 +602,6 @@ public class NearbyMapFragment extends BaseFragment implements
         MyEvents.register(this);
     }
 
-    @SuppressLint("InlinedApi")
     @AfterViews
     void bindViews() {
         int mode = SharedPreferencesUtil.getValue(getActivity(), kMODE, 0);
@@ -751,7 +749,6 @@ public class NearbyMapFragment extends BaseFragment implements
      * 条件
      */
     @SuppressWarnings("unchecked")
-    @OnActivityResult(AdvancedSearchActivity.kREQUEST_ADVANCE_SEARCH)
     public void onResultCondition(int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK && data.getExtras() != null) {
             boolean isAdvanceSearch = data.getBooleanExtra(
@@ -878,7 +875,7 @@ public class NearbyMapFragment extends BaseFragment implements
         }
         // 从地图切换到职位列表模式
         switch (currentMode) {
-            case kMODE_MAP:
+            case kMODE_MAP://切换到职位列表
                 MobclickAgent.onEvent(getActivity(), Constants.UMENG_NEARBY_LIST_ACTION);
                 isShowPostList = true;
                 // 列表模式新用户操作指引
@@ -917,7 +914,7 @@ public class NearbyMapFragment extends BaseFragment implements
                 hasMovingMap = false;
                 actionView.showActionView(false);
                 break;
-            case kMODE_LIST:
+            case kMODE_LIST://切换到地图
                 isShowPostList = false;
                 currentMode = kMODE_MAP;
                 widgetsContainer.setVisibility(View.VISIBLE);
@@ -1029,8 +1026,7 @@ public class NearbyMapFragment extends BaseFragment implements
         if (currentZoomLevel == baiduMap.getMaxZoomLevel()
                 && status.zoom == baiduMap.getMaxZoomLevel()) {
             if (!hasTipsMaxZoom) {
-                Toast.makeText(getActivity(), "地图已是最大缩放级别", Toast.LENGTH_SHORT)
-                        .show();
+                ToastUtil.show("地图已是最大缩放级别");
                 hasTipsMaxZoom = true;
                 return;
             }
@@ -1069,6 +1065,7 @@ public class NearbyMapFragment extends BaseFragment implements
     }
 
     /* ================ 地图加载完成事件 ================= */
+    //第一次加载完成会回调此方法
     @Override
     public void onMapLoaded() {
         center = ZcdhApplication.getInstance().getMyLocation();
@@ -1119,7 +1116,7 @@ public class NearbyMapFragment extends BaseFragment implements
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        Overlay options = (Overlay) marker;
+        Overlay options = marker;
         Bundle extra = options.getExtraInfo();
         if (extra != null) {
             PostPointDTO point = (PostPointDTO) extra.getSerializable("post");
@@ -1370,8 +1367,6 @@ public class NearbyMapFragment extends BaseFragment implements
             if (result != null) {
                 points = (PointDTO) result;
                 showPoints();
-            } else {
-
             }
         }
 
@@ -1473,11 +1468,10 @@ public class NearbyMapFragment extends BaseFragment implements
     @Override
     public void onRequestError(String reqID, Exception error) {
         isLoading = false;
+        resultDescriptionTxt.setText("暂无信息,请稍后再试....");
         if (error != null) {
-            Toast.makeText(getActivity(),
-                    ((ZcdhException) error).getErrMessage() + "",
-                    Toast.LENGTH_SHORT).show();
-            if (emptyTipView != null && error != null) {
+//            ToastUtil.show(((ZcdhException) error).getErrMessage() + "");
+            if (emptyTipView != null) {
                 emptyTipView.showException((ZcdhException) error, this);
             }
         }
@@ -1489,7 +1483,6 @@ public class NearbyMapFragment extends BaseFragment implements
     @Background
     void geoCodingLatlngByAddress(String address) {
         LatLng latlng = GeoCodingRequest.geoCodingLatlngByAddress(address);
-        Log.i("geoCodingLatlngByAddress", latlng + "");
         if (latlng != null) {
             center = latlng;
             tempCenter = center;
@@ -1527,7 +1520,7 @@ public class NearbyMapFragment extends BaseFragment implements
         searchConditionDTOForMap = new SearchConditionDTO();
         searchConditionDTOForFilter = new SearchConditionDTO();
         if (currentMode == kMODE_LIST) {
-            conditionValuesName = new HashMap<Integer, String>();
+            conditionValuesName = new HashMap<>();
             clearnAdvanceConditionBtn.setVisibility(View.GONE);
             loadPostFromMap();
             loadPostByAdvance();
@@ -1645,9 +1638,6 @@ public class NearbyMapFragment extends BaseFragment implements
             case kLOAD_KEYWORD_OR_TAG:
                 loadPointForMapByKeywordAndTag(); // 关键字标签搜索
                 break;
-            // case kLOAD_FROM_LISTVIEW:
-            // loadPointsFromListView();// 从职位列表到地图
-            // break;
         }
     }
 
@@ -1814,7 +1804,7 @@ public class NearbyMapFragment extends BaseFragment implements
 
         hasNextPage = false;
         startLoadingAnimation();
-        List<Long> postIds = new ArrayList<Long>();
+        List<Long> postIds = new ArrayList<>();
         int isMutil = selectedPoint.getIsMutiplePost();
         if (isMutil == 1) {
             postIds = selectedPoint.getMultiPostPoint().getPostIds();
@@ -1887,7 +1877,6 @@ public class NearbyMapFragment extends BaseFragment implements
                 for (int i = 0; i < points.getPostPoints().size(); i++) {
 
                     PostPointDTO post = points.getPostPoints().get(i);
-
                     // 定义Maker坐标点
                     LatLng point = null;
                     // 构建Marker图标
@@ -1935,22 +1924,20 @@ public class NearbyMapFragment extends BaseFragment implements
                             bitmapId = R.drawable.mark_normal;
                         }
                     }
+                    //如果职位数大于999，则显示999+，避免文字溢出图标
+                    String countString = count > 999 ? "999+" : String.valueOf(count);
                     bitmap = BitmapUtils.drawTextToBitmap(getActivity(),
-                            bitmapId, count + "");
+                            bitmapId, countString);
                     bitmapDesc = BitmapDescriptorFactory.fromBitmap(bitmap);
                     option = new MarkerOptions().position(point)
                             .icon(bitmapDesc).zIndex(1);
-
                     // 在地图上添加Marker，并显示
-
                     Bundle extra = new Bundle();
                     extra.putInt("count", count);
                     extra.putSerializable("post", points.getPostPoints().get(i));
                     Marker marker = (Marker) baiduMap.addOverlay(option);
                     marker.setExtraInfo(extra);
-
                     pointMarkers.add(marker);
-
                 }
             } else {
                 tips();
@@ -2221,6 +2208,8 @@ public class NearbyMapFragment extends BaseFragment implements
         for (int i = 0; i < pointMarkers.size(); i++) {
             pointMarkers.get(i).remove();
         }
+        pointMarkers.clear();
+//        System.gc();
     }
 
     /**
@@ -2277,6 +2266,22 @@ public class NearbyMapFragment extends BaseFragment implements
     public void receive(String key, Object msg) {
         if (Constants.kEVENT_GET_SCREEN_BOUND.equals(key)) {
             send();
+        }
+
+        if (Constants.kEVENT_NOTIFICATION_APPCONFIG.equals(key)) {
+            /**
+             *
+
+            List<AdminAppConfigModelDTO> appconfig = (List<AdminAppConfigModelDTO>) msg;
+            infos.clear();
+            for (int i = 0; i < appconfig.size(); i++) {
+                if (appconfig.get(i).getParent_model_code().equals(Constants.APPCONFIG_MODULE_CODE_NEARBY)) {
+                    infos.add(appconfig.get(i));
+                }
+            }
+            adapter.updateItems(infos);
+            adapter.notifyDataSetChanged();
+             */
         }
     }
 

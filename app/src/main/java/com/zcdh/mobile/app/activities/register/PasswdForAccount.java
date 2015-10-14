@@ -89,7 +89,7 @@ public class PasswdForAccount extends BaseActivity implements
 		if(isForgetPwd){
 			title = "重置密码";
 		}
-		SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), title);
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), title);
 		uservice = RemoteServiceManager.getRemoteService(IRpcJobUservice.class);
 		processDialog = new ProcessDialog(this);
 	}
@@ -112,7 +112,7 @@ public class PasswdForAccount extends BaseActivity implements
 							bindAccount();
 						}
 						if(isRegister){
-							register();
+							register(SystemServicesUtils.getAppID(PasswdForAccount.this));
 						}
 						if(isForgetPwd){
 							updatePwd();
@@ -148,8 +148,8 @@ public class PasswdForAccount extends BaseActivity implements
 	 * 
 	 */
 	@Background
-	void register() {
-		uservice.register(phoneNo, pwdEditText.getText().toString(), null)
+	void register(long appid) {
+		uservice.register2(appid,phoneNo, pwdEditText.getText().toString(), null)
 				.identify(
 						kREQ_ID_register = RequestChannel.getChannelUniqueID(),
 						this);

@@ -17,6 +17,16 @@
         <attr name="animateOnClick" format="boolean" />
     </declare-styleable>
 
+    <declare-styleable name="ExtensionView">
+        <attr name="bordersWidth" format="dimension"/>
+        <attr name="borderColor" format="color"/>
+        <attr name="borderRadius" format="dimension"/>
+        <attr name="extensionLength" format="integer"/>
+        <attr name="extensionWidth" format="dimension"/>
+        <attr name="extensionColor" format="color"/>
+        <attr name="extensionRadius" format="dimension"/>
+    </declare-styleable>
+
     <declare-styleable name="PullToRefresh">
 
         <!-- A drawable to use as the background of the Refreshable View -->
@@ -92,5 +102,20 @@
         <attr name="ptrDrawableTop" format="reference" />
         <attr name="ptrDrawableBottom" format="reference" />
     </declare-styleable>
+
+    <declare-styleable name="IndicatorLayout">
+        <attr name="pstsIndicatorColor" format="color" />
+        <attr name="pstsUnderlineColor" format="color" />
+        <attr name="pstsDividerColor" format="color" />
+        <attr name="pstsIndicatorHeight" format="dimension" />
+        <attr name="pstsUnderlineHeight" format="dimension" />
+        <attr name="pstsDividerPadding" format="dimension" />
+        <attr name="pstsTabPaddingLeftRight" format="dimension" />
+        <attr name="pstsScrollOffset" format="dimension" />
+        <attr name="pstsTabBackground" format="reference" />
+        <attr name="pstsShouldExpand" format="boolean" />
+        <attr name="pstsTextAllCaps" format="boolean" />
+    </declare-styleable>
+
 </resources>
 

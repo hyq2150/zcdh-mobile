@@ -1,24 +1,5 @@
 package com.zcdh.mobile.app.activities.ent;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Background;
-import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.Extra;
-import org.androidannotations.annotations.UiThread;
-import org.androidannotations.annotations.ViewById;
-
-import android.graphics.Bitmap;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
-
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
@@ -36,6 +17,25 @@ import com.zcdh.mobile.framework.nio.RequestChannel;
 import com.zcdh.mobile.framework.nio.RequestListener;
 import com.zcdh.mobile.utils.StringUtils;
 import com.zcdh.mobile.utils.SystemServicesUtils;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
+import org.androidannotations.annotations.UiThread;
+import org.androidannotations.annotations.ViewById;
+
+import android.graphics.Bitmap;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 粉丝列表
@@ -63,7 +63,7 @@ public class MainEntFansActivity extends BaseActivity implements
 	/**
 	 * 粉丝
 	 */
-	List<EntFansDTO> fansList = new ArrayList<EntFansDTO>();
+	List<EntFansDTO> fansList = new ArrayList<>();
 
 	FansAdapter fansAdapter;
 
@@ -86,8 +86,8 @@ public class MainEntFansActivity extends BaseActivity implements
 		enterpriseService = RemoteServiceManager
 				.getRemoteService(IRpcJobEnterpriseService.class);
 
-		SystemServicesUtils.setActionBarCustomTitle(this,
-				getSupportActionBar(), getString(R.string.activity_title_fans));
+		SystemServicesUtils.displayCustomTitle(this,
+			getSupportActionBar(), getString(R.string.activity_title_fans));
 		emptyView = new EmptyTipView(this);
 		fansListView.setOnRefreshListener(this);
 		fansListView.setMode(Mode.PULL_FROM_END);
@@ -186,7 +186,7 @@ public class MainEntFansActivity extends BaseActivity implements
 			ViewHolder h = null;
 			if (convertView == null) {
 				convertView = LayoutInflater.from(getApplicationContext())
-						.inflate(R.layout.fans_item, null);
+						.inflate(R.layout.fans_item, parent,false);
 				h = new ViewHolder();
 				h.headImg = (ImageView) convertView.findViewById(R.id.headImg);
 				h.noHeadTxt = (TextView) convertView

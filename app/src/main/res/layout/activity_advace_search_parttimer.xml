@@ -1,64 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
     style="@style/activityBody"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="match_parent">
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <com.zcdh.mobile.framework.views.ListViewInScrollView
+            android:id="@+id/searchSettingListView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/listview_background"
+            android:divider="@color/divider"
+            android:dividerHeight="@dimen/dividerHeight" />
+
+        <!--  -->
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:text="兼职时间选择"
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_nomarl" />
+
+        <com.zcdh.mobile.framework.views.GridViewInScrollView
+            android:id="@+id/timeGrideview"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:orientation="vertical" >
+            android:columnWidth="80dp"
+            android:gravity="center"
+            android:horizontalSpacing="10dp"
+            android:numColumns="auto_fit"
+            android:paddingLeft="@dimen/content_top_bottom"
+            android:paddingRight="@dimen/content_top_bottom"
+            android:paddingTop="15dp"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="10dp" />
 
-            <com.zcdh.mobile.framework.views.ListViewInScrollView
-                android:id="@+id/searchSettingListView"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/listview_background"
-                android:divider="@color/divider"
-                android:dividerHeight="@dimen/dividerHeight" />
-            
-            <!--  -->
-            
-            <TextView android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="20dp"
-                android:textSize="@dimen/font_size_nomarl"
-                android:textColor="@color/font_color"
-                android:text="兼职时间选择"/>
-            
-            <com.zcdh.mobile.framework.views.GridViewInScrollView
-                android:id="@+id/timeGrideview"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:columnWidth="80dp"
-                android:gravity="center"
-                android:horizontalSpacing="10dp"
-                android:numColumns="auto_fit"
-                android:paddingLeft="@dimen/content_top_bottom"
-                android:paddingRight="@dimen/content_top_bottom"
-                android:paddingTop="15dp"
-                android:stretchMode="columnWidth"
-                android:verticalSpacing="10dp" />
-
-            <Button
-                android:id="@+id/searchBtn"
-                style="@style/fontMiddel"
-                android:layout_width="fill_parent"
-                android:layout_height="42dp"
-                android:layout_marginBottom="15dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="25dp"
-                android:background="@drawable/btn_login"
-                android:text="@string/sure"
-                android:textColor="@color/white" />
-        </LinearLayout>
-    </ScrollView>
-
-</LinearLayout>
+        <Button
+            android:id="@+id/searchBtn"
+            style="@style/fontMiddel"
+            android:layout_width="fill_parent"
+            android:layout_height="42dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/btn_login"
+            android:text="@string/sure"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</ScrollView>

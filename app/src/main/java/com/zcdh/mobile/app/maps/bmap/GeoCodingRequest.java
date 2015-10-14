@@ -1,5 +1,11 @@
 package com.zcdh.mobile.app.maps.bmap;
 
+import com.baidu.mapapi.model.LatLng;
+import com.zcdh.core.utils.JsonUtil;
+import com.zcdh.mobile.utils.StringUtils;
+
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,12 +13,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
-
-import android.util.Log;
-
-import com.baidu.mapapi.model.LatLng;
-import com.zcdh.core.utils.JsonUtil;
-import com.zcdh.mobile.utils.StringUtils;
 
 /**
  * 反地理编码
@@ -36,7 +36,7 @@ public class GeoCodingRequest {
 			return null;
 		}
 		try {
-			Map obj = (Map) JsonUtil.toObject(resultJson, Map.class);
+			Map obj = JsonUtil.toObject(resultJson, Map.class);
 			Map result = null;
 			if (obj != null) {
 				result = (Map) obj.get("result");
@@ -74,7 +74,7 @@ public class GeoCodingRequest {
 
 				Log.i("LOAD_GEO_ADDRESS:", resultJson + "");
 
-				Map obj = (Map) JsonUtil.toObject(resultJson, Map.class);
+				Map obj = JsonUtil.toObject(resultJson, Map.class);
 
 				Map result = null;
 				if (obj != null) {
@@ -128,7 +128,7 @@ public class GeoCodingRequest {
 			loc_api_conn.setConnectTimeout(5000);
 			is = loc_api_conn.getInputStream();
 			in = new BufferedReader(new InputStreamReader(is));
-			StringBuffer buffer = new StringBuffer();
+			StringBuilder buffer = new StringBuilder();
 			String line = "";
 			while ((line = in.readLine()) != null) {
 				buffer.append(line);

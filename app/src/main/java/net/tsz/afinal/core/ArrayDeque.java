@@ -9,6 +9,8 @@ package net.tsz.afinal.core;
 // removed link to collections framework docs
 // END android-note
 
+import android.support.annotation.NonNull;
+
 import java.io.*;
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
@@ -570,6 +572,7 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>, Cl
      *
      * @return an iterator over the elements in this deque
      */
+    @NonNull
     public Iterator<E> iterator() {
         return new DeqIterator();
     }
@@ -730,6 +733,7 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>, Cl
      *
      * @return an array containing all of the elements in this deque
      */
+    @NonNull
     public Object[] toArray() {
         return copyElements(new Object[size()]);
     }
@@ -771,6 +775,7 @@ public class ArrayDeque<E> extends AbstractCollection<E> implements Deque<E>, Cl
      *         this deque
      * @throws NullPointerException if the specified array is null
      */
+    @NonNull
     @SuppressWarnings("unchecked")
 	public <T> T[] toArray(T[] a) {
         int size = size();

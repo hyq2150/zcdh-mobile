@@ -1,7 +1,17 @@
 package com.zcdh.mobile.app.activities.nearby;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.zcdh.core.nio.except.ZcdhException;
+import com.zcdh.mobile.R;
+import com.zcdh.mobile.api.IRpcJobPostService;
+import com.zcdh.mobile.api.model.UnMatchTeclDTO;
+import com.zcdh.mobile.app.DataLoadInterface;
+import com.zcdh.mobile.app.views.EmptyTipView;
+import com.zcdh.mobile.framework.activities.BaseActivity;
+import com.zcdh.mobile.framework.nio.RemoteServiceManager;
+import com.zcdh.mobile.framework.nio.RequestChannel;
+import com.zcdh.mobile.framework.nio.RequestListener;
+import com.zcdh.mobile.utils.SystemServicesUtils;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
@@ -16,20 +26,8 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.fasterxml.jackson.databind.deser.Deserializers.Base;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.zcdh.core.nio.except.ZcdhException;
-import com.zcdh.mobile.api.IRpcJobPostService;
-import com.zcdh.mobile.api.model.JobSpecialRequirementsMatchDTO;
-import com.zcdh.mobile.api.model.UnMatchTeclDTO;
-import com.zcdh.mobile.app.DataLoadInterface;
-import com.zcdh.mobile.app.views.EmptyTipView;
-import com.zcdh.mobile.framework.activities.BaseActivity;
-import com.zcdh.mobile.framework.nio.RemoteServiceManager;
-import com.zcdh.mobile.framework.nio.RequestChannel;
-import com.zcdh.mobile.framework.nio.RequestListener;
-import com.zcdh.mobile.utils.SystemServicesUtils;
-import com.zcdh.mobile.R;
+import java.util.ArrayList;
+import java.util.List;
 /**
  * 匹配详情
  * @author yangjiannan
@@ -55,7 +53,7 @@ public class MatchDetailsActivity extends BaseActivity implements RequestListene
 	
 	IRpcJobPostService jobPostService;
 	
-	List<UnMatchTeclDTO> noMatchedSkills = new ArrayList<UnMatchTeclDTO>();
+	List<UnMatchTeclDTO> noMatchedSkills = new ArrayList<>();
 	
 	MatchDetailsAdapter adapter = null;
 
@@ -73,7 +71,7 @@ public class MatchDetailsActivity extends BaseActivity implements RequestListene
 		
 		jobPostService = RemoteServiceManager.getRemoteService(IRpcJobPostService.class);
 		
-		SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), "匹配详情");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "匹配详情");
 		
 		adapter = new MatchDetailsAdapter();
 		matchListView.setAdapter(adapter);
@@ -147,7 +145,7 @@ public class MatchDetailsActivity extends BaseActivity implements RequestListene
 		public View getView(int position, View convertView, ViewGroup parent) {
 			ViewHolder h = null;
 			if(convertView==null){
-				convertView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.match_detail_item, null);
+				convertView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.match_detail_item, parent,false);
 				h = new ViewHolder();
 				h.skillNameText = (TextView) convertView.findViewById(R.id.skillNameText);
 				h.matchRateText = (TextView) convertView.findViewById(R.id.matchRateText);

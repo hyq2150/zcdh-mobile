@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white" >
+     >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -242,7 +242,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="实付:"
-                    android:textColor="#ed6c0a"
+                    android:textColor="@color/color_ed6c0a"
                     android:textSize="17sp" />
 
                 <TextView
@@ -251,14 +251,14 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:text="0元"
-                    android:textColor="#ed6c0a"
+                    android:textColor="@color/color_ed6c0a"
                     android:textSize="17sp" />
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.7dp"
-                android:background="#FFA646"
+                android:background="@color/color_ffa646"
                 android:padding="15dp" />
 
             <LinearLayout
@@ -278,7 +278,8 @@
                     android:id="@+id/payments"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp" >
+                    android:padding="5dp"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -311,9 +312,6 @@
                             android:id="@+id/tv_wxpay_note"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignLeft="@id/tv_wxpay"
-                            android:layout_below="@id/tv_wxpay"
-                            android:layout_toRightOf="@id/icon_wx"
                             android:paddingLeft="5dp"
                             android:text="限首次微信支付,半小时内到帐"
                             android:visibility="gone" />

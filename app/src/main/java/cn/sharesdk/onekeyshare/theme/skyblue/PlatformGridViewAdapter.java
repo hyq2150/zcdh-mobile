@@ -34,8 +34,8 @@ import static com.mob.tools.utils.R.getLayoutRes;
 public class PlatformGridViewAdapter extends BaseAdapter implements View.OnClickListener {
 
 	private final Context context;
-	private List<Object> logos = new ArrayList<Object>();
-	private List<Integer> checkedPositionList = new ArrayList<Integer>();
+	private List<Object> logos = new ArrayList<>();
+	private List<Integer> checkedPositionList = new ArrayList<>();
 	private int directOnlyPosition = -1;
 
 	static class ViewHolder {
@@ -82,7 +82,8 @@ public class PlatformGridViewAdapter extends BaseAdapter implements View.OnClick
 		String label;
 		Object item = getItem(position);
 		boolean disabled;
-		boolean isDirectShare = item instanceof Platform ? ShareCore.isDirectShare((Platform) item) : true;
+		boolean isDirectShare = !(item instanceof Platform) || ShareCore
+			.isDirectShare((Platform) item);
 		if(directOnlyPosition == -1) {
 			disabled = !checkedPositionList.isEmpty() && isDirectShare;
 		} else {
@@ -113,43 +114,43 @@ public class PlatformGridViewAdapter extends BaseAdapter implements View.OnClick
 
 	@Override
 	public void onClick(View view) {
-		ViewHolder viewHolder = (ViewHolder) view.getTag();
-		Integer position = viewHolder.position;
-		//直接分享平台选中后，其它的不可用
-		if(directOnlyPosition != -1 && position != directOnlyPosition)
-			return;
+	    ViewHolder viewHolder = (ViewHolder) view.getTag();
+	    Integer position = viewHolder.position;
+	    //直接分享平台选中后，其它的不可用
+	    if (directOnlyPosition != -1 && position != directOnlyPosition) {
+		return;
+	    }
 
-		Object item = getItem(position);
-		boolean direct = false;
-		//normal platform
-		if(item instanceof Platform){
-			direct = ShareCore.isDirectShare((Platform) item);
-		}else{
-			//自定义图标
-			direct = true;
+	    Object item = getItem(position);
+	    boolean direct = false;
+	    //normal platform
+	    direct = !(item instanceof Platform) || ShareCore.isDirectShare((Platform) item);
+//自定义图标
+//EditPage Platforms only
+	    if (direct && directOnlyPosition == -1 && !checkedPositionList.isEmpty()) {
+		return;
+	    }
+
+	    if (checkedPositionList.contains(position)) {
+		checkedPositionList.remove(position);
+		if (direct) {
+		    directOnlyPosition = -1;
 		}
-		//EditPage Platforms only
-		if(direct && directOnlyPosition == -1 && !checkedPositionList.isEmpty())
-			return;
-
-		if(checkedPositionList.contains(position)) {
-			checkedPositionList.remove(position);
-			if(direct)
-				directOnlyPosition = -1;
-		} else {
-			checkedPositionList.add(position);
-			if(direct)
-				directOnlyPosition = position;
+	    } else {
+		checkedPositionList.add(position);
+		if (direct) {
+		    directOnlyPosition = position;
 		}
+	    }
 
-		notifyDataSetChanged();
+	    notifyDataSetChanged();
 	}
 
 	public void setData(Platform[] platforms, HashMap<String, String> hiddenPlatforms) {
 		if(platforms == null)
 			return;
 		if (hiddenPlatforms != null && hiddenPlatforms.size() > 0) {
-			ArrayList<Platform> ps = new ArrayList<Platform>();
+			ArrayList<Platform> ps = new ArrayList<>();
 			for (Platform p : platforms) {
 				if (hiddenPlatforms.containsKey(p.getName())) {
 					continue;
@@ -172,7 +173,7 @@ public class PlatformGridViewAdapter extends BaseAdapter implements View.OnClick
 	}
 
 	public List<Object> getCheckedItems() {
-		ArrayList<Object> list = new ArrayList<Object>();
+		ArrayList<Object> list = new ArrayList<>();
 
 		if(directOnlyPosition != -1) {
 			list.add(getItem(directOnlyPosition));

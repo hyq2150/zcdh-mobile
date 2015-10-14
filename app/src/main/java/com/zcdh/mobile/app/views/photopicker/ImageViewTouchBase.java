@@ -73,7 +73,7 @@ abstract class ImageViewTouchBase extends ImageView {
     // its use of that Bitmap.
     public interface Recycler {
 
-        public void recycle(Bitmap b);
+        void recycle(Bitmap b);
     }
 
     public void setRecycler(Recycler r) {

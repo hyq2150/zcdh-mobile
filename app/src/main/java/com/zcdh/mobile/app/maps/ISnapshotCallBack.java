@@ -9,5 +9,5 @@ import android.graphics.Bitmap;
  */
 public interface ISnapshotCallBack {
 
-	public void onSnapshotComplete(Bitmap bitmap);
+	void onSnapshotComplete(Bitmap bitmap);
 }

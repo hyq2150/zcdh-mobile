@@ -1,8 +1,20 @@
 package com.zcdh.mobile.app.activities.detail;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.zcdh.mobile.R;
+import com.zcdh.mobile.api.IRpcJobPostService;
+import com.zcdh.mobile.api.model.ApplyPostInfoDTO;
+import com.zcdh.mobile.api.model.JobEntPostDTO;
+import com.zcdh.mobile.api.model.JobEntPostDetailDTO;
+import com.zcdh.mobile.api.model.JobSpecialRequirementsMatchDTO;
+import com.zcdh.mobile.app.ZcdhApplication;
+import com.zcdh.mobile.framework.activities.BaseActivity;
+import com.zcdh.mobile.framework.events.MyEvents;
+import com.zcdh.mobile.framework.nio.RemoteServiceManager;
+import com.zcdh.mobile.framework.nio.RequestChannel;
+import com.zcdh.mobile.framework.nio.RequestListener;
+import com.zcdh.mobile.utils.SystemServicesUtils;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
@@ -27,21 +39,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.zcdh.mobile.R;
-import com.zcdh.mobile.api.IRpcJobPostService;
-import com.zcdh.mobile.api.model.ApplyPostInfoDTO;
-import com.zcdh.mobile.api.model.JobEntPostDTO;
-import com.zcdh.mobile.api.model.JobEntPostDetailDTO;
-import com.zcdh.mobile.api.model.JobSpecialRequirementsMatchDTO;
-import com.zcdh.mobile.app.ZcdhApplication;
-import com.zcdh.mobile.framework.activities.BaseActivity;
-import com.zcdh.mobile.framework.events.MyEvents;
-import com.zcdh.mobile.framework.nio.RemoteServiceManager;
-import com.zcdh.mobile.framework.nio.RequestChannel;
-import com.zcdh.mobile.framework.nio.RequestListener;
-import com.zcdh.mobile.utils.SystemServicesUtils;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author YJN, 2014-04-16 下午4:07:34 申请职位
@@ -120,9 +120,9 @@ public class PostApplyActivity extends BaseActivity implements RequestListener {
 	ApplyPostInfoDTO applyPostInfoDto;
 
 	// 选中的
-	HashMap<Integer, JobSpecialRequirementsMatchDTO> selected = new HashMap<Integer, JobSpecialRequirementsMatchDTO>();
+	HashMap<Integer, JobSpecialRequirementsMatchDTO> selected = new HashMap<>();
 
-	ArrayList<String> skills = new ArrayList<String>();
+	ArrayList<String> skills = new ArrayList<>();
 
 	private SpecialAdapter specialAdapter;
 	private DisplayImageOptions options;
@@ -143,8 +143,8 @@ public class PostApplyActivity extends BaseActivity implements RequestListener {
 		// ScrollView滚动至最顶端，以显示搜索历史的ListView
 		scrollView.smoothScrollBy(0, 0);
 
-		SystemServicesUtils.setActionBarCustomTitle(this,
-				getSupportActionBar(), getString(R.string.post_apply));
+		SystemServicesUtils.displayCustomTitle(this,
+			getSupportActionBar(), getString(R.string.post_apply));
 
 		JobEntPostDTO post = detailDTO.getEntPostDTO();
 		entNameText.setText(post.getEntName());
@@ -307,13 +307,13 @@ public class PostApplyActivity extends BaseActivity implements RequestListener {
 		}
 
 		@Override
-		public View getView(int p, View contentView, ViewGroup arg2) {
+		public View getView(int p, View contentView, ViewGroup parent) {
 
 			Holder h = null;
 			if (contentView == null) {
 				h = new Holder();
 				contentView = LayoutInflater.from(getBaseContext()).inflate(
-						R.layout.special_item, null);
+						R.layout.special_item, parent,false);
 
 				h.itemName = (TextView) contentView
 						.findViewById(R.id.itemNameText);

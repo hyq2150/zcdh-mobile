@@ -135,8 +135,8 @@ public class VerificationCodeActivity extends BaseActivity implements
 			title = "找回密码";
 		}
 
-		SystemServicesUtils.setActionBarCustomTitle(this,
-				getSupportActionBar(), title);
+		SystemServicesUtils.displayCustomTitle(this,
+			getSupportActionBar(), title);
 
 		uservice = RemoteServiceManager.getRemoteService(IRpcJobUservice.class);
 

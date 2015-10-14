@@ -24,7 +24,7 @@ public class JsonParser {
 		if(TextUtils.isEmpty(json))
 			return "";
 		
-		StringBuffer ret = new StringBuffer();
+		StringBuilder ret = new StringBuilder();
 		try {
 			JSONTokener tokener = new JSONTokener(json);
 			JSONObject joResult = new JSONObject(tokener);
@@ -54,7 +54,7 @@ public class JsonParser {
 	 * @return
 	 */
 	public static String parseGrammarResult(String json) {
-		StringBuffer ret = new StringBuffer();
+		StringBuilder ret = new StringBuilder();
 		try {
 			JSONTokener tokener = new JSONTokener(json);
 			JSONObject joResult = new JSONObject(tokener);
@@ -70,8 +70,8 @@ public class JsonParser {
 						ret.append("没有匹配结果.");
 						return ret.toString();
 					}
-					ret.append("【结果】" + obj.getString("w"));
-					ret.append("【置信度】" + obj.getInt("sc"));
+					ret.append("【结果】").append(obj.getString("w"));
+					ret.append("【置信度】").append(obj.getInt("sc"));
 					ret.append("\n");
 				}
 			}
@@ -88,16 +88,16 @@ public class JsonParser {
 	 * @return
 	 */
 	public static String parseUnderstandResult(String json) {
-		StringBuffer ret = new StringBuffer();
+		StringBuilder ret = new StringBuilder();
 		try {
 			JSONTokener tokener = new JSONTokener(json);
 			JSONObject joResult = new JSONObject(tokener);
 
-			ret.append("【应答码】" + joResult.getString("rc") + "\n");
-			ret.append("【转写结果】" + joResult.getString("text") + "\n");
-			ret.append("【服务名称】" + joResult.getString("service") + "\n");
-			ret.append("【操作名称】" + joResult.getString("operation") + "\n");
-			ret.append("【完整结果】" + json);
+			ret.append("【应答码】").append(joResult.getString("rc")).append("\n");
+			ret.append("【转写结果】").append(joResult.getString("text")).append("\n");
+			ret.append("【服务名称】").append(joResult.getString("service")).append("\n");
+			ret.append("【操作名称】").append(joResult.getString("operation")).append("\n");
+			ret.append("【完整结果】").append(json);
 		} catch (Exception e) {
 			e.printStackTrace();
 			ret.append("没有匹配结果.");

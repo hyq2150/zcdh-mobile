@@ -24,7 +24,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME) 
 public @interface Select {
 
-	public String selected();
-	public String noSelected() default "";
+	String selected();
+	String noSelected() default "";
 	
 }

@@ -113,7 +113,7 @@ public class MyBMap {
 			return null;
 		if (latlngInScreen.size() == 0)
 			return null;
-		List<LbsParam> lbsparams = new ArrayList<LbsParam>();
+		List<LbsParam> lbsparams = new ArrayList<>();
 		try {
 			LatLng g1 = latlngInScreen.get(0);
 			LbsParam lbs1 = new LbsParam();
@@ -203,7 +203,7 @@ public class MyBMap {
 		LatLng g4 = baiduMap.getProjection().fromScreenLocation(
 				new Point(left + mWidth + (int) (mWidth * extend), top
 						+ mHeight + (int) (mHeight * extend)));
-		List<LatLng> latLngInscreen = new ArrayList<LatLng>();
+		List<LatLng> latLngInscreen = new ArrayList<>();
 		latLngInscreen.add(g1);
 		latLngInscreen.add(g2);
 		latLngInscreen.add(g3);

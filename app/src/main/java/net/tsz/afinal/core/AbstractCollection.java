@@ -16,6 +16,8 @@
  */
 package net.tsz.afinal.core;
 
+import android.support.annotation.NonNull;
+
 import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.Iterator;
@@ -70,11 +72,10 @@ public abstract class AbstractCollection<E> implements Collection<E> {
      *                {@code null} elements and this {@code Collection} does not support
      *                such elements.
      */
-    public boolean addAll(Collection<? extends E> collection) {
+    public boolean addAll(@NonNull Collection<? extends E> collection) {
         boolean result = false;
-        Iterator<? extends E> it = collection.iterator();
-        while (it.hasNext()) {
-            if (add(it.next())) {
+        for (E aCollection : collection) {
+            if (add(aCollection)) {
                 result = true;
             }
         }
@@ -196,6 +197,7 @@ public abstract class AbstractCollection<E> implements Collection<E> {
      *
      * @return an iterator for accessing the {@code Collection} contents.
      */
+    @NonNull
     public abstract Iterator<E> iterator();
 
     /**
@@ -336,6 +338,7 @@ public abstract class AbstractCollection<E> implements Collection<E> {
      */
     public abstract int size();
 
+    @NonNull
     public Object[] toArray() {
         int size = size(), index = 0;
         Iterator<?> it = iterator();
@@ -346,6 +349,7 @@ public abstract class AbstractCollection<E> implements Collection<E> {
         return array;
     }
 
+    @NonNull
     @SuppressWarnings("unchecked")
     public <T> T[] toArray(T[] contents) {
         int size = size(), index = 0;

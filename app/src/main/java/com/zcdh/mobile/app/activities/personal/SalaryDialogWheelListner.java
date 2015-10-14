@@ -7,5 +7,5 @@ package com.zcdh.mobile.app.activities.personal;
  */
 public interface SalaryDialogWheelListner {
 
-	public void onSalary(boolean mianyi/** 是否面议*/, int maxSalary, int minSalary);
+	void onSalary(boolean mianyi/** 是否面议*/, int maxSalary, int minSalary);
 }

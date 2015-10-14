@@ -7,7 +7,7 @@
     <ImageView android:id="@+id/img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:contentDescription="@drawable/mapguide_02"
+        android:src="@drawable/mapguide_02"
         android:scaleType="centerCrop"
         android:visibility="gone"/>
 

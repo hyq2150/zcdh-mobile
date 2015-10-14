@@ -84,13 +84,13 @@ public class LanguageEditActivity extends BaseActivity implements RequestListene
 		super.onCreate(savedInstanceState);
 		loading = new LoadingIndicator(this);
 		uService = RemoteServiceManager.getRemoteService(IRpcJobUservice.class);
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(), "语言掌握");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "语言掌握");
 	}
 
 	@AfterViews
 	void afterView() {
 		inflater = LayoutInflater.from(this);
-		myLanguages = new ArrayList<JobLanguageDTO>();
+		myLanguages = new ArrayList<>();
 
 		dialog = new LanguageDialog(this);
 		loading.show();

@@ -27,7 +27,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -64,7 +63,7 @@ public class PracticalExperienceActivity extends BaseActivity implements OnRefre
 	/**
 	 * 实践经历
 	 */
-	private List<JobPracticeDTO > practicalExpList = new ArrayList<JobPracticeDTO>();
+	private List<JobPracticeDTO > practicalExpList = new ArrayList<>();
 	/**
 	 * 标识是否编辑状态
 	 */
@@ -88,7 +87,8 @@ public class PracticalExperienceActivity extends BaseActivity implements OnRefre
 
 		jobUservice = RemoteServiceManager.getRemoteService(IRpcJobUservice.class);
 
-		SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), getString(R.string.activity_title_practical_experience));
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+			getString(R.string.activity_title_practical_experience));
 
 		practicalExpAdapter = new PracticalExpAdapter();
 		emptyView = new EmptyTipView(this);
@@ -117,7 +117,7 @@ public class PracticalExperienceActivity extends BaseActivity implements OnRefre
 	/**
 	 * 改变菜单按钮
 	 * 
-	 * @param edit
+	 * @param
 	 */
 	void setMenuState() {
 		MenuItem rightMenuItem = menu.getItem(0);
@@ -185,7 +185,7 @@ public class PracticalExperienceActivity extends BaseActivity implements OnRefre
 			if (result != null) {
 				practicalExpList = (List<JobPracticeDTO>) result;
 			}else {
-				practicalExpList = new ArrayList<JobPracticeDTO>();
+				practicalExpList = new ArrayList<>();
 			}	
 			emptyView.isEmpty(!(practicalExpList.size() > 0));
 			practicalExpAdapter.notifyDataSetChanged();
@@ -244,10 +244,10 @@ public class PracticalExperienceActivity extends BaseActivity implements OnRefre
 			ViewHolder h = null;
 			if (convertView == null) {
 				h = new ViewHolder();
-				convertView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.work_exp_item, null);
+				convertView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.winning_exp_item, parent,false);
 				h.practicalNameText = (TextView) convertView.findViewById(R.id.companyNameText);
 				h.practicalTimeText = (TextView) convertView.findViewById(R.id.subTitleText);
-				h.delBtn = (LinearLayout) convertView.findViewById(R.id.delImgBtn);
+				h.delBtn = (ImageView) convertView.findViewById(R.id.delImgBtn);
 				h.delBtn.setOnClickListener(PracticalExperienceActivity.this);
 				h.accesoryImg = (ImageView) convertView.findViewById(R.id.accessoryImg);
 				convertView.setTag(h);
@@ -281,7 +281,7 @@ public class PracticalExperienceActivity extends BaseActivity implements OnRefre
 		class ViewHolder {
 			TextView practicalNameText;
 			TextView practicalTimeText;
-			LinearLayout delBtn;
+			ImageView delBtn;
 			ImageView accesoryImg;
 		}
 	}

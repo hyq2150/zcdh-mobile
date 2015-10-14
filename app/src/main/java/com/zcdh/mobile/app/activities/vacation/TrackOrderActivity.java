@@ -62,7 +62,7 @@ public class TrackOrderActivity extends BaseActivity implements OnClickListener,
 	
 	protected void initUI() {
 		// TODO Auto-generated method stub
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(), "订单跟踪");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "订单跟踪");
 		bindViews();
 	}
 
@@ -95,9 +95,9 @@ public class TrackOrderActivity extends BaseActivity implements OnClickListener,
 	 */
 	protected void initOrderStatus(List<TrackOrder> trackOrders) {
 
-		List<Map<String, Object>> contents = new ArrayList<Map<String, Object>>();
+		List<Map<String, Object>> contents = new ArrayList<>();
 		for (TrackOrder trackOrder : trackOrders) {
-			Map<String, Object> map = new HashMap<String, Object>();
+			Map<String, Object> map = new HashMap<>();
 			map.put("status_time", DateUtils.getDateByFormatYMDHMS(trackOrder.getTrack_order_time()));
 			map.put("status_text", trackOrder.getContent());
 			contents.add(map);

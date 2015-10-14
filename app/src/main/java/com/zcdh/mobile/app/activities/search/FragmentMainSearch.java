@@ -129,7 +129,7 @@ public class FragmentMainSearch extends BaseFragment implements
 	private TagsPageAdapter tagsPageAdapter;
 
 	// 标签组Fragment
-	private ArrayList<FragmentTagsGroup_> tagsFragments = new ArrayList<FragmentTagsGroup_>();
+	private ArrayList<FragmentTagsGroup_> tagsFragments = new ArrayList<>();
 
 	// 标识标签组共几页
 	private int totalPages = 3;
@@ -149,7 +149,7 @@ public class FragmentMainSearch extends BaseFragment implements
 
 	private SearchHistoryAdapter historyAdapter;
 
-	private ArrayList<String> historys = new ArrayList<String>();
+	private ArrayList<String> historys = new ArrayList<>();
 
 	// 搜索服务
 	private IRpcJobSearchService jobSearchService;
@@ -158,12 +158,12 @@ public class FragmentMainSearch extends BaseFragment implements
 	private List<JobTagTypeDTO> jobTagTypes;
 
 	// 保存不同标签类别的标签
-	private HashMap<String, List<JobSearchTagDTO>> tags = new HashMap<String, List<JobSearchTagDTO>>();
+	private HashMap<String, List<JobSearchTagDTO>> tags = new HashMap<>();
 	//保存各标签类别的最大页数
-	private HashMap<String, Integer> maxPages = new HashMap<String, Integer>();
+	private HashMap<String, Integer> maxPages = new HashMap<>();
 
 	//保存各标签类别的最后页数
-	private HashMap<String, Integer> lastPage = new HashMap<String, Integer>();
+	private HashMap<String, Integer> lastPage = new HashMap<>();
 	
 	// 当前选中的标签类别编码
 	private String selectedTagType;
@@ -352,7 +352,7 @@ public class FragmentMainSearch extends BaseFragment implements
 			if(startIndex<0)startIndex=0;
 			// 判断当前页是否已有可取的数据
 			if (allTagsThisType != null && allTagsThisType.size() > startIndex) {
-				tags_ = new ArrayList<JobSearchTagDTO>();
+				tags_ = new ArrayList<>();
 				Log.i("index:", startIndex+"");
 				for (int i = 0; i < tagPageSize; i++) {
 					if(allTagsThisType.size()-1>=startIndex+i){
@@ -649,11 +649,11 @@ public class FragmentMainSearch extends BaseFragment implements
 		}
 
 		@Override
-		public View getView(int p, View contentView, ViewGroup arg2) {
+		public View getView(int p, View contentView, ViewGroup parent) {
 			TextView historyNameText = null;
 			if (contentView == null) {
 				contentView = LayoutInflater.from(getActivity())
-						.inflate(R.layout.simple_listitem, null);
+						.inflate(R.layout.simple_listitem, parent,false);
 				historyNameText = (TextView) contentView
 						.findViewById(R.id.itemNameText);
 				contentView.setTag(historyNameText);

@@ -206,18 +206,25 @@ public class ObjectUtils {
 	 */
 	public static boolean isEmpty(Object obj) {
 
-		if (obj == null) // 对象为空
-			return true;
-		if (obj instanceof String) // 对象为字符串
-			return ((String) obj).trim().length() == 0 ? true : ((String) obj)
-					.trim().equalsIgnoreCase("null");
-		if (obj instanceof Object[]) // 对象时数组
-			return (((Object[]) obj).length) == 0;
-		if (obj instanceof Collection) // 对象时集合
-			return ((Collection) obj).isEmpty();
-		if (obj instanceof Map) // 对象时散列表Map
-			return ((Map) obj).isEmpty();
-		return false;
+	    if (obj == null) // 对象为空
+	    {
+		return true;
+	    }
+	    if (obj instanceof String) // 对象为字符串
+	    {
+		return ((String) obj).trim().length() == 0 || ((String) obj)
+			.trim().equalsIgnoreCase("null");
+	    }
+	    if (obj instanceof Object[]) // 对象时数组
+	    {
+		return (((Object[]) obj).length) == 0;
+	    }
+	    if (obj instanceof Collection) // 对象时集合
+	    {
+		return ((Collection) obj).isEmpty();
+	    }
+	    // 对象时散列表Map
+	    return obj instanceof Map && ((Map) obj).isEmpty();
 	}
 
 	/**
@@ -258,7 +265,7 @@ public class ObjectUtils {
 				if (g.getName().startsWith("get")) {
 					// 取得当前方法的返回值
 //					Object gValue = g.invoke(srcObj, null);
-					Object gValue = g.invoke(srcObj, new Object[]{});
+					Object gValue = g.invoke(srcObj);
 					// 方法名称
 					String gname = g.getName().substring(2);
 
@@ -317,7 +324,7 @@ public class ObjectUtils {
 			return false;
 		if (compareDto.getClass() != comparedDto.getClass())
 			return false;
-		JobUserInfoDTO other = (JobUserInfoDTO) comparedDto;
+		JobUserInfoDTO other = comparedDto;
 		if (compareDto.getAddressCode() == null) {
 			if (other.getAddressCode() != null)
 				return false;
@@ -489,7 +496,7 @@ public class ObjectUtils {
 			return false;
 		if (compareDto.getClass() != comparedDto.getClass())
 			return false;
-		JobEducationDTO other = (JobEducationDTO) comparedDto;
+		JobEducationDTO other = comparedDto;
 		if (compareDto.getContent() == null) {
 			if (other.getContent() != null)
 				return false;
@@ -557,7 +564,7 @@ public class ObjectUtils {
 			return false;
 		if (compareDto.getClass() != comparedDto.getClass())
 			return false;
-		JobTrainDTO other = (JobTrainDTO) comparedDto;
+		JobTrainDTO other = comparedDto;
 		if (compareDto.getContent() == null) {
 			if (other.getContent() != null)
 				return false;

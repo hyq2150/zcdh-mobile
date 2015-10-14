@@ -143,7 +143,7 @@ public class ThirdPartAuthHelper {
 			public void onError(Platform platform, int action, Throwable t) {
 				// TODO Auto-generated method stub
 				if (action == Platform.ACTION_USER_INFOR) {
-					Message msg = new Message();
+					Message msg = Message.obtain();
 					msg.what = Constants.MSG_AUTH_ERROR;
 					msg.obj = t;
 					UIHandler.sendMessage(msg, callback);
@@ -157,7 +157,7 @@ public class ThirdPartAuthHelper {
 					HashMap<String, Object> res) {
 				// TODO Auto-generated method stub
 				if (action == Platform.ACTION_USER_INFOR) {
-					Message msg = new Message();
+					Message msg = Message.obtain();
 					msg.what = Constants.MSG_AUTH_COMPLETE;
 					if (res.containsKey(Constants.HEAD_IMG_URL)) {
 						msg.obj = res.get(Constants.HEAD_IMG_URL);
@@ -185,7 +185,7 @@ public class ThirdPartAuthHelper {
 
 	private void login(String plat, String userId,
 			HashMap<String, Object> userInfo, Callback callback) {
-		Message msg = new Message();
+		Message msg = Message.obtain();
 		msg.what = Constants.MSG_LOGIN;
 		msg.obj = userId;
 		UIHandler.sendMessage(msg, callback);
@@ -263,13 +263,11 @@ public class ThirdPartAuthHelper {
 	 * @return
 	 */
 	public boolean isSessionValid(String type) {
-		if (Constants.LOGIN_TYPE_QQ.equals(type)) {
-			return (tencent != null && tencent.isSessionValid());
-		}
-		if (Constants.LOGIN_TYPE_WEIBO.equals(type)) {
-			return mAccessToken != null && mAccessToken.isSessionValid();
-		}
-		return false;
+	    if (Constants.LOGIN_TYPE_QQ.equals(type)) {
+		return (tencent != null && tencent.isSessionValid());
+	    }
+	    return Constants.LOGIN_TYPE_WEIBO.equals(type) && mAccessToken != null && mAccessToken
+		    .isSessionValid();
 	}
 
 	/**

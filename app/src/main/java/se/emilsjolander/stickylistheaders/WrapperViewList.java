@@ -114,7 +114,7 @@ class WrapperViewList extends ListView {
 	public void addFooterView(View v) {
 		super.addFooterView(v);
 		if (mFooterViews == null) {
-			mFooterViews = new ArrayList<View>();
+			mFooterViews = new ArrayList<>();
 		}
 		mFooterViews.add(v);
 	}
@@ -129,10 +129,7 @@ class WrapperViewList extends ListView {
 	}
 
 	boolean containsFooterView(View v) {
-		if (mFooterViews == null) {
-			return false;
-		}
-		return mFooterViews.contains(v);
+	    return mFooterViews != null && mFooterViews.contains(v);
 	}
 
 	void setTopClippingLength(int topClipping) {

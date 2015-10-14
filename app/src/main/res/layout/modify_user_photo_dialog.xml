@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    >
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/light_gray_background"
+        android:background="@color/white"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/content_top_bottom"
-        android:paddingLeft="@dimen/content_left_right"
-        android:paddingRight="@dimen/content_left_right"
-        android:paddingTop="@dimen/content_top_bottom" >
+         >
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="left"
+            android:gravity="center"
             android:padding="7dp"
-            android:text="设置头像"
+            android:text="设置靓靓头像"
             android:textColor="@color/font_color1"
             android:textSize="@dimen/font_size_middle" />
 
@@ -36,11 +34,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/grey_border_rectangle_bg"
-                android:orientation="vertical"
-                android:padding="7dp" 
                 android:clickable="true"
-                android:onClick="onButtonClick">
+                android:onClick="onButtonClick"
+                android:orientation="vertical"
+                android:padding="7dp" >
 
                 <ImageView
                     android:layout_width="50dp"
@@ -65,10 +62,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/grey_border_rectangle_bg"
+                android:onClick="onButtonClick"
                 android:orientation="vertical"
-                android:padding="7dp" 
-                android:onClick="onButtonClick">
+                android:padding="7dp" >
 
                 <ImageView
                     android:layout_width="50dp"
@@ -93,19 +89,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/grey_border_rectangle_bg"
-                android:orientation="vertical"
-                android:padding="7dp" 
                 android:clickable="true"
-                android:onClick="onButtonClick">
+                android:onClick="onButtonClick"
+                android:orientation="vertical"
+                android:padding="7dp" >
 
-                <ImageView android:id="@+id/qqPhoto"
+                <com.makeramen.RoundedImageView
+                    android:id="@+id/qqPhoto"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/grzx20" />
 
-                <TextView 
+                <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -121,19 +117,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/grey_border_rectangle_bg"
-                android:orientation="vertical"
-                android:padding="7dp" 
                 android:clickable="true"
-                android:onClick="onButtonClick">
+                android:onClick="onButtonClick"
+                android:orientation="vertical"
+                android:padding="7dp" >
 
-                <ImageView android:id="@+id/weiboPhoto"
+                <com.makeramen.RoundedImageView
+                    android:id="@+id/weiboPhoto"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/grzx20" />
 
-                <TextView android:id="@+id/photo2NameText"
+                <TextView
+                    android:id="@+id/photo2NameText"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -142,24 +139,26 @@
                     android:textColor="@color/font_color1"
                     android:textSize="@dimen/font_size_nomarl" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/wechatPhotoLL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/grey_border_rectangle_bg"
-                android:orientation="vertical"
-                android:padding="7dp" 
                 android:clickable="true"
-                android:onClick="onButtonClick">
+                android:onClick="onButtonClick"
+                android:orientation="vertical"
+                android:padding="7dp" >
 
-                <ImageView android:id="@+id/wechatPhoto"
+                <com.makeramen.RoundedImageView
+                    android:id="@+id/wechatPhoto"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/grzx20" />
 
-                <TextView android:id="@+id/photo3NameText"
+                <TextView
+                    android:id="@+id/photo3NameText"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"

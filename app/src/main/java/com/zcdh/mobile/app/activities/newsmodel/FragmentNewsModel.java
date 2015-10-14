@@ -7,27 +7,29 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.umeng.analytics.MobclickAgent;
-import com.zcdh.comm.entity.Page;
+import com.zcdh.core.nio.except.ZcdhException;
 import com.zcdh.mobile.R;
+import com.zcdh.mobile.api.IRpcAppConfigService;
 import com.zcdh.mobile.api.IRpcCUCCSpecialService;
+import com.zcdh.mobile.api.model.AdminAppConfigModelDTO;
 import com.zcdh.mobile.api.model.InformationCoverDTO;
-import com.zcdh.mobile.api.model.InformationTitleDTO;
 import com.zcdh.mobile.app.ActivityDispatcher;
+import com.zcdh.mobile.app.Constants;
 import com.zcdh.mobile.app.DataLoadInterface;
 import com.zcdh.mobile.app.ZcdhApplication;
 import com.zcdh.mobile.app.activities.base.BaseFragment;
 import com.zcdh.mobile.app.adapter.RecyclingPagerAdapter;
-import com.zcdh.mobile.app.adapter.TitlesAdapter;
 import com.zcdh.mobile.app.maps.bmap.MyBLocationCient;
 import com.zcdh.mobile.app.views.EmptyTipView;
 import com.zcdh.mobile.framework.nio.RemoteServiceManager;
 import com.zcdh.mobile.framework.nio.RequestChannel;
-import com.zcdh.mobile.framework.nio.RequestException;
 import com.zcdh.mobile.framework.nio.RequestListener;
 import com.zcdh.mobile.framework.views.GridViewInScrollView;
 import com.zcdh.mobile.framework.widget.AutoScrollViewPager;
+import com.zcdh.mobile.utils.SharedPreferencesUtil;
 import com.zcdh.mobile.utils.StringUtils;
 import com.zcdh.mobile.utils.SystemServicesUtils;
+import com.zcdh.mobile.utils.SystemUtil;
 import com.zcdh.mobile.utils.ToastUtil;
 
 import org.androidannotations.annotations.AfterViews;
@@ -47,7 +49,6 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.ScrollView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -66,7 +67,7 @@ public class FragmentNewsModel extends BaseFragment implements
     /**
      * 标识是否加载完成
      */
-    private boolean flagLoaded;
+    private boolean isAdLoaded = false;//广告
 
     @ViewById(R.id.scrollView)
     PullToRefreshScrollView scrollView;
@@ -79,16 +80,20 @@ public class FragmentNewsModel extends BaseFragment implements
 
     private IRpcCUCCSpecialService cUCCSpecialService;
 
-    private List<InformationCoverDTO> covers = new ArrayList<InformationCoverDTO>();
+    private IRpcAppConfigService appConfigService;
 
-    private List<InformationTitleDTO> titles = new ArrayList<InformationTitleDTO>();
+    private List<InformationCoverDTO> covers = new ArrayList<>();
+
+    private List<AdminAppConfigModelDTO> titles = new ArrayList<>();
 
     private String kREQ_ID_FINDINFORMATIONCOVERLIST;
 
-    private String kREQ_ID_FINDINFORMATIONTITLELIST;
-
+    private String kREQ_ID_findAppConfigModelByParentId;
+    private String KREQ_ID_FIND_APPCONFIG_MODULE_MAIN_PAGE;
+    //轮播广告对应的适配器
     private RecyclingPagerAdapter adapter;
 
+    //模块GridView对应的适配器
     private TitlesAdapter title_adapter;
 
     @ViewById(R.id.grid_view)
@@ -109,7 +114,7 @@ public class FragmentNewsModel extends BaseFragment implements
         super.onCreate(savedInstanceState);
         cUCCSpecialService = RemoteServiceManager
                 .getRemoteService(IRpcCUCCSpecialService.class);
-
+        appConfigService = RemoteServiceManager.getRemoteService(IRpcAppConfigService.class);
     }
 
     @Override
@@ -147,17 +152,17 @@ public class FragmentNewsModel extends BaseFragment implements
         grid_view.setAdapter(title_adapter);
         // doGetImage();
 
+        loadData();
     }
 
     /**
      * 此方法在父 Activity 中调用 加载数据，先定位，定位完成拿到地理位置后下一步加载广告
      */
     public void loadData() {
-        if (!flagLoaded) {
+        if (!isAdLoaded) {
             // 1) 定位 ， 下一步加载广告
             locationCient = new MyBLocationCient(getActivity(), this);
             locationCient.requestLocation();
-
         }
     }
 
@@ -165,51 +170,53 @@ public class FragmentNewsModel extends BaseFragment implements
     void onItemClick(int position) {
         if (position == titles.size()) {
             if (getUserId() >= 1) {
-                HashMap<Long, InformationTitleDTO> selectedFuncs
-                        = new HashMap<Long, InformationTitleDTO>();
-                for (InformationTitleDTO title : titles) {
-                    selectedFuncs.put(title.getId(), title);
-                }
                 AddMoreDiscoverActivity_
                         .intent(getActivity())
-                        .selectedFuncs(selectedFuncs)
                         .startForResult(
                                 AddMoreDiscoverActivity.kREQUEST_ADD_DISCOVERY);
             } else {
                 ToastUtil.show(R.string.login_first);
-                ActivityDispatcher.to_login(getActivity());
+                ActivityDispatcher.toLogin(getActivity());
             }
         } else {
-            InformationTitleDTO title = titles.get(position);
-            switch (title.getOpenType()) {
+            AdminAppConfigModelDTO title = titles.get(position);
+            switch (Integer.valueOf(title.getOpen_type())) {
                 case 1:
                     Bundle data = new Bundle();
                     for (Entry<String, String> param : StringUtils.getParams(
-                            title.getCustomParam()).entrySet()) {
+                            title.getCustom_param()).entrySet()) {
                         Log.e("FragmentNewsModel", param.getKey() + " : " + param.getValue());
                         data.putString(param.getKey(), param.getValue());
                     }
-//				data.putString("isShowTitle", title.getIsShowTitle() + "");
+//				data.putString("isShowTitle", title.getModel_name() + "");
                     NewsBrowserActivity_.IntentBuilder_ ib = NewsBrowserActivity_
                             .intent(getActivity());
                     ib.get().putExtras(data);
-                    ib.title(title.getTitle());
-                    ib.url(title.getAnroidURL()).start();
+                    ib.title(title.getModel_name());
+                    if (title.getIs_url_autofilluserid() != null && title.getIs_url_autofilluserid() == 1) {
+                        if (getUserId() >= 1) {
+                            ib.url(title.getModelUrl() + "?uid=" + getUserId()).start();
+                        } else {
+                            ToastUtil.show(R.string.login_first);
+                            ActivityDispatcher.toLogin(getActivity());
+                        }
+                    } else {
+                        ib.url(title.getModelUrl()).start();
+                    }
+
                     break;
                 case 2:
                     Class<?> activity_cls = SystemServicesUtils.getClass(title
-                            .getAnroidURL());
-                    Log.e("FragmentNewsModel", "activity_cls : " + activity_cls);
+                            .getModelUrl());
                     if (activity_cls != null) {
                         Intent intent = new Intent(getActivity(), activity_cls);
                         Bundle data1 = new Bundle();
                         for (Entry<String, String> param : StringUtils.getParams(
-                                title.getCustomParam()).entrySet()) {
-                            Log.e("FragmentNewsModel", param.getKey() + " : " + param.getValue());
+                                title.getCustom_param()).entrySet()) {
                             data1.putString(param.getKey(), param.getValue());
                         }
-                        data1.putLong(NewsListActivity.kMODEL_ID, title.getId());
-                        data1.putString("title", title.getTitle());
+                        data1.putLong(NewsListActivity.kMODEL_ID, title.getReference_id());
+                        data1.putString("title", title.getModel_name());
                         data1.putBoolean("fromMessageCenter", true);
                         intent.putExtras(data1);
                         getActivity().startActivity(intent);
@@ -222,21 +229,27 @@ public class FragmentNewsModel extends BaseFragment implements
     }
 
     /**
+     * 请求各个子模块数据
+     *
      * @author jeason, 2014-6-6 下午8:00:08
      */
     @Background
     void doLoadApps() {
-        LatLng center = ZcdhApplication.getInstance().getMyLocation();
-        cUCCSpecialService
-                .findInformationTitle1(getUserId(), center.longitude,
-                        center.latitude, 1, 100)
-                .identify(
-                        kREQ_ID_FINDINFORMATIONTITLELIST = RequestChannel
-                                .getChannelUniqueID(),
-                        this);
+        appConfigService
+                .findAppConfigModelByParentId(
+                        getUserId(),
+                        SharedPreferencesUtil.getValue(getActivity(), FragmentNewsModel.class.getSimpleName(), 0l),
+                        ZcdhApplication.getInstance().getMyLocation().latitude,
+                        ZcdhApplication.getInstance().getMyLocation().longitude,
+                        Constants.DEVICES_TYPE,
+                        SystemUtil.getVerCode(getActivity()),
+                        SystemServicesUtils.getAppID(getActivity()))
+                .identify(kREQ_ID_findAppConfigModelByParentId = RequestChannel.getChannelUniqueID(), this);
     }
 
     /**
+     * 请求广告轮播数据
+     *
      * @author jeason, 2014-6-6 下午7:11:29
      */
     @Background
@@ -253,19 +266,15 @@ public class FragmentNewsModel extends BaseFragment implements
         }
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
-
+    //定位回调
     @Override
     public void onReceiveLocation(BDLocation loc) {
         LatLng point = new LatLng(loc.getLatitude(), loc.getLongitude());
         ZcdhApplication.getInstance().setMyLocation(point);
         locationCient.stop();
-                /*
-                 * 2) 定位完成，加载广告
-		 */
+        /**
+         * 2) 定位完成，加载广告
+         */
         doLoadAds();
     }
 
@@ -274,9 +283,6 @@ public class FragmentNewsModel extends BaseFragment implements
      */
     public void onResultAddDiscovery(int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK && data.getExtras() != null) {
-            this.covers = new ArrayList<InformationCoverDTO>();
-            this.titles = new ArrayList<InformationTitleDTO>();
-            doLoadAds();
             doLoadApps();
         }
     }
@@ -308,33 +314,51 @@ public class FragmentNewsModel extends BaseFragment implements
             doLoadApps();
         }
 
-        if (reqId.equals(kREQ_ID_FINDINFORMATIONTITLELIST)) {
-            if (result != null) {
-                Page<InformationTitleDTO> page = (Page<InformationTitleDTO>) result;
-                titles = page.getElements();
-                title_adapter.setTitles(titles);
-                flagLoaded = true;
-                // contentView.setVisibility(View.VISIBLE);
-                modelsContainer.setVisibility(View.VISIBLE);
+        if (reqId.equals(KREQ_ID_FIND_APPCONFIG_MODULE_MAIN_PAGE)) {
+            ArrayList<AdminAppConfigModelDTO> appConfigList = (ArrayList<AdminAppConfigModelDTO>) result;
+            if (appConfigList != null && appConfigList.size() > 0) {
+                for (AdminAppConfigModelDTO dto : appConfigList) {
+                    if (dto.getCustom_item_code() != null && dto.getCustom_item_code().equals(Constants.APPCONFIG_CUSTOM_ITEM_CODE_MAIN)) {
+                        SharedPreferencesUtil.putValue(ZcdhApplication.getInstance(), Constants.APPCONFIG_CUSTOM_ITEM_CODE_MAIN, dto.getId());
+                    } else if (dto.getCustom_item_code() != null && dto.getCustom_item_code().equals(Constants.APPCONFIG_CUSTOM_ITEM_CODE_INFORMATION)) {
+                        SharedPreferencesUtil.putValue(ZcdhApplication.getInstance(), Constants.APPCONFIG_CUSTOM_ITEM_CODE_INFORMATION, dto.getId());
+                    }
+                }
+                doLoadApps();
             }
+        }
+
+        if (reqId.equals(kREQ_ID_findAppConfigModelByParentId)) {
+            isAdLoaded = true;
+            List<AdminAppConfigModelDTO> appconfig = (List<AdminAppConfigModelDTO>) result;
+            if (appconfig == null || appconfig.isEmpty()) {
+                emptyTipView.isEmpty(true);
+                return;
+            }
+            titles.clear();
+            titles.addAll(appconfig);
+            title_adapter.setTitles(titles);
+            modelsContainer.setVisibility(View.VISIBLE);
             if (covers != null && covers.size() > 0) {
                 adsContainer.setVisibility(View.VISIBLE);
             }
-            emptyTipView.isEmpty(false);
+            emptyTipView.isEmpty(!(covers != null && covers.size() > 0));
         }
     }
 
     @Override
     public void onRequestFinished(String reqId) {
         // TODO Auto-generated method stub
-        scrollView.onRefreshComplete();
+        if (scrollView.isRefreshing()) {
+            scrollView.onRefreshComplete();
+        }
     }
 
     @Override
     public void onRequestError(String reqID, Exception error) {
-        flagLoaded = false;
+        isAdLoaded = false;
         if (error != null) {
-            RequestException exception = (RequestException) error;
+            ZcdhException exception = (ZcdhException) error;
             emptyTipView.showException(exception.getErrCode(), this);
         }
     }

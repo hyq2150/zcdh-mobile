@@ -15,7 +15,6 @@ import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,7 +78,7 @@ public class RegistrationListActivity extends BaseActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(),"报名名单");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "报名名单");
 		jobfairService = RemoteServiceManager
 				.getRemoteService(IRpcJobFairService.class);
 		inflater = LayoutInflater.from(this);
@@ -184,7 +183,7 @@ public class RegistrationListActivity extends BaseActivity implements
 		public RegistrationList() {
 			super();
 			// TODO Auto-generated constructor stub
-			userSignUpDTOList = new ArrayList<UserSignUpDTO>();
+			userSignUpDTOList = new ArrayList<>();
 			options = new DisplayImageOptions.Builder().cacheInMemory(true).showImageOnFail(R.drawable.reg_icon).showImageForEmptyUri(R.drawable.reg_icon).showImageOnLoading(R.drawable.reg_icon)
 					.cacheOnDisk(true).bitmapConfig(Bitmap.Config.RGB_565)
 					.considerExifParams(true).displayer(new CircleBitmapDisplayer()).build();

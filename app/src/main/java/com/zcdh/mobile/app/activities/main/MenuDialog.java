@@ -1,32 +1,34 @@
 package com.zcdh.mobile.app.activities.main;
 
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.makeramen.RoundedImageView;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 import com.umeng.analytics.MobclickAgent;
 import com.zcdh.mobile.R;
+import com.zcdh.mobile.api.IRpcAppConfigService;
 import com.zcdh.mobile.api.IRpcJobUservice;
+import com.zcdh.mobile.api.model.AdminAppConfigModelDTO;
 import com.zcdh.mobile.api.model.JobEntShareDTO;
 import com.zcdh.mobile.api.model.JobUserHomePageTitleDTO;
 import com.zcdh.mobile.app.ActivityDispatcher;
 import com.zcdh.mobile.app.Constants;
 import com.zcdh.mobile.app.ZcdhApplication;
-import com.zcdh.mobile.app.activities.auth.LoginActivity_;
-import com.zcdh.mobile.app.activities.personal.FavoritePostActivity_;
-import com.zcdh.mobile.app.activities.personal.ResumeActivity_;
-import com.zcdh.mobile.app.activities.personal.SubscriptionActivity_;
 import com.zcdh.mobile.app.activities.security.AccountManagerActivity_;
 import com.zcdh.mobile.app.activities.settings.FeedBackActivity_;
-import com.zcdh.mobile.app.activities.settings.SettingsHomeActivity_;
+import com.zcdh.mobile.app.activities.settings.SettingsHomeActivity;
 import com.zcdh.mobile.app.extension.ExtensionDialog;
 import com.zcdh.mobile.framework.nio.RemoteServiceManager;
 import com.zcdh.mobile.framework.nio.RequestChannel;
 import com.zcdh.mobile.framework.nio.RequestListener;
 import com.zcdh.mobile.share.Share;
-import com.zcdh.mobile.utils.Gaosi;
-import com.zcdh.mobile.utils.ImageUtils;
 import com.zcdh.mobile.utils.RegisterUtil;
 import com.zcdh.mobile.utils.SharedPreferencesUtil;
 import com.zcdh.mobile.utils.StringUtils;
 import com.zcdh.mobile.utils.SystemServicesUtils;
+import com.zcdh.mobile.utils.SystemUtil;
 import com.zcdh.mobile.utils.ToastUtil;
 
 import org.androidannotations.api.BackgroundExecutor;
@@ -35,28 +37,25 @@ import org.androidannotations.api.BackgroundExecutor.Task;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
-import android.os.AsyncTask;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.TranslateAnimation;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -66,37 +65,56 @@ import java.util.List;
  */
 
 @SuppressLint("InflateParams")
-public class MenuDialog extends Dialog implements OnClickListener,
+public class MenuDialog extends Dialog
+        implements PullToRefreshBase.OnRefreshListener<ListView>, /*MyEvents.Subscriber,*/
+        OnClickListener, AdapterView.OnItemClickListener,
         RequestListener {
 
+    //个人信息
     private String K_REQ_ID_FINDJOBUSERHOMEPAGETITLEDTO;
 
+    //签到
     private String K_REQ_ID_SIGNIN;
 
+    //分享内容
     private String K_REQ_FINDAPPSHARECONTENT;
 
+    //模块信息
+    private String KREQ_ID_FIND_APP_CONFIG_MODEL_INFO;
+
+    //模块
+    private String KREQ_ID_FIND_APPCONFIG_MODULE_BY_ID;
+
     private IRpcJobUservice userService;
+
+    private IRpcAppConfigService appConfigService;
 
     private Activity mainActivity;
 
     // 头像
-    private RoundedImageView head;
+    private RoundedImageView ivHead;
 
-    private RelativeLayout rl_head;
+    private RelativeLayout rlHead;
 
     /**
      * 用户名
      */
-    private TextView userName;
+    private TextView tvUserName;
 
     /**
      * 积分
      */
-    private TextView tv_jifen;
+    private TextView tvJifen;
+
+    private TextView tvAccount;
 
     private TextView tvSignin;
 
-    private ImageView signinIcon;
+    private RelativeLayout rlBtns;
+
+    private PullToRefreshListView configListview;
+
+    private MenuDialogAdapter adapter;
 
     private JobUserHomePageTitleDTO titleDto;
 
@@ -105,22 +123,23 @@ public class MenuDialog extends Dialog implements OnClickListener,
 
     private static final String TAG = MenuDialog.class.getSimpleName();
 
-    private View contentView = null;
-
     private int contentWidth;
 
     private MenuDialogListener menuDialogListener;
 
+    private ArrayList<AdminAppConfigModelDTO> datas = new ArrayList<AdminAppConfigModelDTO>();
+
     public MenuDialog(Activity context, MenuDialogListener listener) {
-        super(context, R.style.fadeInOutDialog);
+        super(context, R.style.pop_dialog_theme);
         menuDialogListener = listener;
         SystemServicesUtils.initShareSDK(context);
-
-        mainActivity = (NewMainActivity) context;
+//        MyEvents.register(this);
+        mainActivity = context;
+        appConfigService = RemoteServiceManager
+                .getRemoteService(IRpcAppConfigService.class);
         userService = RemoteServiceManager
                 .getRemoteService(IRpcJobUservice.class);
         bindView();
-
     }
 
     /**
@@ -142,7 +161,8 @@ public class MenuDialog extends Dialog implements OnClickListener,
                 // close the activity
                 // this.finish();
                 Log.i(TAG, "touched outside");
-                toDismiss();
+//                toDismiss();
+                dismiss();
                 menuDialogListener.onHidden();
                 // notify that we consumed this event
                 return true;
@@ -152,87 +172,54 @@ public class MenuDialog extends Dialog implements OnClickListener,
         return super.onTouchEvent(event);
     }
 
-    protected void onStart() {
-    }
-
-    protected void onStop() {
-
-        super.onStop();
-    }
-
-    @SuppressWarnings("deprecation")
     private void bindView() {
+        setContentView(R.layout.main_menu_new);
+        adapter = new MenuDialogAdapter(mainActivity, datas);
+        configListview = (PullToRefreshListView) findViewById(R.id.menu_listview);
+        configListview.setAdapter(adapter);
+        configListview.setOnItemClickListener(this);
+        configListview.setOnRefreshListener(this);
 
-        // 已登录
-        if (ZcdhApplication.getInstance().getZcdh_uid() != -1) {
-            contentView = LayoutInflater.from(mainActivity).inflate(
-                    R.layout.main_menu_new, null);
-            setContentView(contentView);
+        ivHead = (RoundedImageView) findViewById(R.id.head);
+        ivHead.setOnClickListener(this);
 
-            RelativeLayout rl_resume = (RelativeLayout) findViewById(R.id.resumeRl);
-            rl_resume.setOnClickListener(this);
+        tvUserName = (TextView) findViewById(R.id.tv_name);
+        tvJifen = (TextView) findViewById(R.id.tv_jifen);
+        tvAccount = (TextView) findViewById(R.id.tv_account);
 
-            RelativeLayout rl_favorites = (RelativeLayout) findViewById(R.id.favriteRl);
-            rl_favorites.setOnClickListener(this);
+        findViewById(R.id.headInfo).setOnClickListener(this);
+        findViewById(R.id.ll_checkout).setOnClickListener(this);
+        findViewById(R.id.ll_account).setOnClickListener(this);
 
-            RelativeLayout rl_feeds = (RelativeLayout) findViewById(R.id.subscriptionRl);
-            rl_feeds.setOnClickListener(this);
+        // 签到
+        tvSignin = (TextView) findViewById(R.id.tv_sign);
+        rlBtns = (RelativeLayout) findViewById(R.id.rl_btns);
 
-            RelativeLayout rl_orders = (RelativeLayout) findViewById(R.id.ordersRl);
-            rl_orders.setOnClickListener(this);
-
-            head = (RoundedImageView) findViewById(R.id.head);
-            head.setOnClickListener(this);
-            userName = (TextView) findViewById(R.id.tv_name);
-            tv_jifen = (TextView) findViewById(R.id.tv_jifen);
-
-            findViewById(R.id.checkoutLl).setOnClickListener(this);
-            findViewById(R.id.accountLl).setOnClickListener(this);
-
-            // 签到
-            tvSignin = (TextView) findViewById(R.id.signinText);
-            signinIcon = (ImageView) findViewById(R.id.siginIcon);
-
-            //
-            loadData();
-        } else { // 未登录
-            contentView = LayoutInflater.from(mainActivity).inflate(
-                    R.layout.main_menu_new_unlogin, null);
-            contentView.findViewById(R.id.loginBtn).setOnClickListener(this);
-            setContentView(contentView);
-        }
-
+        Window menuWindow = getWindow();
         getWindow().getDecorView().setBackgroundColor(
                 getContext().getResources().getColor(
                         android.R.color.transparent));
-
-        Window menuWindow = getWindow();
         WindowManager.LayoutParams wl = menuWindow.getAttributes();
         wl.gravity = Gravity.LEFT;
+//        contentWidth = ScreenUtils.getScreenWidth(ZcdhApplication.getInstance());
         contentWidth = mainActivity.getWindowManager().getDefaultDisplay()
                 .getWidth();
         contentWidth = contentWidth * 7 / 10;
         wl.width = contentWidth;
+        wl.height = WindowManager.LayoutParams.MATCH_PARENT;
         menuWindow.setAttributes(wl);
-        rl_head = (RelativeLayout) findViewById(R.id.rl_head);
+        rlHead = (RelativeLayout) findViewById(R.id.rl_head);
 
         // 分享
-        LinearLayout rl_share = (LinearLayout) findViewById(R.id.shareLl);
-        rl_share.setOnClickListener(this);
+        findViewById(R.id.shareLl).setOnClickListener(this);
 
         // 反馈
-        LinearLayout rl_feedback = (LinearLayout) findViewById(R.id.feedBackLl);
-        rl_feedback.setOnClickListener(this);
+        findViewById(R.id.feedBackLl).setOnClickListener(this);
 
-        // 系统设置
-        RelativeLayout rl_setting = (RelativeLayout) findViewById(R.id.settingsRl);
-        rl_setting.setOnClickListener(this);
-
-        // 邀请码
-        RelativeLayout extensionRl = (RelativeLayout) findViewById(R.id.extensionRl);
-        extensionRl.setOnClickListener(this);
+        loadAllData(true);
     }
 
+    @Override
     public void show() {
         if (!ZcdhApplication.getInstance().isExtension_flag()
                 && !SharedPreferencesUtil.getValue(mainActivity,
@@ -241,46 +228,12 @@ public class MenuDialog extends Dialog implements OnClickListener,
                     true).dealInvitationcode();
             return;
         }
-        Animation tranAnimation = new TranslateAnimation(contentWidth * (-1),
-                0, 0, 0);
-        tranAnimation.setInterpolator(new LinearInterpolator());
-        tranAnimation.setDuration(300);
-        contentView.startAnimation(tranAnimation);
-
         super.show();
     }
 
-    public void toDismiss() {
-        Animation tranAnimation = new TranslateAnimation(0,
-                contentWidth * (-1), 0, 0);
-        tranAnimation.setInterpolator(new LinearInterpolator());
-        tranAnimation.setDuration(300);
-        contentView.startAnimation(tranAnimation);
-        tranAnimation.setAnimationListener(new AnimationListener() {
-
-            @Override
-            public void onAnimationStart(Animation animation) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                dismiss();
-            }
-        });
-
-    }
-
     public void loadData() {
+        //用户信息数据
         BackgroundExecutor.execute(new Task("", 0, "") {
-
             @Override
             public void execute() {
                 userService.findJobUserHomePageTitleDTO(
@@ -296,52 +249,60 @@ public class MenuDialog extends Dialog implements OnClickListener,
      */
     private void setUserInfo() {
         if (titleDto.getImg() != null) {
-
             getHeadFromURL();
-
         }
         if (!StringUtils.isBlank(titleDto.getUserName())) {
-            userName.setText(titleDto.getUserName());
+            tvUserName.setText(titleDto.getUserName());
 
         } else {
-            userName.setText("尚未设置");
+            tvUserName.setText("尚未设置");
         }
+
+        Drawable signDrawable = getContext().getResources().getDrawable(R.drawable.icon_sign);
+        Drawable signedDrawable = getContext().getResources().getDrawable(R.drawable.icon_signed);
+        signDrawable.setBounds(0, 0, signDrawable.getMinimumWidth(),
+                signDrawable.getMinimumHeight());
+        signedDrawable.setBounds(0, 0, signedDrawable.getMinimumWidth(),
+                signedDrawable.getMinimumHeight());
+
         if (titleDto.getSignIn() == 0) {
             tvSignin.setText(getContext().getResources().getString(
                     R.string.sign));
-            signinIcon.setImageResource(R.drawable.grzx19);
+
+            tvSignin.setCompoundDrawables(null, signDrawable
+                    , null, null);
         } else {
             tvSignin.setText(getContext().getResources().getString(
                     R.string.signed));
-            signinIcon.setImageResource(R.drawable.grzx05);
+            tvSignin.setCompoundDrawables(null,
+                    signedDrawable, null, null);
         }
-        tv_jifen.setText(String.format("积分:%d", titleDto.getIntegralTotals()));
+
+        tvAccount.setTextColor(Color.WHITE);
+        tvSignin.setTextColor(Color.WHITE);
+
+        tvJifen.setText(String.format(
+                ZcdhApplication.getInstance().getResources().getString(R.string.user_jifen),
+                titleDto.getIntegralTotals()));
+        setWidgetAttribute(true);
     }
 
     /**
      * @author jeason, 2014-7-21 下午2:09:04
      */
     public void getHeadFromURL() {
-        new AsyncTask<Void, Void, Bitmap>() {
+        ImageLoader.getInstance().displayImage(titleDto.getImg().getOriginal(), ivHead,
+                new SimpleImageLoadingListener() {
+                    @Override
+                    public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                        rlHead.setBackgroundResource(R.drawable.gaosihead);
+                    }
 
-            @Override
-            protected Bitmap doInBackground(Void... params) {
-                try {
-                    return ImageUtils.GetBitmapByUrl(titleDto.getImg()
-                            .getOriginal());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-            protected void onPostExecute(Bitmap result) {
-                if (result != null) {
-                    head.setImageBitmap(result);
-                    rl_head.setBackgroundDrawable(
-                            new BitmapDrawable(Gaosi.BoxBlurFilter(result)));
-                }
-            }
-        }.execute();
+                    @Override
+                    public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+                        rlHead.setBackgroundResource(R.drawable.gaosihead);
+                    }
+                });
     }
 
     void findShareContent() {
@@ -364,10 +325,35 @@ public class MenuDialog extends Dialog implements OnClickListener,
         });
     }
 
+    void findAppConfigModelByID(final long modelID) {
+        BackgroundExecutor.execute(new Task("", 0, "") {
+            @Override
+            public void execute() {
+                appConfigService
+                        .findAppConfigModelByParentId(
+                                ZcdhApplication.getInstance().getZcdh_uid(),
+                                modelID,
+                                ZcdhApplication.getInstance().getMyLocation().latitude,
+                                ZcdhApplication.getInstance().getMyLocation().longitude,
+                                Constants.DEVICES_TYPE,
+                                SystemUtil.getVerCode(mainActivity),
+                                SystemServicesUtils.getAppID(mainActivity))
+                        .identify(
+                                KREQ_ID_FIND_APPCONFIG_MODULE_BY_ID = RequestChannel
+                                        .getChannelUniqueID(),
+                                MenuDialog.this);
+            }
+        });
+    }
+
     /**
      * @author jeason, 2014-7-22 上午9:16:23 签到
      */
     private void signIn() {
+        if (ZcdhApplication.getInstance().getZcdh_uid() < 0) {
+            ToastUtil.show(R.string.login_first);
+            return;
+        }
         if (titleDto != null && titleDto.getSignIn() == 0) {
 
             BackgroundExecutor.execute(new Task(null, 0, null) {
@@ -389,21 +375,109 @@ public class MenuDialog extends Dialog implements OnClickListener,
     }
 
     @Override
+    public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+        findAppConfigModelByID(SharedPreferencesUtil.getValue(mainActivity, Constants.APPCONFIG_CUSTOM_ITEM_CODE_INFORMATION, 0l));
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        AdminAppConfigModelDTO title = (AdminAppConfigModelDTO) adapter.getItem(position - 1);
+        //如果是未登录用户，除了系统设置和邀请码，其他不能点击
+        if (ZcdhApplication.getInstance().getZcdh_uid() < 0) {
+            if (!datas.get(position - 1).getModelUrl()
+                    .contains(SettingsHomeActivity.class.getSimpleName()) &&
+                    !datas.get(position - 1).getModel_code()
+                            .contains(ExtensionDialog.class.getSimpleName())) {
+                ToastUtil.show(R.string.login_first);
+                return;
+            }
+        }
+        switch (Integer.valueOf(title.getOpen_type())) {
+            case 1:
+                SystemServicesUtils.openWithWebView(
+                        mainActivity,
+                        title.getCustom_param(),
+                        title.getModel_name(),
+                        title.getImgUrl());
+                break;
+            case 2:
+                if (title.getModelUrl().contains(ExtensionDialog.class.getSimpleName())) {
+                    new ExtensionDialog(mainActivity, false).dealInvitationcode();
+                } else {
+                    try {
+                        Class<?> activity_cls = SystemServicesUtils.getClass(title
+                                .getModelUrl());
+                        Log.e(TAG, "activity_cls : " + activity_cls);
+                        mainActivity.startActivityForResult(new Intent(mainActivity, activity_cls),
+                                SettingsHomeActivity.REQUEST_CODE_SETTING);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.checkoutLl:
+            //签到
+            case R.id.ll_checkout:
                 signIn();
                 break;
-
+            //分享
             case R.id.shareLl:
                 onShare();
                 break;
+            //登录
+            case R.id.headInfo://当没有登录时，点击登录
+                if (ZcdhApplication.getInstance().getZcdh_uid() == -1) {
+                    ActivityDispatcher.toLogin(mainActivity);
+                }
+                break;
+            //账号管理
+            case R.id.ll_account:
+                if (ZcdhApplication.getInstance().getZcdh_uid() < 0) {
+                    ToastUtil.show(R.string.login_first);
+                    return;
+                }
+                MobclickAgent.onEvent(mainActivity, Constants.UMENG_ACCOUNT_ACTION);
+                if (titleDto != null && titleDto.getImg() != null) {
+                    AccountManagerActivity_.intent(mainActivity)
+                            .userPhotoUrl(titleDto.getImg().getOriginal()).start();
+                } else {
+                    AccountManagerActivity_.intent(mainActivity).start();
+                }
+                break;
+            //头像点击
+            case R.id.head:
+                if (RegisterUtil.isRegisterUser(mainActivity)) {
+                    if (titleDto.getImg() != null
+                            && !TextUtils
+                            .isEmpty(titleDto.getImg().getOriginal())) {
+                        AccountManagerActivity_.intent(mainActivity)
+                                .gotoModifyPhoto(true)
+                                .userPhotoUrl(titleDto.getImg().getOriginal())
+                                .startForResult(Constants.REQUEST_CODE_ACCOUNT_MANAGER);
+                    } else {
+                        AccountManagerActivity_.intent(mainActivity)
+                                .gotoModifyPhoto(true).startForResult(
+                                Constants.REQUEST_CODE_ACCOUNT_MANAGER);
+                    }
 
+                } else {
+                    ActivityDispatcher.toLogin(mainActivity);
+                }
+                break;
+            // 意见反馈
+            case R.id.feedBackLl:
+                FeedBackActivity_.intent(mainActivity).start();
+                break;
             default:
-                dispatchActivity(v.getId());
                 break;
         }
-
     }
 
     void onShare() {
@@ -425,6 +499,8 @@ public class MenuDialog extends Dialog implements OnClickListener,
     @SuppressWarnings("unchecked")
     @Override
     public void onRequestSuccess(String reqId, Object result) {
+
+        //用户信息
         if (reqId.equals(K_REQ_ID_FINDJOBUSERHOMEPAGETITLEDTO)) {
             if (result != null) {
                 titleDto = (JobUserHomePageTitleDTO) result;
@@ -432,96 +508,82 @@ public class MenuDialog extends Dialog implements OnClickListener,
             setUserInfo();
         }
 
+        //签到结果
         if (reqId.equals(K_REQ_ID_SIGNIN)) {
             if (result != null) {
                 int success = (Integer) result;
                 if (success == 0) {
                     ToastUtil.show(R.string.sign_success);
                     loadData();
+                } else {
+                    ToastUtil.show(R.string.sign_failed);
                 }
             }
         }
 
+        //分享内容
         if (reqId.equals(K_REQ_FINDAPPSHARECONTENT)) {
             if (result != null) {
                 shareContents = (List<JobEntShareDTO>) result;
                 Share.showShare(getContext(), shareContents, false, null);
             }
         }
+
+        if (reqId.equals(KREQ_ID_FIND_APPCONFIG_MODULE_BY_ID)) {
+            List<AdminAppConfigModelDTO> appconfig = (List<AdminAppConfigModelDTO>) result;
+            if (appconfig != null && !appconfig.isEmpty()) {
+                datas.clear();
+                for (int i = 0; i < appconfig.size(); i++) {
+                    datas.add(appconfig.get(i));
+                }
+                adapter.notifyDataSetChanged();
+            }
+        }
     }
 
     @Override
     public void onRequestFinished(String reqId) {
-
+        if (configListview.isRefreshing()) {
+            configListview.onRefreshComplete();
+        }
     }
 
     @Override
     public void onRequestError(String reqID, Exception error) {
-
-    }
-
-    public void dispatchActivity(int viewId) {
-
-        switch (viewId) {
-            case R.id.extensionRl:
-                new ExtensionDialog(mainActivity,
-                        false).dealInvitationcode();
-                break;
-            case R.id.resumeRl:
-                ResumeActivity_.intent(mainActivity).startForResult(Constants.REQUEST_CODE_MODIFY_RESUME);
-                break;
-            case R.id.favriteRl:
-                FavoritePostActivity_.intent(mainActivity).start();
-                break;
-            case R.id.subscriptionRl:
-                SubscriptionActivity_.intent(mainActivity).start();
-                break;
-            case R.id.settingsRl:
-                SettingsHomeActivity_.intent(mainActivity).startForResult(Constants.REQUEST_CODE_SETTING);
-                break;
-            case R.id.loginBtn:
-                LoginActivity_.intent(mainActivity).startForResult(Constants.REQUEST_CODE_LOGIN);
-                break;
-            case R.id.accountLl:
-                MobclickAgent.onEvent(mainActivity, Constants.UMENG_ACCOUNT_ACTION);
-                if (titleDto != null && titleDto.getImg() != null) {
-                    AccountManagerActivity_.intent(mainActivity)
-                            .userPhotoUrl(titleDto.getImg().getOriginal()).start();
-                } else {
-                    AccountManagerActivity_.intent(mainActivity).start();
-                }
-                break;
-            case R.id.head:
-                if (RegisterUtil.isRegisterUser(mainActivity)) {
-                    if (titleDto.getImg() != null
-                            && !TextUtils
-                            .isEmpty(titleDto.getImg().getOriginal())) {
-                        AccountManagerActivity_.intent(mainActivity)
-                                .gotoModifyPhoto(true)
-                                .userPhotoUrl(titleDto.getImg().getOriginal())
-                                .start();
-                    } else {
-                        AccountManagerActivity_.intent(mainActivity)
-                                .gotoModifyPhoto(true).start();
-                    }
-
-                } else {
-                    ActivityDispatcher.to_login(mainActivity);
-                }
-                break;
-            case R.id.ordersRl:
-                ActivityDispatcher.toOrders(mainActivity);
-                break;
-            case R.id.feedBackLl:
-                // 意见反馈
-                FeedBackActivity_.intent(mainActivity).start();
-                break;
-        }
+        error.printStackTrace();
     }
 
     interface MenuDialogListener {
 
         void onHidden();
-        // void onShow();
+    }
+
+    public void loadAllData(boolean needRefreshAppConfig) {
+        //重置各个控件的状态
+        setWidgetAttribute(false);
+        //更新用户信息
+        loadData();
+        //更新模块配置
+        if (needRefreshAppConfig) {
+            findAppConfigModelByID(SharedPreferencesUtil.getValue(mainActivity, Constants.APPCONFIG_CUSTOM_ITEM_CODE_INFORMATION, 0l));
+        }
+    }
+
+    public void setWidgetAttribute(boolean isEnable) {
+        ivHead.setEnabled(isEnable);
+        ivHead.setEnabled(isEnable);
+        rlBtns.setEnabled(isEnable);
+        tvJifen.setVisibility(isEnable ? View.VISIBLE : View.INVISIBLE);
+        if (!isEnable) {
+            tvUserName.setText(R.string.str_click_to_login);
+            Drawable signDrawable = getContext().getResources().getDrawable(R.drawable.icon_sign);
+            signDrawable.setBounds(0, 0, signDrawable.getMinimumWidth(),
+                    signDrawable.getMinimumHeight());
+            tvSignin.setCompoundDrawables(null, signDrawable, null, null);
+            tvSignin.setText(R.string.str_checkout);
+            rlHead.setBackgroundColor(
+                    ZcdhApplication.getInstance().getResources().getColor(R.color.menu_background));
+            ivHead.setImageResource(R.drawable.default_head);
+        }
     }
 }

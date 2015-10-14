@@ -3,11 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
-    android:background="@drawable/evaluation_tag" >
+    android:background="@color/white" >
 
     <TextView
         android:id="@+id/tvLanguageName"
-        style="@style/userinfo_panel_textview_title"
+        style="@style/userinfo_panel_textview_title1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -26,18 +26,18 @@
         android:layout_marginRight="30.0dip"
         android:layout_toRightOf="@id/tvLanguageName"
         android:gravity="center_vertical"
-        android:textColor="#ff373737"
+        android:textColor="@color/blues"
         android:textSize="16.0sp" />
 
     <ImageView
         android:id="@+id/remove"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="5.0dip"
         android:clickable="true"
-        android:src="@drawable/input_clear_normal"
+        android:src="@drawable/btn_del_normal"
         android:visibility="gone" />
 
 </RelativeLayout>

@@ -40,7 +40,6 @@ import com.zcdh.mobile.R;
 import com.zcdh.mobile.app.views.iflytek.YuYinInputView;
 import com.zcdh.mobile.app.views.iflytek.YuyinInputListner;
 import com.zcdh.mobile.biz.entities.ZcdhCertificate;
-import com.zcdh.mobile.biz.entities.ZcdhMajor;
 import com.zcdh.mobile.framework.activities.BaseActivity;
 import com.zcdh.mobile.utils.DbUtil;
 import com.zcdh.mobile.utils.StringUtils;
@@ -63,9 +62,9 @@ public class CertificateFinderActivity extends BaseActivity implements OnItemCli
 	public static final String kDATA_CODE = "cer_code";
 	public static final String kDATA_NAME = "cer_name";
 	// 职位类别分类
-	List<ZcdhCertificate> categorys = new ArrayList<ZcdhCertificate>();
+	List<ZcdhCertificate> categorys = new ArrayList<>();
 	// 职位类别
-	List<ZcdhCertificate> categorysCertificate = new ArrayList<ZcdhCertificate>();
+	List<ZcdhCertificate> categorysCertificate = new ArrayList<>();
 
 	String[] sections;
 	int[] sectionIndices;
@@ -78,7 +77,7 @@ public class CertificateFinderActivity extends BaseActivity implements OnItemCli
 
 	CertChosenAdapter certChosenAdapter;
 
-	List<ZcdhCertificate> searchResult = new ArrayList<ZcdhCertificate>();
+	List<ZcdhCertificate> searchResult = new ArrayList<>();
 
 	@ViewById(R.id.resultPannel)
 	View resultPannel;
@@ -112,7 +111,7 @@ public class CertificateFinderActivity extends BaseActivity implements OnItemCli
 	@AfterViews
 	void bindViews() {
 		//findViewById(R.id.searchPannel).setVisibility(View.GONE);
-		SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), "获取证书");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "获取证书");
 		categoryListView.setOnItemClickListener(this);
 		
 		certChosenAdapter = new CertChosenAdapter(CertificateFinderActivity.this, searchResult);

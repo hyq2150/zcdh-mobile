@@ -1,7 +1,7 @@
 /** 
 *  JobTrainListDTO 
 * 
-*  Created Date: 2015-08-12 17:07:56 
+*  Created Date: 2015-10-12 17:31:50 
 *  
 */  
 package com.zcdh.mobile.api.model;  
@@ -20,6 +20,8 @@ public class JobTrainListDTO  implements Serializable {
     private String credentialName  ; 
     //课程名称 
     private String courseName  ; 
+    //补充内容 
+    private String content  ; 
     private Date startTime  ; 
     private Date endTime  ; 
     /**
@@ -69,6 +71,18 @@ public class JobTrainListDTO  implements Serializable {
     */
     public String getCourseName() { 
         return  this.courseName;
+     }
+    /**
+    *设定补充内容
+    */
+    public void setContent(String content) { 
+        this.content=content;
+     }
+    /**
+    *获取补充内容
+    */
+    public String getContent() { 
+        return  this.content;
      }
     /**
     *无功能描述

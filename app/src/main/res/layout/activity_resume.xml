@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.handmark.pulltorefresh.library.PullToRefreshScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/scrollView"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/activity_bg" >
 
     <LinearLayout
@@ -26,7 +26,8 @@
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:background="@drawable/resume_head_selector">
 
                 <!-- 头像 -->
 
@@ -34,7 +35,7 @@
                     android:id="@+id/headPortrait"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/white"
+                    android:layout_marginLeft="10dp"
                     android:clickable="true"
                     android:padding="2dp" >
 
@@ -54,181 +55,63 @@
                         android:background="@color/dark_transprant"
                         android:gravity="center"
                         android:padding="3dp"
-                        android:text="求职相片"
+                        android:text="添加简历头像"
                         android:textColor="@color/white"
-                        android:textSize="10dp" />
+                        android:textSize="10sp" />
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/resumeHeader"
                     android:layout_width="wrap_content"
-                    android:layout_height="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_alignBaseline="@id/headPortrait"
-                    android:layout_marginLeft="12dp"
                     android:layout_toRightOf="@id/headPortrait"
-                    android:background="@drawable/resume_head_selector"
                     android:clickable="true"
                     android:paddingLeft="@dimen/item_padding"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp" >
-
-                    <!--
-                         <LinearLayout
-                        android:id="@+id/headInfoContainer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="100dp"
-                        android:layout_alignParentLeft="true"
-                        android:orientation="vertical"
-                        android:background="@color/white"
-                        android:paddingLeft="@dimen/item_padding" >
-                    -->
-
-
-                    <!-- 名字 -->
-
-                    <LinearLayout
-                        android:id="@+id/nameLl"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginBottom="@dimen/resume_header_line_height"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal" >
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/font_color"
-                            android:textSize="@dimen/font_size_small" 
-                            android:text="姓名:"/>
-
-                        <TextView
-                            android:id="@+id/nameText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="4dp"
-                            android:singleLine="true"
-                            android:text=""
-                            android:textColor="@color/font_color"
-                            android:textSize="@dimen/font_size_small" />
-                    </LinearLayout>
-
-                    <!-- 联系电话 -->
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/resume_header_line_height"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:visibility="gone" >
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/icon_info_call" />
-
-                        <TextView
-                            android:id="@+id/contactText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="4dp"
-                            android:text=""
-                            android:textColor="@color/font_color"
-                            android:textSize="@dimen/font_size_small" />
-                    </LinearLayout>
-
-                    <!-- 联系电邮 -->
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/resume_header_line_height"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:visibility="gone" >
-
-                        <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/icon_info_msg" />
-
-                        <TextView
-                            android:id="@+id/emailText"
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:ellipsize="end"
-                            android:paddingLeft="4dp"
-                            android:singleLine="true"
-                            android:text=""
-                            android:textColor="@color/font_color"
-                            android:textSize="@dimen/font_size_small" />
-                    </LinearLayout>
-
-                    <!-- 人才类型 -->
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginBottom="@dimen/resume_header_line_height"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal" >
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/font_color"
-                            android:textSize="@dimen/font_size_small" 
-                            android:text="类型:" />
-
-                        <TextView
-                            android:id="@+id/talentsCategoryText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="0dp"
-                            android:text=""
-                            android:textColor="@color/font_color"
-                            android:textSize="@dimen/font_size_small" />
-                    </LinearLayout>
-
-                    <!-- 求职状态 -->
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginBottom="@dimen/resume_header_line_height"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal" >
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/font_color"
-                            android:textSize="@dimen/font_size_small" 
-                            android:text="状态：" />
-
-                        <TextView
-                            android:id="@+id/jobStatus_content"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="4dp"
-                            android:text=""
-                            android:textColor="@color/font_color"
-                            android:textSize="@dimen/font_size_small" />
-                    </LinearLayout>
-                    <!-- </LinearLayout> -->
-
+                    <!-- 向右箭头-->
                     <ImageView
                         android:id="@+id/imageView1"
                         style="@style/listview_accessory"
-                        android:layout_width="@dimen/accessory_with"
-                        android:layout_height="@dimen/accessory_height"
                         android:layout_alignParentRight="true"
+                        android:layout_marginRight="8dp"
                         android:layout_centerVertical="true" />
+                    <!-- 姓名-->
+                    <TextView
+                        android:id="@+id/nameText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="6dp"
+                        android:singleLine="true"
+                        android:text="姓名："
+                        android:textColor="@color/font_color"
+                        android:textSize="@dimen/font_size_small" />
+
+                    <!-- 人才类型 -->
+
+                    <TextView
+                        android:id="@+id/talentsCategoryText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/nameText"
+                        android:padding="6dp"
+                        android:text="类型："
+                        android:textColor="@color/font_color"
+                        android:textSize="@dimen/font_size_small" />
+
+                    <!-- 求职状态 -->
+
+                    <TextView
+                        android:id="@+id/jobStatus_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/talentsCategoryText"
+                        android:padding="6dp"
+                        android:text="状态："
+                        android:textColor="@color/font_color"
+                        android:textSize="@dimen/font_size_small" />
                 </RelativeLayout>
             </RelativeLayout>
 
@@ -237,16 +120,19 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/tips_bg"
                 android:minHeight="50dp"
                 android:padding="@dimen/content_left_right" >
 
                 <ImageView
                     android:id="@+id/tipsImg"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:layout_width="21dp"
+                    android:layout_height="27dp"
+                    android:layout_marginTop="8dp"
                     android:layout_alignParentLeft="true"
-                    android:src="@drawable/reddot" />
+                    android:src="@drawable/tips" />
 
                 <TextView
                     android:id="@+id/tipsText"
@@ -258,7 +144,7 @@
                     android:paddingRight="@dimen/content_left_right"
                     android:paddingTop="@dimen/content_top_bottom"
                     android:text=""
-                    android:textColor="#914046"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/font_size_small" />
             </RelativeLayout>
 

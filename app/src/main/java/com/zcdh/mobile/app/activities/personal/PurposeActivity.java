@@ -80,22 +80,22 @@ public class PurposeActivity extends BaseActivity implements
 	/**
 	 * 意向行业
 	 */
-	private List<JobObjectiveIndustryDTO> industryList = new ArrayList<JobObjectiveIndustryDTO>();
+	private List<JobObjectiveIndustryDTO> industryList = new ArrayList<>();
 
 	/**
 	 * 意向职位
 	 */
-	private List<JobObjectivePostDTO> postList = new ArrayList<JobObjectivePostDTO>();
+	private List<JobObjectivePostDTO> postList = new ArrayList<>();
 
 	/**
 	 * 意向地区
 	 */
-	private List<JobObjectiveAreaDTO> areaList = new ArrayList<JobObjectiveAreaDTO>();
+	private List<JobObjectiveAreaDTO> areaList = new ArrayList<>();
 
 	/**
 	 * 其他意向列表Title (工作类型， 期望月薪)
 	 */
-	private ArrayList<String> otherPurposeTitles = new ArrayList<String>();
+	private ArrayList<String> otherPurposeTitles = new ArrayList<>();
 
 	@ViewById(R.id.scrollView)
 	PullToRefreshScrollView scrollView;
@@ -238,8 +238,8 @@ public class PurposeActivity extends BaseActivity implements
 		jobUservice = RemoteServiceManager
 				.getRemoteService(IRpcJobUservice.class);
 
-		SystemServicesUtils.setActionBarCustomTitle(this,
-				getSupportActionBar(), getString(R.string.title_purpose));
+		SystemServicesUtils.displayCustomTitle(this,
+			getSupportActionBar(), getString(R.string.title_purpose));
 
 		salaryWheelDialog = new SalaryWheelDialog(this, this);
 
@@ -336,15 +336,12 @@ public class PurposeActivity extends BaseActivity implements
 	}
 
 	void updateListView() {
-		is_edited = false;
-		if (industryList.size() > 0
-				|| postList.size() > 0
-				|| areaList.size() > 0
-				|| (jobObjectiveDTO.getMaxSalary() > 0 && jobObjectiveDTO
-						.getMinSalary() >= 0)
-				|| !TextUtils.isEmpty(jobObjectiveDTO.getWorkPropertyCode())) {
-			is_edited = true;
-		}
+	    is_edited = industryList.size() > 0
+		    || postList.size() > 0
+		    || areaList.size() > 0
+		    || (jobObjectiveDTO.getMaxSalary() > 0 && jobObjectiveDTO
+		    .getMinSalary() >= 0)
+		    || !TextUtils.isEmpty(jobObjectiveDTO.getWorkPropertyCode());
 		supportInvalidateOptionsMenu();
 
 		industryAdapter.notifyDataSetChanged();
@@ -522,7 +519,7 @@ public class PurposeActivity extends BaseActivity implements
 	@ItemClick(R.id.industryListView)
 	void onItemIndustry(int position) {
 		if (position == 0) {
-			HashMap<String, JobObjectiveIndustryDTO> selected = new HashMap<String, JobObjectiveIndustryDTO>();
+			HashMap<String, JobObjectiveIndustryDTO> selected = new HashMap<>();
 
 			for (int i = 0; i < industryList.size(); i++) {
 				JobObjectiveIndustryDTO ind = industryList.get(i);
@@ -537,7 +534,7 @@ public class PurposeActivity extends BaseActivity implements
 	@ItemClick(R.id.postListView)
 	void onItemPosts(int position) {
 		if (position == 0) {
-			HashMap<String, JobObjectivePostDTO> selected = new HashMap<String, JobObjectivePostDTO>();
+			HashMap<String, JobObjectivePostDTO> selected = new HashMap<>();
 
 			for (int i = 0; i < postList.size(); i++) {
 				JobObjectivePostDTO post = postList.get(i);
@@ -557,7 +554,7 @@ public class PurposeActivity extends BaseActivity implements
 	@ItemClick(R.id.areaListView)
 	void onItemArea(int position) {
 		if (position == 0) {
-			HashMap<String, JobObjectiveAreaDTO> selected = new HashMap<String, JobObjectiveAreaDTO>();
+			HashMap<String, JobObjectiveAreaDTO> selected = new HashMap<>();
 
 			for (int i = 0; i < areaList.size(); i++) {
 				JobObjectiveAreaDTO area = areaList.get(i);
@@ -694,7 +691,7 @@ public class PurposeActivity extends BaseActivity implements
 			Holder h = null;
 			if (convertView == null) {
 				convertView = LayoutInflater.from(getApplicationContext())
-						.inflate(R.layout.purpose_item, null);
+						.inflate(R.layout.purpose_item, parent,false);
 				h = new Holder();
 				h.itemNameText = (TextView) convertView
 						.findViewById(R.id.itemNameText);

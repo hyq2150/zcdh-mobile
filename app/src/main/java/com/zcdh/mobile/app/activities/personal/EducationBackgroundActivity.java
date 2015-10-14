@@ -88,7 +88,7 @@ public class EducationBackgroundActivity extends BaseActivity implements Request
 
 	@AfterViews
 	void afterViews() {
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(), "教育经历");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "教育经历");
 		emptyView = ll_edu_experences_container.getChildAt(0);
 		loadData();
 	}
@@ -217,7 +217,7 @@ public class EducationBackgroundActivity extends BaseActivity implements Request
 				if (eduExps != null && eduExps.getEdus() != null) {
 					removeEduInList(id);
 				}
-			} catch (Exception e) {
+			} catch (Exception ignored) {
 
 			}
 			doRemoveEdu(id);
@@ -319,9 +319,7 @@ public class EducationBackgroundActivity extends BaseActivity implements Request
 	}
 
 	private boolean showEdit() {
-		if (eduExps != null && ((eduExps.getEdus() != null && !eduExps.getEdus().isEmpty()) || (eduExps.getTrains() != null && !eduExps.getTrains().isEmpty()))) {
-			return true;
-		}
-		return false;
+	    return eduExps != null && ((eduExps.getEdus() != null && !eduExps.getEdus().isEmpty())
+		    || (eduExps.getTrains() != null && !eduExps.getTrains().isEmpty()));
 	}
 }

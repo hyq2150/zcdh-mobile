@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--登录页面下划线 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <solid android:color="@color/transparent" />
+        </shape>
+    </item>
+    <item android:top="@dimen/dimen_6dp">
+        <shape>
+            <solid android:color="@color/font_edit"/>
+            <size android:height="@dimen/dimen_1dp"/>
+        </shape>
+    </item>
+</layer-list>

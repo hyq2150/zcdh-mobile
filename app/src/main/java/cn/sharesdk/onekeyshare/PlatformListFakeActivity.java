@@ -25,7 +25,7 @@ public class PlatformListFakeActivity extends FakeActivity {
 	protected boolean dialogMode = false;
 	protected ThemeShareCallback themeShareCallback;
 
-	public static interface OnShareButtonClickListener {
+	public interface OnShareButtonClickListener {
 		void onClick(View v, List<Object> checkPlatforms);
 	}
 
@@ -135,8 +135,8 @@ public class PlatformListFakeActivity extends FakeActivity {
 			onShareButtonClickListener.onClick(v, checkedPlatforms);
 		}
 
-		HashMap<Platform, HashMap<String, Object>> silentShareData = new HashMap<Platform, HashMap<String,Object>>();
-		final List<Platform> supportEditPagePlatforms = new ArrayList<Platform>();
+		HashMap<Platform, HashMap<String, Object>> silentShareData = new HashMap<>();
+		final List<Platform> supportEditPagePlatforms = new ArrayList<>();
 
 		Platform plat;
 		HashMap<String, Object> shareParam;
@@ -152,7 +152,7 @@ public class PlatformListFakeActivity extends FakeActivity {
 
 			// EditPage不支持微信平台、Google+、QQ分享、Pinterest、信息和邮件，总是执行直接分享
 			if(silent || ShareCore.isDirectShare(plat)) {
-				shareParam = new HashMap<String, Object>(shareParamsMap);
+				shareParam = new HashMap<>(shareParamsMap);
 				shareParam.put("platform", name);
 				silentShareData.put(plat, shareParam);
 			} else {
@@ -176,7 +176,7 @@ public class PlatformListFakeActivity extends FakeActivity {
 	}
 
 	public void showEditPage(Context context, Platform platform) {
-		ArrayList<Platform> platforms = new ArrayList<Platform>(1);
+		ArrayList<Platform> platforms = new ArrayList<>(1);
 		platforms.add(platform);
 		showEditPage(context, platforms);
 	}

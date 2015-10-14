@@ -18,7 +18,6 @@
         android:layout_height="wrap_content"
         android:minWidth="50dp"
         android:layout_margin="10dp"
-
         android:gravity="right"
         android:textColor="@color/blackGray"
         android:text="1000"

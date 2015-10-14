@@ -18,8 +18,7 @@ import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
-import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
-import android.bluetooth.BluetoothClass.Device.Major;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -39,12 +38,9 @@ import android.widget.Toast;
 import android.widget.TextView;
 
 import com.zcdh.mobile.R;
-import com.zcdh.mobile.api.model.JobObjectivePostDTO;
 import com.zcdh.mobile.app.views.iflytek.YuYinInputView;
 import com.zcdh.mobile.app.views.iflytek.YuyinInputListner;
-import com.zcdh.mobile.biz.entities.ZcdhCategoryPost;
 import com.zcdh.mobile.biz.entities.ZcdhMajor;
-import com.zcdh.mobile.biz.entities.ZcdhPost;
 import com.zcdh.mobile.framework.activities.BaseActivity;
 import com.zcdh.mobile.utils.DbUtil;
 import com.zcdh.mobile.utils.StringUtils;
@@ -68,9 +64,9 @@ public class CategoryMajorActivity extends BaseActivity implements
 	StickyListHeadersAdapter categoryAdapter;
 
 	// 职位类别分类
-	List<ZcdhMajor> categorys = new ArrayList<ZcdhMajor>();
+	List<ZcdhMajor> categorys = new ArrayList<>();
 	// 职位类别
-	List<ZcdhMajor> categorysMajor = new ArrayList<ZcdhMajor>();
+	List<ZcdhMajor> categorysMajor = new ArrayList<>();
 
 	String[] sections;
 	int[] sectionIndices;
@@ -84,7 +80,7 @@ public class CategoryMajorActivity extends BaseActivity implements
 
 	MajorChosenAdapter majorChosenAdapter;
 
-	List<ZcdhMajor> searchResult = new ArrayList<ZcdhMajor>();
+	List<ZcdhMajor> searchResult = new ArrayList<>();
 
 	@ViewById(R.id.resultPannel)
 	View resultPannel;
@@ -122,7 +118,7 @@ public class CategoryMajorActivity extends BaseActivity implements
 	 * 已选择的职位
 	 */
 	@Extra
-	HashMap<String, ZcdhMajor> selectedMajors = new HashMap<String, ZcdhMajor>();
+	HashMap<String, ZcdhMajor> selectedMajors = new HashMap<>();
 
 	@Extra
 	String edu_type = "0";
@@ -162,12 +158,12 @@ public class CategoryMajorActivity extends BaseActivity implements
 	@AfterViews
 	void bindViews() {
 		if("1".equals(edu_type)){
-			SystemServicesUtils.setActionBarCustomTitle(this,
-					getSupportActionBar(), "培训课程");
+			SystemServicesUtils.displayCustomTitle(this,
+				getSupportActionBar(), "培训课程");
 		}else{
-			SystemServicesUtils.setActionBarCustomTitle(this,
-					getSupportActionBar(),
-					getString(R.string.title_category_majors));
+			SystemServicesUtils.displayCustomTitle(this,
+				getSupportActionBar(),
+				getString(R.string.title_category_majors));
 		}
 		categoryListView.setOnItemClickListener(this);
 		
@@ -230,7 +226,7 @@ public class CategoryMajorActivity extends BaseActivity implements
 	 * 显示已选择的项
 	 */
 	void showSelectItems() {
-		HashMap<String, String> _items = new HashMap<String, String>();
+		HashMap<String, String> _items = new HashMap<>();
 		for (String key : selectedMajors.keySet()) {
 			_items.put(key, selectedMajors.get(key).getMajor_name());
 		}

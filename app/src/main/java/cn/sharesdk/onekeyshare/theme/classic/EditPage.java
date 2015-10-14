@@ -126,7 +126,7 @@ public class EditPage extends EditPageFakeActivity implements OnClickListener, T
 						return;
 					}
 
-					ArrayList<Platform> list = new ArrayList<Platform>();
+					ArrayList<Platform> list = new ArrayList<>();
 					for (Platform plat : platformList) {
 						String name = plat.getName();
 						if ((plat instanceof CustomPlatform)

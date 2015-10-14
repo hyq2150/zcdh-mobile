@@ -76,7 +76,8 @@ public class UpdateEmailActivity extends BaseActivity implements RequestListener
 
 	@AfterViews
 	void bindViews() {
-		SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), getString(R.string.update_email));
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+			getString(R.string.update_email));
 	}
 
 	@OptionsItem(android.R.id.home)
@@ -136,7 +137,6 @@ public class UpdateEmailActivity extends BaseActivity implements RequestListener
 	@Background
 	void doUpdateEmail() {
 		userService.updateUserEmail(getUserId(), current_pass_str, email1_str).identify(kREQ_ID_UPDATEUSEREMAIL = RequestChannel.getChannelUniqueID(), this);
-		;
 	}
 
 	/*
@@ -162,7 +162,7 @@ public class UpdateEmailActivity extends BaseActivity implements RequestListener
 				if(!StringUtils.isBlank(user.getEmail())){
 					tv_current_email.setText(String.format("%s", user.getEmail()));
 				} else{
-					tv_current_email.setText(String.format("当前未设置邮箱"));
+					tv_current_email.setText("当前未设置邮箱");
 				}
 			}
 
@@ -182,7 +182,6 @@ public class UpdateEmailActivity extends BaseActivity implements RequestListener
 				}
 				if (act_result == 4) {
 					Toast.makeText(this, getResources().getString(R.string.account_not_exists), Toast.LENGTH_SHORT).show();
-					return;
 				}
 			}
 		}

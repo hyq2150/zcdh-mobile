@@ -1,11 +1,28 @@
 /**
- * 
+ *
  * @author jeason, 2014-5-20 下午5:13:27
  */
 package com.zcdh.mobile.app.activities.personal;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
+import com.zcdh.comm.entity.Page;
+import com.zcdh.core.nio.except.ZcdhException;
+import com.zcdh.mobile.R;
+import com.zcdh.mobile.api.IRpcJobUservice;
+import com.zcdh.mobile.api.model.JobTechnicalDTO;
+import com.zcdh.mobile.app.DataLoadInterface;
+import com.zcdh.mobile.app.activities.personal.widget.SkillsDialog;
+import com.zcdh.mobile.app.activities.personal.widget.TagsDialog.TagsDialogListener;
+import com.zcdh.mobile.app.dialog.ProcessDialog;
+import com.zcdh.mobile.app.views.EmptyTipView;
+import com.zcdh.mobile.app.views.TagsContainer;
+import com.zcdh.mobile.framework.activities.BaseActivity;
+import com.zcdh.mobile.framework.adapters.PredicateAdapter;
+import com.zcdh.mobile.framework.nio.RemoteServiceManager;
+import com.zcdh.mobile.framework.nio.RequestChannel;
+import com.zcdh.mobile.framework.nio.RequestListener;
+import com.zcdh.mobile.utils.StringUtils;
+import com.zcdh.mobile.utils.SystemServicesUtils;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
@@ -31,26 +48,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
-import com.zcdh.comm.entity.Page;
-import com.zcdh.core.nio.except.ZcdhException;
-import com.zcdh.mobile.R;
-import com.zcdh.mobile.api.IRpcJobUservice;
-import com.zcdh.mobile.api.model.JobTechnicalDTO;
-import com.zcdh.mobile.app.DataLoadInterface;
-import com.zcdh.mobile.app.activities.personal.widget.SkillsDialog;
-import com.zcdh.mobile.app.activities.personal.widget.TagsDialog.TagsDialogListener;
-import com.zcdh.mobile.app.dialog.ProcessDialog;
-import com.zcdh.mobile.app.views.EmptyTipView;
-import com.zcdh.mobile.app.views.LoadingIndicator;
-import com.zcdh.mobile.app.views.TagsContainer;
-import com.zcdh.mobile.framework.activities.BaseActivity;
-import com.zcdh.mobile.framework.adapters.PredicateAdapter;
-import com.zcdh.mobile.framework.nio.RemoteServiceManager;
-import com.zcdh.mobile.framework.nio.RequestChannel;
-import com.zcdh.mobile.framework.nio.RequestListener;
-import com.zcdh.mobile.utils.StringUtils;
-import com.zcdh.mobile.utils.SystemServicesUtils;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author jeason, 2014-5-20 下午5:13:27
@@ -68,13 +67,13 @@ public class SkillEditActivity extends BaseActivity implements RequestListener, 
 
 	@ViewById(R.id.skill_count)
 	TextView skill_count;
-	
+
 	@ViewById(R.id.scrollView)
 	PullToRefreshScrollView scrollView;
-	
+
 	@ViewById(R.id.emptyTipView)
 	EmptyTipView emptyTipView;
-	
+
 	@ViewById(R.id.contentView)
 	LinearLayout contentView;
 
@@ -102,7 +101,7 @@ public class SkillEditActivity extends BaseActivity implements RequestListener, 
 	int current_page = 1;
 
 	private final int PAGE_SIZE = 20;
-	
+
 	boolean edit_mode = false;
 
 	ProcessDialog loading;
@@ -115,15 +114,15 @@ public class SkillEditActivity extends BaseActivity implements RequestListener, 
 		super.onCreate(savedInstanceState);
 		loading = new ProcessDialog(this);
 		uService = RemoteServiceManager.getRemoteService(IRpcJobUservice.class);
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(), "添加技能");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "职业技能");
 	}
 
 	@AfterViews
 	void bindViews() {
-		
+
 		inflater = LayoutInflater.from(this);
-		
-		mySkills = new Page<JobTechnicalDTO>();
+
+		mySkills = new Page<>();
 		mySkills.setElements(new ArrayList<JobTechnicalDTO>());
 		adapter = new SelectedSkillsTagAdapter();
 		container.setAdapter(this, adapter);
@@ -132,13 +131,13 @@ public class SkillEditActivity extends BaseActivity implements RequestListener, 
 
 		loadData();
 	}
-	
+
 	public void loadData(){
 		//联网获取我的技能标签
 		getMySkills();
 		//获取系统分配过来的标签
 		getOrientedSkills();
-		
+
 		setCount(0);
 	}
 
@@ -194,11 +193,11 @@ public class SkillEditActivity extends BaseActivity implements RequestListener, 
 				mAllTags = (Page<JobTechnicalDTO>) result;
 				reInitialSkills(mAllTags, mySkills.getElements());
 			}
-			
+
 			if(reqId.equals(kREQ_ID_ADDJOBTECHNICAL)){
 				loadData();
 			}
-			
+
 		}
 		contentView.setVisibility(View.VISIBLE);
 		emptyTipView.isEmpty(mySkills==null);
@@ -321,7 +320,7 @@ public class SkillEditActivity extends BaseActivity implements RequestListener, 
 		// if (keyword.equals(content)) {
 		// return;
 		// }
-		
+
 		loading.show();
 		current_page = 1;
 		// keyword = content;
@@ -333,7 +332,7 @@ public class SkillEditActivity extends BaseActivity implements RequestListener, 
 		last_isSearchMode = true;
 	}
 
-	
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -370,7 +369,7 @@ public class SkillEditActivity extends BaseActivity implements RequestListener, 
 	 */
 	@Override
 	public void onDialogDismiss() {
-		
+
 	}
 
 	/* (non-Javadoc)
@@ -378,43 +377,43 @@ public class SkillEditActivity extends BaseActivity implements RequestListener, 
 	 */
 	@Override
 	public void onEditableConfirm(int key, String content) {
-		
+
 	}
 
 	/**
 	 * 我的技能view数据源
-	 * 
+	 *
 	 * @author jeason, 2014-5-22 下午3:09:21
 	 */
 	class SelectedSkillsTagAdapter extends PredicateAdapter {
-	
+
 		private List<JobTechnicalDTO> skills;
-	
+
 		public SelectedSkillsTagAdapter() {
-			this.skills = new ArrayList<JobTechnicalDTO>();
+			this.skills = new ArrayList<>();
 			//setAddBtn();
 		}
-	
+
 		public void updateItems(List<JobTechnicalDTO> items) {
 			skills.clear();
 			skills.addAll(items);
 			//setAddBtn();
 			notifyDataSetChanged();
 		}
-	
+
 		public List<JobTechnicalDTO> getItems() {
 			return skills;
 		}
-	
+
 		/*private void setAddBtn() {
 			this.skills.add(null);
 			notifyDataSetChanged();
 		}*/
-	
-		private View getAddButton() {
-			View add_btn = inflater.inflate(R.layout.add_button, null);
+
+		private View getAddButton(ViewGroup parentView) {
+			View add_btn = inflater.inflate(R.layout.add_button, parentView,false);
 			add_btn.setOnClickListener(new OnClickListener() {
-	
+
 				@Override
 				public void onClick(View v) {
 					SkillEditActivity.this.add_skill();
@@ -422,19 +421,19 @@ public class SkillEditActivity extends BaseActivity implements RequestListener, 
 			});
 			return add_btn;
 		}
-	
+
 		public void addItem(JobTechnicalDTO item) {
 			skills.add(item);
 			//setAddBtn();
 		}
-	
+
 		@Override
 		public View getView(int position, ViewGroup parentView) {
 			final JobTechnicalDTO skill = skills.get(position);
 			if (skill == null) {
-				return getAddButton();
+				return getAddButton(parentView);
 			}
-			View view = inflater.inflate(R.layout.skill_tags_item, null);
+			View view = inflater.inflate(R.layout.skill_tags_item, parentView,false);
 			RelativeLayout ll_skill_tag_item = (RelativeLayout) view.findViewById(R.id.ll_skill_tag_item);
 			ImageView iv_indicator = (ImageView) view.findViewById(R.id.iv_indicator);
 			if (edit_mode) {
@@ -443,7 +442,7 @@ public class SkillEditActivity extends BaseActivity implements RequestListener, 
 				iv_indicator.setVisibility(View.GONE);
 			}
 			iv_indicator.setOnClickListener(new OnClickListener() {
-	
+
 				@Override
 				public void onClick(View v) {
 					if (edit_mode) {
@@ -453,35 +452,35 @@ public class SkillEditActivity extends BaseActivity implements RequestListener, 
 			});
 			TextView skillLevelText = (TextView) view.findViewById(R.id.skillLevelText);
 			TextView skView = (TextView) view.findViewById(R.id.skillNameText);
-	
+
 			skView.setText(skill.getTechnicalName());
-	
+
 			if ("002.001".equals(skill.getParamCode())) {// 精通
 				skillLevelText.setText("精");
-				skillLevelText.setTextColor(getResources().getColor(R.color.tag_jingtong1));
+				skillLevelText.setTextColor(getResources().getColor(R.color.white));
 				 skillLevelText.setBackgroundResource(R.drawable.skill_jingtong_background);
 			}
 			if ("002.002".equals(skill.getParamCode())) {// 熟悉
 				skillLevelText.setText("熟");
-				skillLevelText.setTextColor(getResources().getColor(R.color.tag_shu));
-	
+				skillLevelText.setTextColor(getResources().getColor(R.color.white));
+
 				 skillLevelText.setBackgroundResource(R.drawable.skill_shuxi_background);
 			}
 			if ("002.003".equals(skill.getParamCode())) {// 了解
 				skillLevelText.setText("会");
-				skillLevelText.setTextColor(getResources().getColor(R.color.tag_know));
-	
+				skillLevelText.setTextColor(getResources().getColor(R.color.white));
+
 				 skillLevelText.setBackgroundResource(R.drawable.skill_know_background);
 			}
 			if ("002.004".equals(skill.getParamCode())) { // /知道
 				skillLevelText.setText("知");
-				skillLevelText.setTextColor(getResources().getColor(R.color.tag_zhidao));
-	
+				skillLevelText.setTextColor(getResources().getColor(R.color.white));
+
 				 skillLevelText.setBackgroundResource(R.drawable.skill_zhidao_background);
 			}
-	
+
 			ll_skill_tag_item.setOnClickListener(new OnClickListener() {
-	
+
 				@Override
 				public void onClick(View v) {
 					if (edit_mode) {
@@ -489,22 +488,22 @@ public class SkillEditActivity extends BaseActivity implements RequestListener, 
 					}
 				}
 			});
-	
+
 			return view;
 		}
-	
+
 		@Override
 		public int getCount() {
 			return skills.size();
 		}
-	
+
 		@Override
 		public void setLayout(ViewGroup parentView) {
 			int unit = 40; // UnitTransfer.dip2px(getActivity(), 40);
 			int height = skills.size() * unit;
 			parentView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, height));
 		}
-	
+
 		/*
 		 * (non-Javadoc)
 		 * 
@@ -516,6 +515,6 @@ public class SkillEditActivity extends BaseActivity implements RequestListener, 
 			int margin = 20;
 			return margin * 2 + 20 + 10;
 		}
-	
+
 	}
 }

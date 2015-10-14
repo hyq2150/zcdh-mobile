@@ -26,7 +26,7 @@
                 android:id="@+id/listbarRl"
                 android:layout_width="fill_parent"
                 android:layout_height="42dp"
-                android:background="@color/grey1"
+                android:background="@color/font_ee"
                 android:padding="@dimen/content_top_bottom"
                 android:visibility="gone" >
 
@@ -37,8 +37,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:background="@android:color/transparent"
-                    android:drawableRight="@drawable/arrow_b"
-                    android:text="筛选"
+                    android:drawableRight="@drawable/filter"
                     android:textColor="@color/font_blue" />
 
                 <ImageButton
@@ -47,7 +46,7 @@
                     android:layout_height="@dimen/img_height_small"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="10dp"
-                    android:layout_toLeftOf="@id/spiltor"
+                    android:layout_toLeftOf="@id/filterBtn"
                     android:background="@android:color/transparent"
                     android:src="@drawable/ic_garbage"
                     android:visibility="gone" />
@@ -78,6 +77,8 @@
                 android:id="@+id/postListView"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
+                android:divider="@color/grey1"
+                android:dividerHeight="0.5dp"
                 android:visibility="gone" />
         </LinearLayout>
 
@@ -154,14 +155,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="4dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="60dp"
                 android:clickable="true" >
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/city_place" />
+                     android:background="@android:color/transparent"
+                    android:src="@drawable/city_place" />
             </RelativeLayout>
             <!-- 定位 -->
 
@@ -174,10 +176,11 @@
                 android:clickable="true" >
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/location_place" />
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/location_place" />
             </RelativeLayout>
 
             <!-- 地图设置 -->
@@ -192,10 +195,11 @@
 
                 <ImageView
                     android:id="@+id/mapTypeFlagImg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@android:color/transparent"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/map_setting_btn" />
+                    android:src="@drawable/map_setting_btn" />
             </RelativeLayout>
         </LinearLayout>
 
@@ -237,11 +241,11 @@
         </LinearLayout>
     </RelativeLayout> <!-- Loader -->
 
-    <com.zcdh.mobile.app.views.ad.ActionView
+      <com.zcdh.mobile.app.views.ad.ActionView
         android:id="@+id/action_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone" />
+        android:visibility="gone" /> 
 
     <RelativeLayout
         android:id="@+id/loaderContainer"
@@ -272,8 +276,8 @@
             android:id="@+id/pointDetailContainer"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:background="@color/white"
+            android:orientation="vertical"
             android:visibility="gone" >
 
             <LinearLayout
@@ -283,13 +287,14 @@
                 android:clickable="true"
                 android:gravity="center_vertical"
                 android:orientation="vertical" >
-
             </LinearLayout>
 
             <com.markmao.pulltorefresh.widget.XListView
                 android:id="@+id/pointDetailsListView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:divider="@color/grey1"
+                android:dividerHeight="0.5dp"
                 android:visibility="visible" />
         </LinearLayout>
 

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rect_listitem_bg"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/content_left_right">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="15dp"
+        android:paddingTop="16dp">
+
+        <TextView
+            android:id="@+id/companyNameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:singleLine="true"
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_nomarl" />
+
+        <ImageView
+            android:id="@+id/accessoryImg"
+            style="@style/listview_accessory"
+            android:layout_width="@dimen/accessory_with"
+            android:layout_height="@dimen/accessory_height"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true" />
+
+        <ImageView
+            android:id="@+id/delImgBtn"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:clickable="false"
+            android:src="@drawable/btn_del_normal"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dividerHeight"
+        android:background="@color/color_cccccc" />
+
+    <TextView
+        android:id="@+id/subTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="16dp"
+        android:singleLine="true"
+        android:textColor="@color/font_color"
+        android:textSize="@dimen/font_size_nomarl" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dividerHeight"
+        android:background="@color/color_cccccc" />
+
+    <TextView
+        android:id="@+id/tv_winning_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="16dp"
+        android:singleLine="true"
+        android:textColor="@color/font_color"
+        android:textSize="@dimen/font_size_nomarl" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dividerHeight"
+        android:background="@color/color_cccccc" />
+
+
+</LinearLayout>

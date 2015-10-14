@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
-    android:background="#4e91cc"
+    android:background="@color/stroke_color"
     android:orientation="vertical"
     android:paddingBottom="10dp"
     android:paddingTop="10dp" >
@@ -13,8 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:padding="5dp"
-        android:text="请选择掌握程度"
-        android:textColor="@color/white" />
+        android:text="掌握程度" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,7 +31,7 @@
                 android:id="@+id/master"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/level_btn"
+                android:background="@drawable/tags"
                 android:padding="10dp"
                 android:text="精通" />
         </LinearLayout>
@@ -47,7 +46,7 @@
                 android:id="@+id/advanced"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/level_btn"
+                android:background="@drawable/tags"
                 android:padding="10dp"
                 android:text="熟悉" />
         </LinearLayout>
@@ -62,9 +61,9 @@
                 android:id="@+id/premium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/level_btn"
+                android:background="@drawable/tags"
                 android:padding="10dp"
-                android:text="会些" />
+                android:text="一般" />
         </LinearLayout>
 
         <LinearLayout
@@ -77,9 +76,8 @@
                 android:id="@+id/not_much"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/level_btn"
-                android:padding="10dp"
-                android:text="知道" />
+                android:background="@drawable/tags"
+                android:text="了解" />
         </LinearLayout>
     </LinearLayout>
 

@@ -147,7 +147,7 @@ public class DbUtil {
 					e.printStackTrace();
 				}
 			}
-			return checkDB != null ? true : false;
+			return checkDB != null;
 		} else {
 			return false;
 		}

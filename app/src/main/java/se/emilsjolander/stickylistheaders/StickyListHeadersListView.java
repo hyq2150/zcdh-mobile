@@ -40,8 +40,8 @@ import se.emilsjolander.stickylistheaders.WrapperViewList.LifeCycleListener;
 public class StickyListHeadersListView extends FrameLayout {
 
     public interface OnHeaderClickListener {
-        public void onHeaderClick(StickyListHeadersListView l, View header,
-                                  int itemPosition, long headerId, boolean currentlySticky);
+        void onHeaderClick(StickyListHeadersListView l, View header,
+                int itemPosition, long headerId, boolean currentlySticky);
     }
 
     /**
@@ -57,7 +57,7 @@ public class StickyListHeadersListView extends FrameLayout {
          *               get* methods for determining the view's size.
          * @param offset The amount the sticky header is offset by towards to top of the screen.
          */
-        public void onStickyHeaderOffsetChanged(StickyListHeadersListView l, View header, int offset);
+        void onStickyHeaderOffsetChanged(StickyListHeadersListView l, View header, int offset);
     }
 
     /**
@@ -71,8 +71,8 @@ public class StickyListHeadersListView extends FrameLayout {
          *                      the item whose header is now sticky.
          * @param headerId      The id of the new sticky header.
          */
-        public void onStickyHeaderChanged(StickyListHeadersListView l, View header,
-                                          int itemPosition, long headerId);
+        void onStickyHeaderChanged(StickyListHeadersListView l, View header,
+                int itemPosition, long headerId);
 
     }
 
@@ -1000,10 +1000,8 @@ public class StickyListHeadersListView extends FrameLayout {
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public boolean isFastScrollAlwaysVisible() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-            return false;
-        }
-        return mList.isFastScrollAlwaysVisible();
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB && mList
+                .isFastScrollAlwaysVisible();
     }
 
     public void setScrollBarStyle(int style) {

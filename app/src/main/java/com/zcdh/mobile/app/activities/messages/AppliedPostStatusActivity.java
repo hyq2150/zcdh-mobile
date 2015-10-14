@@ -1,29 +1,8 @@
 /**
- * 
+ *
  * @author jeason, 2014-6-17 上午10:59:56
  */
 package com.zcdh.mobile.app.activities.messages;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Background;
-import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.ViewById;
-
-import android.app.Activity;
-import android.os.Bundle;
-import android.provider.ContactsContract.CommonDataKinds.Relation;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -35,13 +14,29 @@ import com.zcdh.mobile.api.model.TrackPostDetailDTO;
 import com.zcdh.mobile.app.ActivityDispatcher;
 import com.zcdh.mobile.app.DataLoadInterface;
 import com.zcdh.mobile.app.views.EmptyTipView;
-import com.zcdh.mobile.app.views.TagsContainer;
 import com.zcdh.mobile.framework.activities.BaseActivity;
 import com.zcdh.mobile.framework.nio.RemoteServiceManager;
 import com.zcdh.mobile.framework.nio.RequestChannel;
 import com.zcdh.mobile.framework.nio.RequestListener;
 import com.zcdh.mobile.utils.DateUtils;
 import com.zcdh.mobile.utils.SystemServicesUtils;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author jeason, 2014-6-17 上午10:59:56
@@ -73,7 +68,7 @@ public class AppliedPostStatusActivity extends BaseActivity implements RequestLi
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		nearbyService = RemoteServiceManager.getRemoteService(IRpcNearByService.class);
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(), "职位跟踪");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "职位跟踪");
 		postId = getIntent().getLongExtra("postId", -1);
 		emptyView = new EmptyTipView(this);
 		inflater = LayoutInflater.from(this);
@@ -83,14 +78,14 @@ public class AppliedPostStatusActivity extends BaseActivity implements RequestLi
 	void afterViews() {
 		ptrListview.setMode(Mode.DISABLED);
 		adapter = new ApplicationStatusesAdapter();
-		
+
 		headerView = inflater.inflate(R.layout.post_item, null);
-		
+
 		loadData();
 	}
 
 	/**
-	 * 
+	 *
 	 * @author jeason, 2014-7-15 下午5:45:22
 	 */
 	protected void toPostDetail() {
@@ -104,7 +99,7 @@ public class AppliedPostStatusActivity extends BaseActivity implements RequestLi
 
 	@Override
 	public void onRequestStart(String reqId) {
-		
+
 	}
 
 	@Override
@@ -128,8 +123,16 @@ public class AppliedPostStatusActivity extends BaseActivity implements RequestLi
 		content.setText(postDetail.getEntName());
 		TextView salary = (TextView) headerView.findViewById(R.id.salary);
 		salary.setText(postDetail.getSalary());
-		TextView location_and_education = (TextView) headerView.findViewById(R.id.location_and_education_and_matchrate);
-		location_and_education.setText(String.format("%s/%s", postDetail.getPostAddress(), postDetail.getDegreeName()));
+		View lines= headerView.findViewById(R.id.line);
+		lines.setVisibility(View.GONE);
+		View lines2= headerView.findViewById(R.id.line2);
+		lines2.setVisibility(View.GONE);
+		TextView workdate = (TextView) headerView.findViewById(R.id.workdate);
+		workdate.setVisibility(View.GONE);
+		TextView location = (TextView) headerView.findViewById(R.id.location);
+		TextView education = (TextView) headerView.findViewById(R.id.education_and_matchrate);
+		location.setText(String.format("%s", postDetail.getPostAddress()));
+		education.setText(postDetail.getDegreeName());
 		TextView distance = (TextView) headerView.findViewById(R.id.distance);
 		distance.setVisibility(View.GONE);
 		// LinearLayout ll_tags_container = (TagsContainer)
@@ -154,7 +157,7 @@ public class AppliedPostStatusActivity extends BaseActivity implements RequestLi
 		ptrListview.getRefreshableView().addHeaderView(headerView, null, false);
 		RelativeLayout tv = (RelativeLayout) inflater.inflate(R.layout.textview_track_status, null);
 		tv.findViewById(R.id.postDetailBtn).setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				toPostDetail();
@@ -166,7 +169,7 @@ public class AppliedPostStatusActivity extends BaseActivity implements RequestLi
 
 	@Override
 	public void onRequestFinished(String reqId) {
-		
+
 	}
 
 	@Override
@@ -175,7 +178,7 @@ public class AppliedPostStatusActivity extends BaseActivity implements RequestLi
 	}
 
 	private class ApplicationStatusesAdapter extends BaseAdapter {
-		List<TrackPostDTO> trackDtos = new ArrayList<TrackPostDTO>();
+		List<TrackPostDTO> trackDtos = new ArrayList<>();
 
 		public void updateItems(List<TrackPostDTO> items) {
 
@@ -204,7 +207,7 @@ public class AppliedPostStatusActivity extends BaseActivity implements RequestLi
 			if (convertView == null) {
 
 				holder = new ViewHolder();
-				convertView = inflater.inflate(R.layout.application_status_item, null);
+				convertView = inflater.inflate(R.layout.application_status_item, parent,false);
 				holder.tv_status = (TextView) convertView.findViewById(R.id.tv_status);
 				holder.time = (TextView) convertView.findViewById(R.id.tv_publish_time);
 				convertView.setTag(holder);

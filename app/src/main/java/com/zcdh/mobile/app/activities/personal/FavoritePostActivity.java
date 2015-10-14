@@ -88,14 +88,15 @@ public class FavoritePostActivity extends BaseActivity implements RequestListene
 	/**
 	 *  取消收藏的职位id
 	 */
-	private List<Long> cancelFavoritePostIds = new ArrayList<Long>();
+	private List<Long> cancelFavoritePostIds = new ArrayList<>();
 
 	private boolean hasNextPage;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(), R.string.favorite_posts);
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+			R.string.favorite_posts);
 		userService = RemoteServiceManager.getRemoteService(IRpcJobUservice.class);
 		jobService = RemoteServiceManager.getRemoteService(IRpcJobPostService.class);
 		adapter = new PostsAdapter();
@@ -111,7 +112,7 @@ public class FavoritePostActivity extends BaseActivity implements RequestListene
 			for (JobUserFavoritesDTO dto : postsListDto.getElements()) {
 				if(dto.getPostId()==cancelFavoritePostId){
 					
-					List<JobUserFavoritesDTO> favorites = new ArrayList<JobUserFavoritesDTO>();
+					List<JobUserFavoritesDTO> favorites = new ArrayList<>();
 					favorites.addAll(postsListDto.getElements());
 					favorites.remove(dto);
 					adapter.updateItems(favorites);
@@ -206,8 +207,8 @@ public class FavoritePostActivity extends BaseActivity implements RequestListene
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-		JobUserFavoritesDTO dto = ((JobUserFavoritesDTO) adapter.getItem(position - 1));
-		List<JobEntPostDTO> temps = new ArrayList<JobEntPostDTO>();
+		JobUserFavoritesDTO dto = adapter.getItem(position - 1);
+		List<JobEntPostDTO> temps = new ArrayList<>();
 		for (JobUserFavoritesDTO jobEntPostDTO : adapter.getItems()) {
 			JobEntPostDTO post = new JobEntPostDTO();
 			post.setPostId(jobEntPostDTO.getPostId());
@@ -229,7 +230,7 @@ public class FavoritePostActivity extends BaseActivity implements RequestListene
 	public class PostsAdapter extends BaseAdapter {
 
 		private boolean showImg = false;
-		private List<JobUserFavoritesDTO> mPosts = new ArrayList<JobUserFavoritesDTO>();
+		private List<JobUserFavoritesDTO> mPosts = new ArrayList<>();
 
 		public void updateItems(List<JobUserFavoritesDTO> list) {
 			mPosts = list;
@@ -282,23 +283,31 @@ public class FavoritePostActivity extends BaseActivity implements RequestListene
 				convertView = inflater.inflate(R.layout.rect_post_item, null);
 				holder = new ViewHolder();
 				holder.content = (TextView) convertView.findViewById(R.id.content);
-				holder.distance = (TextView) convertView.findViewById(R.id.distance);
-				holder.ll_tags_container = (TagsContainer) convertView.findViewById(R.id.ll_tags);
-				holder.location_and_requirement = (TextView) convertView.findViewById(R.id.location_and_education);
-				holder.publish_time = (TextView) convertView.findViewById(R.id.publish_time);
-				holder.salary = (TextView) convertView.findViewById(R.id.salary);
+				holder.distance = (TextView) convertView
+						.findViewById(R.id.distance);
+				holder.ll_tags_container = (TagsContainer) convertView
+						.findViewById(R.id.ll_tags);
+
+				holder.location_and_requirement = (TextView) convertView
+						.findViewById(R.id.location);
+				holder.edu = (TextView) convertView
+						.findViewById(R.id.education_and_matchrate);
+				holder.publish_time = (TextView) convertView
+						.findViewById(R.id.publish_time);
+				//	holder.salary = (TextView) convertView.findViewById(R.id.salary);
+				holder.accessoryImg=(ImageView)convertView.findViewById(R.id.accessoryImg);
+				holder.deleteBtn=(ImageView)convertView.findViewById(R.id.btn_delete);
 				holder.title = (TextView) convertView.findViewById(R.id.title);
-				holder.deleteBtn = (ImageView) convertView.findViewById(R.id.btn_delete);
-				holder.accessoryImg = (ImageView) convertView.findViewById(R.id.accessoryImg);
 				convertView.setTag(holder);
 			} else {
 				holder = (ViewHolder) convertView.getTag();
 			}
 
 			JobUserFavoritesDTO post = mPosts.get(position);
-			holder.location_and_requirement.setText(post.getAreaName() + "/" + post.getDegreeName());
+			holder.location_and_requirement.setText(post.getAreaName());
+			holder.edu.setText(post.getDegreeName());
 			holder.publish_time.setText(DateUtils.getDateByFormatYMD(post.getFavorityDate()));// .getDateByFormatNUM(post.getPublishDate()));
-			holder.salary.setText(post.getSalary());
+			//		holder.salary.setText(post.getSalary());
 			holder.title.setText(post.getPostName());
 			holder.content.setText(mPosts.get(position).getEntName());
 			if (showImg) {
@@ -315,7 +324,6 @@ public class FavoritePostActivity extends BaseActivity implements RequestListene
 				holder.distance.setText(String.valueOf(distance / 1000) + "米");
 			}
 
-			holder.ll_tags_container.setVisibility(View.GONE);
 			if (delete_mode) {
 				holder.accessoryImg.setVisibility(View.GONE);
 				holder.deleteBtn.setVisibility(View.VISIBLE);
@@ -350,6 +358,7 @@ public class FavoritePostActivity extends BaseActivity implements RequestListene
 		TextView title;
 		TextView publish_time;
 		TextView content;
+		TextView edu;
 		TextView salary;
 		TextView location_and_requirement;
 		TextView distance;

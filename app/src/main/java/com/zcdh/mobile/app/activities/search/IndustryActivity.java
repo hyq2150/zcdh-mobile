@@ -11,7 +11,6 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ItemClick;
-import org.androidannotations.annotations.OnActivityResult;
 import org.androidannotations.annotations.TextChange;
 import org.androidannotations.annotations.ViewById;
 
@@ -37,16 +36,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zcdh.mobile.R;
-import com.zcdh.mobile.api.model.JobObjectiveAreaDTO;
 import com.zcdh.mobile.api.model.JobObjectiveIndustryDTO;
-import com.zcdh.mobile.api.model.JobObjectivePostDTO;
 import com.zcdh.mobile.app.views.iflytek.YuYinInputView;
 import com.zcdh.mobile.app.views.iflytek.YuyinInputListner;
-import com.zcdh.mobile.biz.entities.ZcdhCategoryPost;
 import com.zcdh.mobile.biz.entities.ZcdhIndustry;
-import com.zcdh.mobile.biz.entities.ZcdhPost;
 import com.zcdh.mobile.framework.activities.BaseActivity;
-import com.zcdh.mobile.framework.events.MyEvents;
 import com.zcdh.mobile.utils.DbUtil;
 import com.zcdh.mobile.utils.StringUtils;
 import com.zcdh.mobile.utils.SystemServicesUtils;
@@ -126,17 +120,17 @@ public class IndustryActivity extends BaseActivity implements
 	/**
 	 * 行业类别分类
 	 */
-	protected List<ZcdhIndustry> industriesParent = new ArrayList<ZcdhIndustry>();
+	protected List<ZcdhIndustry> industriesParent = new ArrayList<>();
 
 	/**
 	 * 行业
 	 */
-	protected List<ZcdhIndustry> industries = new ArrayList<ZcdhIndustry>();
+	protected List<ZcdhIndustry> industries = new ArrayList<>();
 
 	/**
 	 * 搜索结果
 	 */
-	protected List<ZcdhIndustry> industriesSearchResult = new ArrayList<ZcdhIndustry>();
+	protected List<ZcdhIndustry> industriesSearchResult = new ArrayList<>();
 	
 	
 
@@ -145,7 +139,7 @@ public class IndustryActivity extends BaseActivity implements
 	 */
 	@Extra
 	HashMap<String, JobObjectiveIndustryDTO> selectedIndustries 
-					= new HashMap<String, JobObjectiveIndustryDTO>();
+					= new HashMap<>();
 
 	/**
 	 * 标识是否单选，false 为多选
@@ -182,8 +176,8 @@ public class IndustryActivity extends BaseActivity implements
 	 */
 	@AfterViews
 	void bindViews() {
-		SystemServicesUtils.setActionBarCustomTitle(this,
-				getSupportActionBar(), getString(R.string.title_industry));
+		SystemServicesUtils.displayCustomTitle(this,
+			getSupportActionBar(), getString(R.string.title_industry));
 		if (!signle) {
 			multSelectionPannel = new MultSelectionPannel(this, this);
 		}
@@ -251,7 +245,7 @@ public class IndustryActivity extends BaseActivity implements
 	 * 显示已选择的项
 	 */
 	void showSelectItems(){
-		HashMap<String, String> _items = new HashMap<String, String>();
+		HashMap<String, String> _items = new HashMap<>();
 		for (String key : selectedIndustries.keySet()) {
 			_items.put(key, selectedIndustries.get(key).getName());
 		}

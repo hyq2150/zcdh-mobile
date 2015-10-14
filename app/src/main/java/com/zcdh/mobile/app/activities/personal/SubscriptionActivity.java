@@ -28,8 +28,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -86,7 +84,7 @@ public class SubscriptionActivity extends BaseActivity implements RequestListene
 	/**
 	 * 所有订阅
 	 */
-	List<JobUserSubscriptionDTO> subscriptionList = new ArrayList<JobUserSubscriptionDTO>();
+	List<JobUserSubscriptionDTO> subscriptionList = new ArrayList<>();
 
 	/**
 	 * 标识是否在编辑状态
@@ -168,7 +166,8 @@ public class SubscriptionActivity extends BaseActivity implements RequestListene
 
 	@AfterViews
 	void bindViews() {
-		SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), getString(R.string.activity_title_subscription));
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+			getString(R.string.activity_title_subscription));
 		jobUservice = RemoteServiceManager.getRemoteService(IRpcJobUservice.class);
 		
 		emptyView = new EmptyTipView(this);
@@ -272,11 +271,7 @@ public class SubscriptionActivity extends BaseActivity implements RequestListene
 			}
 			// subscriptionAdapter.notifyDataSetChanged();
 
-			if (subscriptionList != null && subscriptionList.size() == 0) {
-				editable = false;
-			} else {
-				editable = true;
-			}
+		    editable = !(subscriptionList != null && subscriptionList.size() == 0);
 			supportInvalidateOptionsMenu();
 			
 			emptyView.isEmpty(!(subscriptionAdapter.getCount()>0));
@@ -376,12 +371,12 @@ public class SubscriptionActivity extends BaseActivity implements RequestListene
 			ViewHolder v = null;
 			if (convertView == null) {
 				v = new ViewHolder();
-				convertView = LayoutInflater.from(getApplication()).inflate(R.layout.subscription_item, null);
+				convertView = LayoutInflater.from(getApplication()).inflate(R.layout.subscription_item, parent,false);
 				v.industryText = (TextView) convertView.findViewById(R.id.industryText);
 				v.postText = (TextView) convertView.findViewById(R.id.postText);
 				v.areaText = (TextView) convertView.findViewById(R.id.areaTxt);
 				v.accesoryImg = (ImageView) convertView.findViewById(R.id.accessoryImg);
-				v.delBtn = (LinearLayout) convertView.findViewById(R.id.delImgBtn);
+				v.delBtn = (ImageView) convertView.findViewById(R.id.delImgBtn);
 				v.delBtn.setOnClickListener(SubscriptionActivity.this);
 				convertView.setTag(v);
 			} else {
@@ -417,7 +412,7 @@ public class SubscriptionActivity extends BaseActivity implements RequestListene
 			TextView industryText; // 行业
 			TextView postText;// 职位
 			TextView areaText;// 地区
-			LinearLayout delBtn;
+			ImageView delBtn;
 			ImageView accesoryImg;
 		}
 

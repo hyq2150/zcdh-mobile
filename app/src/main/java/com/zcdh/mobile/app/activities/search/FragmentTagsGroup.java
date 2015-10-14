@@ -1,7 +1,7 @@
 package com.zcdh.mobile.app.activities.search;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.zcdh.mobile.R;
+import com.zcdh.mobile.api.model.JobSearchTagDTO;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -23,146 +23,144 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.zcdh.mobile.R;
-import com.zcdh.mobile.api.model.JobSearchTagDTO;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
  * 用于显示搜索面板中的标签组
- * @author yangjiannan
  *
+ * @author yangjiannan
  */
 @EFragment(R.layout.fragment_tags_group)
 public class FragmentTagsGroup extends Fragment {
-	
-	@ViewById(R.id.loadingImg)ImageView loadingImg;
-	
-	@ViewById(R.id.tagsGrideview)GridView tagsGrideView;
-	
-	private TagsSelectedListner tagsSelectedListner;
-	
-	private BaseAdapter tagsGrideViewAdapter;
-	
-	private boolean inited = false;
-	private boolean setedData = false;
-	
-	/** 标签数据 **/
-	List<JobSearchTagDTO> tags = new ArrayList<JobSearchTagDTO>();
-	
-	
-	
-	public void setTags(List<JobSearchTagDTO> tags){
-		this.tags = tags;
-		if(inited){
-			////给数据后，停止加载动画
-			loadingImg.clearAnimation();
-			loadingImg.setVisibility(View.GONE);
-			
-			tagsGrideViewAdapter.notifyDataSetChanged();
-			
-			tagsGrideView.setVisibility(View.VISIBLE);
-			
-			//开始显示GridView标签组，淡入动画显示
-			Animation fadeIn = new AlphaAnimation(0, 1);
-			fadeIn.setInterpolator(new DecelerateInterpolator()); //add this
-			fadeIn.setDuration(700);
-			tagsGrideView.startAnimation(fadeIn);
-			
-			Log.i("stoploadingtags", "stop");
-		}
-		setedData = true;
-		Log.i("setTags", "settags");
-	}
-	
-	
-	
-	public FragmentTagsGroup(){
-		
-	}
-	
-	public void setTagsSelectedLisnter(TagsSelectedListner listner){
-		this.tagsSelectedListner = listner;
-	}
-	
-	
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		
-	}
-	
-	
-	
-	@AfterViews
-	void init(){
-		
-		tagsGrideViewAdapter = new TagsGrideViewAdapter();
-		tagsGrideView.setAdapter(tagsGrideViewAdapter);
-		Log.i("TAG","tagsGrideViewAdapter init:ini");
-		inited = true;
-		//正在加载标签组数据动画
-		Log.i("tags:", this.tags+"");
-		if(setedData){
-			if(this.tags!=null){
-				setTags(this.tags);
-			}
-		}else{
-			Animation loadingAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.loading);
-			loadingImg.startAnimation(loadingAnim);
-		}
-		tagsGrideViewAdapter.notifyDataSetChanged();
-		
-	}
-	
-	
-	/*================== UI 事件处理 ===================== */
-	@ItemClick(R.id.tagsGrideview)
-	void onTagSelected(int position){
-		if(this.tagsSelectedListner!=null){
-			this.tagsSelectedListner.onTagSelected(tags.get(position));
-		}
-	}
-	
-	
-	
-	
-	class TagsGrideViewAdapter extends BaseAdapter{
 
-		@Override
-		public int getCount() {
-			return tags.size();
-		}
+    @ViewById(R.id.loadingImg)
+    ImageView loadingImg;
 
-		@Override
-		public Object getItem(int p) {
-			return tags.get(p);
-		}
+    @ViewById(R.id.tagsGrideview)
+    GridView tagsGrideView;
 
-		@Override
-		public long getItemId(int p) {
-			return p;
-		}
+    private TagsSelectedListner tagsSelectedListner;
 
-		@Override
-		public View getView(int p, View view, ViewGroup viewGroup) {
-			
-			View itemView = null;
-			TextView tagNameText = null;
-			
-			itemView = LayoutInflater.from(getActivity()).inflate(R.layout.tags_item, null);
-			
-			tagNameText = (TextView) itemView.findViewById(R.id.tagNameText);
-			JobSearchTagDTO tagDto = tags.get(p); 
-			String tagName = tagDto.getTagName();
-			tagNameText.setText(tagName);
-			return itemView;
-		}
-		
-	}
-	
-	public interface TagsSelectedListner{
-		// 在onCreateView 完成之后调用此方法
-		public void onTagSelected(JobSearchTagDTO tagDto);
-	}
-	
+    private BaseAdapter tagsGrideViewAdapter;
+
+    private boolean inited = false;
+
+    private boolean setedData = false;
+
+    /** 标签数据 **/
+    List<JobSearchTagDTO> tags = new ArrayList<>();
+
+
+    public void setTags(List<JobSearchTagDTO> tags) {
+        this.tags = tags;
+        if (inited) {
+            ////给数据后，停止加载动画
+            loadingImg.clearAnimation();
+            loadingImg.setVisibility(View.GONE);
+
+            tagsGrideViewAdapter.notifyDataSetChanged();
+
+            tagsGrideView.setVisibility(View.VISIBLE);
+
+            //开始显示GridView标签组，淡入动画显示
+            Animation fadeIn = new AlphaAnimation(0, 1);
+            fadeIn.setInterpolator(new DecelerateInterpolator()); //add this
+            fadeIn.setDuration(700);
+            tagsGrideView.startAnimation(fadeIn);
+
+            Log.i("stoploadingtags", "stop");
+        }
+        setedData = true;
+        Log.i("setTags", "settags");
+    }
+
+
+    public FragmentTagsGroup() {
+
+    }
+
+    public void setTagsSelectedLisnter(TagsSelectedListner listner) {
+        this.tagsSelectedListner = listner;
+    }
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
+
+    @AfterViews
+    void init() {
+
+        tagsGrideViewAdapter = new TagsGrideViewAdapter();
+        tagsGrideView.setAdapter(tagsGrideViewAdapter);
+        Log.i("TAG", "tagsGrideViewAdapter init:ini");
+        inited = true;
+        //正在加载标签组数据动画
+        Log.i("tags:", this.tags + "");
+        if (setedData) {
+            if (this.tags != null) {
+                setTags(this.tags);
+            }
+        } else {
+            Animation loadingAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.loading);
+            loadingImg.startAnimation(loadingAnim);
+        }
+        tagsGrideViewAdapter.notifyDataSetChanged();
+
+    }
+
+
+    /*================== UI 事件处理 ===================== */
+    @ItemClick(R.id.tagsGrideview)
+    void onTagSelected(int position) {
+        if (this.tagsSelectedListner != null) {
+            this.tagsSelectedListner.onTagSelected(tags.get(position));
+        }
+    }
+
+
+    class TagsGrideViewAdapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return tags.size();
+        }
+
+        @Override
+        public Object getItem(int p) {
+            return tags.get(p);
+        }
+
+        @Override
+        public long getItemId(int p) {
+            return p;
+        }
+
+        @Override
+        public View getView(int p, View convertView, ViewGroup parent) {
+            TextView tagNameText;
+            if (convertView == null) {
+                convertView = LayoutInflater.from(getActivity())
+                        .inflate(R.layout.tags_item, parent, false);
+            }
+            tagNameText = (TextView) convertView.findViewById(R.id.tagNameText);
+            JobSearchTagDTO tagDto = tags.get(p);
+            String tagName = tagDto.getTagName();
+            tagNameText.setText(tagName);
+            return convertView;
+        }
+
+    }
+
+    public interface TagsSelectedListner {
+
+        // 在onCreateView 完成之后调用此方法
+        void onTagSelected(JobSearchTagDTO tagDto);
+    }
+
 }

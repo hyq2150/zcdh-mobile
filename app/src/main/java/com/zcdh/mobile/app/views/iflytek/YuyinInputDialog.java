@@ -28,10 +28,8 @@ import com.iflytek.cloud.speech.SpeechError;
 import com.iflytek.cloud.speech.SpeechListener;
 import com.iflytek.cloud.speech.SpeechRecognizer;
 import com.iflytek.cloud.speech.SpeechUser;
-import com.tencent.open.TaskGuide;
 import com.zcdh.mobile.R;
 import com.zcdh.mobile.app.Constants;
-import com.zcdh.mobile.app.ZcdhApplication;
 import com.zcdh.mobile.utils.StringUtils;
 
 /**

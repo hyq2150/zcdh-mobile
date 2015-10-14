@@ -1,21 +1,14 @@
 package com.zcdh.mobile.framework.upgrade;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.ref.WeakReference;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.UUID;
+import com.zcdh.mobile.R;
+import com.zcdh.mobile.framework.K;
+import com.zcdh.mobile.utils.StringUtils;
 
 import org.xmlpull.v1.XmlPullParser;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -24,6 +17,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.internal.view.ContextThemeWrapper;
 import android.util.Log;
 import android.util.Xml;
 import android.view.LayoutInflater;
@@ -34,9 +28,15 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.zcdh.mobile.R;
-import com.zcdh.mobile.framework.K;
-import com.zcdh.mobile.utils.StringUtils;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.ref.WeakReference;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.UUID;
 
 /**
  * 软件更新
@@ -56,7 +56,7 @@ public class UpdateAppService {
 
 	public UpdateInfo updateInfo;
 
-	private Dialog noticeDialog;
+	private AlertDialog noticeDialog;
 
 	/* 下载包安装路径 */
 	private static final String saveFileName = "zcdh_update_"
@@ -83,7 +83,7 @@ public class UpdateAppService {
 
 		public GlobalHandler(UpdateAppService s) {
 			// TODO Auto-generated constructor stub
-			mService = new WeakReference<UpdateAppService>(s);
+			mService = new WeakReference<>(s);
 		}
 
 		@Override
@@ -203,7 +203,7 @@ public class UpdateAppService {
 	public void showNoticeDialog() {
 		String vername = getVerName(context);
 
-		Builder builder = new Builder(context);
+		Builder builder = new Builder(new ContextThemeWrapper(context,R.style.AlertDialogCustom));
 		builder.setTitle("发现新版本");
 
 		String msg = "";
@@ -270,18 +270,18 @@ public class UpdateAppService {
 		}
 
 		laterBtn.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				noticeDialog.dismiss();
-				if ("0".equals(updateInfo.getForcedUpdate())) {
-					progressListner.onDownloadFinished();
-				}
-
-				if ("1".equals(updateInfo.getForcedUpdate())) {
-					progressListner.onCancel();
-				}
-
+		    @Override
+		    public void onClick(View v) {
+			noticeDialog.dismiss();
+			if ("0".equals(updateInfo.getForcedUpdate())) {
+			    progressListner.onDownloadFinished();
 			}
+
+			if ("1".equals(updateInfo.getForcedUpdate())) {
+			    progressListner.onCancel();
+			}
+
+		    }
 		});
 
 		builder.setView(v);
@@ -294,8 +294,6 @@ public class UpdateAppService {
 
 	/**
 	 * 下载apk
-	 * 
-	 * @param url
 	 */
 
 	public void downloadApk() {
@@ -321,8 +319,7 @@ public class UpdateAppService {
 				InputStream is = conn.getInputStream();
 				Log.i("saveFileName", saveFileName);
 				FileOutputStream fos = context.openFileOutput(saveFileName,
-						Context.MODE_WORLD_READABLE
-								| Context.MODE_WORLD_READABLE);
+					Context.MODE_WORLD_READABLE);
 				int count = 0;
 				byte buf[] = new byte[1024];
 
@@ -359,8 +356,6 @@ public class UpdateAppService {
 
 	/**
 	 * 安装apk
-	 * 
-	 * @param url
 	 */
 	public void installApk() {
 		File apkfile = new File(context.getFilesDir(), saveFileName);
@@ -422,17 +417,17 @@ public class UpdateAppService {
 	}
 
 	public interface DownloadProgressListner {
-		public void onDownloadStart();
+		void onDownloadStart();
 
-		public void onDownloadSuccess();
+		void onDownloadSuccess();
 
-		public void onDownloadFinished();
+		void onDownloadFinished();
 
-		public void onDownloadProgress(int p);
+		void onDownloadProgress(int p);
 
-		public void onError();
+		void onError();
 
-		public void onCancel();
+		void onCancel();
 	}
 
 }

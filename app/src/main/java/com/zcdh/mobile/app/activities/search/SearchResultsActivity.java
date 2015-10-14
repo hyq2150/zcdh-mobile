@@ -129,7 +129,8 @@ public class SearchResultsActivity extends BaseActivity implements RequestListen
 		super.onCreate(arg0);
 		loading = new LoadingIndicator(this);
 		jobSearchService = RemoteServiceManager.getRemoteService(IRpcJobSearchService.class);
-		SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), getString(R.string.search_result));
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+			getString(R.string.search_result));
 
 		dbTool = DbUtil.create(this);
 	}
@@ -173,11 +174,11 @@ public class SearchResultsActivity extends BaseActivity implements RequestListen
 		System.out.println(System.currentTimeMillis());
 
 		// region data start loading
-		groupProvinces = new ArrayList<HashMap<String, String>>();
-		subGroupsCities = new SparseArray<LinkedList<HashMap<String, String>>>();
+		groupProvinces = new ArrayList<>();
+		subGroupsCities = new SparseArray<>();
 		provinces = dbTool.findAllByWhere(ZcdhArea.class, String.format("parent_code = '%s'", PARENT_CODE_REGION));
 
-		HashMap<String, String> whole_nation = new HashMap<String, String>();
+		HashMap<String, String> whole_nation = new HashMap<>();
 		whole_nation.put("name", "全国");
 		whole_nation.put("value", "");
 		groupProvinces.add(whole_nation);
@@ -185,17 +186,17 @@ public class SearchResultsActivity extends BaseActivity implements RequestListen
 
 		int i = 1;
 		for (ZcdhArea province : provinces) {
-			HashMap<String, String> province_map = new HashMap<String, String>();
+			HashMap<String, String> province_map = new HashMap<>();
 			province_map.put("value", province.getCode());
 			province_map.put("name", province.getName());
 
 			groupProvinces.add(province_map);
-			LinkedList<HashMap<String, String>> cities_under = new LinkedList<HashMap<String, String>>();
+			LinkedList<HashMap<String, String>> cities_under = new LinkedList<>();
 
 			List<ZcdhArea> cities = dbTool.findAllByWhere(ZcdhArea.class, String.format("parent_code = '%s'", province.getCode()));
 
 			for (ZcdhArea city : cities) {
-				HashMap<String, String> city_info = new HashMap<String, String>();
+				HashMap<String, String> city_info = new HashMap<>();
 				city_info.put("name", city.getName());
 				city_info.put("value", city.getCode());
 				cities_under.add(city_info);
@@ -206,23 +207,23 @@ public class SearchResultsActivity extends BaseActivity implements RequestListen
 		// region data end loading
 
 		// salary range data loading begin
-		groupSalaryRanges = new ArrayList<HashMap<String, String>>();
+		groupSalaryRanges = new ArrayList<>();
 		List<ZcdhParam> salary_ranges = dbTool.findAllByWhere(ZcdhParam.class, String.format("param_category_code = '%s'", CATEGORY_CODE_SALARY_RANGE));
 
-		HashMap<String, String> non_specific = new HashMap<String, String>();
+		HashMap<String, String> non_specific = new HashMap<>();
 		non_specific.put("name", "不限");
 		non_specific.put("value", "");
 		groupSalaryRanges.add(non_specific);
 
 		for (ZcdhParam condition : salary_ranges) {
-			HashMap<String, String> condition_map = new HashMap<String, String>();
+			HashMap<String, String> condition_map = new HashMap<>();
 			condition_map.put("name", condition.getParam_name());
 			condition_map.put("value", condition.getParam_code());
 			groupSalaryRanges.add(condition_map);
 		}
 		// salary range data loading end
 
-		groupPublishtimes = new ArrayList<HashMap<String, String>>();
+		groupPublishtimes = new ArrayList<>();
 		List<ZcdhParam> publish_times = dbTool.findAllByWhere(ZcdhParam.class, String.format("param_category_code = '%s'", CATEGORY_CODE_PUBLISH_TIME));
 
 		non_specific.put("name", "不限");
@@ -230,7 +231,7 @@ public class SearchResultsActivity extends BaseActivity implements RequestListen
 		groupPublishtimes.add(non_specific);
 
 		for (ZcdhParam condition : publish_times) {
-			HashMap<String, String> condition_map = new HashMap<String, String>();
+			HashMap<String, String> condition_map = new HashMap<>();
 			condition_map.put("name", condition.getParam_name());
 			condition_map.put("value", condition.getParam_code());
 			groupPublishtimes.add(condition_map);
@@ -254,14 +255,14 @@ public class SearchResultsActivity extends BaseActivity implements RequestListen
 		filter_publish_time.init(this, FILTERTYPE_PUBLISH_TIME, groupPublishtimes, null);
 
 		// initial filterTab's views source
-		ArrayList<View> mViewArray = new ArrayList<View>();
+		ArrayList<View> mViewArray = new ArrayList<>();
 		mViewArray.add(filter_region);
 		mViewArray.add(filter_salary_range);
 		mViewArray.add(filter_publish_time);
 		mViewArray.add(null);
 
 		// initial filtertab's titles source
-		ArrayList<String> mTextArray = new ArrayList<String>();
+		ArrayList<String> mTextArray = new ArrayList<>();
 		mTextArray.add("地区");
 		mTextArray.add("薪酬");
 		mTextArray.add("时间");
@@ -305,7 +306,7 @@ public class SearchResultsActivity extends BaseActivity implements RequestListen
 
 	public class PostsAdapter extends BaseAdapter {
 
-		private ArrayList<JobEntPostDTO> mPosts = new ArrayList<JobEntPostDTO>();
+		private ArrayList<JobEntPostDTO> mPosts = new ArrayList<>();
 
 		public void updateItems(ArrayList<JobEntPostDTO> posts) {
 			mPosts = posts;

@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.zcdh.mobile.R;
 import com.zcdh.mobile.api.IRpcJobAppService;
+import com.zcdh.mobile.app.Constants;
 import com.zcdh.mobile.app.ZcdhApplication;
 import com.zcdh.mobile.app.activities.auth.LoginHelper;
 import com.zcdh.mobile.app.extension.ExtensionInputView.onTextChangedListener;
@@ -100,7 +101,7 @@ public class ExtensionDialog extends Dialog implements
 
 	public void dealInvitationcode() {
 		final String account = SharedPreferencesUtil.getValue(context,
-				LoginHelper.kLOGIN_ACCOUNT, null);
+				Constants.kLOGIN_ACCOUNT, null);
 		BackgroundExecutor.execute(new Task("", 0, "") {
 
 			@Override

@@ -1,17 +1,10 @@
 package com.zcdh.mobile.app.push;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.content.Context;
-import android.text.TextUtils;
-import android.util.Log;
-
 import com.baidu.android.pushservice.PushMessageReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
+import java.util.List;
 /*
  * Push消息处理receiver。请编写您需要的回调函数， 一般来说： onBind是必须的，用来处理startWork返回值；
  *onMessage用来接收透传消息； onSetTags、onDelTags、onListTags是tag相关操作的回调；
@@ -40,6 +33,7 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
 	/** TAG to Log */
 	public static final String TAG = MyPushMessageReceiver.class
 			.getSimpleName();
+
 	public static final String NEW_MSG = "com.zcdh.mobile.RECIVE_MESSAGE";
 
 	/**
@@ -71,9 +65,9 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
 
 		if (errorCode == 0) {
 			// 绑定成功
+			PushHelper.getInstance(context).bindZcdhForBaiduPushServer(userId,
+					channelId);
 		}
-		// Demo更新界面展示代码，应用请在这里加入自己的处理逻辑
-		updateContent(context, responseString);
 	}
 
 	/**
@@ -92,24 +86,11 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
 		String messageString = "透传消息 message=\"" + message
 				+ "\" customContentString=" + customContentString;
 		Log.d(TAG, messageString);
-
-		// 自定义内容获取方式，mykey和myvalue对应透传消息推送时自定义内容中设置的键和值
-		if (!TextUtils.isEmpty(customContentString)) {
-			JSONObject customJson = null;
-			try {
-				customJson = new JSONObject(customContentString);
-				String myvalue = null;
-				if (!customJson.isNull("mykey")) {
-					myvalue = customJson.getString("mykey");
-				}
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-		// Demo更新界面展示代码，应用请在这里加入自己的处理逻辑
-		updateContent(context, messageString);
+		//Toast.makeText(context, messageString+"", Toast.LENGTH_SHORT).show();
+		Intent action = new Intent();
+		action.setAction(NEW_MSG);
+		context.sendBroadcast(action);
+		// Toast.makeText(context, messageString, Toast.LENGTH_SHORT).show();
 	}
 
 	/**
@@ -131,23 +112,10 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
 				+ description + "\" customContent=" + customContentString;
 		Log.d(TAG, notifyString);
 
-		// 自定义内容获取方式，mykey和myvalue对应通知推送时自定义内容中设置的键和值
-		if (!TextUtils.isEmpty(customContentString)) {
-			JSONObject customJson = null;
-			try {
-				customJson = new JSONObject(customContentString);
-				String myvalue = null;
-				if (!customJson.isNull("mykey")) {
-					myvalue = customJson.getString("mykey");
-				}
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		Log.i(TAG,"推送的消息：" + customContentString + "");
 
-		// Demo更新界面展示代码，应用请在这里加入自己的处理逻辑
-		updateContent(context, notifyString);
+		PushHelper.getInstance(context).doDispatchByNotification(
+			customContentString);
 	}
 
 	/**
@@ -165,31 +133,7 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
 
 	@Override
 	public void onNotificationArrived(Context context, String title,
-									  String description, String customContentString) {
-
-		String notifyString = "onNotificationArrived  title=\"" + title
-				+ "\" description=\"" + description + "\" customContent="
-				+ customContentString;
-		Log.d(TAG, notifyString);
-
-		// 自定义内容获取方式，mykey和myvalue对应通知推送时自定义内容中设置的键和值
-		if (!TextUtils.isEmpty(customContentString)) {
-			JSONObject customJson = null;
-			try {
-				customJson = new JSONObject(customContentString);
-				String myvalue = null;
-				if (!customJson.isNull("mykey")) {
-					myvalue = customJson.getString("mykey");
-				}
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		// Demo更新界面展示代码，应用请在这里加入自己的处理逻辑
-		// 你可以參考 onNotificationClicked中的提示从自定义内容获取具体值
-		updateContent(context, notifyString);
-	}
+									  String description, String customContentString) {}
 
 	/**
 	 * setTags() 的回调函数。
@@ -208,13 +152,6 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
 	@Override
 	public void onSetTags(Context context, int errorCode,
 						  List<String> sucessTags, List<String> failTags, String requestId) {
-		String responseString = "onSetTags errorCode=" + errorCode
-				+ " sucessTags=" + sucessTags + " failTags=" + failTags
-				+ " requestId=" + requestId;
-		Log.d(TAG, responseString);
-
-		// Demo更新界面展示代码，应用请在这里加入自己的处理逻辑
-		updateContent(context, responseString);
 	}
 
 	/**
@@ -234,13 +171,6 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
 	@Override
 	public void onDelTags(Context context, int errorCode,
 						  List<String> sucessTags, List<String> failTags, String requestId) {
-		String responseString = "onDelTags errorCode=" + errorCode
-				+ " sucessTags=" + sucessTags + " failTags=" + failTags
-				+ " requestId=" + requestId;
-		Log.d(TAG, responseString);
-
-		// Demo更新界面展示代码，应用请在这里加入自己的处理逻辑
-		updateContent(context, responseString);
 	}
 
 	/**
@@ -258,12 +188,7 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
 	@Override
 	public void onListTags(Context context, int errorCode, List<String> tags,
 						   String requestId) {
-		String responseString = "onListTags errorCode=" + errorCode + " tags="
-				+ tags;
-		Log.d(TAG, responseString);
 
-		// Demo更新界面展示代码，应用请在这里加入自己的处理逻辑
-		updateContent(context, responseString);
 	}
 
 	/**
@@ -278,35 +203,6 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
 	 */
 	@Override
 	public void onUnbind(Context context, int errorCode, String requestId) {
-		String responseString = "onUnbind errorCode=" + errorCode
-				+ " requestId = " + requestId;
-		Log.d(TAG, responseString);
 
-		if (errorCode == 0) {
-			// 解绑定成功
-		}
-		// Demo更新界面展示代码，应用请在这里加入自己的处理逻辑
-		updateContent(context, responseString);
 	}
-
-	private void updateContent(Context context, String content) {
-		Log.d(TAG, "updateContent");
-		String logText = "" + Utils.logStringCache;
-
-		if (!logText.equals("")) {
-			logText += "\n";
-		}
-
-		SimpleDateFormat sDateFormat = new SimpleDateFormat("HH-mm-ss");
-		logText += sDateFormat.format(new Date()) + ": ";
-		logText += content;
-
-		Utils.logStringCache = logText;
-
-//        Intent intent = new Intent();
-//        intent.setClass(context.getApplicationContext(), PushDemoActivity.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        context.getApplicationContext().startActivity(intent);
-	}
-
 }

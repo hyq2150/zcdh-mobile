@@ -44,7 +44,7 @@
                 android:layout_marginLeft="@dimen/content_left_right"
                 android:layout_marginRight="@dimen/content_left_right"
                 android:background="@android:color/transparent"
-                android:scaleType="centerCrop"
+                android:scaleType="centerInside"
                 android:src="@drawable/micophone001_64x64" />
 
             <ImageButton

@@ -1,10 +1,7 @@
 package com.zcdh.mobile.app.views.filter;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
+import com.zcdh.mobile.R;
+import com.zcdh.mobile.app.adapter.TextAdapter;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -13,7 +10,6 @@ import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -22,8 +18,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.zcdh.mobile.R;
-import com.zcdh.mobile.app.adapter.TextAdapter;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
 
 /**
  * 顶部菜单弹出筛选条件
@@ -37,7 +36,7 @@ public class FilterView extends LinearLayout implements ViewBaseAction {
 	private ArrayList<HashMap<String, String>> mGroups;// = new
 														// ArrayList<HashMap<String,
 														// String>>();
-	private LinkedList<HashMap<String, String>> childrenItem = new LinkedList<HashMap<String, String>>();
+	private LinkedList<HashMap<String, String>> childrenItem = new LinkedList<>();
 	private SparseArray<LinkedList<HashMap<String, String>>> mChildren;// = new
 																		// SparseArray<LinkedList<HashMap<String,
 																		// String>>>();
@@ -180,9 +179,10 @@ public class FilterView extends LinearLayout implements ViewBaseAction {
 	public interface OnSelectListener {
 		// public void getValue(String valueId, String showText);
 		// public void getValue(String valueId, String showText);
-				public void onTimeSelector(int filter_type, Date start_date, Date end_date);
+		void onTimeSelector(int filter_type, Date start_date, Date end_date);
 
-		public void getValue(int filter_type, String value, int level1_selected_position, int level2_selected_position, String showText);
+		void getValue(int filter_type, String value, int level1_selected_position,
+			int level2_selected_position, String showText);
 	}
 
 	@Override

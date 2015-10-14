@@ -102,7 +102,7 @@ public class MainEntLiuyanActivity extends BaseActivity implements
 
 	YuYinInputView speechWindow;
 
-	List<LeaveMessageDTO> leaveMessagesList = new ArrayList<LeaveMessageDTO>();
+	List<LeaveMessageDTO> leaveMessagesList = new ArrayList<>();
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
@@ -165,8 +165,8 @@ public class MainEntLiuyanActivity extends BaseActivity implements
 			title = getString(R.string.activity_title_jiucuo);
 			msgEditText.setHint("纠错意见");
 		}
-		SystemServicesUtils.setActionBarCustomTitle(this,
-				getSupportActionBar(), title);
+		SystemServicesUtils.displayCustomTitle(this,
+			getSupportActionBar(), title);
 
 		if (Constants.kTYPE_ZIXUN.equals(type)) {// 求职
 			headLl.setVisibility(View.VISIBLE);
@@ -354,7 +354,7 @@ public class MainEntLiuyanActivity extends BaseActivity implements
 			if (convertView == null) {
 				h = new ViewHolder();
 				convertView = LayoutInflater.from(getApplicationContext())
-						.inflate(R.layout.feedback_item, null);
+						.inflate(R.layout.feedback_item, parent,false);
 				h.tallContainer1 = (RelativeLayout) convertView
 						.findViewById(R.id.tallContainer1);
 				h.tallContainer2 = (RelativeLayout) convertView

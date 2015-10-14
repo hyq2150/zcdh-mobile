@@ -5,28 +5,29 @@
         android:layout_height="wrap_content"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:background="#cccccc"
-        android:visibility="gone">
+        android:background="@color/font_ee"
+        android:visibility="visible">
         <RelativeLayout android:id="@+id/pannelBar"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:background="@color/blues"
             android:paddingTop="5dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="3dp"
             android:paddingBottom="5dp">
             
             <TextView android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:textColor="@color/font_color"
+                android:textColor="@color/white"
                 android:textSize="@dimen/font_size_nomarl"
                 android:text="编辑已选条件"/>
             
             
             <ImageButton android:id="@+id/toggleBtn"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:src="@drawable/xiabian_50x50"
                 android:scaleType="centerCrop"
@@ -41,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@id/toggleBtn"
-                android:textColor="@color/font_color"
+                android:textColor="@color/white"
                 android:textSize="@dimen/font_size_nomarl"
                 android:text=""/>
             

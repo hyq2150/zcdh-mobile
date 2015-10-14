@@ -1,7 +1,7 @@
 /** 
 *  LbsParam 
 * 
-*  Created Date: 2015-08-12 17:07:58 
+*  Created Date: 2015-10-12 17:31:53 
 *  
 */  
 package com.zcdh.mobile.api.model;  

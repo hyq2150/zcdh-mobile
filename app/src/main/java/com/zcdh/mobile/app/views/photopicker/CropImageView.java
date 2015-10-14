@@ -1,16 +1,16 @@
 package com.zcdh.mobile.app.views.photopicker;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
+import java.util.ArrayList;
+
 class CropImageView extends ImageViewTouchBase {
 
-    ArrayList<HighlightView> mHighlightViews      = new ArrayList<HighlightView>();
+    ArrayList<HighlightView> mHighlightViews      = new ArrayList<>();
     HighlightView            mMotionHighlightView = null;
     float mLastX, mLastY;
     int mMotionEdge;
@@ -168,14 +168,12 @@ class CropImageView extends ImageViewTouchBase {
                     mLastX = event.getX();
                     mLastY = event.getY();
 
-                    if (true) {
-                        // This section of code is optional. It has some user
-                        // benefit in that moving the crop rectangle against
-                        // the edge of the screen causes scrolling but it means
-                        // that the crop rectangle is no longer fixed under
-                        // the user's finger.
-                        ensureVisible(mMotionHighlightView);
-                    }
+                    // This section of code is optional. It has some user
+                    // benefit in that moving the crop rectangle against
+                    // the edge of the screen causes scrolling but it means
+                    // that the crop rectangle is no longer fixed under
+                    // the user's finger.
+                    ensureVisible(mMotionHighlightView);
                 }
                 break;
         }

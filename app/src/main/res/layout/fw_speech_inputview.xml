@@ -43,7 +43,7 @@
             android:clickable="false"
             android:text="科大讯飞"
             android:textColor="#cccccc"
-            android:textSize="10dp" />
+            android:textSize="10sp" />
 
         <ImageView
             android:id="@+id/soundValueImg"

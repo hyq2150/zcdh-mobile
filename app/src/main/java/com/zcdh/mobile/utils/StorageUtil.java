@@ -8,6 +8,8 @@ package com.zcdh.mobile.utils;
  * @author YJN, 2013-11-4 下午3:04:13
  */
 
+import com.zcdh.mobile.app.ZcdhApplication;
+
 import android.os.Environment;
 
 /**
@@ -23,7 +25,7 @@ public class StorageUtil {
 	*  SDCard默认存储根位置
 	*/
 	private static String SAVE_PATH_SD   = Environment.getExternalStorageDirectory().getAbsolutePath()+ "/com.zcdh.mobile/" ;
-    private static String SAVE_PATH_INTERNE = "/data/data/com.zcdh.mobile";
+    	private static String SAVE_PATH_INTERNE = ZcdhApplication.getInstance().getFilesDir().getPath();//"/data/data/com.zcdh.mobile";
 	
 	/**
 	 * Checks the external storage's state and saves it in member attributes.
@@ -78,11 +80,8 @@ public class StorageUtil {
 
 		if (!externalStorageAvailable) {
 			return false;
-		} else if (!externalStorageWriteable) {
-			return false;
-		} else {
-			return true;
-		}
+		} else
+		    return externalStorageWriteable;
 	}
 	
 	public static String getLocalSaveRootPath(){

@@ -1,7 +1,7 @@
 /** 
 *  IRpcJobEnterpriseService 
 * 
-*  Created Date: 2015-08-12 17:07:58 
+*  Created Date: 2015-10-12 17:31:53 
 *  
 */  
 package com.zcdh.mobile.api;  
@@ -24,7 +24,7 @@ public interface IRpcJobEnterpriseService   {
     *  @author focus, 2014-4-8 上午11:41:36 
     */  
     @RpcMethod("findJobEnterpriseDetailDTO")
-    public RequestChannel<JobEnterpriseDetailDTO> findJobEnterpriseDetailDTO(@Param("entId") Long entId);
+    public RequestChannel<JobEnterpriseDetailDTO> findJobEnterpriseDetailDTO(@Param("entId")  Long entId);
     /** 
     * 查询企业相册 
     *  @param entId			企业id 
@@ -34,14 +34,14 @@ public interface IRpcJobEnterpriseService   {
     *  @author hw, 2014-4-9 下午2:22:39 
     */  
     @RpcMethod("findEntPhotoByPage")
-    public RequestChannel<Page<ImgURLDTO>> findEntPhotoByPage(@Param("entId") Long entId, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<ImgURLDTO>> findEntPhotoByPage(@Param("entId")  Long entId, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 查找系统评价标签列表 
     *  @return 
     *  @author focus, 2014-5-8 下午3:03:43 
     */  
     @RpcMethod("findBasicSysEntCommentTagDTO")
-    public RequestChannel<Page<BasicSysCommentTagDTO>> findBasicSysEntCommentTagDTO(@Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<BasicSysCommentTagDTO>> findBasicSysEntCommentTagDTO(@Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 添加评价 
     *  @param tagList		标签的列表 
@@ -50,7 +50,7 @@ public interface IRpcJobEnterpriseService   {
     *  @author hw, 2014-5-12 下午4:09:42 
     */  
     @RpcMethod("addEntComment")
-    public RequestChannel<Integer> addEntComment(@Param("userId") Long userId, @Param("entId") Long entId, @Param("isNickName") Integer isNickName, @Param("tagList") List<CommentTagDTO> tagList, @Param("comment") String comment);
+    public RequestChannel<Integer> addEntComment(@Param("userId")  Long userId, @Param("entId")  Long entId, @Param("isNickName")  Integer isNickName, @Param("tagList")  List<CommentTagDTO> tagList, @Param("comment")  String comment);
     /** 
     * 查看评论列表 
     *  @param entId				企业id 
@@ -61,7 +61,7 @@ public interface IRpcJobEnterpriseService   {
     *  @author hw, 2013-11-6 下午4:33:54 
     */  
     @RpcMethod("findEntCommentDTO")
-    public RequestChannel<Page<CommentDTO>> findEntCommentDTO(@Param("entId") Long entId, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<CommentDTO>> findEntCommentDTO(@Param("entId")  Long entId, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 举报企业 
     *  @param userId 
@@ -72,7 +72,7 @@ public interface IRpcJobEnterpriseService   {
     *  @author focus, 2014-4-11 上午9:56:52 
     */  
     @RpcMethod("addInform")
-    public RequestChannel<Integer> addInform(@Param("userId") Long userId, @Param("entId") Long entId, @Param("informType") String informType, @Param("content") String content);
+    public RequestChannel<Integer> addInform(@Param("userId")  Long userId, @Param("entId")  Long entId, @Param("informType")  String informType, @Param("content")  String content);
     /** 
     * 添加用户黑名单或者 取消黑名单 
     *  @param userId 
@@ -81,7 +81,7 @@ public interface IRpcJobEnterpriseService   {
     *  @author focus, 2014-4-11 上午10:01:30 
     */  
     @RpcMethod("updateJobBlack")
-    public RequestChannel<Integer> updateJobBlack(@Param("userId") Long userId, @Param("entId") Long entId);
+    public RequestChannel<Integer> updateJobBlack(@Param("userId")  Long userId, @Param("entId")  Long entId);
     /** 
     * 关注企业 或者取消关注 
     *  @param userId	 
@@ -90,7 +90,7 @@ public interface IRpcJobEnterpriseService   {
     *  @author focus, 2014-4-11 上午10:13:47 
     */  
     @RpcMethod("updateAttentionEnt")
-    public RequestChannel<Integer> updateAttentionEnt(@Param("userId") Long userId, @Param("entId") Long entId);
+    public RequestChannel<Integer> updateAttentionEnt(@Param("userId")  Long userId, @Param("entId")  Long entId);
     /** 
     * 是否已经关注 
     *  @param userId 
@@ -99,7 +99,7 @@ public interface IRpcJobEnterpriseService   {
     *  @author focus, 2014-4-17 上午9:54:22 
     */  
     @RpcMethod("isAttentionEnt")
-    public RequestChannel<Integer> isAttentionEnt(@Param("userId") Long userId, @Param("entId") Long entId);
+    public RequestChannel<Integer> isAttentionEnt(@Param("userId")  Long userId, @Param("entId")  Long entId);
     /** 
     * 添加留言：纠错，岗位咨询 
     *  @param leaveMessages 
@@ -107,7 +107,7 @@ public interface IRpcJobEnterpriseService   {
     *  @author focus, 2014-4-14 下午4:26:40 
     */  
     @RpcMethod("addLeaveMessage")
-    public RequestChannel<Integer> addLeaveMessage(@Param("leaveMessages") LeaveMsgDTO leaveMessages);
+    public RequestChannel<Integer> addLeaveMessage(@Param("leaveMessages")  LeaveMsgDTO leaveMessages);
     /** 
     * 岗位留言 
     *  @param userId 
@@ -116,7 +116,7 @@ public interface IRpcJobEnterpriseService   {
     *  @author focus, 2014-6-5 下午5:40:23 
     */  
     @RpcMethod("findPostLeaveMessageDTO")
-    public RequestChannel<List<LeaveMessageDTO>> findPostLeaveMessageDTO(@Param("userId") Long userId, @Param("postId") Long postId);
+    public RequestChannel<List<LeaveMessageDTO>> findPostLeaveMessageDTO(@Param("userId")  Long userId, @Param("postId")  Long postId);
     /** 
     * 企业留言 
     *  @param userId 
@@ -126,7 +126,7 @@ public interface IRpcJobEnterpriseService   {
     *  @author focus, 2014-6-5 下午5:40:58 
     */  
     @RpcMethod("findEntLeaveMessageDTO")
-    public RequestChannel<List<LeaveMessageDTO>> findEntLeaveMessageDTO(@Param("userId") Long userId, @Param("entId") Long entId, @Param("leaveType") String leaveType);
+    public RequestChannel<List<LeaveMessageDTO>> findEntLeaveMessageDTO(@Param("userId")  Long userId, @Param("entId")  Long entId, @Param("leaveType")  String leaveType);
     /** 
     * 分享企业 
     *  @param userId 
@@ -136,7 +136,7 @@ public interface IRpcJobEnterpriseService   {
     *  @author focus, 2014-4-11 上午10:24:48 
     */  
     @RpcMethod("shareEnt")
-    public RequestChannel<Integer> shareEnt(@Param("userId") Long userId, @Param("entId") Long entId, @Param("shareTO") String shareTO);
+    public RequestChannel<Integer> shareEnt(@Param("userId")  Long userId, @Param("entId")  Long entId, @Param("shareTO")  String shareTO);
     /** 
     * 查询企业的岗位列表 
     *  @param entId 
@@ -144,7 +144,7 @@ public interface IRpcJobEnterpriseService   {
     *  @author focus, 2014-4-15 下午4:02:36 
     */  
     @RpcMethod("findEntPostDTOByEntId")
-    public RequestChannel<Page<JobEntPostDTO>> findEntPostDTOByEntId(@Param("entId") Long entId, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<JobEntPostDTO>> findEntPostDTOByEntId(@Param("entId")  Long entId, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 查询企业的招聘会岗位列表 
     *  @param entId 
@@ -153,7 +153,7 @@ public interface IRpcJobEnterpriseService   {
     *  @author focus, 2014-4-15 下午4:02:36 
     */  
     @RpcMethod("findEntPostDTOByEntIdFairId")
-    public RequestChannel<Page<JobEntPostDTO>> findEntPostDTOByEntIdFairId(@Param("fairId") Long fairId, @Param("entId") Long entId, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<JobEntPostDTO>> findEntPostDTOByEntIdFairId(@Param("fairId")  Long fairId, @Param("entId")  Long entId, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 产品列表 
     *  @param entId 
@@ -161,7 +161,7 @@ public interface IRpcJobEnterpriseService   {
     *  @author focus, 2014-6-4 上午10:37:13 
     */  
     @RpcMethod("findEntProductDTO")
-    public RequestChannel<Page<EntProductDTO>> findEntProductDTO(@Param("entId") Long entId, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<EntProductDTO>> findEntProductDTO(@Param("entId")  Long entId, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 企业粉丝列表 
     *  @param entId 
@@ -169,7 +169,7 @@ public interface IRpcJobEnterpriseService   {
     *  @author focus, 2014-6-4 上午10:37:06 
     */  
     @RpcMethod("findEntFansDTO")
-    public RequestChannel<Page<EntFansDTO>> findEntFansDTO(@Param("entId") Long entId, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<EntFansDTO>> findEntFansDTO(@Param("entId")  Long entId, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 企业主页 
     *  @param userId 
@@ -178,7 +178,7 @@ public interface IRpcJobEnterpriseService   {
     *  @author focus, 2014-6-4 上午10:36:57 
     */  
     @RpcMethod("findEntHomePageDTO")
-    public RequestChannel<EntHomePageDTO> findEntHomePageDTO(@Param("userId") Long userId, @Param("entId") Long entId);
+    public RequestChannel<EntHomePageDTO> findEntHomePageDTO(@Param("userId")  Long userId, @Param("entId")  Long entId);
     /** 
     * 分享企业 
     *  @param entId 
@@ -186,7 +186,7 @@ public interface IRpcJobEnterpriseService   {
     *  @author focus, 2014-12-10 下午2:43:13 
     */  
     @RpcMethod("findEntShareDTO")
-    public RequestChannel<List<JobEntShareDTO>> findEntShareDTO(@Param("entId") Long entId);
+    public RequestChannel<List<JobEntShareDTO>> findEntShareDTO(@Param("entId")  Long entId);
     /** 
     * 添加企业分享记录 
     *  @param userId 
@@ -195,7 +195,7 @@ public interface IRpcJobEnterpriseService   {
     *  @author hw, 2014-12-23 下午3:38:57 
     */  
     @RpcMethod("addEntShareHistory")
-    public RequestChannel<Integer> addEntShareHistory(@Param("userId") Long userId, @Param("entId") Long entId);
+    public RequestChannel<Integer> addEntShareHistory(@Param("userId")  Long userId, @Param("entId")  Long entId);
     /** 
     * 根据短地址查询企业信息 
     *  @param shortURL 
@@ -203,7 +203,7 @@ public interface IRpcJobEnterpriseService   {
     *  @author hw, 2014-12-11 上午11:33:59 
     */  
     @RpcMethod("findEntInfoDTOByShortURL")
-    public RequestChannel<EntInfoDTO> findEntInfoDTOByShortURL(@Param("shortURL") String shortURL);
+    public RequestChannel<EntInfoDTO> findEntInfoDTOByShortURL(@Param("shortURL")  String shortURL);
 
 
  } 

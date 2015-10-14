@@ -196,32 +196,6 @@ public class PushHelper implements RequestListener ,
 			String androidURL = pm.get("android_url");
 			
 			if ("2".equals(openType)) {
-				/*	
-				HashMap<String, String> params = null;
-				if(!TextUtils.isEmpty(param)){
-					 params = StringUtils.getParams(param);
-				}
-			
-				if(param==null)return;
-				
-				Class activityClazz = null;
-				try {
-					activityClazz = Class.forName(androidURL);
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				if(activityClazz!=null){
-					Intent intent = new Intent(context,
-							activityClazz);
-					for (Entry<String, String> item : params.entrySet()){
-						intent.putExtra(item.getKey(),
-								item.getValue());
-					}
-					//intent.putExtra("index", position);
-					intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-					context.startActivity(intent);
-				}*/
 				if(!TextUtils.isEmpty(param)){
 					String msgId = getValueFromCustomParamByKey(customContentString, "id");
 					String androidURL_ =  getValueFromCustomParamByKey(customContentString, "anroidURL");
@@ -265,7 +239,7 @@ public class PushHelper implements RequestListener ,
 		// 参数为空，返回直接结果  
 		if(TextUtils.isEmpty(customParam) || TextUtils.isEmpty(key)) return null;
 		// 假如是不包含，则也返回空 
-		if(customParam.contains(key) == false) return null;
+		if(!customParam.contains(key)) return null;
 		
 		key = key.trim();
 		customParam = customParam.trim();
@@ -291,7 +265,6 @@ public class PushHelper implements RequestListener ,
 				}// end for
 			}// end if
 		}// end for
-		
 		return null;
 	}
 }

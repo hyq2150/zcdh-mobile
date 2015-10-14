@@ -1,6 +1,7 @@
 package com.zcdh.mobile.app.extension;
 
-import static android.graphics.Paint.ANTI_ALIAS_FLAG;
+import com.zcdh.mobile.R;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
@@ -11,7 +12,8 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.widget.EditText;
-import com.zcdh.mobile.R;
+
+import static android.graphics.Paint.ANTI_ALIAS_FLAG;
 
 @SuppressLint("DrawAllocation")
 public class ExtensionInputView extends EditText {
@@ -60,7 +62,7 @@ public class ExtensionInputView extends EditText {
 		try {
 			borderColor = a.getColor(R.styleable.ExtensionView_borderColor,
 					defaultBorderColor);
-			borderWidth = a.getDimension(R.styleable.ExtensionView_borderWidth,
+			borderWidth = a.getDimension(R.styleable.ExtensionView_bordersWidth,
 					defaultBorderWidth);
 			borderRadius = a
 					.getDimension(R.styleable.ExtensionView_borderRadius,

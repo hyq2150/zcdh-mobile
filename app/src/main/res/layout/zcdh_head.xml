@@ -3,18 +3,17 @@
     android:layout_width="50dp"
     android:layout_height="50dp"
     android:layout_gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/ll_nohead"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:gravity="center"
         android:background="@color/head_anonymous"
+        android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone"
-         >
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/tvName"
@@ -33,7 +32,6 @@
         android:layout_height="50dp"
         android:clickable="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/default_head"
-         />
+        android:src="@drawable/default_head" />
 
 </LinearLayout>

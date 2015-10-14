@@ -1,7 +1,5 @@
 package com.zcdh.mobile.app.activities.nearby;
 
-import android.os.Handler;
-import android.util.Log;
 import android.view.MotionEvent;
 
 /**

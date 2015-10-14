@@ -54,8 +54,8 @@ public class ParticipantsIndustryActivity extends BaseActivity {
 
 	public void onCreate(Bundle b) {
 		super.onCreate(b);
-		SystemServicesUtils.setActionBarCustomTitle(this,
-				getSupportActionBar(), getString(R.string.title_industry));
+		SystemServicesUtils.displayCustomTitle(this,
+			getSupportActionBar(), getString(R.string.title_industry));
 	}
 
 	@Override

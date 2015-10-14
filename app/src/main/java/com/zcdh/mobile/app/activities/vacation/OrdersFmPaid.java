@@ -61,7 +61,7 @@ public class OrdersFmPaid extends BaseFragment implements OnRefreshListener2<Lis
 
 	private int type;
 
-	private List<MyOrderDTO> orders = new ArrayList<MyOrderDTO>();
+	private List<MyOrderDTO> orders = new ArrayList<>();
 
 	private OrdersAdapter adapter;
 
@@ -205,7 +205,7 @@ public class OrdersFmPaid extends BaseFragment implements OnRefreshListener2<Lis
 			ViewHolder holder;
 			if (convertView == null) {
 				// inflate a layout
-				convertView = LayoutInflater.from(getActivity()).inflate(R.layout.order_item, null);
+				convertView = LayoutInflater.from(getActivity()).inflate(R.layout.order_item, parent,false);
 				holder = new ViewHolder();
 				// set holder's reference to views in converview
 				holder.handle_order = (TextView) convertView.findViewById(R.id.handle_order);

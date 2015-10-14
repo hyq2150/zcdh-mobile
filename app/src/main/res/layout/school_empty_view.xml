@@ -3,11 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:layout_marginBottom="65dp"
     android:orientation="vertical" >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="160dp"
         android:background="#dde3ed"
         android:padding="10dp" >
 
@@ -26,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tvTitle"
             android:layout_marginTop="10dp"
+            android:background="@drawable/common_textfield_background"
             android:padding="10dp" />
 
         <Button

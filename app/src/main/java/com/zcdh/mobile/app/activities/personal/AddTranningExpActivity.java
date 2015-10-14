@@ -91,7 +91,7 @@ public class AddTranningExpActivity extends BaseActivity implements RequestListe
 		super.onCreate(savedInstanceState);
 		trainDto = new JobTrainDTO();
 		trainDto.setUserId(getUserId());
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(), "添加培训经历");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "添加培训经历");
 
 		userService = RemoteServiceManager.getRemoteService(IRpcJobUservice.class);
 

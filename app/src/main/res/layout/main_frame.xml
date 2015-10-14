@@ -1,141 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
     android:id="@+id/body"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/activity_bg"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/main_tabar_bg"
-        android:paddingLeft="@dimen/content_left_right" >
+        android:paddingLeft="@dimen/content_left_right">
 
-        <LinearLayout
-            android:id="@+id/menuToggleLl"
+        <FrameLayout
+            android:id="@+id/fl_menu"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/main_tab_height"
-            android:layout_alignParentLeft="true"
-            android:clickable="true"
-            android:orientation="horizontal"
+            android:layout_centerVertical="true"
             android:paddingLeft="10dp"
-            android:paddingRight="40dp" >
+            android:paddingRight="40dp">
 
-            <com.makeramen.RoundedImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/head"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+            <ImageView
+                android:id="@+id/btn_menu"
+                android:layout_width="26dp"
+                android:layout_height="21dp"
                 android:layout_gravity="center"
-                android:clickable="false"
-                android:scaleType="centerInside"
-                android:src="@drawable/menumain_normal"
-                android:visibility="gone"
-                app:border_color="@color/blues"
-                app:border_width="0dip"
-                app:corner_radius="0dp"
-                app:is_oval="true" />
+                android:layout_marginTop="2dp"
+                android:background="@drawable/icon_main_head"
+                android:visibility="visible" />
 
-            <FrameLayout
+            <ImageView
+                android:id="@+id/attractPointImg"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@color/blues"
-                android:layout_gravity="center"
-                >
-
-                <ImageButton
-                    android:id="@+id/btn_menu"
-                    android:layout_width="26dp"
-                    android:layout_height="21dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="2dp"
-                    android:background="@drawable/menu_main_icon_selector"
-                    android:clickable="false"
-                    android:scaleType="centerInside"
-                    android:visibility="visible" />
-
-                <ImageView
-                    android:id="@+id/attractPointImg"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_gravity="right"
-                    android:src="@drawable/icon_red_point"
-                    android:scaleType="centerInside"/>
-            </FrameLayout>
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|top"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/icon_red_point" />
+        </FrameLayout>
 
         <RelativeLayout
             android:id="@+id/rl_tab"
             android:layout_width="match_parent"
             android:layout_height="@dimen/main_tab_height"
+            android:layout_toRightOf="@id/fl_menu"
             android:background="@color/blues"
-            android:layout_toRightOf="@id/menuToggleLl" >
+            android:paddingBottom="2dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:paddingTop="2dp">
 
-            <RelativeLayout
-                android:id="@+id/rl_nav"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true" >
-
-                <RadioGroup
-                    android:id="@+id/rg_nav_content"
-                    android:layout_width="fill_parent"
-                    android:layout_height="40dip"
-                    android:layout_marginBottom="7dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:background="@color/blues"
-                    android:orientation="horizontal" >
-                </RadioGroup>
-
-                <LinearLayout
-                    android:id="@+id/iv_nav_indicator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentLeft="true"
-                    android:orientation="vertical" >
-
-                    <ImageView
-                        android:layout_width="55dp"
-                        android:layout_height="2dp"
-                        android:layout_gravity="center"
-                        android:background="@color/white"
-                        android:layout_marginBottom="4dp"
-                        android:scaleType="matrix" />
-                </LinearLayout>
-            </RelativeLayout>
-            <!-- </com.zcdh.mobile.app.views.SyncHorizontalScrollView> -->
-
-            <ImageView
-                android:id="@+id/iv_nav_left"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:paddingBottom="1dip"
-                android:src="@drawable/pre_group_tags"
-                android:visibility="gone" >
-            </ImageView>
-
-            <ImageView
-                android:id="@+id/iv_nav_right"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:paddingBottom="1dip"
-                android:src="@drawable/next_group_tags"
-                android:visibility="gone" >
-            </ImageView>
+            <com.zcdh.mobile.widget.IndicatorLayout
+                android:id="@+id/il_main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:pstsDividerColor="@color/transparent"
+                app:pstsIndicatorColor="@color/white"
+                app:pstsIndicatorHeight="2.5dp"
+                app:pstsShouldExpand="true"
+                app:pstsTabPaddingLeftRight="24dp"
+                app:pstsUnderlineColor="@color/transparent" />
         </RelativeLayout>
     </RelativeLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <com.zcdh.mobile.app.views.NewViewPager
             android:id="@+id/pager"

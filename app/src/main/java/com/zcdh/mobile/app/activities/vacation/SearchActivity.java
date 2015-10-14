@@ -101,7 +101,7 @@ public class SearchActivity extends BaseActivity implements OnRefreshListener2<L
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(), "职位搜索");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "职位搜索");
 
 		imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 		service = RemoteServiceManager.getRemoteService(IRpcHolidayService.class, this);
@@ -235,10 +235,10 @@ public class SearchActivity extends BaseActivity implements OnRefreshListener2<L
 			Toast.makeText(this, "没有过滤条件", Toast.LENGTH_SHORT).show();
 			return;
 		}
-		ArrayList<HashMap<String, String>> provinces = new ArrayList<HashMap<String, String>>();
-		SparseArray<LinkedList<HashMap<String, String>>> cities = new SparseArray<LinkedList<HashMap<String, String>>>();
+		ArrayList<HashMap<String, String>> provinces = new ArrayList<>();
+		SparseArray<LinkedList<HashMap<String, String>>> cities = new SparseArray<>();
 
-		HashMap<String, String> whole_nation = new HashMap<String, String>();
+		HashMap<String, String> whole_nation = new HashMap<>();
 		whole_nation.put("name", "全国");
 		whole_nation.put("value", "");
 		provinces.add(whole_nation);
@@ -246,13 +246,13 @@ public class SearchActivity extends BaseActivity implements OnRefreshListener2<L
 
 		int i = 1;
 		for (SearchAreaDTO area : result.getAreas()) {
-			HashMap<String, String> province = new HashMap<String, String>();
+			HashMap<String, String> province = new HashMap<>();
 			province.put("name", area.getName() + "(" + area.getPostCount() + ")");
 			province.put("value", area.getCode());
 			provinces.add(province);
-			LinkedList<HashMap<String, String>> cities_of_prov = new LinkedList<HashMap<String, String>>();
+			LinkedList<HashMap<String, String>> cities_of_prov = new LinkedList<>();
 			for (SearchAreaDTO subArea : area.getSubAreas()) {
-				HashMap<String, String> city = new HashMap<String, String>();
+				HashMap<String, String> city = new HashMap<>();
 				city.put("name", subArea.getName() + "(" + subArea.getPostCount() + ")");
 				city.put("value", subArea.getCode());
 				cities_of_prov.add(city);
@@ -265,10 +265,10 @@ public class SearchActivity extends BaseActivity implements OnRefreshListener2<L
 		fiterCities.setOnSelectListener(this);
 		fiterCities.init(this, FILTERTYPE_CITIES, provinces, cities);
 
-		ArrayList<HashMap<String, String>> majors = new ArrayList<HashMap<String, String>>();
-		SparseArray<LinkedList<HashMap<String, String>>> subMajors = new SparseArray<LinkedList<HashMap<String, String>>>();
+		ArrayList<HashMap<String, String>> majors = new ArrayList<>();
+		SparseArray<LinkedList<HashMap<String, String>>> subMajors = new SparseArray<>();
 
-		HashMap<String, String> non_specific = new HashMap<String, String>();
+		HashMap<String, String> non_specific = new HashMap<>();
 		non_specific.put("name", "不限");
 		non_specific.put("value", "");
 		majors.add(non_specific);
@@ -277,14 +277,14 @@ public class SearchActivity extends BaseActivity implements OnRefreshListener2<L
 		i = 1;
 		for (SearchMajorDTO major : result.getMajors()) {
 
-			HashMap<String, String> major_hash = new HashMap<String, String>();
+			HashMap<String, String> major_hash = new HashMap<>();
 			major_hash.put("name", major.getName() + "(" + major.getPostCount() + ")");
 			major_hash.put("value", major.getCode());
 			majors.add(major_hash);
 
-			LinkedList<HashMap<String, String>> subMajors_of_major = new LinkedList<HashMap<String, String>>();
+			LinkedList<HashMap<String, String>> subMajors_of_major = new LinkedList<>();
 			for (SearchMajorDTO subMajor : major.getSubMajors()) {
-				HashMap<String, String> subMajor_hash = new HashMap<String, String>();
+				HashMap<String, String> subMajor_hash = new HashMap<>();
 				subMajor_hash.put("name", subMajor.getName() + "(" + subMajor.getPostCount() + ")");
 				subMajor_hash.put("value", subMajor.getCode());
 				subMajors_of_major.add(subMajor_hash);
@@ -297,10 +297,10 @@ public class SearchActivity extends BaseActivity implements OnRefreshListener2<L
 		fiterMajors.setOnSelectListener(this);
 		fiterMajors.init(this, FILTERTYPE_MAJORS, majors, subMajors);
 
-		ArrayList<HashMap<String, String>> industries = new ArrayList<HashMap<String, String>>();
-		SparseArray<LinkedList<HashMap<String, String>>> subIndustries = new SparseArray<LinkedList<HashMap<String, String>>>();
+		ArrayList<HashMap<String, String>> industries = new ArrayList<>();
+		SparseArray<LinkedList<HashMap<String, String>>> subIndustries = new SparseArray<>();
 
-		non_specific = new HashMap<String, String>();
+		non_specific = new HashMap<>();
 		non_specific.put("name", "不限");
 		non_specific.put("value", "");
 		industries.add(non_specific);
@@ -309,14 +309,14 @@ public class SearchActivity extends BaseActivity implements OnRefreshListener2<L
 		i = 1;
 		for (SearchIndustryDTO industry : result.getIndusties()) {
 
-			HashMap<String, String> industry_hash = new HashMap<String, String>();
+			HashMap<String, String> industry_hash = new HashMap<>();
 			industry_hash.put("name", industry.getName() + "(" + industry.getPostCount() + ")");
 			industry_hash.put("value", industry.getCode());
 			industries.add(industry_hash);
 
-			LinkedList<HashMap<String, String>> subIndustries_of_industry = new LinkedList<HashMap<String, String>>();
+			LinkedList<HashMap<String, String>> subIndustries_of_industry = new LinkedList<>();
 			for (SearchIndustryDTO subIndustry : industry.getSubIndustries()) {
-				HashMap<String, String> subIndustry_hash = new HashMap<String, String>();
+				HashMap<String, String> subIndustry_hash = new HashMap<>();
 				subIndustry_hash.put("name", subIndustry.getName() + "(" + subIndustry.getPostCount() + ")");
 				subIndustry_hash.put("value", subIndustry.getCode());
 				subIndustries_of_industry.add(subIndustry_hash);
@@ -333,12 +333,12 @@ public class SearchActivity extends BaseActivity implements OnRefreshListener2<L
 		filterTimes.initTimeFiter(this, i);
 		filterTimes.setOnSelectListener(this);
 
-		ArrayList<String> strs = new ArrayList<String>();
+		ArrayList<String> strs = new ArrayList<>();
 		strs.add("地区");
 		strs.add("专业");
 		strs.add("行业");
 		strs.add("时间");
-		ArrayList<View> views = new ArrayList<View>();
+		ArrayList<View> views = new ArrayList<>();
 		views.add(fiterCities);
 		views.add(fiterMajors);
 		views.add(fiterIndustries);
@@ -421,7 +421,7 @@ public class SearchActivity extends BaseActivity implements OnRefreshListener2<L
 
 			protected void onPostExecute(Page<EntPostSearchDTO> result) {
 					onComplete();
-			};
+			}
 
 		}.execute();
 	}
@@ -457,7 +457,7 @@ public class SearchActivity extends BaseActivity implements OnRefreshListener2<L
 		case FILTERTYPE_CITIES:
 			List<String> areas = condition.getAreaCodes();
 			if (areas == null) {
-				areas = new ArrayList<String>();
+				areas = new ArrayList<>();
 			} else {
 				areas.clear();
 			}
@@ -467,7 +467,7 @@ public class SearchActivity extends BaseActivity implements OnRefreshListener2<L
 		case FILTERTYPE_INDUSTRIES:
 			List<String> industries = condition.getIndustryCodes();
 			if (industries == null) {
-				industries = new ArrayList<String>();
+				industries = new ArrayList<>();
 
 			} else {
 				industries.clear();
@@ -478,7 +478,7 @@ public class SearchActivity extends BaseActivity implements OnRefreshListener2<L
 		case FILTERTYPE_MAJORS:
 			List<String> majors = condition.getMajorCodes();
 			if (majors == null) {
-				majors = new ArrayList<String>();
+				majors = new ArrayList<>();
 			} else {
 				majors.clear();
 			}

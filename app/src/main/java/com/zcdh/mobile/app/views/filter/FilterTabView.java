@@ -28,9 +28,9 @@ import utils.ActionTarget;
 public class FilterTabView extends LinearLayout implements OnDismissListener {
 
 	private ToggleButton selectedButton;
-	private ArrayList<String> mTextArray = new ArrayList<String>();
-	private ArrayList<RelativeLayout> mViewArray = new ArrayList<RelativeLayout>();
-	private ArrayList<ToggleButton> mToggleButton = new ArrayList<ToggleButton>();
+	private ArrayList<String> mTextArray = new ArrayList<>();
+	private ArrayList<RelativeLayout> mViewArray = new ArrayList<>();
+	private ArrayList<ToggleButton> mToggleButton = new ArrayList<>();
 	private Context mContext;
 	private final int SMALL = 0;
 	private int displayWidth;
@@ -254,7 +254,7 @@ public class FilterTabView extends LinearLayout implements OnDismissListener {
 	 * 自定义tabitem点击回调接口
 	 */
 	public interface OnButtonClickListener {
-		public void onClick(int selectPosition);
+		void onClick(int selectPosition);
 	}
 
 }

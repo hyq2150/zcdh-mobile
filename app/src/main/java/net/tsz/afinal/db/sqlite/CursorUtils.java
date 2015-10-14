@@ -35,7 +35,7 @@ public class CursorUtils {
 				TableInfo table = TableInfo.get(clazz);
 				int columnCount = cursor.getColumnCount();
 				if(columnCount>0){
-					T  entity = (T) clazz.newInstance();
+					T  entity = clazz.newInstance();
 					for(int i=0;i<columnCount;i++){
 						
 						String column = cursor.getColumnName(i);

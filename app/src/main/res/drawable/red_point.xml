@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item android:drawable="@color/menu_normal">
+    <item android:drawable="@color/transparent">
     </item>
-    <item android:left="55dp">
-        <bitmap android:src="@drawable/icon_red_point1"
+    <item android:left="50dp" android:bottom="18dp">
+        <bitmap android:src="@drawable/icon_red_point"
           android:gravity="center" />
     </item>
    

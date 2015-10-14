@@ -1,7 +1,7 @@
 /** 
 *  JobWorkExperienceDTO 
 * 
-*  Created Date: 2015-08-12 17:07:57 
+*  Created Date: 2015-10-12 17:31:51 
 *  
 */  
 package com.zcdh.mobile.api.model;  
@@ -25,6 +25,8 @@ public class JobWorkExperienceDTO  implements Serializable {
     private Date startTime  ; 
     private Date endTime  ; 
     private String postDes  ; 
+    private String industry_code  ; 
+    private String industryName  ; 
     /**
     *设定工作经历的岗位的id
     */
@@ -120,6 +122,30 @@ public class JobWorkExperienceDTO  implements Serializable {
     */
     public String getPostDes() { 
         return  this.postDes;
+     }
+    /**
+    *无功能描述
+    */
+    public void setIndustry_code(String industry_code) { 
+        this.industry_code=industry_code;
+     }
+    /**
+    *无功能描述
+    */
+    public String getIndustry_code() { 
+        return  this.industry_code;
+     }
+    /**
+    *无功能描述
+    */
+    public void setIndustryName(String industryName) { 
+        this.industryName=industryName;
+     }
+    /**
+    *无功能描述
+    */
+    public String getIndustryName() { 
+        return  this.industryName;
      }
 
  } 

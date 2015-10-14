@@ -6,6 +6,8 @@
 
 package net.tsz.afinal.core;
 
+import android.support.annotation.NonNull;
+
 import java.util.Iterator;
 
 // BEGIN android-note
@@ -527,7 +529,7 @@ public interface Deque<E> extends Queue<E> {
      *
      * @return the number of elements in this deque
      */
-    public int size();
+    int size();
 
     /**
      * Returns an iterator over the elements in this deque in proper sequence.
@@ -535,6 +537,7 @@ public interface Deque<E> extends Queue<E> {
      *
      * @return an iterator over the elements in this deque in proper sequence
      */
+    @NonNull
     Iterator<E> iterator();
 
     /**

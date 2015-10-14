@@ -15,7 +15,7 @@ import android.os.ParcelFileDescriptor;
  */
 public class InternalStorageContentProvider extends ContentProvider {
     public static final Uri CONTENT_URI = Uri.parse("content://com.zcdhjob/");
-	private static final HashMap<String, String> MIME_TYPES = new HashMap<String, String>();
+	private static final HashMap<String, String> MIME_TYPES = new HashMap<>();
 	private static final String TEMP_PHOTO_FILE_NAME = "photo_temp.jpg";
 	
 	static {

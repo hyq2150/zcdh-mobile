@@ -1,7 +1,11 @@
 package com.zcdh.mobile.app.activities.search;
 
-import java.util.HashMap;
-import java.util.List;
+import com.zcdh.mobile.R;
+import com.zcdh.mobile.biz.entities.ZcdhMajor;
+import com.zcdh.mobile.framework.activities.BaseActivity;
+import com.zcdh.mobile.utils.DbUtil;
+import com.zcdh.mobile.utils.StringUtils;
+import com.zcdh.mobile.utils.SystemServicesUtils;
 
 import net.tsz.afinal.FinalDb;
 
@@ -26,12 +30,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.zcdh.mobile.R;
-import com.zcdh.mobile.biz.entities.ZcdhMajor;
-import com.zcdh.mobile.framework.activities.BaseActivity;
-import com.zcdh.mobile.utils.DbUtil;
-import com.zcdh.mobile.utils.StringUtils;
-import com.zcdh.mobile.utils.SystemServicesUtils;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * 职位选择
@@ -73,7 +73,7 @@ public class MajorsActivity extends BaseActivity implements RemoveItemListner {
 	 * 已选意向职位职位
 	 */
 	@Extra
-	HashMap<String, ZcdhMajor> selectedMajors = new HashMap<String, ZcdhMajor>();
+	HashMap<String, ZcdhMajor> selectedMajors = new HashMap<>();
 
 	/**
 	 * 选择显示面板
@@ -138,7 +138,8 @@ public class MajorsActivity extends BaseActivity implements RemoveItemListner {
 
 	@UiThread
 	void showData() {
-		SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), category.getMajor_name());
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+			category.getMajor_name());
 		if (majorsAdapter == null) {
 			majorsAdapter = new MajorsAdapter();
 		}
@@ -150,7 +151,7 @@ public class MajorsActivity extends BaseActivity implements RemoveItemListner {
 	 * 显示已选择的项
 	 */
 	void showSelectItems() {
-		HashMap<String, String> _items = new HashMap<String, String>();
+		HashMap<String, String> _items = new HashMap<>();
 		for (String key : selectedMajors.keySet()) {
 			_items.put(key, selectedMajors.get(key).getMajor_name());
 		}
@@ -214,12 +215,12 @@ public class MajorsActivity extends BaseActivity implements RemoveItemListner {
 		}
 
 		@Override
-		public View getView(int p, View contentView, ViewGroup arg2) {
+		public View getView(int p, View contentView, ViewGroup parent) {
 
 			Holder h = null;
 			if (contentView == null) {
 				h = new Holder();
-				contentView = LayoutInflater.from(getBaseContext()).inflate(R.layout.simple_listview_item_checker, null);
+				contentView = LayoutInflater.from(getBaseContext()).inflate(R.layout.simple_listview_item_checker, parent,false);
 
 				h.itemName = (TextView) contentView.findViewById(R.id.itemNameText);
 				h.checkerImg = (ImageView) contentView.findViewById(R.id.checkerImg);

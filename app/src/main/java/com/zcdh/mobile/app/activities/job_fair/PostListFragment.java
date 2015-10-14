@@ -41,7 +41,7 @@ public class PostListFragment extends PaginableFm<JobFairPost> {
 
 	private final int PageSize = 15;
 
-	private List<JobEntPostDTO> posts = new ArrayList<JobEntPostDTO>();
+	private List<JobEntPostDTO> posts = new ArrayList<>();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -93,7 +93,7 @@ public class PostListFragment extends PaginableFm<JobFairPost> {
 					adapter.addToBottom(page.getElements());
 				}
 				for (int i = 0; i < page.getElements().size(); i++) {
-					JobFairPost post = (JobFairPost) (page.getElements().get(i));
+					JobFairPost post = page.getElements().get(i);
 					JobEntPostDTO post2 = new JobEntPostDTO();
 					post2.setPostId(post.getPostId());
 					post2.setEntId(post.getEntId());

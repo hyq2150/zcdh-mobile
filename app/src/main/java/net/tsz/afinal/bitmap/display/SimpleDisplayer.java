@@ -17,6 +17,7 @@ package net.tsz.afinal.bitmap.display;
 
 import net.tsz.afinal.bitmap.core.BitmapDisplayConfig;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -55,7 +56,7 @@ public class SimpleDisplayer implements Displayer{
 	private void fadeInDisplay(View imageView,Bitmap bitmap){
 		final TransitionDrawable td =
                 new TransitionDrawable(new Drawable[] {
-                        new ColorDrawable(android.R.color.transparent),
+                        new ColorDrawable(Color.TRANSPARENT),
                         new BitmapDrawable(imageView.getResources(), bitmap)
                 });
         if(imageView instanceof ImageView){

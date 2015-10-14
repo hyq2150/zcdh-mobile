@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@color/font_ee">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:focusableInTouchMode="true"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -15,63 +16,56 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/rect_bord_background"
-            android:orientation="vertical" >
+
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/eval_count"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/add_workexp_btn_bg"
-                android:paddingBottom="12dp"
+                android:background="@color/font_ee"
                 android:paddingLeft="8dp"
                 android:paddingRight="10dp"
-                android:paddingTop="12dp"
                 android:text="评价标签：0/5"
-                android:textSize="@dimen/font_size_nomarl" 
-                >
-            </TextView>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/divider_horizontal_timeline" />
+                android:textSize="@dimen/font_size_nomarl"/>
 
             <com.zcdh.mobile.app.views.TagsContainer
                 android:id="@+id/container_selected"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:padding="10dp" />
+                android:padding="10dp"
+                android:visibility="gone" />
+
+
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/addCommentTags"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/blue_dash_rect"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" 
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
-            android:paddingLeft="15dp"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"
-            >
+            android:background="@drawable/tags"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp">
 
             <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/more_active"
-                android:duplicateParentState="true" />
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:duplicateParentState="true"
+                android:src="@drawable/add2" />
 
-            <TextView android:id="@+id/addText"
+            <TextView
+                android:id="@+id/addText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/content_left_right"
-                android:text="添加评价标签"
-                android:textColor="@color/font_color"
+                android:text="添加"
+                android:textColor="@color/blues"
                 android:textSize="@dimen/font_size_nomarl" />
         </LinearLayout>
 
@@ -82,7 +76,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:orientation="vertical"
-            android:visibility="gone" >
+            android:visibility="gone">
 
             <com.zcdh.mobile.app.views.TagsContainer
                 android:id="@+id/container"
@@ -94,7 +88,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:padding="10dp" >
+                android:padding="10dp">
 
                 <TextView
                     android:id="@+id/customize_tag"
@@ -119,99 +113,89 @@
                     android:padding="10dp"
                     android:text="换一组"
                     android:textColor="@color/evaluation_blue"
-                    android:textSize="@dimen/font_size_middle" >
-                </TextView>
+                    android:textSize="@dimen/font_size_middle"/>
             </RelativeLayout>
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="15dp"
+            android:background="#e5e5e5" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="15dp"
-            android:paddingTop="15dp"
             android:singleLine="true"
             android:text="简短评价"
             android:textSize="@dimen/font_size_nomarl" />
 
         <EditText
             android:id="@+id/et_comment"
-            style="@style/edittext_style"
+            style="@style/edittext_style1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="120dp"
             android:layout_margin="10dp"
             android:hint="@string/evaluation_hint"
             android:lines="6"
-            android:textSize="@dimen/font_size_nomarl" >
-        </EditText>
+            android:textSize="@dimen/font_size_nomarl"/>
 
-        <LinearLayout
+        <ToggleButton
+            android:id="@+id/anonymousToggleBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_gravity="right"
+            android:background="@drawable/anonymous_selector"
+            android:checked="true"
+            android:gravity="center"
+            android:textOff="实名"
+            android:textOn="匿名"
+            android:textSize="@dimen/font_size_small"
+            android:visibility="gone" />
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:orientation="horizontal" >
+            android:layout_marginTop="40dp"
+            android:paddingLeft="@dimen/dimen_10dp"
+            android:paddingRight="@dimen/dimen_10dp"
+            >
 
-         <!--    <TextView
-                android:layout_width="wrap_content"
+            <View
+                android:id="@+id/v_divider"
+                android:layout_width="@dimen/dimen_0dp"
+                android:layout_height="@dimen/dimen_0dp"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/dimen_5dp"
+                android:layout_marginRight="@dimen/dimen_5dp" />
+
+            <Button
+                android:id="@+id/voice_btn"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="描述10-100字"
-                android:textSize="@dimen/font_size_small" >
-            </TextView>
- -->
-            <RelativeLayout
-                android:id="@+id/ll_option_section"
-                android:layout_width="wrap_content"
+                android:layout_toLeftOf="@+id/v_divider"
+                android:layout_weight="1"
+                android:background="@drawable/blue_btn"
+                android:gravity="center"
+                android:text="语音输入"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_middle" />
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right" >
-                
-               
-
-                <Button
-                    android:id="@+id/voice_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/blue_btn"
-                    android:drawableLeft="@drawable/microphone_layer"
-                    android:paddingRight="5dp"
-                    android:text="语音"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/font_size_small" />
-                
-                 <ToggleButton
-                    android:id="@+id/anonymousToggleBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_toLeftOf="@id/voice_btn"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/anonymous_selector"
-                    android:checked="true"
-                    android:gravity="center"
-                    android:textOff="实名"
-                    android:textOn="匿名"
-                    android:textSize="@dimen/font_size_small" 
-                    android:visibility="gone"
-                    />
-            </RelativeLayout>
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_save"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/button_normal_bg"
-            android:padding="7dp"
-            android:text="发布"
-            android:textColor="@color/white"
-            android:textSize="@dimen/font_size_middle" >
-        </Button>
+                android:layout_toRightOf="@+id/v_divider"
+                android:layout_weight="1"
+                android:background="@drawable/blue_btn"
+                android:gravity="center"
+                android:padding="7dp"
+                android:text="发布"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_middle"/>
+        </RelativeLayout>
     </LinearLayout>
 
 </ScrollView>

@@ -22,13 +22,11 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -86,7 +84,7 @@ public class TitlePageIndicator extends View implements PageIndicator {
 
 		public final int value;
 
-		private IndicatorStyle(int value) {
+		IndicatorStyle(int value) {
 			this.value = value;
 		}
 
@@ -105,7 +103,7 @@ public class TitlePageIndicator extends View implements PageIndicator {
 
 		public final int value;
 
-		private LinePosition(int value) {
+		LinePosition(int value) {
 			this.value = value;
 		}
 
@@ -690,7 +688,7 @@ public class TitlePageIndicator extends View implements PageIndicator {
 	 * @return
 	 */
 	private ArrayList<Rect> calculateAllBounds(Paint paint) {
-		ArrayList<Rect> list = new ArrayList<Rect>();
+		ArrayList<Rect> list = new ArrayList<>();
 		// For each views (If no values then add a fake one)
 		final int count = mViewPager.getAdapter().getCount();
 		final int width = getWidth();

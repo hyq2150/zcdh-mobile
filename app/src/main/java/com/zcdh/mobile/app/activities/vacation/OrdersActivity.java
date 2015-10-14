@@ -38,7 +38,7 @@ public class OrdersActivity extends AppCompatActivity implements OnClickListener
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(), "我的订单");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "我的订单");
 		setContentView(R.layout.orders);
 		bindviews();
 		setCurrentPage(0);
@@ -94,7 +94,7 @@ public class OrdersActivity extends AppCompatActivity implements OnClickListener
 		 */
 		public FragementPageAdapter(FragmentManager fm) {
 			super(fm);
-			fms = new ArrayList<Fragment>();
+			fms = new ArrayList<>();
 			fms.add(OrdersFmUnPaid.getInstance(OrdersFmPaid.TYPE_PENDING));
 			fms.add(OrdersFmPaid.getInstance(OrdersFmPaid.TYPE_PAID));
 

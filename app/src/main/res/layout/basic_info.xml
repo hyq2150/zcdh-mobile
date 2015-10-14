@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="1"
-    android:background="#E6E6E6"
+    android:background="@color/font_ee"
     android:fadingEdge="none"
     android:scrollbars="vertical" >
 
@@ -27,9 +27,10 @@
             android:id="@+id/contentView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/activity_bg"
+            android:background="@color/font_ee"
             android:orientation="vertical"
-            android:padding="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:visibility="visible" >
 
             <RelativeLayout
@@ -45,12 +46,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:background="#f15a24"
+                    android:background="@color/font_ee"
                     android:padding="10dp"
                     android:paddingBottom="10dp"
                     android:paddingTop="10dp"
                     android:text="必填项"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/gold" />
 
                 <RelativeLayout
                     android:id="@+id/rlName"
@@ -100,7 +101,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_below="@+id/rlName"
-                    android:background="@color/red" />
+                    android:background="@color/font_ee" />
 
                 <RelativeLayout
                     android:id="@+id/rlGender"
@@ -148,7 +149,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_below="@+id/rlGender"
-                    android:background="@color/red"
+                    android:background="@color/font_ee"
                     android:visibility="visible" />
 
                 <RelativeLayout
@@ -198,7 +199,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_below="@+id/rl_phone"
-                    android:background="@color/red"
+                    android:background="@color/font_ee"
                     android:visibility="visible" />
 
                 <RelativeLayout
@@ -247,7 +248,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_below="@id/rl_how_long"
-                    android:background="@color/red" />
+                    android:background="@color/font_ee" />
 
                 <RelativeLayout
                     android:id="@+id/rlBirthplace"
@@ -295,7 +296,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_below="@id/rlBirthplace"
-                    android:background="@color/red" />
+                    android:background="@color/font_ee" />
 
                 <RelativeLayout
                     android:id="@+id/rlType"
@@ -338,17 +339,24 @@
                         android:gravity="center_vertical" />
                 </RelativeLayout>
             </RelativeLayout>
-
-
+            <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                android:padding="10dp"
+                        android:background="@color/font_ee"
+                        android:text="选填项(完整的简历将获得更多工作机会)"
+                        android:textColor="@color/sub_title" />
             <RelativeLayout
                 android:id="@+id/rlDigest2"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/rect_bord_background"
                 android:clickable="true"
                 android:padding="0.5dp" >
-                
+
+                    
+
                 <RelativeLayout
                     android:id="@+id/rlMail"
                     android:layout_width="fill_parent"

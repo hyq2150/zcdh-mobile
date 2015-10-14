@@ -1,7 +1,7 @@
 /** 
 *  IRpcJobPostService 
 * 
-*  Created Date: 2015-08-12 17:07:58 
+*  Created Date: 2015-10-12 17:31:53 
 *  
 */  
 package com.zcdh.mobile.api;  
@@ -24,7 +24,7 @@ public interface IRpcJobPostService   {
     *  @author focus, 2014-4-8 上午11:22:41 
     */  
     @RpcMethod("findJobEntPostDetailDTO")
-    public RequestChannel<JobEntPostDetailDTO> findJobEntPostDetailDTO(@Param("userId") Long userId, @Param("postId") Long postId);
+    public RequestChannel<JobEntPostDetailDTO> findJobEntPostDetailDTO(@Param("userId")  Long userId, @Param("postId")  Long postId);
     /** 
     * 用户发送求职申请 
     *  <blockquote> 
@@ -48,7 +48,7 @@ public interface IRpcJobPostService   {
     *  @author focus, 2013-11-7 上午9:34:03 
     */  
     @RpcMethod("userApplyPost")
-    public RequestChannel<Integer> userApplyPost(@Param("entId") Long entId, @Param("userId") Long userId, @Param("postId") Long postId, @Param("content") String content, @Param("applyType") String applyType, @Param("specialRequire") List<JobSpecialRequirementsMatchDTO> specialRequire);
+    public RequestChannel<Integer> userApplyPost(@Param("entId")  Long entId, @Param("userId")  Long userId, @Param("postId")  Long postId, @Param("content")  String content, @Param("applyType")  String applyType, @Param("specialRequire")  List<JobSpecialRequirementsMatchDTO> specialRequire);
     /** 
     * 查找岗位的特殊技能的需求列表 
     *  @param postId 
@@ -56,7 +56,7 @@ public interface IRpcJobPostService   {
     *  @author focus, 2014-4-11 上午11:00:39 
     */  
     @RpcMethod("findSpecialRequirementMatchDTO")
-    public RequestChannel<ApplyPostInfoDTO> findSpecialRequirementMatchDTO(@Param("postId") Long postId);
+    public RequestChannel<ApplyPostInfoDTO> findSpecialRequirementMatchDTO(@Param("postId")  Long postId);
     /** 
     * 添加或取消岗位收藏 
     *  @param userId	 
@@ -65,7 +65,7 @@ public interface IRpcJobPostService   {
     *  @author focus, 2014-4-11 上午10:28:49 
     */  
     @RpcMethod("updateFavorite")
-    public RequestChannel<Integer> updateFavorite(@Param("userId") Long userId, @Param("postId") Long postId);
+    public RequestChannel<Integer> updateFavorite(@Param("userId")  Long userId, @Param("postId")  Long postId);
     /** 
     * 分享岗位 
     *  @param userId 
@@ -74,7 +74,7 @@ public interface IRpcJobPostService   {
     *  @author focus, 2014-4-11 上午10:30:04 
     */  
     @RpcMethod("sharePost")
-    public RequestChannel<Integer> sharePost(@Param("userId") Long userId, @Param("postId") Long postId, @Param("shareTO") String shareTO, @Param("bindId") String bindId);
+    public RequestChannel<Integer> sharePost(@Param("userId")  Long userId, @Param("postId")  Long postId, @Param("shareTO")  String shareTO, @Param("bindId")  String bindId);
     /** 
     * 查询岗位分享内容 
     *  @param userId 
@@ -83,7 +83,7 @@ public interface IRpcJobPostService   {
     *  @author hw, 2014-7-17 上午9:59:44 
     */  
     @RpcMethod("findPostShareContent")
-    public RequestChannel<List<JobEntShareDTO>> findPostShareContent(@Param("userId") Long userId, @Param("postId") Long postId);
+    public RequestChannel<List<JobEntShareDTO>> findPostShareContent(@Param("userId")  Long userId, @Param("postId")  Long postId);
     /** 
     * 查询岗位技能与用户技能模板，中不匹配的技能列表 
     *  @param userId 
@@ -91,7 +91,7 @@ public interface IRpcJobPostService   {
     *  @author focus, 2014-9-1 下午6:41:54 
     */  
     @RpcMethod("findUnMatchTeclByUserId")
-    public RequestChannel<List<UnMatchTeclDTO>> findUnMatchTeclByUserId(@Param("userId") Long userId, @Param("postId") Long postId);
+    public RequestChannel<List<UnMatchTeclDTO>> findUnMatchTeclByUserId(@Param("userId")  Long userId, @Param("postId")  Long postId);
     /** 
     * 查找岗位的详细信息(新) 
     *  @param fairId 
@@ -101,7 +101,7 @@ public interface IRpcJobPostService   {
     *  @author liyuan, 2015-7-9 下午4:55:22 
     */  
     @RpcMethod("findExtJobEntPostDetailDTO")
-    public RequestChannel<JobEntPostDetailDTO> findExtJobEntPostDetailDTO(@Param("fairId") Long fairId, @Param("userId") Long userId, @Param("postId") Long postId);
+    public RequestChannel<JobEntPostDetailDTO> findExtJobEntPostDetailDTO(@Param("fairId")  Long fairId, @Param("userId")  Long userId, @Param("postId")  Long postId);
     /** 
     * 用户发送求职申请(新) 
     *  @param fairId 
@@ -115,7 +115,7 @@ public interface IRpcJobPostService   {
     *  @author liyuan, 2015-7-9 下午6:25:43 
     */  
     @RpcMethod("userApplyPostExt")
-    public RequestChannel<Integer> userApplyPostExt(@Param("fairId") Long fairId, @Param("entId") Long entId, @Param("userId") Long userId, @Param("postId") Long postId, @Param("content") String content, @Param("applyType") String applyType, @Param("specialRequire") List<JobSpecialRequirementsMatchDTO> specialRequire);
+    public RequestChannel<Integer> userApplyPostExt(@Param("fairId")  Long fairId, @Param("entId")  Long entId, @Param("userId")  Long userId, @Param("postId")  Long postId, @Param("content")  String content, @Param("applyType")  String applyType, @Param("specialRequire")  List<JobSpecialRequirementsMatchDTO> specialRequire);
 
 
  } 

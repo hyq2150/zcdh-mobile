@@ -9,6 +9,7 @@ import com.zcdh.mobile.R;
 import com.zcdh.mobile.api.model.JobEntPostDTO;
 import com.zcdh.mobile.app.Constants;
 import com.zcdh.mobile.app.views.TagsContainer;
+import com.zcdh.mobile.utils.StringUtils;
 
 import android.app.Activity;
 import android.util.Log;
@@ -85,11 +86,13 @@ public class SearchResultAdapter extends BaseAdapter {
 			holder.view=convertView.findViewById(R.id.line);
 			holder.ll_tags_container = (TagsContainer) convertView
 					.findViewById(R.id.ll_tags);
-		
+
 			holder.location_and_requirement = (TextView) convertView
-					.findViewById(R.id.location_and_education_and_matchrate);
+					.findViewById(R.id.location);
 			holder.publish_time = (TextView) convertView
 					.findViewById(R.id.publish_time);
+			holder.edu=(TextView) convertView
+					.findViewById(R.id.education_and_matchrate);
 			holder.workDate=(TextView)convertView.findViewById(R.id.workdate);
 			holder.salary = (TextView) convertView.findViewById(R.id.salary);
 			holder.title = (TextView) convertView.findViewById(R.id.title);
@@ -104,25 +107,31 @@ public class SearchResultAdapter extends BaseAdapter {
 		Log.i("match rate:", post.getMatchRate() + "");
 		if (Constants.POST_PROPERTY_JIANZHI.equals(post.getPostPropertyCode())
 				|| Constants.POST_PROPERTY_JIAQI.equals(post
-						.getPostPropertyCode())) {
-			holder.location_and_requirement.setText(post.getAreaName()
-					+ (post.getMajorName() == null ? "|专业不限" : "|"
+				.getPostPropertyCode())) {
+			holder.location_and_requirement.setText(post.getAreaName());
+			holder.edu.setText(
+					(post.getMajorName() == null ? "|专业不限" : ""
 							+ post.getMajorName())
-					+ (post.getMatchRate() > 0 ? "|匹配度:" + post.getMatchRate()
+							+ (post.getMatchRate() > 0 ? "|匹配度:" + post.getMatchRate()
 							+ "%" : ""));
 		} else {
-			holder.location_and_requirement.setText(post.getAreaName()
-					+ (post.getDegree() == null ? "|学历不限" : "|"
-							+ post.getDegree())
+			holder.location_and_requirement.setText(post.getAreaName());
+			holder.edu.setText((post.getDegree() == null ? "|学历不限" : ""
+					+ post.getDegree())
 					+ (post.getMatchRate() > 0 ? "|匹配度:" + post.getMatchRate()
-							+ "%" : ""));
+					+ "%" : ""));
 		}
 		holder.publish_time.setVisibility(View.VISIBLE);
 		holder.publish_time.setText(new SimpleDateFormat("yyyy-MM-dd").format(post.getPublishDate()));
 //				post.getPublishDate(), "MM-dd"));// .getDateByFormatNUM(post.getPublishDate()));
 		holder.salary.setText(post.getSalary());
 		holder.title.setText(post.getPostAliases());
-		holder.content.setText(post.getEntName());
+		try{
+			holder.content.setText(StringUtils.changed(post.getEntName().toString(), 15));
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+
 		holder.workDate.setText("工作经验:"+post.getWorkExperience());
 		Log.i(TAG, post.getEntName() + " > " + post.getIsLegalize());
 		if (post.getIsLegalize() != null && post.getIsLegalize() == 1) {
@@ -175,6 +184,7 @@ public class SearchResultAdapter extends BaseAdapter {
 		TextView publish_time;
 		TextView content;
 		TextView workDate;
+		TextView edu;
 		View view;
 		/**
 		 * 企业是否认证

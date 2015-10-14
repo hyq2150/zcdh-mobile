@@ -1,6 +1,5 @@
 package com.zcdh.mobile.app.activities.search;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,18 +14,11 @@ import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
 import android.content.Intent;
-import android.opengl.Visibility;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zcdh.mobile.R;
@@ -34,7 +26,6 @@ import com.zcdh.mobile.api.model.JobObjectivePostDTO;
 import com.zcdh.mobile.biz.entities.ZcdhCategoryPost;
 import com.zcdh.mobile.biz.entities.ZcdhPost;
 import com.zcdh.mobile.framework.activities.BaseActivity;
-import com.zcdh.mobile.framework.events.MyEvents;
 import com.zcdh.mobile.utils.DbUtil;
 import com.zcdh.mobile.utils.StringUtils;
 import com.zcdh.mobile.utils.SystemServicesUtils;
@@ -84,7 +75,7 @@ public class PostsActivity extends BaseActivity implements RemoveItemListner
 	 * 已选意向职位职位
 	 */
 	@Extra
-	HashMap<String, JobObjectivePostDTO> selectedPosts = new HashMap<String, JobObjectivePostDTO>();
+	HashMap<String, JobObjectivePostDTO> selectedPosts = new HashMap<>();
 	
 
 	/**
@@ -151,7 +142,8 @@ public class PostsActivity extends BaseActivity implements RemoveItemListner
 	
 	@UiThread
 	void showData(){
-		SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), category.getName()); 
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+			category.getName());
 		if(postsAdapter==null){
 			postsAdapter = new PostChosenAdapter(this, this.posts);
 		}
@@ -164,7 +156,7 @@ public class PostsActivity extends BaseActivity implements RemoveItemListner
 	 * 显示已选择的项
 	 */
 	void showSelectItems(){
-		HashMap<String, String> _items = new HashMap<String, String>();
+		HashMap<String, String> _items = new HashMap<>();
 		for (String key : selectedPosts.keySet()) {
 			_items.put(key, selectedPosts.get(key).getName());
 		}

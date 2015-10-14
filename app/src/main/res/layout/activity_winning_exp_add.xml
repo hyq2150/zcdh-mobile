@@ -34,6 +34,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="@string/winning_description"
+                 android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
                 android:textColor="@color/font_color"
                 android:textSize="@dimen/font_size_nomarl" />
 
@@ -45,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:hint="请输入实践名称（限500个汉字）"
                 android:minLines="4"
-                android:maxEms="500" />
+                android:maxLength="500" />
         </LinearLayout>
     </ScrollView>
 

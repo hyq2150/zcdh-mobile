@@ -1,7 +1,7 @@
 /** 
 *  IRpcPushService 
 * 
-*  Created Date: 2015-08-12 17:07:59 
+*  Created Date: 2015-10-12 17:31:56 
 *  
 */  
 package com.zcdh.mobile.api;  
@@ -26,7 +26,7 @@ public interface IRpcPushService   {
     *  @author focus, 2014-5-30 上午11:06:51 
     */  
     @RpcMethod("bindBaiduPushServerUserIdAndChannelId")
-    public RequestChannel<Integer> bindBaiduPushServerUserIdAndChannelId(@Param("userId") Long userId, @Param("pushUserId") String pushUserId, @Param("pushChannelId") String pushChannelId);
+    public RequestChannel<Integer> bindBaiduPushServerUserIdAndChannelId(@Param("userId")  Long userId, @Param("pushUserId")  String pushUserId, @Param("pushChannelId")  String pushChannelId);
 
 
  } 

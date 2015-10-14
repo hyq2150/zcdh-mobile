@@ -2,15 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/activity_bg1"
     android:orientation="vertical"
-    android:paddingLeft="@dimen/content_left_right"
-    android:paddingRight="@dimen/content_left_right"
      >
 
     <FrameLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:padding="20dp" >
 
         <com.makeramen.RoundedImageView
@@ -50,6 +49,7 @@
     <RelativeLayout
         android:id="@+id/mobileRowRl"
         style="@style/row_item_style"
+        android:layout_marginTop="10dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:clickable="true" >
@@ -83,7 +83,6 @@
         android:id="@+id/vHDivider2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/mobileRowRl"
         android:background="@drawable/divider_horizontal_timeline" />
 
     <!-- 绑定邮箱 -->
@@ -126,7 +125,6 @@
         android:id="@+id/vHDivider3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/emailRowRl"
         android:background="@drawable/divider_horizontal_timeline" />
     <!-- 修改密码 -->
 
@@ -167,7 +165,6 @@
         android:id="@+id/vHDivider4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/passwdRowRl"
         android:background="@drawable/divider_horizontal_timeline" />
 
     <!-- 绑定新浪 -->
@@ -215,7 +212,6 @@
         android:id="@+id/vHDivider8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/weiboRowRl"
         android:background="@drawable/divider_horizontal_timeline" />
 
     <!-- 腾讯 -->
@@ -293,7 +289,6 @@
         android:id="@+id/vHDivider7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/wechatRowRl"
         android:background="@drawable/divider_horizontal_timeline" />
     
 

@@ -6,11 +6,11 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:padding="0dp" >
-
+  <include layout="@layout/search_comm_bar" />
+    
     <include layout="@layout/mult_selection_pannel"/>
     
-    <include layout="@layout/search_comm_bar" />
-
+  
     <!-- 显示搜索结果面板 -->
     <LinearLayout
         android:id="@+id/resultPannel"

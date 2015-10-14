@@ -1,5 +1,22 @@
 package com.zcdh.mobile.app.activities.vacation;
 
+import com.zcdh.core.utils.StringUtils;
+import com.zcdh.mobile.R;
+import com.zcdh.mobile.api.IRpcHolidayService;
+import com.zcdh.mobile.api.model.EntPostByOrderDTO;
+import com.zcdh.mobile.api.model.PlaceOrderDTO;
+import com.zcdh.mobile.app.ActivityDispatcher;
+import com.zcdh.mobile.app.Constants;
+import com.zcdh.mobile.app.ZcdhApplication;
+import com.zcdh.mobile.app.views.LoadingIndicator;
+import com.zcdh.mobile.framework.activities.BaseActivity;
+import com.zcdh.mobile.framework.nio.RemoteServiceManager;
+import com.zcdh.mobile.framework.nio.RequestChannel;
+import com.zcdh.mobile.framework.nio.RequestListener;
+import com.zcdh.mobile.utils.SharedPreferencesUtil;
+import com.zcdh.mobile.utils.SystemServicesUtils;
+import com.zcdh.mobile.wxapi.WXPayEntryActivity;
+
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -17,23 +34,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.zcdh.core.utils.StringUtils;
-import com.zcdh.mobile.R;
-import com.zcdh.mobile.api.IRpcHolidayService;
-import com.zcdh.mobile.api.model.EntPostByOrderDTO;
-import com.zcdh.mobile.api.model.PlaceOrderDTO;
-import com.zcdh.mobile.app.ActivityDispatcher;
-import com.zcdh.mobile.app.Constants;
-import com.zcdh.mobile.app.ZcdhApplication;
-import com.zcdh.mobile.app.views.LoadingIndicator;
-import com.zcdh.mobile.framework.activities.BaseActivity;
-import com.zcdh.mobile.framework.nio.RemoteServiceManager;
-import com.zcdh.mobile.framework.nio.RequestChannel;
-import com.zcdh.mobile.framework.nio.RequestListener;
-import com.zcdh.mobile.utils.SharedPreferencesUtil;
-import com.zcdh.mobile.utils.SystemServicesUtils;
-import com.zcdh.mobile.wxapi.WXPayEntryActivity;
 
 /**
  * 暑假工申请页面
@@ -99,8 +99,8 @@ public class SummerjobsPostApplyActivity extends BaseActivity implements
 	// @Override
 	protected void initUI() {
 		// TODO Auto-generated method stub
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(),
-				"申请职位");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+			"申请职位");
 		postNameTxt = (TextView) findViewById(R.id.postname);
 		entNameTxt = (TextView) findViewById(R.id.entname);
 		workAdressTxt = (TextView) findViewById(R.id.post_adress);
@@ -207,7 +207,7 @@ public class SummerjobsPostApplyActivity extends BaseActivity implements
 					service.applyHolidayPostForJobfair(SharedPreferencesUtil.getValue(getApplicationContext(), Constants.JOBFAIR_ID_KEY, 0l),getUserId(), post.getPostId()).identify(
 							kREQ_ID_APPLYHOLIDAYPOST = RequestChannel
 							.getChannelUniqueID(),
-					SummerjobsPostApplyActivity.this);;
+					SummerjobsPostApplyActivity.this);
 //					service.applyHolidayPost(getUserId(), post.getPostId())
 //							.identify(
 //									kREQ_ID_APPLYHOLIDAYPOST = RequestChannel
@@ -356,7 +356,8 @@ public class SummerjobsPostApplyActivity extends BaseActivity implements
 									public void onClick(DialogInterface dialog,
 											int which) {
 										et_amount.setText(String
-												.valueOf((Integer) result));
+												.valueOf(
+													result));
 										amount = (Integer) result;
 										genOrder();
 									}

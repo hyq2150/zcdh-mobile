@@ -109,10 +109,12 @@ public class WinningExpAddActivity extends BaseActivity implements EditableDialo
 	void bindViews() {
 
 		if (winningExperiencePostDTO != null && winningExperiencePostDTO.getPrizes_id() != null && winningExperiencePostDTO.getPrizes_id() > 0) {
-			SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), getString(R.string.activiyt_winning_exp_edit));
+			SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+				getString(R.string.activiyt_winning_exp_edit));
 			postDesc.setText(winningExperiencePostDTO.getPrizes_description());
 		} else {
-			SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), getString(R.string.activiyt_winning_exp_add));
+			SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+				getString(R.string.activiyt_winning_exp_add));
 			winningExperiencePostDTO = new JobPrizesDTO();
 		}
 		postDesc.addTextChangedListener(new TextWatcher() {
@@ -342,12 +344,12 @@ public class WinningExpAddActivity extends BaseActivity implements EditableDialo
 		}
 
 		@Override
-		public View getView(int p, View contentView, ViewGroup arg2) {
+		public View getView(int p, View contentView, ViewGroup parent) {
 
-			Holder h = null;
+			Holder h;
 			if (contentView == null) {
 				h = new Holder();
-				contentView = LayoutInflater.from(getBaseContext()).inflate(R.layout.simple_listview_item_pairing, null);
+				contentView = LayoutInflater.from(getBaseContext()).inflate(R.layout.simple_listview_item_pairing, parent,false);
 
 				h.itemName = (TextView) contentView.findViewById(R.id.itemNameText);
 				h.itemValue = (TextView) contentView.findViewById(R.id.secondItemNameText);

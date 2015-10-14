@@ -127,7 +127,7 @@ public class FileSplit {
 		String arg1, arg2, arg3; // 加密参数1，参数2，文件路径标识path
 		ByteBuffer buf; // 缓冲
 		int blockSize = FileSplit.blockSize, count = -1; // 字节计数器
-		List<FileChannel> channels = new ArrayList<FileChannel>();// 文件片段通道集合
+		List<FileChannel> channels = new ArrayList<>();// 文件片段通道集合
 
 		private FileSplitOutputStream(File dir, String arg1, String arg2, String arg3, Integer newBlockSize) {
 			this.dir = dir;
@@ -286,7 +286,7 @@ public class FileSplit {
 		String arg1, arg2, arg3; // 加密参数1，参数2，文件路径标识path
 		ByteBuffer buf; // 缓冲
 		int blockSize = FileSplit.blockSize, len = -1, count = -1; // 原文件长度，字节计数器
-		List<FileChannel> channels = new ArrayList<FileChannel>();// 文件片段通道集合
+		List<FileChannel> channels = new ArrayList<>();// 文件片段通道集合
 
 		private FileSplitInputStream(File dir, String arg1, String arg2, String arg3, Integer newBlockSize) throws IOException {
 			this.dir = dir;

@@ -1,7 +1,7 @@
 /** 
 *  IRpcHolidayService 
 * 
-*  Created Date: 2015-08-12 17:07:58 
+*  Created Date: 2015-10-12 17:31:53 
 *  
 */  
 package com.zcdh.mobile.api;  
@@ -29,7 +29,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-19 下午2:43:53 
     */  
     @RpcMethod("findUserObjectiveDTO")
-    public RequestChannel<SearchHolidayConditionDTO> findUserObjectiveDTO(@Param("userId") Long userId);
+    public RequestChannel<SearchHolidayConditionDTO> findUserObjectiveDTO(@Param("userId")  Long userId);
     /** 
     * 更新用户的搜索条件 
     *  @param searchConditionDTO 
@@ -37,7 +37,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-19 下午3:09:49 
     */  
     @RpcMethod("updateUserObjectiveDTO")
-    public RequestChannel<Integer> updateUserObjectiveDTO(@Param("searchConditionDTO") SearchHolidayConditionDTO searchConditionDTO);
+    public RequestChannel<Integer> updateUserObjectiveDTO(@Param("searchConditionDTO")  SearchHolidayConditionDTO searchConditionDTO);
     /** 
     * 预约首页 
     *  @param userId 
@@ -46,7 +46,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-19 下午3:35:31 
     */  
     @RpcMethod("findHolidayHomePageDTO")
-    public RequestChannel<HomePageDTO> findHolidayHomePageDTO(@Param("userId") Long userId, @Param("bannerId") Long bannerId);
+    public RequestChannel<HomePageDTO> findHolidayHomePageDTO(@Param("userId")  Long userId, @Param("bannerId")  Long bannerId);
     /** 
     * 预约 
     *  @param userId 
@@ -54,7 +54,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-19 下午4:16:05 
     */  
     @RpcMethod("subscribe")
-    public RequestChannel<Integer> subscribe(@Param("userId") Long userId, @Param("bannerId") Long bannerId);
+    public RequestChannel<Integer> subscribe(@Param("userId")  Long userId, @Param("bannerId")  Long bannerId);
     /** 
     * 查找合适的岗位的列表  
     *  @param userId 
@@ -62,7 +62,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-24 上午12:57:35 
     */  
     @RpcMethod("findFitPostListDTO")
-    public RequestChannel<List<FitPostListDTO>> findFitPostListDTO(@Param("userId") Long userId);
+    public RequestChannel<List<FitPostListDTO>> findFitPostListDTO(@Param("userId")  Long userId);
     /** 
     * 查询用户搜索条件的头部 
     *  @param userId 
@@ -81,7 +81,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-19 下午4:03:52 
     */  
     @RpcMethod("findEntPostSearchDTO")
-    public RequestChannel<Page<EntPostSearchDTO>> findEntPostSearchDTO(@Param("keyWord") String keyWord, @Param("searchConditionDTO") SearchHolidayConditionDTO searchConditionDTO, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<EntPostSearchDTO>> findEntPostSearchDTO(@Param("keyWord")  String keyWord, @Param("searchConditionDTO")  SearchHolidayConditionDTO searchConditionDTO, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 企业的招聘岗位的各种类型数量统计 
     *  @param entId 
@@ -89,7 +89,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-19 下午4:09:29 
     */  
     @RpcMethod("findRecruitmentTypeCountDTO")
-    public RequestChannel<RecruitmentTypeCountDTO> findRecruitmentTypeCountDTO(@Param("entId") Long entId);
+    public RequestChannel<RecruitmentTypeCountDTO> findRecruitmentTypeCountDTO(@Param("entId")  Long entId);
     /** 
     * 查询企业发布岗位列表 
     *  @param entId		企业id 
@@ -101,7 +101,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2013-11-11 上午10:06:51 
     */  
     @RpcMethod("findEntPostList")
-    public RequestChannel<Page<EntPostSearchDTO>> findEntPostList(@Param("entId") Long entId, @Param("postProperty") Integer postProperty, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<EntPostSearchDTO>> findEntPostList(@Param("entId")  Long entId, @Param("postProperty")  Integer postProperty, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 假期工申请岗位 
     *  @param userId 
@@ -110,7 +110,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-19 下午5:05:04 
     */  
     @RpcMethod("applyHolidayPost")
-    public RequestChannel<PlaceOrderDTO> applyHolidayPost(@Param("userId") Long userId, @Param("postId") Long postId);
+    public RequestChannel<PlaceOrderDTO> applyHolidayPost(@Param("userId")  Long userId, @Param("postId")  Long postId);
     /** 
     * 生成订单  必要条件： 诚意金，代金卷 ， 
     *  @param userId 
@@ -120,7 +120,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-19 下午5:08:31 
     */  
     @RpcMethod("generateOrder")
-    public RequestChannel<String> generateOrder(@Param("userId") Long userId, @Param("postId") Long postId, @Param("applyPostCount") Integer applyPostCount);
+    public RequestChannel<String> generateOrder(@Param("userId")  Long userId, @Param("postId")  Long postId, @Param("applyPostCount")  Integer applyPostCount);
     /** 
     * 确认提交订单:开始支付，通过微信支付 
     *  @param orderNum			订单编号 
@@ -129,7 +129,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-19 下午5:13:14 
     */  
     @RpcMethod("conformOrderByWeChat")
-    public RequestChannel<ConFirmPaymentDTO> conformOrderByWeChat(@Param("orderNum") String ordreNum, @Param("isUserVoucher") Boolean isUserVoucher);
+    public RequestChannel<ConFirmPaymentDTO> conformOrderByWeChat(@Param("orderNum")  String ordreNum, @Param("isUserVoucher")  Boolean isUserVoucher);
     /** 
     * 查找用户的订单列表 
     *  @param userId 
@@ -140,7 +140,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-21 下午9:37:27 
     */  
     @RpcMethod("findMyOrderDTO")
-    public RequestChannel<Page<MyOrderDTO>> findMyOrderDTO(@Param("userId") Long userId, @Param("status") Integer status, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<MyOrderDTO>> findMyOrderDTO(@Param("userId")  Long userId, @Param("status")  Integer status, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 查找订单详细信息 
     *  @param orderNum 
@@ -148,7 +148,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-21 下午9:38:06 
     */  
     @RpcMethod("findOrderDTO")
-    public RequestChannel<OrderDTO> findOrderDTO(@Param("orderNum") String orderNum);
+    public RequestChannel<OrderDTO> findOrderDTO(@Param("orderNum")  String orderNum);
     /** 
     * 查看订单跟踪 
     *  @param orderNum 
@@ -156,7 +156,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-21 下午9:39:36 
     */  
     @RpcMethod("findTrackOrder")
-    public RequestChannel<TrackOrderDTO> findTrackOrder(@Param("orderNum") String orderNum);
+    public RequestChannel<TrackOrderDTO> findTrackOrder(@Param("orderNum")  String orderNum);
     /** 
     * 随便看看 
     *  @param areaCode				地区编码 
@@ -166,7 +166,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-19 下午4:03:52 
     */  
     @RpcMethod("lookAround")
-    public RequestChannel<Page<EntPostSearchDTO>> lookAround(@Param("areaCode") String areaCode, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<EntPostSearchDTO>> lookAround(@Param("areaCode")  String areaCode, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 随便看看的语音 
     *  @param keyWord 
@@ -177,7 +177,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-26 上午11:19:54 
     */  
     @RpcMethod("lookAroundByVoice")
-    public RequestChannel<Page<EntPostSearchDTO>> lookAroundByVoice(@Param("keyWord") String keyWord, @Param("areaCode") String areaCode, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<EntPostSearchDTO>> lookAroundByVoice(@Param("keyWord")  String keyWord, @Param("areaCode")  String areaCode, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 随便看看的摇一摇 
     *  @param keyWord 
@@ -188,7 +188,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-26 上午11:20:06 
     */  
     @RpcMethod("lookAroundByShake")
-    public RequestChannel<Page<EntPostSearchDTO>> lookAroundByShake(@Param("keyWord") String keyWord, @Param("areaCode") String areaCode, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<EntPostSearchDTO>> lookAroundByShake(@Param("keyWord")  String keyWord, @Param("areaCode")  String areaCode, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 随便看看的移动 
     *  @param keyWord 
@@ -199,7 +199,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-26 上午11:31:25 
     */  
     @RpcMethod("lookAroundByMove")
-    public RequestChannel<Page<EntPostSearchDTO>> lookAroundByMove(@Param("keyWord") String keyWord, @Param("lbs") List<LbsParam> lbs, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<EntPostSearchDTO>> lookAroundByMove(@Param("keyWord")  String keyWord, @Param("lbs")  List<LbsParam> lbs, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 找工作 
     *  @param searchConditionDTO 
@@ -209,7 +209,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-26 上午11:33:54 
     */  
     @RpcMethod("findJob")
-    public RequestChannel<Page<EntPostSearchDTO>> findJob(@Param("searchConditionDTO") SearchHolidayConditionDTO searchConditionDTO, @Param("areaCode") String areaCode, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<EntPostSearchDTO>> findJob(@Param("searchConditionDTO")  SearchHolidayConditionDTO searchConditionDTO, @Param("areaCode")  String areaCode, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 通过语音找工作 
     *  @param keyWord 
@@ -220,7 +220,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-26 上午11:35:21 
     */  
     @RpcMethod("findJobByVoice")
-    public RequestChannel<Page<EntPostSearchDTO>> findJobByVoice(@Param("keyWord") String keyWord, @Param("areaCode") String areaCode, @Param("searchConditionDTO") SearchHolidayConditionDTO searchConditionDTO, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<EntPostSearchDTO>> findJobByVoice(@Param("keyWord")  String keyWord, @Param("areaCode")  String areaCode, @Param("searchConditionDTO")  SearchHolidayConditionDTO searchConditionDTO, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 找工作的摇一摇 
     *  @param keyWord 
@@ -231,7 +231,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-26 上午11:20:06 
     */  
     @RpcMethod("findJobByShake")
-    public RequestChannel<Page<EntPostSearchDTO>> findJobByShake(@Param("keyWord") String keyWord, @Param("areaCode") String areaCode, @Param("searchConditionDTO") SearchHolidayConditionDTO searchConditionDTO, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<EntPostSearchDTO>> findJobByShake(@Param("keyWord")  String keyWord, @Param("areaCode")  String areaCode, @Param("searchConditionDTO")  SearchHolidayConditionDTO searchConditionDTO, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 找工作的移动 
     *  @param keyWord 
@@ -242,7 +242,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-26 上午11:31:25 
     */  
     @RpcMethod("findJobByMove")
-    public RequestChannel<Page<EntPostSearchDTO>> findJobByMove(@Param("keyWord") String keyWord, @Param("lbs") List<LbsParam> lbs, @Param("searchConditionDTO") SearchHolidayConditionDTO searchConditionDTO, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<EntPostSearchDTO>> findJobByMove(@Param("keyWord")  String keyWord, @Param("lbs")  List<LbsParam> lbs, @Param("searchConditionDTO")  SearchHolidayConditionDTO searchConditionDTO, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 进入准备支付页面 
     *  @param orderNum	订单号 
@@ -250,7 +250,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-26 下午3:50:44 
     */  
     @RpcMethod("toPrePayFor")
-    public RequestChannel<PayForDTO> toPrePayFor(@Param("orderNum") String orderNum);
+    public RequestChannel<PayForDTO> toPrePayFor(@Param("orderNum")  String orderNum);
     /** 
     * 取消订单 
     *  @param orderNum 
@@ -258,7 +258,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-28 上午9:42:30 
     */  
     @RpcMethod("cancelOrder")
-    public RequestChannel<Integer> cancelOrder(@Param("orderNum") String orderNum);
+    public RequestChannel<Integer> cancelOrder(@Param("orderNum")  String orderNum);
     /** 
     * 取得有效的订单岗位数量 
     *  @param postId 
@@ -266,7 +266,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-28 上午10:45:15 
     */  
     @RpcMethod("findValidPostCount")
-    public RequestChannel<Integer> findValidPostCount(@Param("postId") Long postId);
+    public RequestChannel<Integer> findValidPostCount(@Param("postId")  Long postId);
     /** 
     * 更新订单 
     *  @param order	订单对象 
@@ -274,7 +274,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-29 下午12:51:22 
     */  
     @RpcMethod("updateOrder")
-    public RequestChannel<Integer> updateOrder(@Param("orderNum") String orderNum, @Param("postCount") Integer postCount);
+    public RequestChannel<Integer> updateOrder(@Param("orderNum")  String orderNum, @Param("postCount")  Integer postCount);
     /** 
     * 查询个人的求职意向 
     *  @param userId 
@@ -282,7 +282,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-29 上午1:25:17 
     */  
     @RpcMethod("findUserObjective")
-    public RequestChannel<UserObjectiveDTO> findUserObjective(@Param("userId") Long userId);
+    public RequestChannel<UserObjectiveDTO> findUserObjective(@Param("userId")  Long userId);
     /** 
     * 查找付款的合同条款 
     *  @return 
@@ -307,7 +307,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-5-2 上午9:26:25 
     */  
     @RpcMethod("genPrePayIdParam")
-    public RequestChannel<PrePayParamDTO> genPrePayIdParam(@Param("orderNum") String orderNum, @Param("isUserVoucher") Boolean isUserVoucher, @Param("weChatToken") String weChatToken);
+    public RequestChannel<PrePayParamDTO> genPrePayIdParam(@Param("orderNum")  String orderNum, @Param("isUserVoucher")  Boolean isUserVoucher, @Param("weChatToken")  String weChatToken);
     /** 
     * 这种方式提交， preId 和token 都是手机端生成 
     *  @param preId			预付款id 
@@ -316,7 +316,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-5-2 下午2:49:23 
     */  
     @RpcMethod("conFirPaymentDTONew")
-    public RequestChannel<ConFirmPaymentDTO> conFirPaymentDTONew(@Param("preId") String preId, @Param("isUserVoucher") Boolean isUserVoucher, @Param("orderNum") String orderNum, @Param("otherParams") Map<String, String> otherParams);
+    public RequestChannel<ConFirmPaymentDTO> conFirPaymentDTONew(@Param("preId")  String preId, @Param("isUserVoucher")  Boolean isUserVoucher, @Param("orderNum")  String orderNum, @Param("otherParams")  Map<String,String> otherParams);
     /** 
     * 支付成功 
     *  @param orderNum 
@@ -324,7 +324,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-5-10 上午9:19:26 
     */  
     @RpcMethod("paySuccess")
-    public RequestChannel<Integer> paySuccess(@Param("orderNum") String orderNum);
+    public RequestChannel<Integer> paySuccess(@Param("orderNum")  String orderNum);
     /** 
     * 查找用户的订单列表:已付款 
     *  @param userId 
@@ -334,7 +334,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-21 下午9:37:27 
     */  
     @RpcMethod("findMyOrderDTOByPaid")
-    public RequestChannel<Page<MyOrderDTO>> findMyOrderDTOByPaid(@Param("userId") Long userId, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<MyOrderDTO>> findMyOrderDTOByPaid(@Param("userId")  Long userId, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 查找用户的订单列表：未付款 
     *  @param userId 
@@ -344,7 +344,7 @@ public interface IRpcHolidayService   {
     *  @author focus, 2014-4-21 下午9:37:27 
     */  
     @RpcMethod("findMyOrderDTOByUnPaid")
-    public RequestChannel<Page<MyOrderDTO>> findMyOrderDTOByUnPaid(@Param("userId") Long userId, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<MyOrderDTO>> findMyOrderDTOByUnPaid(@Param("userId")  Long userId, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 假期工招聘会根据招聘会id和岗位id取得有效的订单岗位数量 
     *  @param fairId 
@@ -353,7 +353,7 @@ public interface IRpcHolidayService   {
     *  @author liyuan, 2015-6-19 上午11:23:20 
     */  
     @RpcMethod("findValidPostCountForHolidayJob")
-    public RequestChannel<Integer> findValidPostCountForHolidayJob(@Param("fairId") Long fairId, @Param("postId") Long postId);
+    public RequestChannel<Integer> findValidPostCountForHolidayJob(@Param("fairId")  Long fairId, @Param("postId")  Long postId);
     /** 
     * 生成订单(假期工招聘会) 
     *  @param fairId 
@@ -364,7 +364,7 @@ public interface IRpcHolidayService   {
     *  @author liyuan, 2015-6-19 下午1:22:35 
     */  
     @RpcMethod("generateOrderForHolidayJob")
-    public RequestChannel<String> generateOrderForHolidayJob(@Param("fairId") Long fairId, @Param("userId") Long userId, @Param("postId") Long postId, @Param("applyPostCount") Integer applyPostCount);
+    public RequestChannel<String> generateOrderForHolidayJob(@Param("fairId")  Long fairId, @Param("userId")  Long userId, @Param("postId")  Long postId, @Param("applyPostCount")  Integer applyPostCount);
     /** 
     * 假期工申请岗位(假期工招聘会) 
     *  @param fairId 
@@ -374,7 +374,7 @@ public interface IRpcHolidayService   {
     *  @author liyuan, 2015-6-24 上午11:07:58 
     */  
     @RpcMethod("applyHolidayPostForJobfair")
-    public RequestChannel<PlaceOrderDTO> applyHolidayPostForJobfair(@Param("fairId") Long fairId, @Param("userId") Long userId, @Param("postId") Long postId);
+    public RequestChannel<PlaceOrderDTO> applyHolidayPostForJobfair(@Param("fairId")  Long fairId, @Param("userId")  Long userId, @Param("postId")  Long postId);
 
 
  } 

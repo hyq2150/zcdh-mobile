@@ -41,7 +41,7 @@ public class RecycleBin {
 		// noinspection unchecked
 		SparseArray<View>[] scrapViews = new SparseArray[viewTypeCount];
 		for (int i = 0; i < viewTypeCount; i++) {
-			scrapViews[i] = new SparseArray<View>();
+			scrapViews[i] = new SparseArray<>();
 		}
 		this.viewTypeCount = viewTypeCount;
 		currentScrapViews = scrapViews[0];

@@ -1,7 +1,8 @@
 package com.zcdh.mobile.framework.nio;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
+import com.zcdh.core.nio.common.MsgResponse;
+import com.zcdh.core.nio.except.ZcdhException;
+import com.zcdh.mobile.app.ZcdhApplication;
 
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IdleStatus;
@@ -10,9 +11,8 @@ import org.apache.mina.core.session.IoSession;
 import android.os.Message;
 import android.util.Log;
 
-import com.zcdh.core.nio.common.MsgResponse;
-import com.zcdh.core.nio.except.ZcdhException;
-import com.zcdh.mobile.app.ZcdhApplication;
+import java.lang.reflect.Type;
+import java.util.HashMap;
 
 public class MNioClientHandler extends IoHandlerAdapter {
 
@@ -20,7 +20,7 @@ public class MNioClientHandler extends IoHandlerAdapter {
 
 	// private HashMap<String,AbstractMsgHandle> messgeHandles;
 
-	public static final HashMap<String, Type> returnTypes = new HashMap<String, Type>();
+	public static final HashMap<String, Type> returnTypes = new HashMap<>();
 	
 	public static final ResponseMessageHandler RESPONSE_HANDLER = new ResponseMessageHandler(ZcdhApplication.getInstance().getMainLooper());
 	
@@ -104,7 +104,7 @@ public class MNioClientHandler extends IoHandlerAdapter {
 		Log.i("接收的数据", res.getJosnString());
 		if (reqID != null && !"".equals(reqID)) {
 
-			Message msg = new Message();
+			Message msg = Message.obtain();
 			try {
 				resultObj = res.DecoderResult(returnTypes.get(reqID));
 				

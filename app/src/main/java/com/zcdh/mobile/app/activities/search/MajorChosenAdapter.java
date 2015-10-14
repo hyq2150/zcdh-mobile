@@ -1,7 +1,7 @@
 package com.zcdh.mobile.app.activities.search;
 
-import java.util.HashMap;
-import java.util.List;
+import com.zcdh.mobile.R;
+import com.zcdh.mobile.biz.entities.ZcdhMajor;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,8 +11,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.zcdh.mobile.R;
-import com.zcdh.mobile.biz.entities.ZcdhMajor;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * 显示专业搜索结果
@@ -23,7 +23,7 @@ public class MajorChosenAdapter extends BaseAdapter{
 	
 	List<ZcdhMajor> majors; 
 	
-	HashMap<String, ZcdhMajor> selectedMajors = new HashMap<String, ZcdhMajor>();
+	HashMap<String, ZcdhMajor> selectedMajors = new HashMap<>();
 	
 	Context context;
 	
@@ -63,13 +63,13 @@ public class MajorChosenAdapter extends BaseAdapter{
 	}
 
 	@Override
-	public View getView(int p, View contentView, ViewGroup arg2) {
+	public View getView(int p, View contentView, ViewGroup parent) {
 		
 		Holder h = null;
 		if (contentView == null) {
 			h = new Holder();
 			contentView = LayoutInflater.from(context)
-					.inflate(R.layout.simple_listview_item_checker, null);
+					.inflate(R.layout.simple_listview_item_checker, parent,false);
 			
 			h.itemName = (TextView) contentView
 					.findViewById(R.id.itemNameText);

@@ -112,7 +112,7 @@ public class ActionView extends LinearLayout implements OnClickListener,
 		public MyHandler(ActionView av) {
 			super();
 			// TODO Auto-generated constructor stub
-			actionView = new WeakReference<ActionView>(av);
+			actionView = new WeakReference<>(av);
 		}
 
 		@Override
@@ -166,7 +166,7 @@ public class ActionView extends LinearLayout implements OnClickListener,
 				.considerExifParams(true).build();
 		actionLogService = RemoteServiceManager
 				.getRemoteService(IRpcJobAppService.class);
-		logMap = new HashMap<String, String>();
+		logMap = new HashMap<>();
 		logMap.put("DECEIVE_TYPE", "Android");
 	}
 

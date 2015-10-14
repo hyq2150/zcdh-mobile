@@ -2,17 +2,16 @@ package com.zcdh.mobile.framework.activities;
 
 import com.zcdh.mobile.R;
 import com.zcdh.mobile.framework.K;
-import com.zcdh.mobile.framework.views.PageIndicator;
-import com.zcdh.mobile.framework.views.PageIndicatorCircle;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ public class FWIntroduceActivity extends AppCompatActivity implements OnClickLis
 
     protected ViewPager viewPager;
 
-    protected PageIndicator viewPageIndicator;
+//    protected PageIndicator viewPageIndicator;
 
 
     @Override
@@ -43,7 +42,7 @@ public class FWIntroduceActivity extends AppCompatActivity implements OnClickLis
             imageResIds = extras.getIntArray(K.Extras.RES_IDS);
         }
         viewPager = (ViewPager) findViewById(R.id.viewPager);
-        viewPageIndicator = (PageIndicatorCircle) findViewById(R.id.indicator);
+//        viewPageIndicator = (PageIndicatorCircle) findViewById(R.id.indicator);
         init();
     }
 
@@ -52,31 +51,39 @@ public class FWIntroduceActivity extends AppCompatActivity implements OnClickLis
     private void init() {
         if (imageResIds != null && imageResIds.length > 0) {
             for (int resId : imageResIds) {
-                pages.add(new IntroducePageFragment(resId, this));
+                pages.add(IntroducePageFragment.newInstance(resId));
             }
         }
 
-        viewPager.setAdapter(new IntroducePageAdapter(getSupportFragmentManager()));
-        viewPageIndicator.setViewPager(viewPager);
+        viewPager.setAdapter(new IntroducePageAdapter(getSupportFragmentManager(),pages));
+//        viewPageIndicator.setViewPager(viewPager);
     }
 
     /**
      * 添加一页
      */
-    class IntroducePageAdapter extends FragmentPagerAdapter {
+    static class IntroducePageAdapter extends FragmentStatePagerAdapter {
 
-        public IntroducePageAdapter(FragmentManager fm) {
+        private ArrayList<IntroducePageFragment> list;
+
+        public IntroducePageAdapter(FragmentManager fm, ArrayList<IntroducePageFragment> list) {
             super(fm);
+            this.list=list;
         }
 
         @Override
         public Fragment getItem(int position) {
-            return pages.get(position);
+            return list.get(position);
         }
 
         @Override
         public int getCount() {
-            return pages.size();
+            return list.size();
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            super.destroyItem(container, position, object);
         }
     }
 

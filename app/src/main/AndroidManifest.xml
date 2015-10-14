@@ -23,7 +23,6 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!-- 录音权限 -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -32,10 +31,9 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <!-- 使用定位功能所需权限,demo已集成百度定位SDK,不使用定位功能可去掉以下6项 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_GPS" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -45,8 +43,11 @@
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <uses-permission android:name="android.permission.READ_LOGS" />
 
+    <!---环信-->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <application
         android:name="com.zcdh.mobile.app.ZcdhApplication"
         android:allowBackup="false"
@@ -134,7 +135,7 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden"
-            android:theme="@style/no_actionbar_middle_font"/>
+            android:theme="@style/AppThemeNoActionBar"/>
 
         <!-- 假期工/兼职 -->
         <activity
@@ -200,15 +201,16 @@
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/no_actionbar_middle_font"/>
+            android:theme="@style/AppThemeNoActionBar"/>
 
         <!-- 主页面 -->
         <activity
             android:name="com.zcdh.mobile.app.activities.main.NewMainActivity_"
             android:label="@string/app_name"
             android:launchMode="singleTask"
+            android:hardwareAccelerated="true"
             android:screenOrientation="portrait"
-            android:theme="@style/no_actionbar_middle_font"/>
+            android:theme="@style/AppThemeNoActionBar"/>
 
         <!-- android:theme="@style/style_tabpageindicator" -->
 
@@ -225,6 +227,12 @@
             android:name="com.zcdh.mobile.app.activities.auth.LoginActivity_"
             android:label="@string/app_name"
             android:screenOrientation="portrait"/>
+        <!-- 湖北公共招聘网登录入口 -->
+        <activity
+            android:name="com.zcdh.mobile.app.activities.auth.LoginByHBActivity_"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+        </activity>
         <activity
             android:name="com.zcdh.mobile.app.activities.personal.AddEduExpActivity_"
             android:label="@string/app_name"
@@ -409,9 +417,11 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"/>
         <activity
-            android:name="com.zcdh.mobile.app.activities.base.PhotoBrowser"
+            android:name=".app.activities.base.PhotoBrowser_"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeActionBarOverlay"
+            />
 
         <receiver android:name="com.zcdh.mobile.app.activities.vacation.payment.AppRegister">
             <intent-filter>
@@ -526,26 +536,12 @@
         <activity
             android:name="com.zcdh.mobile.app.activities.messages.SystemNotificationActivity_"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".app.activities.BackupMainActivity_"
-            android:screenOrientation="portrait" />
 
         <!-- 系统引导 -->
         <activity
             android:name="com.zcdh.mobile.app.activities.settings.UserGuideActivity_"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="com.zcdh.mobile.app.activities.auth.BindAccountActivity_"
-            android:screenOrientation="portrait"
-            android:theme="@style/style_tabpageindicator"/>
-        <!--
-        <activity
-            android:name="cn.sharesdk.framework.ShareSDKUIShell"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        -->
+
         <!-- 开启匹配度 -->
         <activity
             android:name="com.zcdh.mobile.app.activities.settings.PostMatchSettingActivity_"
@@ -554,28 +550,12 @@
         <activity
             android:name="com.zcdh.mobile.app.activities.nearby.MatchDetailsActivity_"
             android:screenOrientation="portrait"/>
-        <!-- 配置网络长连接Service组件 -->
-        <!--
-        <service
-            android:name="com.zcdh.mobile.service.auto.CoreService"
-            android:enabled="true" >
-            <intent-filter>
-
-                为该Service组件的intent-filter配置action
-                <action android:name="CoreService" />
-            </intent-filter>
-        </service>
-        -->
-
 
         <!-- 定位 -->
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote"></service>
-        <service
-            android:name="com.baidu.android.pushservice.CommandService"
-            android:exported="true" />
+            android:process=":remote"/>
 
         <!-- BAIDU Push -->
         <!-- push应用定义消息receiver声明 -->
@@ -624,7 +604,17 @@
                 <action android:name="com.baidu.android.pushservice.action.PUSH_SERVICE" />
             </intent-filter>
         </service>
+
+        <service
+            android:name="com.baidu.android.pushservice.CommandService"
+            android:exported="true" />
+
         <!-- push结束 -->
+
+        <!-- AppID -->
+        <meta-data
+            android:name="APPID"
+            android:value="1"/>
 
         <!-- 友盟统计api key-->
 
@@ -634,23 +624,83 @@
             android:value="55a5cd3f67e58e5412002143"/>
 
         <!--         发布时用 -->
-       <!-- <meta-data
-            android:name="UMENG_APPKEY"
-            android:value="55adf1ed67e58ec65e001171"/>-->
+        <!-- <meta-data
+             android:name="UMENG_APPKEY"
+             android:value="55adf1ed67e58ec65e001171"/>-->
 
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="zcdh" />
+
         <!-- 百度地图api_key -->
         <!-- 开发时用 -->
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="IEAdy848YvtjH9iVkGuVdbn2" />
-
         <!-- 发布时用 -->
         <!--<meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="fRAZ70c74qQHYmrOGQAANfzy" />-->
+
+        <!-- 设置环信应用的appkey  开发时用
+        <service android:name="com.easemob.chat.EMChatService" />
+        <meta-data
+            android:name="EASEMOB_APPKEY"
+            android:value="zcdh#zcdh-test" />
+        -->
+        <!-- 设置环信应用的appkey  预览环境时用 -->
+        <service android:name="com.easemob.chat.EMChatService" />
+        <meta-data
+            android:name="EASEMOB_APPKEY"
+            android:value="zcdh#zcdh-preview" />
+
+        <!-- 设置环信应用的appkey  正式版发布时用 -->
+        <!--<service android:name="com.easemob.chat.EMChatService" />
+        <meta-data
+            android:name="EASEMOB_APPKEY"
+            android:value="zcdh#zcdh-release" />-->
+
+        <!-- 声明sdk所需的receiver -->
+        <receiver android:name="com.easemob.chat.EMMonitorReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+                <data android:scheme="package"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+
+        <!-- 环信对应的界面Activity-->
+
+        <activity
+            android:name=".app.activities.messages.ChatActivity_"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name="com.huanxin.activity.ImageGridActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.huanxin.activity.ShowBigImage"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBar"/>
+        <activity
+            android:name="com.huanxin.activity.ShowNormalFileActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.huanxin.activity.ShowVideoActivity"
+            android:screenOrientation="portrait"/>
+        <!-- 自定义的contextmenu -->
+        <activity
+            android:name="com.huanxin.activity.ContextMenu"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyDialogStyle" >
+        </activity>
+
+
+
     </application>
 
 </manifest>

@@ -1,6 +1,14 @@
 package com.zcdh.mobile.app.activities.detail;
 
-import java.util.ArrayList;
+import com.zcdh.mobile.R;
+import com.zcdh.mobile.api.IRpcJobEnterpriseService;
+import com.zcdh.mobile.app.ZcdhApplication;
+import com.zcdh.mobile.framework.activities.BaseActivity;
+import com.zcdh.mobile.framework.nio.RemoteServiceManager;
+import com.zcdh.mobile.framework.nio.RequestChannel;
+import com.zcdh.mobile.framework.nio.RequestListener;
+import com.zcdh.mobile.utils.StringUtils;
+import com.zcdh.mobile.utils.SystemServicesUtils;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
@@ -13,7 +21,6 @@ import org.androidannotations.annotations.ViewById;
 
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
@@ -23,16 +30,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.zcdh.mobile.R;
-import com.zcdh.mobile.api.IRpcJobEnterpriseService;
-import com.zcdh.mobile.app.ZcdhApplication;
-import com.zcdh.mobile.framework.activities.BaseActivity;
-import com.zcdh.mobile.framework.nio.RemoteServiceManager;
-import com.zcdh.mobile.framework.nio.RequestChannel;
-import com.zcdh.mobile.framework.nio.RequestListener;
-import com.zcdh.mobile.framework.views.ListViewInScrollView;
-import com.zcdh.mobile.utils.StringUtils;
-import com.zcdh.mobile.utils.SystemServicesUtils;
+import java.util.ArrayList;
 
 /**
  * 举报
@@ -56,11 +54,11 @@ public class SuperviseActivity extends BaseActivity implements RequestListener{
 	@ViewById(R.id.remarkEditTxt)
 	EditText remarkEditTxt;
 	
-	ArrayList<String> titles = new ArrayList<String>();
-	ArrayList<String> subTitles = new ArrayList<String>();
+	ArrayList<String> titles = new ArrayList<>();
+	ArrayList<String> subTitles = new ArrayList<>();
 	
 	//诈骗类型
-	ArrayList<String> typeCode = new ArrayList<String>();
+	ArrayList<String> typeCode = new ArrayList<>();
 	
 	int selected = -1;
 	
@@ -75,7 +73,8 @@ public class SuperviseActivity extends BaseActivity implements RequestListener{
 		//
 		jobenterpriseService = RemoteServiceManager.getRemoteService(IRpcJobEnterpriseService.class);
 		
-		SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), getString(R.string.supervise));
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+			getString(R.string.supervise));
 		
 		titles.add("骗子公司");
 		subTitles.add("特点：职位无须有，骗钱骗色");
@@ -163,13 +162,13 @@ public class SuperviseActivity extends BaseActivity implements RequestListener{
 		}
 
 		@Override
-		public View getView(int p, View contentView, ViewGroup arg2) {
+		public View getView(int p, View contentView, ViewGroup parent) {
 
 			Holder h = null;
 			if (contentView == null) {
 				h = new Holder();
 				contentView = LayoutInflater.from(getBaseContext()).inflate(
-						R.layout.supervise_item, null);
+						R.layout.supervise_item, parent,false);
 
 				h.itemName = (TextView) contentView
 						.findViewById(R.id.itemNameText);

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="1"
-    android:background="@color/activity_bg"
+    android:background="@color/font_ee"
     android:scrollbars="vertical" >
 
     <!-- 所有内容margin 10像素 -->
@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="20dp"
+        android:paddingLeft="25dp"
         android:orientation="vertical"
         android:paddingBottom="10dp" >
 
@@ -20,67 +21,64 @@
             android:id="@+id/emptyTipView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
-        <LinearLayout
-            android:id="@+id/contentView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:orientation="vertical"
-            android:visibility="gone" >
-
-            <TextView
+        <TextView
                 android:id="@+id/skill_count"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/add_edu_bg"
+                android:background="@color/font_ee"
                 android:paddingBottom="15dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="15dp"
                 android:paddingTop="10dp"
                 android:text=""
-                android:textColor="@color/font_color"
                 android:textSize="@dimen/font_size_nomarl" >
             </TextView>
+ 	<LinearLayout
+            android:id="@+id/contentView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical" >
+
+            
+        <com.zcdh.mobile.app.views.TagsContainer
+            android:id="@+id/myTagContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp" />
+
+       
 
             <LinearLayout
                 android:id="@+id/addSkill"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/blue_dash_rect"
+                android:layout_marginLeft="8dp"
+                android:background="@drawable/tags"
                 android:clickable="true"
                 android:gravity="left|center_vertical"
                 android:orientation="horizontal"
                 android:paddingBottom="10dp"
                 android:paddingLeft="20dp"
-                android:paddingRight="10dp"
+                android:paddingRight="20dp"
                 android:paddingTop="10dp" >
 
                 <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/more_active"
-                    android:duplicateParentState="true" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:duplicateParentState="true"
+                    android:src="@drawable/add2" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:duplicateParentState="true"
-                    android:text="添加职业技能"
+                    android:text="添加"
                     android:textColor="@color/grey"
                     android:textSize="@dimen/font_size_nomarl" />
             </LinearLayout>
-
-            <com.zcdh.mobile.app.views.TagsContainer
-                android:id="@+id/myTagContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="20dp" />
         </LinearLayout>
     </LinearLayout>
-
 </com.handmark.pulltorefresh.library.PullToRefreshScrollView>

@@ -5,8 +5,10 @@ import com.baidu.location.BDLocationListener;
 import com.baidu.mapapi.model.LatLng;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 import com.zcdh.core.nio.except.ZcdhException;
 import com.zcdh.mobile.R;
@@ -96,6 +98,8 @@ public class LoadingActivity extends Activity implements
 
     private String kREQ_ID_isUseInvitationcode;
 
+    private String kREQ_ID_findJobUserDTO;
+
     private UpdateAppService updateAppService;
 
     private IRpcJobStartService jobStartService;
@@ -104,9 +108,9 @@ public class LoadingActivity extends Activity implements
 
     private static final String TAG = LoadingActivity.class.getSimpleName();
 
-    private static final long ads_delayed = 1500;
+    private static final long ADS_DELAYED = 1500;
 
-    private static final long intervals = 1000;
+    private static final long INTERVALS = 1000;
 
     private IRpcJobAppService service;
 
@@ -188,7 +192,7 @@ public class LoadingActivity extends Activity implements
     }
 
     public void onDestroy() {
-        AnimateFirstDisplayListener.displayedImages.clear();
+        //AnimateFirstDisplayListener.displayedImages.clear();
         if (locationCient != null) {
             locationCient.stop();
         }
@@ -203,19 +207,17 @@ public class LoadingActivity extends Activity implements
     }
 
     private void start() {
-		/*
-		 * 判断上一次 请求间隔 1） 先开始定位， 定位后的下一步是加载广告
-		 */
+        //判断上一次 请求间隔 1） 先开始定位， 定位后的下一步是加载广告
         isUseInvitationcode();
+
         String pre_reqquest_time = SharedPreferencesUtil.getValue(this,
                 kREQUEST_LOCATION_TIME, null);
         if (pre_reqquest_time != null) {
             try {
-                // Date preTime = new Date(preTimeValue);
                 Date preDate = DateUtils
                         .getDateByStrToYMDHMS(pre_reqquest_time);
                 long interval = new Date().getTime() - preDate.getTime();
-                if (interval < intervals) { // 跟上次请求相比较，还在时间间隔内，从缓存中取得图片地址显示
+                if (interval < INTERVALS) { // 跟上次请求相比较，还在时间间隔内，从缓存中取得图片地址显示
                     String cachedAdsUrl = SharedPreferencesUtil.getValue(this,
                             kCACHED_ADS_IMG_URL, null);
                     if (cachedAdsUrl != null) {
@@ -289,14 +291,8 @@ public class LoadingActivity extends Activity implements
      * 加载图片
      */
     private void loadAdsImg(final String url) {
-
-        Message msg =Message.obtain();
-        msg.what = 1;
-        if (!TextUtils.isEmpty(url)) {
-            msg.obj = url;
-        }
         // 显示广告图片
-        handler.sendMessageDelayed(msg, ads_delayed);
+        handler.sendMessage(handler.obtainMessage(1,url));
         // 缓存广告图片地址
         SharedPreferencesUtil.putValue(LoadingActivity.this,
                 kCACHED_ADS_IMG_URL, url);
@@ -308,12 +304,12 @@ public class LoadingActivity extends Activity implements
                         .getDateByFormatYMDHMS(new Date()) + "");
 
         // 3) 登录和检查版本更新
-        handler.sendEmptyMessageDelayed(5, ads_delayed);
+        handler.sendEmptyMessageDelayed(5, ADS_DELAYED);
 
     }
 
     /**
-     * 检查更新
+     * 登录
      */
     void doLogin() {
         LoginHelper.getInstance(this, this).doLogin();
@@ -335,13 +331,27 @@ public class LoadingActivity extends Activity implements
 
     @UiThread
     void doUpgradeDone(boolean shouldUpgrade) {
+
         if (shouldUpgrade) {
             // 显示是否版本更新对话框
-            updateAppService.showNoticeDialog();
+            if (!isFinishing()) {
+                updateAppService.showNoticeDialog();
+            }
         } else {
             COMPLETE_UPGRADE = true;
             checkComplete();
         }
+    }
+
+    /* ================ 2 )登录================ */
+    @Override
+    public void requestLoginFinished(int resultCode, String errorMsg) {
+        if (resultCode == Constants.kLOGIN_RESULT_FAILE) {
+            LoginHelper.doExit(this);
+            Toast.makeText(this, errorMsg, Toast.LENGTH_SHORT).show();
+        }
+        COMPLETE_LOGIN = true;
+        checkComplete();
     }
 
     /**
@@ -354,7 +364,6 @@ public class LoadingActivity extends Activity implements
         if (COMPLETE_LOGIN && COMPLETE_UPGRADE) {
             if (TextUtils.isEmpty(dataString)) {
                 toMainScreen();
-                finish();
             } else {
                 // 跳入指定的页面
                 Bundle data = new Bundle();
@@ -396,17 +405,6 @@ public class LoadingActivity extends Activity implements
         finish();
     }
 
-    /* ================ 2 )登录================ */
-    @Override
-    public void requestLoginFinished(int resultCode, String errorMsg) {
-        if (resultCode == Constants.kLOGIN_RESULT_FAILE) {
-            LoginHelper.doExit(this);
-            Toast.makeText(this, errorMsg, Toast.LENGTH_SHORT).show();
-        }
-        COMPLETE_LOGIN = true;
-        checkComplete();
-    }
-
     private boolean isLocationSuccess = false;
 
     /* ================ 3 )定位 ================ */
@@ -420,9 +418,8 @@ public class LoadingActivity extends Activity implements
         Log.e(TAG, "*************************************************");
         ZcdhApplication.getInstance().setMyLocation(point);
         locationCient.stop();
-		/*
-		 * 2） 加载广告，下一步完成登录、检查更新
-		 */
+
+        //2） 加载广告，下一步完成登录、检查更新
         if (!isLocationSuccess) {
             isLocationSuccess = true;
             doLoadAds();
@@ -450,9 +447,9 @@ public class LoadingActivity extends Activity implements
                 default:
                     break;
             }
-
         }
 
+        //获取邮件和手机号码的正则表达式匹配规则
         if (reqId.equals(kREQ_ID_getMobileAndEmailRegex)) {
             Map<String, String> src = (Map<String, String>) result;
             if (null != result) {
@@ -462,11 +459,9 @@ public class LoadingActivity extends Activity implements
                         src.get(Constants.REGEX_EMAIL_KEY));
             }
         }
+        //获取广告
         if (reqId.equals(kREQ_ID_findFlashScreenByImg)) {
-            List<ImgDTO> imgs = null;
-            if (result != null) {
-                imgs = (List<ImgDTO>) result;
-            }
+            List<ImgDTO> imgs =(List<ImgDTO>) result;
             if (imgs != null && imgs.size() > 0) {
                 ImgDTO img = imgs.get(0);
                 final String url = img.getUrlPre() + "/1/" + img.getImgName();
@@ -474,14 +469,14 @@ public class LoadingActivity extends Activity implements
                 loadAdsImg(url);
             } else {
                 Log.e(TAG, "handler.sendEmptyMessage(5)");
-                handler.sendEmptyMessageDelayed(5, ads_delayed);
+                handler.sendEmptyMessageDelayed(5, ADS_DELAYED);
             }
         }
     }
 
     @Override
     public void onRequestFinished(String reqId) {
-
+        System.out.println("");
     }
 
     @Override
@@ -490,7 +485,7 @@ public class LoadingActivity extends Activity implements
             ZcdhException exc = (ZcdhException) error;
             if ((RequestException.EXC_CODE_SESSION + "").equals(exc
                     .getErrCode())) {
-                ToastUtil.show(exc.getErrMessage());
+//                ToastUtil.show(exc.getErrMessage());
                 toMainScreen();
             }
         }
@@ -505,7 +500,6 @@ public class LoadingActivity extends Activity implements
     @Override
     public void onDownloadFinished() {
         toMainScreen();
-        finish();
     }
 
     @Override
@@ -520,7 +514,6 @@ public class LoadingActivity extends Activity implements
     @Override
     public void onCancel() {
         toMainScreen();
-        finish();
     }
 
     @Override
@@ -548,10 +541,14 @@ public class LoadingActivity extends Activity implements
         animationSet.addAnimation(scaleAnimation);
         animationSet.addAnimation(alphaAnimation);
         welcomeImg.startAnimation(animationSet);
-        handler.sendMessageDelayed(Message.obtain(handler,2,url),500);
+        handler.sendMessage(Message.obtain(handler,2,url));
     }
 
+
     private final MyHandler handler = new MyHandler(this);
+
+    /**
+     *
 
     private static class AnimateFirstDisplayListener extends
             SimpleImageLoadingListener {
@@ -572,18 +569,18 @@ public class LoadingActivity extends Activity implements
             }
         }
     }
-
+     */
     private static class MyHandler extends Handler {
 
         //使用弱引用来防止内存泄露
-        private final WeakReference<LoadingActivity> mActivity;
+        private final WeakReference<LoadingActivity> reference;
 
         private DisplayImageOptions options;
 
-        private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
+        //private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
 
         public MyHandler(LoadingActivity activity) {
-            mActivity = new WeakReference<>(activity);
+            reference = new WeakReference<>(activity);
             options = new DisplayImageOptions.Builder()
                     .bitmapConfig(Bitmap.Config.RGB_565).cacheInMemory(true)
                     .cacheOnDisk(true).considerExifParams(true).build();
@@ -591,33 +588,60 @@ public class LoadingActivity extends Activity implements
 
         @Override
         public void handleMessage(Message msg) {
-            LoadingActivity activity = mActivity.get();
+            LoadingActivity activity = reference.get();
+            //使用弱引用时，一定要判断是否为空，因为对象可能被回收
             switch (msg.what) {
                 case 1:
                     if (msg.obj != null) {
                         String url = msg.obj.toString();
+                        if (activity!=null)
                         activity.animaWelcome(url);
                     }
                     break;
                 case 2:
-                    activity.adsImg.setVisibility(View.VISIBLE);
-                    AlphaAnimation alphaAnimation2 = new AlphaAnimation(0.4f, 1.0f);
-                    alphaAnimation2.setDuration(1000);
-                    activity.adsImg.startAnimation(alphaAnimation2);
-                    String url = (String) msg.obj;
-                    ImageLoader.getInstance().displayImage(url, activity.adsImg,
-                            options, animateFirstListener);
+                    if (activity != null) {
+                        activity.adsImg.setVisibility(View.VISIBLE);
+                        AlphaAnimation alphaAnimation2 = new AlphaAnimation(0.4f, 1.0f);
+                        alphaAnimation2.setDuration(1000);
+                        activity.adsImg.startAnimation(alphaAnimation2);
+                        String url = (String) msg.obj;
+                        ImageLoader.getInstance().displayImage(url, activity.adsImg,
+                                options,new ImageLoadingListener(){
+                                    @Override
+                                    public void onLoadingComplete(String imageUri, View view,Bitmap loadedImage) {
+                                        if (loadedImage != null) {
+                                            ImageView imageView = (ImageView) view;
+                                            FadeInBitmapDisplayer.animate(imageView,1000);
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onLoadingCancelled(String s, View view) {
+
+                                    }
+
+                                    @Override
+                                    public void onLoadingFailed(String s, View view, FailReason failReason) {
+
+                                    }
+
+                                    @Override
+                                    public void onLoadingStarted(String s, View view) {
+
+                                    }
+                                });
+
+                    }
                     break;
                 case 5:
-                    activity.doLogin();
-                    activity.doUpgrade();
+                    if (activity != null) {
+                        activity.doLogin();
+                        activity.doUpgrade();
+                    }
                     break;
                 default:
                     break;
             }
         }
     }
-
-    ;
-
 }

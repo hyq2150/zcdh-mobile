@@ -12,102 +12,81 @@
     <LinearLayout
         android:id="@+id/rltitle_and_time"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="3" >
+        android:layout_marginBottom="3dp"
+        android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/title"
                 style="@style/list_item_title"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="0.5dp"
-            android:layout_height="16dp"
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
-            android:layout_marginTop="3dp"
-            android:background="@color/black" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:layout_weight="3.5" >
-
-            <TextView
-                android:id="@+id/salary"
-                style="@style/list_item_salary_range1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:text="SSSSSSSSS" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="3.5" >
+                android:text="XXXXXXXXXXXXXXX" />
 
             <TextView
                 android:id="@+id/publish_time"
                 style="@style/list_item_time"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right|bottom"
-                android:gravity="right"
                 android:singleLine="true"
                 android:text="XXXXXXX" />
-        </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/rlcontent_and_salary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rltitle_and_time"
-        android:layout_marginTop="-2dp" >
+        >
+
+        <TextView
+            android:id="@+id/salary"
+            style="@style/list_item_salary_range1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="26dp"
+            android:singleLine="true"
+            android:text="SSSSSSSSS" />
+
 
         <TextView
             android:id="@+id/content"
-            style="@style/list_item_content"
+            style="@style/list_item_note"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:gravity="left"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@id/salary"
+            android:text="场导航职职场导航职XXX"
             android:singleLine="true"
-            android:text="场导航职职场导航职"
-            android:visibility="visible" />
+
+            />
 
         <ImageView
             android:id="@+id/renzhengImg"
             android:layout_width="23dp"
             android:layout_height="23dp"
-            android:layout_gravity="left"
+            android:layout_centerVertical="true"
             android:paddingBottom="8dp"
+            android:layout_toRightOf="@+id/content"
             android:src="@drawable/yrzicon"
-            android:visibility="visible" />
-    </LinearLayout>
+            />
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/rl_note_and_distance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rlcontent_and_salary"
-        android:layout_marginTop="-6dp" >
+        android:layout_marginTop="-2dp" >
 
         <TextView
             android:id="@+id/distance"
-            style="@style/list_item_distance"
+            style="@style/list_item_note"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="距离" />
@@ -122,13 +101,29 @@
             android:background="@color/grey1" />
 
         <TextView
-            android:id="@+id/location_and_education_and_matchrate"
+            android:id="@+id/location"
             style="@style/list_item_note"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="地址以及学历" />
 
         <View
+            android:layout_width="0.3dp"
+            android:layout_height="14dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/grey1" />
+
+        <TextView
+            android:id="@+id/education_and_matchrate"
+            style="@style/list_item_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="地址以及学历" />
+
+        <View
+            android:id="@+id/line2"
             android:layout_width="0.3dp"
             android:layout_height="14dp"
             android:layout_marginLeft="3dp"

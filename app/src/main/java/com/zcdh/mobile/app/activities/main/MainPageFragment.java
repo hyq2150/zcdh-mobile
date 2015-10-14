@@ -3,13 +3,21 @@
  */
 package com.zcdh.mobile.app.activities.main;
 
-import com.makeramen.RoundedImageView;
+import com.easemob.EMConnectionListener;
+import com.easemob.EMError;
+import com.easemob.EMEventListener;
+import com.easemob.EMNotifierEvent;
+import com.easemob.chat.EMChatManager;
+import com.easemob.chat.EMMessage;
+import com.huanxin.applib.controller.HXSDKHelper;
 import com.umeng.analytics.MobclickAgent;
-import com.viewpagerindicator.IconPagerAdapter;
 import com.zcdh.mobile.R;
-import com.zcdh.mobile.api.IRpcJobUservice;
-import com.zcdh.mobile.api.model.JobUserPortraitDTO;
+import com.zcdh.mobile.api.IRpcAppConfigService;
+import com.zcdh.mobile.api.model.AdminAppConfigModelDTO;
 import com.zcdh.mobile.app.Constants;
+import com.zcdh.mobile.app.ZcdhApplication;
+import com.zcdh.mobile.app.activities.auth.LoginActivity_;
+import com.zcdh.mobile.app.activities.auth.LoginHelper;
 import com.zcdh.mobile.app.activities.base.BaseFragment;
 import com.zcdh.mobile.app.activities.main.MenuDialog.MenuDialogListener;
 import com.zcdh.mobile.app.activities.messages.MessagesFragment;
@@ -26,45 +34,27 @@ import com.zcdh.mobile.app.views.NewViewPager;
 import com.zcdh.mobile.framework.nio.RemoteServiceManager;
 import com.zcdh.mobile.framework.nio.RequestChannel;
 import com.zcdh.mobile.framework.nio.RequestListener;
-import com.zcdh.mobile.utils.ImageUtils;
 import com.zcdh.mobile.utils.SharedPreferencesUtil;
-import com.zcdh.mobile.utils.StringUtils;
-import com.zcdh.mobile.utils.UnitTransfer;
+import com.zcdh.mobile.utils.SystemServicesUtils;
+import com.zcdh.mobile.utils.SystemUtil;
+import com.zcdh.mobile.widget.IndicatorLayout;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
-import android.annotation.SuppressLint;
-import android.content.BroadcastReceiver;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.os.AsyncTask;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.TranslateAnimation;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.RadioGroup.OnCheckedChangeListener;
-import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,66 +62,31 @@ import java.util.List;
 /**
  * @author jeason, 2014-6-11 下午2:54:28 程序主框架Fragment
  *         内嵌附近NearbyMapFragment，消息MessagesFragment，发现FragmentNewsModel
- *
  */
-@SuppressLint("InflateParams")
 @EFragment(R.layout.main_frame)
 public class MainPageFragment extends BaseFragment implements
-        RequestListener, MenuDialogListener {
+        RequestListener, MenuDialogListener,
+        MessagesFragment.OnMessageListener, EMEventListener {
 
     private static final String TAG = MainPageFragment.class.getSimpleName();
 
-    private String kREQ_ID_findUserPortrait;
+    //获取模块配置
+    private IRpcAppConfigService appConfigService;
 
-    private IRpcJobUservice jobUservice;
-
-    @ViewById(R.id.rl_nav)
-    RelativeLayout rl_nav;
+    @ViewById(R.id.il_main)
+    IndicatorLayout mIndicatorLayout;
 
     @ViewById(R.id.attractPointImg)
     ImageView attractPointImg;
 
-    @ViewById(R.id.rg_nav_content)
-    RadioGroup rg_nav_content;
-
-    @ViewById(R.id.iv_nav_indicator)
-    LinearLayout iv_nav_indicator;
-
-    @ViewById(R.id.iv_nav_left)
-    ImageView iv_nav_left;
-
-    @ViewById(R.id.iv_nav_right)
-    ImageView iv_nav_right;
-
-    @ViewById(R.id.head)
-    RoundedImageView head;
-
-    private int titleWidth;
-
-    private int indicatorWidth = 48;// px
-
-    private LayoutInflater mInflater;
-
-    private int currentIndicatorLeft = 0;
-
-    protected String[] tabTitle = {"附近", "消息", "发现"}; // 标题
-
-    protected int screenHeight;
-
-    protected int screenWidth;
-
-    protected boolean specialIndex;
-
-    private MenuDialog menuDialog;
-
     @ViewById(R.id.pager)
     NewViewPager mViewPager;
 
-    private List<Fragment> fragments = new ArrayList<Fragment>();
+    private MenuDialog menuDialog;
 
-    // 头像
-    @ViewById(R.id.btn_menu)
-    ImageButton btn_menu;
+    private List<Fragment> fragments = new ArrayList<>();
+
+    private List<String> titles = new ArrayList<>();
 
     /**
      * 附近
@@ -152,53 +107,56 @@ public class MainPageFragment extends BaseFragment implements
 
     private NewMainActivity mainActivity;
 
-    private BroadcastReceiver reconnectReceiver;
+    private String KREQ_ID_FIND_APPCONFIG_MODULE_MAIN_PAGE;
+    private String KREQ_ID_FIND_APPCONFIG_MODULE_BY_ID;
 
-    private boolean hasNewMsg = false;
+    //环信连接监听
+    private MyConnectionListener connectionListener = null;
 
     public NearbyMapFragment getNearbyFragment() {
-        return this.nearByFragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        mainActivity = (NewMainActivity) getActivity();
-
-        DisplayMetrics metrics = new DisplayMetrics();
-        mainActivity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
-        screenHeight = metrics.heightPixels;
-        screenWidth = metrics.widthPixels;
-        jobUservice = RemoteServiceManager
-                .getRemoteService(IRpcJobUservice.class);
-
-        super.onCreate(savedInstanceState);
-
+        return nearByFragment;
     }
 
     @Override
     public void onResume() {
-        // TODO Auto-generated method stub
         super.onResume();
         MobclickAgent.onPageStart(TAG);
+        // register the event listener when enter the foreground
+        EMChatManager.getInstance().registerEventListener(this,
+                new EMNotifierEvent.Event[]{EMNotifierEvent.Event.EventNewMessage,
+                        EMNotifierEvent.Event.EventOfflineMessage,
+                        EMNotifierEvent.Event.EventConversationListChanged});
     }
 
     @Override
     public void onPause() {
-        // TODO Auto-generated method stub
         super.onPause();
         MobclickAgent.onPageEnd(TAG);
     }
 
+    @Override
+    public void onStop() {
+        EMChatManager.getInstance().unregisterEventListener(this);
+        super.onStop();
+    }
 
     @Override
     public void onDestroy() {
-//        getActivity().unregisterReceiver(reconnectReceiver);
         super.onDestroy();
+
+        if (connectionListener != null) {
+            EMChatManager.getInstance().removeConnectionListener(connectionListener);
+        }
     }
 
     @AfterViews
     void bindViews() {
+
+        mainActivity = (NewMainActivity) getActivity();
+
+        appConfigService = RemoteServiceManager
+                .getRemoteService(IRpcAppConfigService.class);
+
         menuDialog = new MenuDialog(mainActivity, this);
         if (Build.VERSION.SDK_INT >= 10) {
             menuDialog
@@ -210,405 +168,267 @@ public class MainPageFragment extends BaseFragment implements
                         }
                     });
         }
-
         nearByFragment = new NearbyMapFragment_();
         messageFragment = new MessagesFragment_();
         explorerFragment = new FragmentNewsModel_();
-        messageFragment.setCallbacker(this);
+        messageFragment.setOnMessageListener(this);
         fragments.add(nearByFragment);
         fragments.add(messageFragment);
         fragments.add(explorerFragment);
 
         // 内嵌Fragment必须传入getChildFragmentManager() 否则导致界面操作异常
-        adapter = new MainFragmentsAdapter(getChildFragmentManager());
+        adapter = new MainFragmentsAdapter(getChildFragmentManager(), fragments, getActivity());
         mViewPager.setAdapter(adapter);
         mViewPager.setOffscreenPageLimit(fragments.size());
         mViewPager.setPageTransformer(true, new PagerTransformer());
+
         // 初始化Tabbar
         initTabBar();
-        ((RadioButton) rg_nav_content.getChildAt(0)).performClick();
         setListener();
 
-        // 加载头像
-        if (getUserId() > 0) {
-            loadPortal();
-        } else {
+        if (getUserId() < 0) {
             // 判断是否自动显示菜单
             if (!SharedPreferencesUtil.getValue(getActivity(),
                     Constants.kAUTO_MENU, false)) {
                 menuDialog.show();
             }
         }
+
+        //如果已经登录，则根据不同用户角色，获取服务端的动态模块配置
+        if (getUserId() > 1) {
+            refreshAppModule();
+        }
+        connectionListener = new MyConnectionListener();
+        EMChatManager.getInstance().addConnectionListener(connectionListener);
+    }
+
+    @Background
+    void findAppConfigModelByID(long modelID) {
+        appConfigService
+                .findAppConfigModelByParentId(
+                        ZcdhApplication.getInstance().getZcdh_uid(),
+                        modelID,
+                        ZcdhApplication.getInstance().getMyLocation().latitude,
+                        ZcdhApplication.getInstance().getMyLocation().longitude,
+                        Constants.DEVICES_TYPE,
+                        SystemUtil.getVerCode(mainActivity),
+                        SystemServicesUtils.getAppID(mainActivity))
+                .identify(
+                        KREQ_ID_FIND_APPCONFIG_MODULE_BY_ID = RequestChannel
+                                .getChannelUniqueID(),
+                        MainPageFragment.this);
     }
 
     /**
-     * 个人头像
-     */
+     *
+
     @Background
-    public void loadPortal() {
-        if (getUserId() > 0) {
-            jobUservice
-                    .findUserPortrait(getUserId())
-                    .identify(
-                            kREQ_ID_findUserPortrait = RequestChannel
-                                    .getChannelUniqueID(),
-                            this);
-        } else {
-            setPortrait(null);
-        }
+    void findAppConfigModelInfo() {
+        appConfigService.findAllAppConfigModelInfo(
+                ZcdhApplication.getInstance().getZcdh_uid(),
+                ZcdhApplication.getInstance().getMyLocation().latitude,
+                ZcdhApplication.getInstance().getMyLocation().longitude,
+                Constants.DEVICES_TYPE,
+                SystemUtil.getVerCode(mainActivity),
+                SystemServicesUtils.getAppID(mainActivity)
+        ).identify(
+                KREQ_ID_FIND_APPCONFIG_MODULE_MAIN_PAGE = RequestChannel
+                        .getChannelUniqueID(),
+                MainPageFragment.this);
     }
-
-    @UiThread
-    void setPortrait(final String url) {
-        if (StringUtils.isBlank(url)) {
-            head.setImageResource(R.drawable.menumain_normal);
-        } else {
-            new AsyncTask<Void, Void, Bitmap>() {
-
-                @Override
-                protected Bitmap doInBackground(Void... params) {
-                    try {
-                        return ImageUtils.GetBitmapByUrl(url);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    return null;
-                }
-
-                protected void onPostExecute(Bitmap result) {
-                    if (result != null) {
-                        head.setImageBitmap(result);
-//						btn_menu.setVisibility(View.GONE);
-                        attractPointImg.setVisibility(View.GONE);
-//						head.setVisibility(View.VISIBLE);
-                    }
-                }
-            }.execute();
-        }
-    }
-
-    /*public void setPortraitByBitmap(Bitmap bitmap) {
-        if (bitmap != null) {
-            head.setImageBitmap(bitmap);
-        }
-    }
-*/
+     */
     private void setListener() {
 
-        mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+       /* mIndicatorLayout.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
-
-                if (rg_nav_content != null
-                        && rg_nav_content.getChildCount() > position) {
-                    ((RadioButton) rg_nav_content.getChildAt(position))
-                            .performClick();
-                    nearByFragment.closeAction();
-                }
+                nearByFragment.closeAction();
                 // 加载消息数据
                 if (position == 1) {
                     messageFragment.loadData();
                 }
-
                 // 加载发现的数据
                 if (position == 2) {
                     MobclickAgent.onEvent(mainActivity, Constants.UMENG_ENTER_FIND_PAGE);
                     explorerFragment.loadData();
                 }
             }
-        });
-
-        rg_nav_content
-                .setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(RadioGroup group, int checkedId) {
-                        if (rg_nav_content.getChildAt(checkedId) != null) {
-
-                            if (specialIndex) {
-                                specialIndex = false;
-                                int currentIndicatorLeft_first = screenWidth
-                                        / adapter.getCount()
-                                        * mViewPager.getCurrentItem();
-                                indicatorAnimation(currentIndicatorLeft_first);
-
-                                mViewPager.setCurrentItem(checkedId, false); // ViewPager
-
-                            } else {
-
-                                indicatorAnimation(((RadioButton) rg_nav_content
-                                        .getChildAt(checkedId))
-                                        .getLeft());
-
-                                mViewPager.setCurrentItem(checkedId); // ViewPager
-                                // 跟随一起
-                                // 切换
-
-                                // 记录当前 下标的距最左侧的 距离
-                                currentIndicatorLeft = ((RadioButton) rg_nav_content
-                                        .getChildAt(checkedId)).getLeft();
-                            }
-
-                        }
-                    }
-                });
-    }
-
-    /**
-     * 指示器执行位移动画
-     * @param xDelta
-     */
-    private void indicatorAnimation(int xDelta) {
-        TranslateAnimation animation = new TranslateAnimation(
-                currentIndicatorLeft,
-                xDelta, 0f, 0f);
-        animation
-                .setInterpolator(new LinearInterpolator());
-        animation.setDuration(300);
-        animation.setFillAfter(true);
-
-        // 执行位移动画
-        iv_nav_indicator.startAnimation(animation);
+        });*/
     }
 
     private void initTabBar() {
-        DisplayMetrics dm = new DisplayMetrics();
-        mainActivity.getWindowManager().getDefaultDisplay().getMetrics(dm);
-        Log.i(TAG, "screen width:" + dm.widthPixels);
-
-        titleWidth = dm.widthPixels / (tabTitle.length + 1);
-
-        Log.i(TAG, "indicatorWidth:" + titleWidth);
-        indicatorWidth = UnitTransfer.dip2px(mainActivity, indicatorWidth);
-
-        RelativeLayout.LayoutParams cursor_Params = (RelativeLayout.LayoutParams) iv_nav_indicator
-                .getLayoutParams();
-        cursor_Params.width = titleWidth;// 初始化滑动下标的宽
-        iv_nav_indicator.setLayoutParams(cursor_Params);
-        // mHsv.setSomeParam(rl_nav, iv_nav_left, iv_nav_right, getActivity());
-
-        // 获取布局填充器
-        mInflater = (LayoutInflater) getActivity().getSystemService(
-                Context.LAYOUT_INFLATER_SERVICE);
-
-        // 另一种方式获取
-        // LayoutInflater mInflater = LayoutInflater.from(this);
-
-        initNavigationHSV();
-
-        mViewPager.setOffscreenPageLimit(tabTitle.length);
+        mIndicatorLayout.setViewPager(mViewPager);
+        setTabTextStyle();
     }
 
-    private void initNavigationHSV() {
-
-        rg_nav_content.removeAllViews();
-
-        for (int i = 0; i < tabTitle.length; i++) {
-            RadioButton rb = (RadioButton) mInflater.inflate(
-                    R.layout.main_tab_nav_radiogroup_item, null);
-            rb.setId(i);
-            rb.setText(tabTitle[i]);
-            rb.setTextColor(rg_nav_content.getResources().getColor(R.color.white));
-            RadioGroup.LayoutParams layout = new RadioGroup.LayoutParams(
-                    titleWidth, LayoutParams.MATCH_PARENT);
-            // layout.leftMargin = titleWidth/2;
-			/*
-			 * if(i==0){ layout.gravity = Gravity.RIGHT; }
-			 * if(i==tabTitle.length-1){ layout.gravity = Gravity.LEFT; }
-			 */
-            rb.setLayoutParams(layout);
-
-            rg_nav_content.addView(rb);
-        }
-
+    public void setTabTextStyle() {
+        mIndicatorLayout.setTextColorResource(R.color.white);
+        mIndicatorLayout.setTextSize((int) getResources().getDimension(R.dimen.maintab_title_size));
     }
 
-    @Click(R.id.menuToggleLl)
+    @Click(R.id.fl_menu)
     void onMenuToggler() {
         nearByFragment.closeAction();
         menuDialog.show();
     }
 
-    @Click(R.id.btn_menu)
-    void onMenuOpen() {
-        // mainActivity.onToggleMenu();
-        nearByFragment.closeAction();
-        menuDialog.show();
-    }
-
-    @Click(R.id.head)
-    void onPortraitClick() {
-        // mainActivity.onToggleMenu();
-        nearByFragment.closeAction();
-        menuDialog.show();
-    }
-
     // MessagesFragment 回调显示红点
-    public void notifyUnReaded() {
-
-        hasNewMsg = true;
-        rg_nav_content.getChildAt(1)
-                .setBackgroundResource(R.drawable.red_point);
-
+    //新的未读消息
+    public void onNotifyUnReaded() {
+        if (mIndicatorLayout.getChildCount() > 2) {
+            mIndicatorLayout.setSingleTabBackgroundResId(1, R.drawable.red_point);
+        }
     }
 
-    public void notifyReaded() {
-
-        rg_nav_content.getChildAt(1).setBackgroundResource(R.color.blues);
-        rg_nav_content.getChildAt(0).setBackgroundResource(R.color.blues);
-        rg_nav_content.getChildAt(2).setBackgroundResource(R.color.blues);
+    //消息已读，没有新的消息
+    public void onNotifyReaded() {
+        if (mIndicatorLayout.getChildCount() > 2) {
+            mIndicatorLayout.setSingleTabBackgroundResId(1, R.color.transparent);
+        }
     }
 
     /**
-     * 刷新消息
+     * 刷新模块
      */
-    public void refreshMessage() {
-        Log.i(TAG, "refreshMessage");
-        messageFragment.findMsgs();
+    public void refreshAppModule() {
+        findAppConfigModelByID(SharedPreferencesUtil.getValue(getActivity(),Constants.APPCONFIG_CUSTOM_ITEM_CODE_MAIN,0l));
     }
 
+    /**
+     * 网络状态改变时，重新加载数据
+     */
     public void refreshData() {
         messageFragment.findMsgs();
         explorerFragment.doLoadAds();
         nearByFragment.loadData();
+        refreshHeadTips();
+    }
+
+    /**
+     * 更新头像旁的小红点
+     */
+    public void refreshHeadTips() {
+        int visible = getUserId() > 0 ? View.INVISIBLE : View.VISIBLE;
+        attractPointImg.setVisibility(visible);
     }
 
     public void reloadPostForNearby() {
         nearByFragment.loadData();
     }
 
-    /** ========== onActivityResult dispatcher =========== */
+    /**
+     * ========== onActivityResult dispatcher ===========
+     */
     public void onResultDispatch(int requestCode, int resultCode, Intent data) {
 
         if (requestCode == AdvancedSearchActivity.kREQUEST_ADVANCE_SEARCH) {
-            onResultAdvanceCondition(resultCode, data);
+            nearByFragment.onResultCondition(resultCode, data);
         }
         if (requestCode == AreaActivity.kREQUEST_AREA) {
-            onResultArea(resultCode, data);
+            nearByFragment.onResultArea(resultCode, data);
         }
 
         if (requestCode == AddMoreDiscoverActivity.kREQUEST_ADD_DISCOVERY) {
-            onResultAddDiscovery(resultCode, data);
+            explorerFragment.onResultAddDiscovery(resultCode, data);
         }
         if (requestCode == AddMoreFuncActivity.kREQUEST_ADD_FUNCS) {
-            onResultAddFuncs(resultCode, data);
+            nearByFragment.onResultAddFuncs(resultCode, data);
+        }
+        if (requestCode == Constants.REQUEST_CODE_MESSAGE) {
+            messageFragment.checkHuanxinMsg();
         }
     }
 
-    /**
-     * 添加更多功能
-     *
-     * @param resultCode
-     */
-    void onResultAddFuncs(int resultCode, Intent data) {
-        nearByFragment.onResultAddFuncs(resultCode, data);
-    }
+    static class MainFragmentsAdapter extends FragmentPagerAdapter {
 
-    /**
-     * 添加发现模块
-     *
-     * @param resultCode
-     * @param Data
-     */
-    void onResultAddDiscovery(int resultCode, Intent Data) {
-        explorerFragment.onResultAddDiscovery(resultCode, Data);
-    }
+        private boolean isDefault = true;
 
-    /**
-     * 高级搜索条件
-     *
-     * @param resultCode
-     * @param data
-     */
-    void onResultAdvanceCondition(int resultCode, Intent data) {
-        nearByFragment.onResultCondition(resultCode, data);
-    }
+        private List<Fragment> list;
 
-    /**
-     * 选择地区
-     *
-     * @param resultCode
-     * @param data
-     */
-    void onResultArea(int resultCode, Intent data) {
-        nearByFragment.onResultArea(resultCode, data);
-    }
+        private List<String> mTitleList;
 
-    private class MainFragmentsAdapter extends FragmentPagerAdapter implements
-            IconPagerAdapter {
+        private Context mContext;
 
-        int[] titleRes = {R.string.nearby, R.string.message, R.string.discover};
+        public static final int[] TITLE_RES_ARRAYs = {R.string.nearby, R.string.message,
+                R.string.discover};
 
-        public MainFragmentsAdapter(FragmentManager fm) {
+        public MainFragmentsAdapter(FragmentManager fm, List<Fragment> list, Context context) {
             super(fm);
+            this.list = list;
+            mContext = context;
         }
 
-        @Override
-        public int getIconResId(int index) {
-            if (index == 1 && hasNewMsg && mViewPager.getCurrentItem() != 1) {
-                return R.drawable.redpoint;
-            }
-            return 0;
-
+        public MainFragmentsAdapter(FragmentManager fm, List<Fragment> list, List<String> titleList,
+                                    Context context) {
+            this(fm, list, context);
+            mTitleList = titleList;
+            isDefault = false;
         }
 
         @Override
         public Fragment getItem(int p) {
-            return fragments.get(p);
+            return list.get(p);
         }
 
         @Override
         public int getCount() {
 
-            return fragments.size();
+            return list.size();
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return getString(titleRes[position]);
+            return isDefault ? mContext.getString(TITLE_RES_ARRAYs[position])
+                    : mTitleList.get(position);
         }
 
+        public void setData(boolean isDefault,List<String> titles) {
+            this.isDefault = isDefault;
+            this.mTitleList=titles;
+        }
     }
 
     @Override
     public void onRequestStart(String reqId) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onRequestSuccess(String reqId, Object result) {
-        if (reqId.equals(kREQ_ID_findUserPortrait)) {
-            if (result != null) {
-                JobUserPortraitDTO portraitDTO = (JobUserPortraitDTO) result;
-                if (portraitDTO.getPortrait() != null
-                        && !StringUtils.isBlank(portraitDTO.getPortrait()
-                        .getMedium())) {
-                    setPortrait(portraitDTO.getPortrait().getMedium());
-                } else {
-                    setPortrait(null);
+        //解析app模块配置返回结果
+        if (reqId.equals(KREQ_ID_FIND_APPCONFIG_MODULE_MAIN_PAGE)) {
+            ArrayList<AdminAppConfigModelDTO> appConfigList = (ArrayList<AdminAppConfigModelDTO>) result;
+            if (appConfigList != null && appConfigList.size() > 0) {
+                for (AdminAppConfigModelDTO dto : appConfigList) {
+                    if (dto.getCustom_item_code() != null && dto.getCustom_item_code().equals(Constants.APPCONFIG_CUSTOM_ITEM_CODE_MAIN)) {
+                        findAppConfigModelByID(dto.getId());
+                        break;
+                    }
                 }
+            }
+        }
+
+        if (reqId.equals(KREQ_ID_FIND_APPCONFIG_MODULE_BY_ID)) {
+            List<AdminAppConfigModelDTO> appConfigList = (List<AdminAppConfigModelDTO>) result;
+            if (appConfigList != null && appConfigList.size() > 0) {
+                findMainPageModel(appConfigList);
             }
         }
     }
 
     @Override
     public void onRequestFinished(String reqId) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onRequestError(String reqID, Exception error) {
-        // TODO Auto-generated method stub
 
     }
 
-    public void reloadMenuDialog() {
-        menuDialog.dismiss();
-        menuDialog = new MenuDialog(mainActivity, this);
+    public void reloadMenuDialog(boolean needRefreshAppConfig) {
+        menuDialog.loadAllData(needRefreshAppConfig);
         menuDialog.show();
-
     }
 
     @Override
@@ -622,4 +442,145 @@ public class MainPageFragment extends BaseFragment implements
         }
     }
 
+    /**
+     * 解析主页面模块的配置信息
+     */
+    private void findMainPageModel(List<AdminAppConfigModelDTO> list) {
+        List<AdminAppConfigModelDTO> pageModels = new ArrayList<>();
+        for (AdminAppConfigModelDTO dto : list) {
+            pageModels.add(dto);
+        }
+
+        if (!pageModels.isEmpty()) {
+            initFragmentsAndTitles(pageModels);
+        }
+    }
+
+    private void initFragmentsAndTitles(List<AdminAppConfigModelDTO> pageModels) {
+        fragments.clear();
+        titles.clear();
+        for (AdminAppConfigModelDTO dto : pageModels) {
+            if (dto.getModelUrl() != null) {
+                if (dto.getModelUrl().contains(NearbyMapFragment_.class.getSimpleName())) {
+                    if (nearByFragment == null) {
+                        nearByFragment = new NearbyMapFragment_();
+                    }
+                    SharedPreferencesUtil
+                            .putValue(getActivity(), NearbyMapFragment.class.getSimpleName(),
+                                    dto.getId());
+                    fragments.add(nearByFragment);
+                    titles.add(dto.getModel_name());
+                } else if (dto.getModelUrl().contains(MessagesFragment_.class.getSimpleName())) {
+                    if (messageFragment == null) {
+                        messageFragment = new MessagesFragment_();
+                    }
+                    SharedPreferencesUtil
+                            .putValue(getActivity(), MessagesFragment.class.getSimpleName(),
+                                    dto.getId());
+                    fragments.add(messageFragment);
+                    titles.add(dto.getModel_name());
+                } else if (dto.getModelUrl().contains(FragmentNewsModel_.class.getSimpleName())) {
+                    if (explorerFragment == null) {
+                        explorerFragment = new FragmentNewsModel_();
+                    }
+                    SharedPreferencesUtil
+                            .putValue(getActivity(), FragmentNewsModel.class.getSimpleName(),
+                                    dto.getId());
+                    fragments.add(explorerFragment);
+                    titles.add(dto.getModel_name());
+                } else {
+                    fragments.add(SubMainPageFragment.newInstance());
+                    titles.add(dto.getModel_name());
+                }
+            }
+        }
+
+        if (fragments.size() > 0) {
+            if (adapter==null) {
+                adapter = new MainFragmentsAdapter(getChildFragmentManager(), fragments, titles,
+                        getActivity());
+            }
+            adapter.setData(false,titles);
+            adapter.notifyDataSetChanged();
+            mViewPager.setAdapter(adapter);
+            //这里编写重新加载ViewPager的代码
+            mIndicatorLayout.setViewPager(mViewPager);
+        }
+    }
+
+    /**
+     * 环信连接监听listener
+     */
+    public class MyConnectionListener implements EMConnectionListener {
+
+        @Override
+        public void onConnected() {
+            new Thread() {
+                @Override
+                public void run() {
+                    HXSDKHelper.getInstance().notifyForRecevingEvents();
+                }
+            }.start();
+        }
+
+        @Override
+        public void onDisconnected(final int error) {
+            mainActivity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (error == EMError.CONNECTION_CONFLICT) {
+                        // 显示帐号在其他设备登陆dialog
+                        showConflictDialog();
+                    }
+                }
+            });
+        }
+    }
+
+    private AlertDialog.Builder conflictBuilder;
+
+    /**
+     * 账号在其他设备登录，会自动弹出
+     */
+    private void showConflictDialog() {
+//        DemoHXSDKHelper.getInstance().logout(false, null);
+        LoginHelper.doExit(mainActivity);
+        String st = getResources().getString(R.string.Logoff_notification);
+        if (!mainActivity.isFinishing()) {
+            try {
+                if (conflictBuilder == null) {
+                    conflictBuilder = new AlertDialog.Builder(mainActivity);
+                }
+                conflictBuilder.setTitle(st);
+                conflictBuilder.setMessage(R.string.connect_conflict);
+                conflictBuilder
+                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                conflictBuilder = null;
+                                mainActivity.finish();
+                                startActivity(new Intent(mainActivity, LoginActivity_.class));
+                            }
+                        });
+                conflictBuilder.setCancelable(false);
+                conflictBuilder.create().show();
+            } catch (Exception e) {
+//                EMLog.e(TAG, "---------color conflictBuilder error" + e.getMessage());
+            }
+        }
+    }
+
+    /**
+     * 环信消息监听
+     */
+    @Override
+    public void onEvent(EMNotifierEvent emNotifierEvent) {
+        if (emNotifierEvent.getEvent() == EMNotifierEvent.Event.EventNewMessage) {
+            messageFragment.findMsgs();
+            EMMessage message = (EMMessage) emNotifierEvent.getData();
+            // 提示新消息
+            HXSDKHelper.getInstance().getNotifier().viberateAndPlayTone(message);
+        }
+    }
 }

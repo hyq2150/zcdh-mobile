@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="1"
-    android:background="#E6E6E6"
+    android:background="@color/font_ee"
     android:fadingEdge="none"
     android:paddingTop="10dp"
     android:scrollbars="vertical" >
@@ -17,8 +17,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:paddingLeft="@dimen/content_left_right"
-        android:paddingRight="@dimen/content_left_right"
         android:focusableInTouchMode="true"
         android:orientation="vertical"
         android:paddingBottom="10dp" >
@@ -65,8 +63,10 @@
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@+id/tvInstitution"
                     android:layout_toLeftOf="@+id/imageView1"
-                    android:gravity="center_vertical"
+                    android:gravity="right"
                     android:singleLine="true"
+                    android:paddingRight="15dp"
+                    android:hint="请输入培训机构名称"
                     android:textColor="@color/font_color"
                     android:textSize="@dimen/font_size_nomarl" />
             </RelativeLayout>
@@ -116,17 +116,19 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@+id/imageView2"
-                    android:gravity="center_vertical"
+                    android:gravity="right"
+                   android:paddingRight="15dp"
+                    android:hint="请选择开始时间"
                     android:textColor="@color/font_color"
                     android:textSize="@dimen/font_size_nomarl" />
             </RelativeLayout>
 
-            <ImageView
+            <View
                 android:id="@+id/vHDivider2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0.5dp"
                 android:layout_below="@id/rlStartTime"
-                android:background="@drawable/divider_horizontal_timeline" />
+                android:background="@color/font_ee" />
 
             <RelativeLayout
                 android:id="@+id/rlEndTime"
@@ -163,17 +165,19 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@+id/imageView3"
-                    android:gravity="center_vertical"
+                     android:gravity="right"
+                   android:paddingRight="15dp"
+                    android:hint="请输入结束时间"
                     android:textColor="@color/font_color"
                     android:textSize="@dimen/font_size_nomarl" />
             </RelativeLayout>
 
-            <ImageView
+            <View 
                 android:id="@+id/vHDivider3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="25dp"
                 android:layout_below="@+id/rlEndTime"
-                android:background="@drawable/divider_horizontal_timeline" />
+                android:background="@color/font_ee" />
 
             <RelativeLayout
                 android:id="@+id/rlCourse"
@@ -215,12 +219,13 @@
                     android:textSize="@dimen/font_size_nomarl" />
             </RelativeLayout>
 
-            <ImageView
+            <View
                 android:id="@+id/vHDivider7"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0.5dp"
                 android:layout_below="@id/rlCourse"
-                android:background="@drawable/divider_horizontal_timeline" />
+                android:background="@color/font_ee" />
+            
 
             <RelativeLayout
                 android:id="@+id/rlCertificate"

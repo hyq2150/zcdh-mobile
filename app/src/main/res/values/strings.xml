@@ -199,6 +199,7 @@
     <string name="account">账号</string>
     <string name="password">密码</string>
     <string name="hint_password">请输入密码</string>
+    <string name="hint_username">请输入用户名</string>
     <string name="current_pass">旧  密  码:</string>
     <string name="new_pass">新  密  码:</string>
     <string name="new_email">新邮箱地址:</string>
@@ -207,11 +208,11 @@
     <string name="input_phone">请输入手机号码或邮箱</string>
     <string name="input_name">用户名</string>
     <string name="phone_or_email">电话或邮箱</string>
-    <string name="login">登 录</string>
+    <string name="login">登&#160;&#160;录</string>
     <string name="loging">正在登录...</string>
     <string name="thirdpart_login_desc">使用合作网站账号登录</string>
     <string name="password_confirm">确认密码:</string>
-    <string name="regist">注 册</string>
+    <string name="regist">注&#160;&#160;册</string>
     <string name="reset_pwd">重置密码</string>
     <string name="update_pwd">更改密码</string>
     <string name="update_email">更改邮箱</string>
@@ -220,6 +221,7 @@
     <string name="weibo_uid_has_bound_another_zcdh_account">微博已绑定其他账号</string>
     <string name="zcdh_uid_has_been_bound">此账号已被绑定</string>
     <string name="bind_failed_account_exists">绑定失败,邮箱或手机已被注册</string>
+    <string name="bind_mailbox_no_corresponding_mobile_phone_account">绑定邮箱没有对应的手机账号</string>
     <string name="regist_failed_phone_exists">注册失败,手机号码已被注册</string>
     <string name="regist_failed_email_exists">注册失败,Email已注册</string>
     <string name="bind_failed_account_login_failed">绑定失败,账号不存在或密码错误</string>
@@ -238,6 +240,7 @@
     <string name="not_the_same_password">两次密码输入不一致</string>
     <string name="not_the_same_email">两次email输入不一致</string>
     <string name="title_login">登录</string>
+    <string name="title_login_hubei">湖北公共招聘网登录</string>
     <string name="title_settings_home">系统设置</string>
     <string name="singout">退出登录</string>
     <string name="view_on_map">在地图上查看</string>
@@ -287,6 +290,7 @@
     <string name="update_pwd_successfully">重置密码成功</string>
     <string name="reset_pwd_failed_due_to_a_none_email_registed_account">重置失败,尚未设置邮箱</string>
     <string name="login_successfully">登录成功</string>
+    <string name="login_failed">登录失败</string>
     <string name="account_not_exists">账号不存在</string>
     <string name="wrong_password">密码错误</string>
     <string name="account_banned">账号已经停用</string>
@@ -336,14 +340,22 @@
     <string name="holiday_recruitment"> 假期工</string>
 
     <!-- 职位详情titles -->
-    <string name="post_detail">职位详情</string>
+    <!--<string name="post_detail">职位详情</string>
     <string name="ent_detail">公司详情</string>
-    <string name="all_posts">所有职位</string>
+    <string name="all_posts">所有职位</string>-->
+
+    <array name="post_array">
+        <item>职位详情</item>
+        <item>公司详情</item>
+        <item>所有职位</item>
+    </array>
+
     <string name="jubao">举报</string>
     <string name="area">地区</string>
 
     <!-- 签到 -->
     <string name="sign_success">签到成功</string>
+    <string name="sign_failed">签到失败</string>
     <string name="sign">签到</string>
     <string name="signed">已签到</string>
     <string name="signed_today">您今天已签到</string>
@@ -438,7 +450,7 @@
     <!-- 关于 -->
     <string name="about_company_website">公司网站:http://www.zcdhjo.com/</string>
     <string name="about_company_weibo">公司微博:http://weibo.com/</string>
-    <string name="about_company_contact">联系我们:0756-3350009</string>
+    <string name="about_company_contact">联系我们:0756–3350009</string>
     <string name="preparing_card">Preparing card</string>
     <string name="no_storage_card">No storage card</string>
     <string name="not_enough_space">Not enough space</string>
@@ -527,9 +539,37 @@
     <string name="nextstep">下一步</string>
     <string name="inputpwd">请输入密码</string>
     <string name="mspwd">请确认密码</string>
+
+    <!-- 职位职位详情页 -->
     <string name="str_last_item">已经是最后一项了</string>
     <string name="str_latest_item">已经是最顶了</string>
     <string name="str_no_related_post_details">无相关职位详情</string>
+
+    <!-- 菜单对话框 -->
+    <string name="str_system_settings">系统设置</string>
+    <string name="str_my_orders">我的订单</string>
+    <string name="str_job_favorite">职位收藏</string>
+    <string name="str_suscribe_service">订阅服务</string>
+    <string name="str_personal_resume">个人简历</string>
+    <string name="str_click_to_login">点击登录</string>
+    <string name="str_account">账号</string>
+    <string name="str_checkout">签到</string>
+    <string name="press_again_to_exit">再按一次退出职场导航</string>
+
+    <string name="user_jifen">积分:%1$d</string>
+    <string name="Cant_chat_with_yourself">不能与自己聊天</string>
+    <string name="huanxin_login_failed">即时通讯登录失败，您无法与客服即时通讯！</string>
+    <string name="delete">删除</string>
+    <string name="copy_message">复制消息</string>
+    <string name="delete_message">删除消息</string>
+    <string name="delete_video">删除视频</string>
+    <string name="delete_voice">删除语音</string>
+    <string name="employee_name">姓名：%1$s</string>
+    <string name="employee_type">类型：%1$s</string>
+    <string name="employee_status">状态：%1$s</string>
+    <string name="search_keywords">请输入搜索关键字</string>
+    <string name="Logoff_notification">下线通知</string>
+    <string name="connect_conflict">同一帐号已在其他设备登录</string>
 
 
 </resources>

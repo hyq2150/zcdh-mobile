@@ -27,7 +27,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -38,7 +37,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
+import android.webkit.DownloadListener;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -49,6 +48,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -147,14 +148,13 @@ public class NewsBrowserActivity extends BaseActivity implements
                 }
             }
             if (this.isShowTitle == 0) {
-//                requestWindowFeature(Window.FEATURE_NO_TITLE);
                 SystemServicesUtils.hideActionbar(this);
             }
 
             fromWhere = getIntent().getStringExtra(Constants.FROM_WHERE);
             IRpcJobAppService actionLogService = RemoteServiceManager
                     .getRemoteService(IRpcJobAppService.class);
-            HashMap<String, String> logMap = new HashMap<String, String>();
+            HashMap<String, String> logMap = new HashMap<>();
             logMap.put("DECEIVE_TYPE", "Android");
             if (Constants.FROM_MAP_AD.equals(fromWhere)) { // 从地图广告进入
                 logMap.put("VISIT_TYPE", "mapAdVisit");
@@ -175,7 +175,7 @@ public class NewsBrowserActivity extends BaseActivity implements
     @AfterViews
     void bindViews() {
         if (!TextUtils.isEmpty(title) && this.isShowTitle != 0) {
-            SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), title);
+            SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), title);
         }
 
         initWebView();
@@ -186,7 +186,12 @@ public class NewsBrowserActivity extends BaseActivity implements
         if (properties != null && properties.size() > 0) {
             isSignUp();
         }
-        loadUrl(browser, url);
+        if(null != url){
+            loadUrl(browser, url);
+        }else {
+            emptyTipView.setVisibility(View.VISIBLE);
+            emptyTipView.isEmpty(true);
+        }
     }
 
     private void initWebView() {
@@ -205,10 +210,24 @@ public class NewsBrowserActivity extends BaseActivity implements
         browser.addJavascriptInterface(new JavaScriptInterface(this),
                 "MobileApp");
         browser.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);// 滚动条风格，为0就是不给滚动条留空间，滚动条覆盖在网页上
+        browser.setDownloadListener(new DownloadListener() {
+
+            @Override
+            public void onDownloadStart(String url, String userAgent,
+                                        String contentDisposition, String mimetype, long contentLength) {
+                // TODO Auto-generated method stub
+
+                //实现下载的代码
+                Uri uri = Uri.parse(url);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+
+            }
+        });
         browser.setWebViewClient(new WebViewClient() {
 
             public boolean shouldOverrideUrlLoading(final WebView view,
-                    final String url) {
+                                                    final String url) {
                 Log.e(TAG, "result : " + url);
                 if (url.startsWith("tel:")) {
                     Intent intent = new Intent(Intent.ACTION_DIAL, Uri
@@ -229,7 +248,7 @@ public class NewsBrowserActivity extends BaseActivity implements
                 super.onPageFinished(view, url);
                 if (TextUtils.isEmpty(title)
                         && !TextUtils.isEmpty(view.getTitle())) {
-                    SystemServicesUtils.setActionBarCustomTitle(
+                    SystemServicesUtils.displayCustomTitle(
                             NewsBrowserActivity.this, getSupportActionBar(),
                             view.getTitle());
                 }
@@ -245,17 +264,17 @@ public class NewsBrowserActivity extends BaseActivity implements
 
     private void callHiddenWebViewMethod(String name) {
         if (browser != null) {
-            browser.loadUrl("about:blank");
-            // try {
-            // Method method = WebView.class.getMethod(name);
-            // method.invoke(browser);
-            // } catch (NoSuchMethodException e) {
-            // Log.i("No such method: " + name, e.toString());
-            // } catch (IllegalAccessException e) {
-            // Log.i("Illegal Access: " + name, e.toString());
-            // } catch (InvocationTargetException e) {
-            // Log.d("Invocation Target Exception: " + name, e.toString());
-            // }
+            //browser.loadUrl("about:blank");
+            try {
+                Method method = WebView.class.getMethod(name);
+                method.invoke(browser);
+            } catch (NoSuchMethodException e) {
+                Log.i("No such method: " + name, e.toString());
+            } catch (IllegalAccessException e) {
+                Log.i("Illegal Access: " + name, e.toString());
+            } catch (InvocationTargetException e) {
+                Log.d(TAG, name + "     " + e.toString());
+            }
         }
     }
 
@@ -282,7 +301,9 @@ public class NewsBrowserActivity extends BaseActivity implements
         return false;
     }
 
-    /** 监听对话框里面的button点击事件 */
+    /**
+     * 监听对话框里面的button点击事件
+     */
     DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog, int which) {
             switch (which) {

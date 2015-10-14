@@ -1,8 +1,8 @@
 
 package com.zcdh.mobile.app.activities.search;
 
-import java.util.HashMap;
-import java.util.List;
+import com.zcdh.mobile.R;
+import com.zcdh.mobile.biz.entities.ZcdhCertificate;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,8 +12,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.zcdh.mobile.R;
-import com.zcdh.mobile.biz.entities.ZcdhCertificate;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * 显示证书搜索结果
@@ -24,7 +24,7 @@ public class CertChosenAdapter extends BaseAdapter{
 	
 	List<ZcdhCertificate> certs; 
 	
-	HashMap<String, ZcdhCertificate> selectedMajors = new HashMap<String, ZcdhCertificate>();
+	HashMap<String, ZcdhCertificate> selectedMajors = new HashMap<>();
 	
 	Context context;
 	
@@ -64,13 +64,13 @@ public class CertChosenAdapter extends BaseAdapter{
 	}
 
 	@Override
-	public View getView(int p, View contentView, ViewGroup arg2) {
+	public View getView(int p, View contentView, ViewGroup parent) {
 		
 		Holder h = null;
 		if (contentView == null) {
 			h = new Holder();
 			contentView = LayoutInflater.from(context)
-					.inflate(R.layout.simple_listview_item_checker, null);
+					.inflate(R.layout.simple_listview_item_checker, parent,false);
 			
 			h.itemName = (TextView) contentView
 					.findViewById(R.id.itemNameText);

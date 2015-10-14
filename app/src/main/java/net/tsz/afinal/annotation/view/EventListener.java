@@ -15,8 +15,6 @@
  */
 package net.tsz.afinal.annotation.view;
 
-import java.lang.reflect.Method;
-
 import net.tsz.afinal.exception.ViewException;
 
 import android.view.View;
@@ -26,6 +24,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
+
+import java.lang.reflect.Method;
 
 public class EventListener implements OnClickListener, OnLongClickListener, OnItemClickListener, OnItemSelectedListener,OnItemLongClickListener {
 
@@ -166,7 +166,7 @@ public class EventListener implements OnClickListener, OnLongClickListener, OnIt
 			method = handler.getClass().getDeclaredMethod(methodName,AdapterView.class,View.class,int.class,long.class);
 			if(method!=null){
 				Object obj = method.invoke(handler, params);
-				return Boolean.valueOf(obj==null?false:Boolean.valueOf(obj.toString()));	
+				return obj == null ? false : Boolean.valueOf(obj.toString());
 			}
 			else
 				throw new ViewException("no such method:"+methodName);

@@ -67,7 +67,7 @@ public abstract class LoadingLayout extends FrameLayout implements ILoadingLayou
 	private OnPullGetTextListener listener;
 
 	public interface OnPullGetTextListener {
-		public String getText(Mode mode);
+		String getText(Mode mode);
 	}
 
 	public LoadingLayout(Context context, final Mode mode, final Orientation scrollDirection, TypedArray attrs) {
@@ -187,13 +187,13 @@ public abstract class LoadingLayout extends FrameLayout implements ILoadingLayou
 	}
 
 	public final void setHeight(int height) {
-		ViewGroup.LayoutParams lp = (ViewGroup.LayoutParams) getLayoutParams();
+		ViewGroup.LayoutParams lp = getLayoutParams();
 		lp.height = height;
 		requestLayout();
 	}
 
 	public final void setWidth(int width) {
-		ViewGroup.LayoutParams lp = (ViewGroup.LayoutParams) getLayoutParams();
+		ViewGroup.LayoutParams lp = getLayoutParams();
 		lp.width = width;
 		requestLayout();
 	}

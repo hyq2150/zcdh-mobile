@@ -48,433 +48,432 @@ import static com.mob.tools.utils.R.getStringRes;
 //import com.zcdh.mobile.app.activities.security.weibo.openapi.User;
 
 /**
- * 
  * @author yangjiannan 绑定
- * 
  */
 @EActivity(R.layout.activity_bind_for_new_user)
 public class BindAccountActivity extends BaseActivity implements
-		RequestListener, LoginListener, Callback {
+        RequestListener, LoginListener, Callback {
 
-	private static final String TAG = BindAccountActivity.class.getSimpleName();
+    private static final String TAG = BindAccountActivity.class.getSimpleName();
 
-	private String kREQ_ID_bindExistsAccount;
-	private String kREQ_ID_registerByOpenId;
+    private String kREQ_ID_bindExistsAccount;
 
-	private IRpcJobUservice uservice;
+    private String kREQ_ID_registerByOpenId;
 
-	/**
-	 * 第三方账号认证成功后，返回的open_id
-	 */
-	@Extra
-	public String third_open_id;
+    private IRpcJobUservice uservice;
 
-	/**
-	 * 登录方式 (如： weibo, QQ ...)
-	 */
-	@Extra
-	public String login_type;
+    /**
+     * 第三方账号认证成功后，返回的open_id
+     */
+    @Extra
+    public String third_open_id;
 
-	/**
-	 * 手机号码
-	 */
-	@ViewById(R.id.userEditText)
-	EditText userEditText;
+    /**
+     * 登录方式 (如： weibo, QQ ...)
+     */
+    @Extra
+    public String login_type;
 
-	/**
-	 * 密码
-	 */
-	@ViewById(R.id.pwdEditText)
-	EditText pwdEditText;
+    /**
+     * 手机号码
+     */
+    @ViewById(R.id.userEditText)
+    EditText userEditText;
 
-	private String account;
-	private String password;
+    /**
+     * 密码
+     */
+    @ViewById(R.id.pwdEditText)
+    EditText pwdEditText;
 
-	private ProcessDialog processDialog;
-	private boolean isBindAccount;
+    private String account;
 
-	/**
-	 * 第三方调用，获取头像
-	 */
-	private ThirdPartAuthHelper thirdPartAuthHelper;
+    private String password;
 
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    private ProcessDialog processDialog;
 
-	}
+    private boolean isBindAccount;
 
-	public void onDestroy() {
-		processDialog.cancel();
-		super.onDestroy();
-	}
+    /**
+     * 第三方调用，获取头像
+     */
+    private ThirdPartAuthHelper thirdPartAuthHelper;
 
-	@AfterViews
-	void bindViews() {
-		SystemServicesUtils.setActionBarCustomTitleAndIcon(
-				getApplicationContext(), getSupportActionBar(), "绑定账号",
-				R.drawable.ic_launcher);
-		uservice = RemoteServiceManager.getRemoteService(IRpcJobUservice.class);
-		processDialog = new ProcessDialog(this);
-		thirdPartAuthHelper = new ThirdPartAuthHelper(this);
-	}
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-	/**
-	 * @description:用户信息检查并赋值
-	 * @return 内容输入是否正确
-	 * @author jeason, 2014-4-3 上午11:19:52
-	 */
-	private boolean check_content() {
-		account = userEditText.getText().toString();
-		password = pwdEditText.getText().toString();
-		if (StringUtils.isBlank(account) || StringUtils.isBlank(password)) {
+    }
 
-			Toast.makeText(this, R.string.please_complete_all_login_field,
-					Toast.LENGTH_SHORT).show();
-			return false;
-		}
-		account = account.trim();
-		// validate phone_num & email
-		if (!Pattern.compile(Constants.regex_email).matcher(account).matches()
-				&& !Pattern.compile(SharedPreferencesUtil.getValue(this, Constants.REGEX_PHONE_KEY, Constants.regex_phone)).matcher(account)
-						.matches()) {
-			Toast.makeText(this, R.string.invalid_email_or_phone_format,
-					Toast.LENGTH_SHORT).show();
-			return false;
-		}
-		return true;
-	}
+    public void onDestroy() {
+        processDialog.cancel();
+        super.onDestroy();
+    }
 
-	/**
-	 * 通过新浪微博无绑定账号直接注册 0：注册成功，10：该微博号已经绑定
-	 */
-	@Background
-	void registerByWeibo(String third_account_head_url) {
-		// TODO
-		uservice.registerByWeibo(third_open_id,
-				loadImage(third_account_head_url)).identify(
-				kREQ_ID_registerByOpenId = RequestChannel.getChannelUniqueID(),
-				this);
-	}
+    @AfterViews
+    void bindViews() {
+        SystemServicesUtils.displayCustomTitle(
+                getApplicationContext(), getSupportActionBar(), "绑定账号"
+        );
+        uservice = RemoteServiceManager.getRemoteService(IRpcJobUservice.class);
+        processDialog = new ProcessDialog(this);
+        thirdPartAuthHelper = new ThirdPartAuthHelper(this);
+    }
 
-	/**
-	 * 发送手机验证码 mobilePhoneNo 手机号码 0：注册成功，9：该QQ号已经绑定
-	 */
-	@Background
-	void registerByQQ(String third_account_head_url) {
-		// TODO
-		uservice.registerByQQ(third_open_id, loadImage(third_account_head_url))
-				.identify(
-						kREQ_ID_registerByOpenId = RequestChannel
-								.getChannelUniqueID(),
-						this);
-	}
+    /**
+     * @return 内容输入是否正确
+     * @description:用户信息检查并赋值
+     * @author jeason, 2014-4-3 上午11:19:52
+     */
+    private boolean check_content() {
+        account = userEditText.getText().toString();
+        password = pwdEditText.getText().toString();
+        if (StringUtils.isBlank(account) || StringUtils.isBlank(password)) {
 
-	@Background
-	void registerByWechat(String third_account_head_url) {
-		uservice.registerByWeChat(third_open_id,
-				loadImage(third_account_head_url)).identify(
-				kREQ_ID_registerByOpenId = RequestChannel.getChannelUniqueID(),
-				this);
-	}
+            Toast.makeText(this, R.string.please_complete_all_login_field,
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        account = account.trim();
+        // validate phone_num & email
+        if (!Pattern.compile(Constants.regex_email).matcher(account).matches()
+                && !Pattern.compile(SharedPreferencesUtil
+                .getValue(this, Constants.REGEX_PHONE_KEY, Constants.regex_phone)).matcher(account)
+                .matches()) {
+            Toast.makeText(this, R.string.invalid_email_or_phone_format,
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
 
-	/**
-	 * 
-	 * 绑定账号
-	 */
-	@Background
-	void bindAccount(String third_account_head_url) {
-		uservice.bindExistsAccount(account, password, login_type,
-				third_open_id, loadImage(third_account_head_url))
-				.identify(
-						kREQ_ID_bindExistsAccount = RequestChannel
-								.getChannelUniqueID(),
-						this);
-	}
+    /**
+     * 通过新浪微博无绑定账号直接注册 0：注册成功，10：该微博号已经绑定
+     */
+    @Background
+    void registerByWeibo(long appid,String third_account_head_url) {
+        // TODO
+        uservice.registerByWeibo2(appid,third_open_id,
+                loadImage(third_account_head_url)).identify(
+                kREQ_ID_registerByOpenId = RequestChannel.getChannelUniqueID(),
+                this);
+    }
 
-	/**
-	 * 将第三方账号,绑定职场导航
-	 */
-	@Click(R.id.bindAccountBtn)
-	void onBindAccount() {
-		if (check_content()) {
-			processDialog.show("创建账号...");
-			createAccount(true);
-		}
-	}
+    /**
+     * 发送手机验证码 mobilePhoneNo 手机号码 0：注册成功，9：该QQ号已经绑定
+     */
+    @Background
+    void registerByQQ(long appid,String third_account_head_url) {
+        // TODO
+        uservice.registerByQQ2(appid,third_open_id, loadImage(third_account_head_url))
+                .identify(
+                        kREQ_ID_registerByOpenId = RequestChannel
+                                .getChannelUniqueID(),
+                        this);
+    }
 
-	/**
-	 * 跳过，不绑定, 直接用第三方认证的注册并创建账号
-	 */
-	@Click(R.id.skipedBtn)
-	void onSkipBindAndRegister() {
-		processDialog.show("创建账号...");
-		Log.i(TAG, "open id:" + third_open_id);
+    @Background
+    void registerByWechat(long appid,String third_account_head_url) {
+        uservice.registerByWeChat2(appid,third_open_id,
+                loadImage(third_account_head_url)).identify(
+                kREQ_ID_registerByOpenId = RequestChannel.getChannelUniqueID(),
+                this);
+    }
 
-		createAccount(false);
-	}
+    /**
+     * 绑定账号
+     */
+    @Background
+    void bindAccount(String third_account_head_url) {
+        uservice.bindExistsAccount(account, password, login_type,
+                third_open_id, loadImage(third_account_head_url))
+                .identify(
+                        kREQ_ID_bindExistsAccount = RequestChannel
+                                .getChannelUniqueID(),
+                        this);
+    }
 
-	/**
-	 * 获取第三方头像，再创建账号
-	 * 
-	 * @param isBindAccount
-	 */
+    /**
+     * 将第三方账号,绑定职场导航
+     */
+    @Click(R.id.bindAccountBtn)
+    void onBindAccount() {
+        if (check_content()) {
+            processDialog.show("创建账号...");
+            createAccount(true);
+        }
+    }
 
-	void createAccount(final boolean isBindAccount /* 是否属于绑定账号 */) {
-		this.isBindAccount = isBindAccount;
-		if (Constants.LOGIN_TYPE_QQ.equals(login_type)) {
-			thirdPartAuthHelper.getUserInfoInQQ(new IUiListener() {
+    /**
+     * 跳过，不绑定, 直接用第三方认证的注册并创建账号
+     */
+    @Click(R.id.skipedBtn)
+    void onSkipBindAndRegister() {
+        processDialog.show("创建账号...");
+        Log.i(TAG, "open id:" + third_open_id);
 
-				@Override
-				public void onError(UiError arg0) {
-					if (isBindAccount) {
-						bindAccount(null);
-					} else {
-						registerByQQ(null);
-					}
-				}
+        createAccount(false);
+    }
 
-				@Override
-				public void onComplete(Object response) {
-					JSONObject json = (JSONObject) response;
-					Log.i(TAG, response + "");
-					if (json.has("figureurl_qq_2")) {
-						try {
-							// 获取第三方账户头像
-							String url = json.getString("figureurl_qq_2");
+    /**
+     * 获取第三方头像，再创建账号
+     */
 
-							// 同时用获取的头像，创建账号
-							if (isBindAccount) {
-								bindAccount(url);
-							} else {
-								registerByQQ(url);
-							}
-							Log.i(TAG, url);
+    void createAccount(final boolean isBindAccount /* 是否属于绑定账号 */) {
+        this.isBindAccount = isBindAccount;
+        if (Constants.LOGIN_TYPE_QQ.equals(login_type)) {
+            thirdPartAuthHelper.getUserInfoInQQ(new IUiListener() {
 
-						} catch (JSONException e) {
-							e.printStackTrace();
-						}
-					}
-				}
+                @Override
+                public void onError(UiError arg0) {
+                    if (isBindAccount) {
+                        bindAccount(null);
+                    } else {
+                        registerByQQ(SystemServicesUtils.getAppID(BindAccountActivity.this),null);
+                    }
+                }
 
-				@Override
-				public void onCancel() {
-					if (isBindAccount) {
-						bindAccount(null);
-					} else {
-						registerByQQ(null);
-					}
-				}
-			});
+                @Override
+                public void onComplete(Object response) {
+                    JSONObject json = (JSONObject) response;
+                    Log.i(TAG, response + "");
+                    if (json.has("figureurl_qq_2")) {
+                        try {
+                            // 获取第三方账户头像
+                            String url = json.getString("figureurl_qq_2");
 
-		}
-		if (Constants.LOGIN_TYPE_WECHAT.equals(login_type)) {
-			String head = SharedPreferencesUtil.getValue(this,
-					Constants.HEAD_IMG_URL, "");
-			if (isBindAccount) {
-				bindAccount(head);
-			} else {
-				registerByWechat(head);
-			}
-		}
-		if (Constants.LOGIN_TYPE_WEIBO.equals(login_type)) {
-			thirdPartAuthHelper
-					.getUserInfoInWeibo(new com.sina.weibo.sdk.net.RequestListener() {
+                            // 同时用获取的头像，创建账号
+                            if (isBindAccount) {
+                                bindAccount(url);
+                            } else {
+                                registerByQQ(SystemServicesUtils.getAppID(BindAccountActivity.this),url);
+                            }
+                            Log.i(TAG, url);
 
-						@Override
-						public void onWeiboException(WeiboException exc) {
-							Log.e(TAG, exc.getMessage());
-							if (isBindAccount) {
-								bindAccount(null);
-							} else {
-								registerByWeibo(null);
-							}
-						}
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
 
-						@Override
-						public void onComplete(String response) {
-							if (!TextUtils.isEmpty(response)) {
-								User user = User.parse(response);
-								Log.i(TAG, "微博头像 ：" + user.profile_image_url);
+                @Override
+                public void onCancel() {
+                    if (isBindAccount) {
+                        bindAccount(null);
+                    } else {
+                        registerByQQ(SystemServicesUtils.getAppID(BindAccountActivity.this),null);
+                    }
+                }
+            });
 
-								// 同时用获取的头像，创建账号
-								if (isBindAccount) {
-									bindAccount(user.profile_image_url);
-								} else {
-									registerByWeibo(user.profile_image_url);
-								}
-							}
-						}
-					});
-		}
+        }
+        if (Constants.LOGIN_TYPE_WECHAT.equals(login_type)) {
+            String head = SharedPreferencesUtil.getValue(this,
+                    Constants.HEAD_IMG_URL, "");
+            if (isBindAccount) {
+                bindAccount(head);
+            } else {
+                registerByWechat(SystemServicesUtils.getAppID(BindAccountActivity.this),head);
+            }
+        }
+        if (Constants.LOGIN_TYPE_WEIBO.equals(login_type)) {
+            thirdPartAuthHelper
+                    .getUserInfoInWeibo(new com.sina.weibo.sdk.net.RequestListener() {
 
-	}
+                        @Override
+                        public void onWeiboException(WeiboException exc) {
+                            Log.e(TAG, exc.getMessage());
+                            if (isBindAccount) {
+                                bindAccount(null);
+                            } else {
+                                registerByWeibo(SystemServicesUtils.getAppID(BindAccountActivity.this),null);
+                            }
+                        }
 
-	// 下载第三方账户头像
-	private ImgAttachDTO loadImage(final String url) {
-		ImgAttachDTO headImg = null;
-		if (!StringUtils.isBlank(url)) {
-			byte[] fileBytes = new SimpleDownloader().download(url);
-			if (fileBytes != null && fileBytes.length > 0) {
-				headImg = new ImgAttachDTO();
-				headImg.setFileSize((long)fileBytes.length);
-				headImg.setFileBytes(fileBytes);
-				headImg.setFileExtension("png");
-			}
-		}
-		return headImg;
-	}
+                        @Override
+                        public void onComplete(String response) {
+                            if (!TextUtils.isEmpty(response)) {
+                                User user = User.parse(response);
+                                Log.i(TAG, "微博头像 ：" + user.profile_image_url);
 
-	@Override
-	public void onRequestStart(String reqId) {
+                                // 同时用获取的头像，创建账号
+                                if (isBindAccount) {
+                                    bindAccount(user.profile_image_url);
+                                } else {
+                                    registerByWeibo(SystemServicesUtils.getAppID(BindAccountActivity.this),user.profile_image_url);
+                                }
+                            }
+                        }
+                    });
+        }
 
-	}
+    }
 
-	@Override
-	public void onRequestSuccess(String reqId, Object result) {
-		if (reqId.equals(kREQ_ID_bindExistsAccount)) {
-			// result: 0成功，9 QQ_UID已绑定其他账号，10 微博UID已经绑定其他账号，11zcdh账号已经被绑定
-			switch ((Integer) result) {
-			case 0:
-				Toast.makeText(this, R.string.bind_successfully,
-						Toast.LENGTH_SHORT).show();
-				if (Constants.LOGIN_TYPE_QQ.equals(login_type)) {
-					LoginHelper.getInstance(this, this)
-							.doLoginQQ(third_open_id);
-				} else if (Constants.LOGIN_TYPE_WEIBO.equals(login_type)) {
-					LoginHelper.getInstance(this, this).doLoginSinaWeibo(
-							third_open_id);
-				} else if (Constants.LOGIN_TYPE_WECHAT.equals(login_type)) {
-					LoginHelper.getInstance(this, this).doLoginWeChat(
-							third_open_id);
-				}
-				break;
-			case 4:
-				Toast.makeText(this,
-						getResources().getString(R.string.account_not_exists),
-						Toast.LENGTH_SHORT).show();
-				break;
-			case 5:
-				Toast.makeText(this, R.string.wrong_password,
-						Toast.LENGTH_SHORT).show();
-				break;
-			case 9:
-				Toast.makeText(this,
-						R.string.qq_uid_has_bound_another_zcdh_account,
-						Toast.LENGTH_SHORT).show();
-				break;
-			case 10:
-				Toast.makeText(this,
-						R.string.weibo_uid_has_bound_another_zcdh_account,
-						Toast.LENGTH_SHORT).show();
-				break;
-			case 11:
-				Toast.makeText(this, R.string.zcdh_uid_has_been_bound,
-						Toast.LENGTH_SHORT).show();
-				break;
+    // 下载第三方账户头像
+    private ImgAttachDTO loadImage(final String url) {
+        ImgAttachDTO headImg = null;
+        if (!StringUtils.isBlank(url)) {
+            byte[] fileBytes = new SimpleDownloader().download(url);
+            if (fileBytes != null && fileBytes.length > 0) {
+                headImg = new ImgAttachDTO();
+                headImg.setFileSize((long) fileBytes.length);
+                headImg.setFileBytes(fileBytes);
+                headImg.setFileExtension("png");
+            }
+        }
+        return headImg;
+    }
 
-			default:
-				break;
-			}
-		}
+    @Override
+    public void onRequestStart(String reqId) {
 
-		if (reqId.equals(kREQ_ID_registerByOpenId)) {
-			if (result != null) {
-				int resultCode = (Integer) result;
-				if (resultCode == 0) {
-					if (Constants.LOGIN_TYPE_QQ.equals(login_type)) {
-						LoginHelper.getInstance(this, this).doLoginQQ(
-								third_open_id);
-					} else if (Constants.LOGIN_TYPE_WEIBO.equals(login_type)) {
-						LoginHelper.getInstance(this, this).doLoginSinaWeibo(
-								third_open_id);
-					} else if (Constants.LOGIN_TYPE_WECHAT.equals(login_type)) {
-						LoginHelper.getInstance(this, this).doLoginWeChat(
-								third_open_id);
-					}
-				}
-				if (resultCode == 9 || resultCode == 10) { //
-					Toast.makeText(this, "账号已存在", Toast.LENGTH_SHORT).show();
+    }
 
-					Log.e(TAG, "用第三方创建账号 错误:账号已存在  " + third_open_id);
-				}
-			}
-		}
+    @Override
+    public void onRequestSuccess(String reqId, Object result) {
+        if (reqId.equals(kREQ_ID_bindExistsAccount)) {
+            // result: 0成功，9 QQ_UID已绑定其他账号，10 微博UID已经绑定其他账号，11zcdh账号已经被绑定
+            switch ((Integer) result) {
+                case 0:
+                    Toast.makeText(this, R.string.bind_successfully,
+                            Toast.LENGTH_SHORT).show();
+                    if (Constants.LOGIN_TYPE_QQ.equals(login_type)) {
+                        LoginHelper.getInstance(this, this)
+                                .doLoginQQ(third_open_id);
+                    } else if (Constants.LOGIN_TYPE_WEIBO.equals(login_type)) {
+                        LoginHelper.getInstance(this, this).doLoginSinaWeibo(
+                                third_open_id);
+                    } else if (Constants.LOGIN_TYPE_WECHAT.equals(login_type)) {
+                        LoginHelper.getInstance(this, this).doLoginWeChat(
+                                third_open_id);
+                    }
+                    break;
+                case 4:
+                    Toast.makeText(this,
+                            getResources().getString(R.string.account_not_exists),
+                            Toast.LENGTH_SHORT).show();
+                    break;
+                case 5:
+                    Toast.makeText(this, R.string.wrong_password,
+                            Toast.LENGTH_SHORT).show();
+                    break;
+                case 9:
+                    Toast.makeText(this,
+                            R.string.qq_uid_has_bound_another_zcdh_account,
+                            Toast.LENGTH_SHORT).show();
+                    break;
+                case 10:
+                    Toast.makeText(this,
+                            R.string.weibo_uid_has_bound_another_zcdh_account,
+                            Toast.LENGTH_SHORT).show();
+                    break;
+                case 11:
+                    Toast.makeText(this, R.string.zcdh_uid_has_been_bound,
+                            Toast.LENGTH_SHORT).show();
+                    break;
 
-	}
+                default:
+                    break;
+            }
+        }
 
-	@Override
-	public void onRequestFinished(String reqId) {
-		processDialog.dismiss();
-	}
+        if (reqId.equals(kREQ_ID_registerByOpenId)) {
+            if (result != null) {
+                int resultCode = (Integer) result;
+                if (resultCode == 0) {
+                    if (Constants.LOGIN_TYPE_QQ.equals(login_type)) {
+                        LoginHelper.getInstance(this, this).doLoginQQ(
+                                third_open_id);
+                    } else if (Constants.LOGIN_TYPE_WEIBO.equals(login_type)) {
+                        LoginHelper.getInstance(this, this).doLoginSinaWeibo(
+                                third_open_id);
+                    } else if (Constants.LOGIN_TYPE_WECHAT.equals(login_type)) {
+                        LoginHelper.getInstance(this, this).doLoginWeChat(
+                                third_open_id);
+                    }
+                }
+                if (resultCode == 9 || resultCode == 10) { //
+                    Toast.makeText(this, "账号已存在", Toast.LENGTH_SHORT).show();
 
-	@Override
-	public void onRequestError(String reqID, Exception error) {
+                    Log.e(TAG, "用第三方创建账号 错误:账号已存在  " + third_open_id);
+                }
+            }
+        }
 
-	}
+    }
 
-	@Override
-	public void requestLoginFinished(int resultCode, String errorMsg) {
-		if (resultCode == Constants.kLOGIN_RESULT_SUCCESS) {
-			Intent loginResultMsg = new Intent(Constants.LOGIN_RESULT_ACTION);
-			loginResultMsg.putExtra(Constants.kRESULT_CODE, resultCode);
+    @Override
+    public void onRequestFinished(String reqId) {
+        processDialog.dismiss();
+    }
 
-			LocalBroadcastManager localBroadcastManager = LocalBroadcastManager
-					.getInstance(this);
-			localBroadcastManager.sendBroadcast(loginResultMsg);
-			finish();
-		} else {
-			Log.i(TAG, "注册后的绑定账号失败:" + errorMsg);
-		}
-		processDialog.dismiss();
-	}
+    @Override
+    public void onRequestError(String reqID, Exception error) {
 
-	@Override
-	public boolean handleMessage(Message msg) {
-		// TODO Auto-generated method stub
-		switch (msg.what) {
-		case Constants.MSG_USERID_FOUND: {
-			Toast.makeText(this, R.string.userid_found, Toast.LENGTH_SHORT)
-					.show();
-		}
-			break;
-		case Constants.MSG_LOGIN:
-			if (isBindAccount) {
-				bindAccount(SharedPreferencesUtil.getValue(this,
-						Constants.HEAD_IMG_URL, ""));
-			} else {
-				registerByWechat(SharedPreferencesUtil.getValue(this,
-						Constants.HEAD_IMG_URL, ""));
-			}
-			break;
-		case Constants.MSG_AUTH_CANCEL:
-			Toast.makeText(this, R.string.auth_cancel, Toast.LENGTH_SHORT)
-					.show();
-			break;
-		case Constants.MSG_AUTH_ERROR:
-			// 失败
-			String expName = msg.obj.getClass().getSimpleName();
-			if ("WechatClientNotExistException".equals(expName)
-					|| "WechatTimelineNotSupportedException".equals(expName)
-					|| "WechatFavoriteNotSupportedException".equals(expName)) {
-				int resId = getStringRes(this, "wechat_client_inavailable");
-				if (resId > 0) {
-					showNotification(this.getString(resId));
-				}
-			}
-			break;
-		case Constants.MSG_AUTH_COMPLETE:
-			SharedPreferencesUtil.putValue(this, Constants.HEAD_IMG_URL,
-					(String) msg.obj);
-			Toast.makeText(this, R.string.auth_complete, Toast.LENGTH_SHORT)
-					.show();
-			break;
-		}
+    }
 
-		return false;
-	}
+    @Override
+    public void requestLoginFinished(int resultCode, String errorMsg) {
+        if (resultCode == Constants.kLOGIN_RESULT_SUCCESS) {
+            Intent loginResultMsg = new Intent(Constants.LOGIN_RESULT_ACTION);
+            loginResultMsg.putExtra(Constants.kRESULT_CODE, resultCode);
 
-	// 在状态栏提示分享操作
-	private void showNotification(String text) {
-		Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
-	}
+            LocalBroadcastManager localBroadcastManager = LocalBroadcastManager
+                    .getInstance(this);
+            localBroadcastManager.sendBroadcast(loginResultMsg);
+            finish();
+        } else {
+            Log.i(TAG, "注册后的绑定账号失败:" + errorMsg);
+        }
+        processDialog.dismiss();
+    }
+
+    @Override
+    public boolean handleMessage(Message msg) {
+        // TODO Auto-generated method stub
+        switch (msg.what) {
+            case Constants.MSG_USERID_FOUND: {
+                Toast.makeText(this, R.string.userid_found, Toast.LENGTH_SHORT)
+                        .show();
+            }
+            break;
+            case Constants.MSG_LOGIN:
+                if (isBindAccount) {
+                    bindAccount(SharedPreferencesUtil.getValue(this,
+                            Constants.HEAD_IMG_URL, ""));
+                } else {
+                    registerByWechat(SystemServicesUtils.getAppID(BindAccountActivity.this),SharedPreferencesUtil.getValue(this,
+                            Constants.HEAD_IMG_URL, ""));
+                }
+                break;
+            case Constants.MSG_AUTH_CANCEL:
+                Toast.makeText(this, R.string.auth_cancel, Toast.LENGTH_SHORT)
+                        .show();
+                break;
+            case Constants.MSG_AUTH_ERROR:
+                // 失败
+                String expName = msg.obj.getClass().getSimpleName();
+                if ("WechatClientNotExistException".equals(expName)
+                        || "WechatTimelineNotSupportedException".equals(expName)
+                        || "WechatFavoriteNotSupportedException".equals(expName)) {
+                    int resId = getStringRes(this, "wechat_client_inavailable");
+                    if (resId > 0) {
+                        showNotification(this.getString(resId));
+                    }
+                }
+                break;
+            case Constants.MSG_AUTH_COMPLETE:
+                SharedPreferencesUtil.putValue(this, Constants.HEAD_IMG_URL,
+                        (String) msg.obj);
+                Toast.makeText(this, R.string.auth_complete, Toast.LENGTH_SHORT)
+                        .show();
+                break;
+        }
+
+        return false;
+    }
+
+    // 在状态栏提示分享操作
+    private void showNotification(String text) {
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    }
 }

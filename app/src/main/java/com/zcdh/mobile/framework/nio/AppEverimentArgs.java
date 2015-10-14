@@ -1,6 +1,7 @@
 package com.zcdh.mobile.framework.nio;
 
-import java.util.HashMap;
+import com.zcdh.mobile.app.Constants;
+import com.zcdh.mobile.app.ZcdhApplication;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -13,8 +14,7 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.zcdh.mobile.app.Constants;
-import com.zcdh.mobile.app.ZcdhApplication;
+import java.util.HashMap;
 
 /**
  * 搜集app ，设备相关的信息
@@ -185,7 +185,7 @@ public class AppEverimentArgs {
 	 */
 	public HashMap<String, String> getEverimentArgs() {
 
-		HashMap<String, String> args = new HashMap<String, String>();
+		HashMap<String, String> args = new HashMap<>();
 		args.put(DECEIVE_NAME, getModel());
 		args.put(DECEIVE_TYPE, "Android");
 		args.put(SYS_VERSION, getAndroidVersion());
@@ -210,13 +210,9 @@ public class AppEverimentArgs {
 	}
 
 	public String toString() {
-		StringBuffer sb = new StringBuffer();
-		sb.append("App 版本：").append(getAppVersion()).append("\n")
-				.append("系统版本:").append(getAndroidVersion()).append("\n")
-				.append("设备类型：").append(getModel()).append("\n")
-				.append("网络类型:").append(getNetworkType()).append("\n")
-				.append("运营商:").append(getNetworkOperators()).append("\n");
-		return sb.toString();
+	    return "App 版本：" + getAppVersion() + "\n" + "系统版本:" + getAndroidVersion() + "\n"
+		    + "设备类型：" + getModel() + "\n" + "网络类型:" + getNetworkType() + "\n" + "运营商:"
+		    + getNetworkOperators() + "\n";
 	}
 
 }

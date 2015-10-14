@@ -4,20 +4,6 @@
  */
 package com.zcdh.mobile.app.activities.messages;
 
-import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Background;
-import org.androidannotations.annotations.Click;
-import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.Extra;
-import org.androidannotations.annotations.OptionsItem;
-import org.androidannotations.annotations.ViewById;
-
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.zcdh.mobile.R;
 import com.zcdh.mobile.api.IRpcJobUservice;
 import com.zcdh.mobile.api.model.JobInterviewDTO;
@@ -29,6 +15,20 @@ import com.zcdh.mobile.framework.nio.RequestChannel;
 import com.zcdh.mobile.framework.nio.RequestListener;
 import com.zcdh.mobile.utils.DateUtils;
 import com.zcdh.mobile.utils.SystemServicesUtils;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
+import org.androidannotations.annotations.ViewById;
+
+import android.os.Bundle;
+import android.text.Html;
+import android.text.method.ScrollingMovementMethod;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * @author jeason, 2014-7-11 上午11:30:09 面试邀请详情
@@ -72,8 +72,8 @@ public class InterviewInvitationActivity extends BaseActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(),
-				"面试邀请");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+			"面试邀请");
 		userService = RemoteServiceManager.getRemoteService(
 				IRpcJobUservice.class, this);
 		loading = new LoadingIndicator(this);
@@ -88,16 +88,11 @@ public class InterviewInvitationActivity extends BaseActivity implements
 	@Background
 	void loadData() {
 		userService
-				.findUserInterviewDetail(interViewId)
+				.findUserInterviewDetail2(interViewId)
 				.identify(
 						kREQ_ID_FINDUSERINTERVIEWDETAIL = RequestChannel
 								.getChannelUniqueID(),
 						this);
-	}
-
-	@OptionsItem(android.R.id.home)
-	void onBack() {
-		finish();
 	}
 
 	/*
@@ -144,7 +139,8 @@ public class InterviewInvitationActivity extends BaseActivity implements
 		tvEntname.setText(interViewDto.getEntName());
 		tvTime.setText(DateUtils.getDateByFormatYMDHMS(interViewDto
 				.getSendTime()));
-		content.setText(interViewDto.getContent());
+		content.setMovementMethod(ScrollingMovementMethod.getInstance());//滚动
+		content.setText(Html.fromHtml(interViewDto.getContent()));
 		postNameText.setText(interViewDto.getPostName());
 	}
 

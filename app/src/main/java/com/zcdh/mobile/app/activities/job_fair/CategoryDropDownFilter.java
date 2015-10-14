@@ -57,21 +57,21 @@ public class CategoryDropDownFilter extends LinearLayout implements
 	/**
 	 * 职位类别分类
 	 */
-	private List<EntPostTypeDTO> categorys = new ArrayList<EntPostTypeDTO>();
+	private List<EntPostTypeDTO> categorys = new ArrayList<>();
 	/**
 	 * 职位类别
 	 */
-	private List<EntPostTypeDTO> categorysPost = new ArrayList<EntPostTypeDTO>();
+	private List<EntPostTypeDTO> categorysPost = new ArrayList<>();
 
 	/**
 	 * 行业类别分类
 	 */
-	private List<EntIndustryTypeDTO> industriesParent = new ArrayList<EntIndustryTypeDTO>();
+	private List<EntIndustryTypeDTO> industriesParent = new ArrayList<>();
 
 	/**
 	 * 行业
 	 */
-	private List<EntIndustryTypeDTO> industries = new ArrayList<EntIndustryTypeDTO>();
+	private List<EntIndustryTypeDTO> industries = new ArrayList<>();
 
 	private String[] sections;
 	private int[] sectionIndices;
@@ -332,7 +332,7 @@ public class CategoryDropDownFilter extends LinearLayout implements
 				String parent_code = categorysPost.get(position)
 						.getParentCode();
 				Log.i("parent_code", parent_code);
-				List<ZcdhCategoryPost> parents = (List<ZcdhCategoryPost>) finalDb
+				List<ZcdhCategoryPost> parents = finalDb
 						.findAllByWhere(ZcdhCategoryPost.class,
 								String.format("code='%s'", parent_code));
 				if (parents != null && parents.size() > 0) {
@@ -387,6 +387,6 @@ public class CategoryDropDownFilter extends LinearLayout implements
 	}
 
 	public interface onFilterListener {
-		public void onFilter(String code, String name);
+		void onFilter(String code, String name);
 	}
 }

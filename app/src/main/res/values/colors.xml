@@ -399,6 +399,17 @@
     <color name="my_tab_highlight_bg">#ffd43d3d</color>
 
     <color name="my_tab_highlight_dark_bg">#fffafafa</color>
+    <color name="color_ffa646">#FFA646</color>
+    <color name="color_ed6c0a">#ed6c0a</color>
+    <color name="color_4e91cc">#4e91cc</color>
+    <color name="color_e6e6e6">#e6e6e6</color>
+    <color name="color_cccccc">#cccccc</color>
+
+    <!--新的UI更改 版本号2.2.0-->
+    <color name="gold">#ffb737</color>
+    <color name="systemcolor">#686868</color>
+    <color name="background_tab_pressed">#6633B5E5</color>
+    <color name="error_item_color">#F6EBE6</color>
 
 </resources>
 

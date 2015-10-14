@@ -416,7 +416,7 @@ public class FinalBitmap {
 		
 	}
 
-	private HashMap<String, BitmapDisplayConfig> configMap = new HashMap<String, BitmapDisplayConfig>();
+	private HashMap<String, BitmapDisplayConfig> configMap = new HashMap<>();
 
 	private BitmapDisplayConfig getDisplayConfig() {
 		BitmapDisplayConfig config = new BitmapDisplayConfig();
@@ -670,7 +670,7 @@ public class FinalBitmap {
 
 		public AsyncDrawable(Resources res, Bitmap bitmap, BitmapLoadAndDisplayTask bitmapWorkerTask) {
 			super(res, bitmap);
-			bitmapWorkerTaskReference = new WeakReference<BitmapLoadAndDisplayTask>(bitmapWorkerTask);
+			bitmapWorkerTaskReference = new WeakReference<>(bitmapWorkerTask);
 		}
 
 		public BitmapLoadAndDisplayTask getBitmapWorkerTask() {
@@ -719,7 +719,7 @@ public class FinalBitmap {
 		private final BitmapDisplayConfig displayConfig;
 
 		public BitmapLoadAndDisplayTask(View imageView, BitmapDisplayConfig config) {
-			imageViewReference = new WeakReference<View>(imageView);
+			imageViewReference = new WeakReference<>(imageView);
 			displayConfig = config;
 		}
 

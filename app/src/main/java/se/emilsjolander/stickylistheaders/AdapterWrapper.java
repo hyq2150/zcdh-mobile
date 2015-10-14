@@ -26,11 +26,11 @@ import android.widget.ListAdapter;
 class AdapterWrapper extends BaseAdapter implements StickyListHeadersAdapter {
 
 	interface OnHeaderClickListener {
-		public void onHeaderClick(View header, int itemPosition, long headerId);
+		void onHeaderClick(View header, int itemPosition, long headerId);
 	}
 
 	final StickyListHeadersAdapter mDelegate;
-	private final List<View> mHeaderCache = new LinkedList<View>();
+	private final List<View> mHeaderCache = new LinkedList<>();
 	private final Context mContext;
 	private Drawable mDivider;
 	private int mDividerHeight;
@@ -199,7 +199,7 @@ class AdapterWrapper extends BaseAdapter implements StickyListHeadersAdapter {
 
 	@Override
 	public void notifyDataSetChanged() {
-		((BaseAdapter) mDelegate).notifyDataSetChanged();
+		mDelegate.notifyDataSetChanged();
 	}
 
 	@Override

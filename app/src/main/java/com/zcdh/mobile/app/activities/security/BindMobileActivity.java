@@ -70,9 +70,9 @@ public class BindMobileActivity extends BaseActivity implements RequestListener{
 	@AfterViews
 	void bindViews(){
 		if(update){
-			SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), "更改手机");
+			SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "更改手机");
 		}else{
-			SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), "绑定手机");
+			SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "绑定手机");
 		}
 		uservice = RemoteServiceManager.getRemoteService(IRpcJobUservice.class);
 		processDialog = new ProcessDialog(this);

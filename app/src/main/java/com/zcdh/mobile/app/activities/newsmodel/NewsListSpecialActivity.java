@@ -69,7 +69,7 @@ public class NewsListSpecialActivity extends BaseActivity implements
 	@ViewById(R.id.newsListView)
 	XListView newsListView;
 
-	private List<InformationTitleInfoDTO> newsList = new ArrayList<InformationTitleInfoDTO>();
+	private List<InformationTitleInfoDTO> newsList = new ArrayList<>();
 
 	private NewsItemAdapter newsAdapter;
 
@@ -103,8 +103,8 @@ public class NewsListSpecialActivity extends BaseActivity implements
 		model_id = getIntent().getLongExtra(NewsListActivity.kMODEL_ID, -1l);
 		String title = getIntent().getStringExtra("title");
 
-		SystemServicesUtils.setActionBarCustomTitle(this,
-				getSupportActionBar(), title);
+		SystemServicesUtils.displayCustomTitle(this,
+			getSupportActionBar(), title);
 		newsListView.setPullRefreshEnable(false);
 		newsListView.setPullLoadEnable(true);
 		newsListView.setAutoLoadEnable(false);
@@ -348,7 +348,7 @@ public class NewsListSpecialActivity extends BaseActivity implements
 			ViewHolder h = null;
 			if (convertView == null) {
 				convertView = LayoutInflater.from(getApplicationContext())
-						.inflate(R.layout.news_special_item, null);
+						.inflate(R.layout.news_special_item, parent,false);
 				h = new ViewHolder();
 				h.newsImg = (ImageView) convertView.findViewById(R.id.newsImg);
 				h.titleTxt = (TextView) convertView.findViewById(R.id.titleTxt);

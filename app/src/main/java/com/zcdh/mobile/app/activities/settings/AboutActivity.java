@@ -52,7 +52,8 @@ public class AboutActivity extends BaseActivity {
 	
 	@AfterViews
 	void bindViews(){
-		SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), getString(R.string.activity_title_about));
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+			getString(R.string.activity_title_about));
 		PackageInfo pInfo;
 		try {
 			pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
@@ -64,19 +65,19 @@ public class AboutActivity extends BaseActivity {
 		
 		String simple_adapter_key =  "title";
 		
-		List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
+		List<HashMap<String, String>> list = new ArrayList<>();
 		
 		HashMap<String, String>item = null;
 		
-		item = new HashMap<String, String>();
+		item = new HashMap<>();
 		item.put(simple_adapter_key, "公司网站:" + website);
 		list.add(item);
 
-		item = new HashMap<String, String>();
+		item = new HashMap<>();
 		item.put(simple_adapter_key, "公司微博:" + weibo);
 		list.add(item);
 
-		item = new HashMap<String, String>();
+		item = new HashMap<>();
 		item.put(simple_adapter_key, "联系我们:" + contact);
 		list.add(item);
 		

@@ -88,7 +88,7 @@ public class SearchPostsByEntActivity extends BaseActivity implements
 
 	private boolean hasNextPage;
 
-	ArrayList<JobEntPostDTO> searchResults = new ArrayList<JobEntPostDTO>();
+	ArrayList<JobEntPostDTO> searchResults = new ArrayList<>();
 	
 	String keyword;
 	
@@ -100,8 +100,8 @@ public class SearchPostsByEntActivity extends BaseActivity implements
 	@AfterViews
 	void bindView() {
 
-		SystemServicesUtils.setActionBarCustomTitle(this,
-				getSupportActionBar(), "企业搜索");
+		SystemServicesUtils.displayCustomTitle(this,
+			getSupportActionBar(), "企业搜索");
 
 		nearByService = RemoteServiceManager
 				.getRemoteService(IRpcNearByService.class);

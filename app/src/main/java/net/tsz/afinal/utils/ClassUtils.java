@@ -155,7 +155,7 @@ public class ClassUtils {
 	 */
 	public static List<Property> getPropertyList(Class<?> clazz) {
 		
-		List<Property> plist = new ArrayList<Property>();
+		List<Property> plist = new ArrayList<>();
 		try {
 			Field[] fs = clazz.getDeclaredFields();
 			String primaryKeyFieldName = getPrimaryKeyFieldName(clazz);
@@ -197,7 +197,7 @@ public class ClassUtils {
 	 */
 	public static List<ManyToOne> getManyToOneList(Class<?> clazz) {
 		
-		List<ManyToOne> mList = new ArrayList<ManyToOne>();
+		List<ManyToOne> mList = new ArrayList<>();
 		try {
 			Field[] fs = clazz.getDeclaredFields();
 			for (Field f : fs) {
@@ -237,7 +237,7 @@ public class ClassUtils {
 	 */
 	public static List<OneToMany> getOneToManyList(Class<?> clazz) {
 		
-		List<OneToMany> oList = new ArrayList<OneToMany>();
+		List<OneToMany> oList = new ArrayList<>();
 		try {
 			Field[] fs = clazz.getDeclaredFields();
 			for (Field f : fs) {

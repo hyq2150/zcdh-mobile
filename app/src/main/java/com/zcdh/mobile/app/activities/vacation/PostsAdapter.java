@@ -4,9 +4,6 @@
  */
 package com.zcdh.mobile.app.activities.vacation;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +15,10 @@ import android.widget.TextView;
 import com.zcdh.mobile.R;
 import com.zcdh.mobile.api.model.EntPostSearchDTO;
 import com.zcdh.mobile.utils.DateUtils;
+import com.zcdh.mobile.utils.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author jeason, 2014-4-24 上午9:48:18
@@ -41,7 +42,7 @@ public class PostsAdapter extends BaseAdapter {
 		mContext = context;
 	}
 
-	private List<EntPostSearchDTO> mPosts = new ArrayList<EntPostSearchDTO>();
+	private List<EntPostSearchDTO> mPosts = new ArrayList<>();
 
 	public void updateItems(List<EntPostSearchDTO> posts) {
 		mPosts = posts;
@@ -86,7 +87,7 @@ public class PostsAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder holder;
 		if (convertView == null) {
-			convertView = LayoutInflater.from(mContext).inflate(R.layout.post_item_vacation, null);
+			convertView = LayoutInflater.from(mContext).inflate(R.layout.post_item_vacation, parent,false);
 			holder = new ViewHolder();
 			holder.content = (TextView) convertView.findViewById(R.id.content);
 			holder.location_and_requirement = (TextView) convertView.findViewById(R.id.location_and_education);
@@ -105,7 +106,7 @@ public class PostsAdapter extends BaseAdapter {
 		holder.publish_time.setText(DateUtils.getDateByFormat(post.getPublishDate(), "yyyy-MM-dd"));// .getDateByFormatNUM(post.getPublishDate()));
 		holder.salary.setText(post.getSalaryName());
 		holder.title.setText(post.getPostName());
-		holder.content.setText(mPosts.get(position).getEntName());
+		holder.content.setText(StringUtils.changed(mPosts.get(position).getEntName().toString(), 15));
 		if (mPosts.get(position).getIsFilled() && isIs_vacation()) {
 			holder.img_cover.setVisibility(View.VISIBLE);
 		} else {

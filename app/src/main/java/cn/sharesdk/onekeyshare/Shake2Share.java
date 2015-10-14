@@ -131,9 +131,9 @@ public class Shake2Share extends FakeActivity implements SensorEventListener {
                         listener.onShake();
                     }
                 }
-                mLastX = (float) x;
-                mLastY = (float) y;
-                mLastZ = (float) z;
+                mLastX = x;
+                mLastY = y;
+                mLastZ = z;
             }
             mLastUpdateTime = currentTime;
         }
@@ -143,9 +143,9 @@ public class Shake2Share extends FakeActivity implements SensorEventListener {
 
     }
 
-    public static interface OnShakeListener {
+    public interface OnShakeListener {
 
-        public void onShake();
+        void onShake();
     }
 
 }

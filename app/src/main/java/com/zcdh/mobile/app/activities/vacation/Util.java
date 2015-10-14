@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -14,6 +13,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.net.ssl.SSLContext;
@@ -148,7 +148,7 @@ public class Util {
 	    }      
 	      
 		@Override
-		public Socket createSocket(Socket socket, String host, int port, boolean autoClose) throws IOException, UnknownHostException {
+		public Socket createSocket(Socket socket, String host, int port, boolean autoClose) throws IOException {
 			return sslContext.getSocketFactory().createSocket(socket, host,	port, autoClose);
 		}
 
@@ -322,11 +322,10 @@ public class Util {
 			int j = md.length;
 			char buf[] = new char[j * 2];
 			int k = 0;
-			for (int i = 0; i < j; i++) {
-				byte byte0 = md[i];
-				buf[k++] = hexDigits[byte0 >>> 4 & 0xf];
-				buf[k++] = hexDigits[byte0 & 0xf];
-			}
+		    for (byte byte0 : md) {
+			buf[k++] = hexDigits[byte0 >>> 4 & 0xf];
+			buf[k++] = hexDigits[byte0 & 0xf];
+		    }
 			return new String(buf);
 		} catch (Exception e) {
 			return null;
@@ -337,10 +336,8 @@ public class Util {
 		if (src == null || src.length == 0) {
 			return null;
 		}
-		final List<String> result = new ArrayList<String>();
-		for (int i = 0; i < src.length; i++) {
-			result.add(src[i]);
-		}
+		final List<String> result = new ArrayList<>();
+	    Collections.addAll(result, src);
 		return result;
 	}
 }

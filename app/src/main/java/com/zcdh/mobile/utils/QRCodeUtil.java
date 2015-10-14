@@ -23,7 +23,7 @@ public class QRCodeUtil {
 			return null;
 		// 把输入的文本转为二维码
 		QRCodeWriter writer = new QRCodeWriter();
-		Hashtable<EncodeHintType, String> hints = new Hashtable<EncodeHintType, String>();
+		Hashtable<EncodeHintType, String> hints = new Hashtable<>();
 		hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
 		BitMatrix bitMatrix = writer.encode(text, BarcodeFormat.QR_CODE, width, height, hints);
 		int[] pixels = new int[width * height];

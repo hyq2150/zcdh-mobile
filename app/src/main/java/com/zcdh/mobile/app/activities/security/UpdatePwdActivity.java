@@ -8,8 +8,6 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.OptionsItem;
-import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
 
 import android.os.Bundle;
@@ -18,12 +16,13 @@ import android.widget.Toast;
 
 import com.zcdh.mobile.R;
 import com.zcdh.mobile.api.IRpcJobUservice;
+import com.zcdh.mobile.app.Constants;
 import com.zcdh.mobile.app.dialog.ProcessDialog;
-import com.zcdh.mobile.app.views.LoadingIndicator;
 import com.zcdh.mobile.framework.activities.BaseActivity;
 import com.zcdh.mobile.framework.nio.RemoteServiceManager;
 import com.zcdh.mobile.framework.nio.RequestChannel;
 import com.zcdh.mobile.framework.nio.RequestListener;
+import com.zcdh.mobile.utils.SharedPreferencesUtil;
 import com.zcdh.mobile.utils.StringUtils;
 import com.zcdh.mobile.utils.SystemServicesUtils;
 
@@ -60,7 +59,8 @@ public class UpdatePwdActivity extends BaseActivity implements RequestListener {
 
 	@AfterViews
 	void bindViews() {
-		SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), getString(R.string.update_pwd));
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+			getString(R.string.update_pwd));
 
 	}
 
@@ -129,6 +129,8 @@ public class UpdatePwdActivity extends BaseActivity implements RequestListener {
 		switch (real_result) {
 		case 0:
 			Toast.makeText(this, R.string.update_pwd_successfully, Toast.LENGTH_SHORT).show();
+			// 更新密码到本地
+			SharedPreferencesUtil.putValue(UpdatePwdActivity.this, Constants.kLOGIN_PWD,password);
 			finish();
 			break;
 		case 5:

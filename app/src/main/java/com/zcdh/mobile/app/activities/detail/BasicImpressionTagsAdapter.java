@@ -4,23 +4,23 @@
  */
 package com.zcdh.mobile.app.activities.detail;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.zcdh.mobile.R;
+import com.zcdh.mobile.api.model.BasicSysCommentTagDTO;
+import com.zcdh.mobile.framework.adapters.PredicateAdapter;
 
-import utils.ActionTarget;
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
-import com.zcdh.mobile.R;
-import com.zcdh.mobile.api.model.BasicSysCommentTagDTO;
-import com.zcdh.mobile.framework.adapters.PredicateAdapter;
+import java.util.ArrayList;
+import java.util.List;
+
+import utils.ActionTarget;
 
 /**
  * @author jeason, 2014-6-5 下午10:11:37
@@ -40,7 +40,7 @@ public class BasicImpressionTagsAdapter extends PredicateAdapter {
 		mActivity = activity;
 		mFlater = LayoutInflater.from(mActivity);
 		at = new ActionTarget();
-		this.impressions = new ArrayList<BasicSysCommentTagDTO>();
+		this.impressions = new ArrayList<>();
 	}
 
 	public void updateItems(List<BasicSysCommentTagDTO> list) {
@@ -60,7 +60,7 @@ public class BasicImpressionTagsAdapter extends PredicateAdapter {
 	@Override
 	public View getView(final int position, ViewGroup parentView) {
 		BasicSysCommentTagDTO expression = impressions.get(position);
-		View view = mFlater.inflate(R.layout.basic_evaluation_tag, null);
+		View view = mFlater.inflate(R.layout.basic_evaluation_tag, parentView,false);
 		TextView tag_name = (TextView) view.findViewById(R.id.tv_tag_name);
 		ImageView selectIV = (ImageView) view.findViewById(R.id.iv_selected);
 		tag_name.setText(expression.getTagName());

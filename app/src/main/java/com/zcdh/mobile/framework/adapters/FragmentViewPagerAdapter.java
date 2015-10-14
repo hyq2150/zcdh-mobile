@@ -161,11 +161,11 @@ public class FragmentViewPagerAdapter extends PagerAdapter implements
 	 * page切换额外功能接口
 	 */
 	public interface OnExtraPageChangeListener {
-		public void onExtraPageScrolled(int i, float v, int i2);
+		void onExtraPageScrolled(int i, float v, int i2);
 
-		public void onExtraPageSelected(int i);
+		void onExtraPageSelected(int i);
 
-		public void onExtraPageScrollStateChanged(int i);
+		void onExtraPageScrollStateChanged(int i);
 	}
 
 }

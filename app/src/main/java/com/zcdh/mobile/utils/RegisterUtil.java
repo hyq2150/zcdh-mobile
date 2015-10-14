@@ -25,7 +25,7 @@ public class RegisterUtil {
 				//点击了去登录会执行以下操作
 				public void onClick(DialogInterface dialog, int which) {
 					//SharedPreferencesUtil.putValue(context, Constants.login, value)
-	//				ActivityDispatcher.to_login(activity);
+	//				ActivityDispatcher.toLogin(activity);
 					//如果是从职位申请那里进入到当前
 					//if("请登录后再申请该职位".equals(msg))
 					//{

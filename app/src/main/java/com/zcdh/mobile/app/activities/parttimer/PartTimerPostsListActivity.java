@@ -52,304 +52,305 @@ import java.util.HashMap;
 
 /**
  * 兼职职位列表
- * @author YJN
  *
+ * @author YJN
  */
 @EActivity(R.layout.activity_parttimer_posts)
 public class PartTimerPostsListActivity extends BaseActivity implements Subscriber, RequestListener, IXListViewListener, OnItemClickListener, DataLoadInterface {
-	
-	private static final String TAG = PartTimerPostsListActivity.class.getSimpleName();
 
-	private String kREQ_ID_fromMapToAdvancedSearchList;
-	
-	private IRpcNearByService nearbyService;
-	
-	@ViewById(R.id.listbarRl)
-	RelativeLayout listbarRl;
-	
-	/**
-	 * 顶部显示的职位数
-	 */
-	@ViewById(R.id.resultDescriptionTxt)
-	TextView resultDescriptionTxt; 
+    private static final String TAG = PartTimerPostsListActivity.class.getSimpleName();
 
-	/**
-	 * 筛选按钮
-	 */
-	@ViewById(R.id.filterBtn)
-	Button filterBtn;
-	
-	/**
-	 * 清空高级搜索条件
-	 */
-	@ViewById(R.id.clearnAdvanceConditionBtn)
-	ImageButton clearnAdvanceConditionBtn;
+    private String kREQ_ID_fromMapToAdvancedSearchList;
 
-	/**
-	 * 职位列表
-	 */
-	@ViewById(R.id.postListView)
-	XListView postListView;
-	
-	SearchResultAdapter postAdapter;
+    private IRpcNearByService nearbyService;
 
-	@ViewById(R.id.emptyView)
-	EmptyTipView emptyTipView;
-	
-	/**
-	 * 条件过滤
-	 */
-	private SearchConditionDTO searchConditionDTOForFilter = new SearchConditionDTO();
+    @ViewById(R.id.listbarRl)
+    RelativeLayout listbarRl;
 
-	 
-	/**
-	 * 高级搜索条件选择的值名称
-	 */
-	private HashMap<Integer, String> conditionValuesName = new HashMap<Integer, String>();
-	
-	private HashMap<String, JobObjectiveAreaDTO> selectedAreas = new HashMap<String, JobObjectiveAreaDTO>();
-	
-	private ArrayList<String> selectedWeek = new ArrayList<String>();
-	
-	private int currentPage = 1;
-	
-	private boolean isAdvance;
-	
-	/**
-	 * 
-	 */
-	private SearchConditionDTO searchConditionDTO = new SearchConditionDTO();
-	
-	/**
-	 * 地图在屏幕的范围
-	 */
+    /**
+     * 顶部显示的职位数
+     */
+    @ViewById(R.id.resultDescriptionTxt)
+    TextView resultDescriptionTxt;
+
+    /**
+     * 筛选按钮
+     */
+    @ViewById(R.id.filterBtn)
+    Button filterBtn;
+
+    /**
+     * 清空高级搜索条件
+     */
+    @ViewById(R.id.clearnAdvanceConditionBtn)
+    ImageButton clearnAdvanceConditionBtn;
+
+    /**
+     * 职位列表
+     */
+    @ViewById(R.id.postListView)
+    XListView postListView;
+
+    SearchResultAdapter postAdapter;
+
+    @ViewById(R.id.emptyView)
+    EmptyTipView emptyTipView;
+
+    /**
+     * 条件过滤
+     */
+    private SearchConditionDTO searchConditionDTOForFilter = new SearchConditionDTO();
+
+
+    /**
+     * 高级搜索条件选择的值名称
+     */
+    private HashMap<Integer, String> conditionValuesName = new HashMap<>();
+
+    private HashMap<String, JobObjectiveAreaDTO> selectedAreas = new HashMap<>();
+
+    private ArrayList<String> selectedWeek = new ArrayList<>();
+
+    private int currentPage = 1;
+
+    private boolean isAdvance;
+
+    /**
+     *
+     */
+    private SearchConditionDTO searchConditionDTO = new SearchConditionDTO();
+
+    /**
+     * 地图在屏幕的范围
+     */
 //	private List<LbsParam> screenBounds;
-	
-	/**
-	 * 职位
-	 */
-	private ArrayList<JobEntPostDTO> posts = new ArrayList<JobEntPostDTO>();
-	
-	private boolean hasNextPage;
 
-	
-	public void onCreate(Bundle savedInstanceState){
-		super.onCreate(savedInstanceState);
-		MyEvents.register(this);
-		
-	}
+    /**
+     * 职位
+     */
+    private ArrayList<JobEntPostDTO> posts = new ArrayList<>();
 
-	@AfterViews
-	void bindViews(){
-		String title = getIntent().getStringExtra("title");
-		SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), title);
-		nearbyService = RemoteServiceManager.getRemoteService(IRpcNearByService.class);
-		searchConditionDTO.setPostPropertyCode(Constants.POST_PROPERTY_JIANZHI);
-		if(!getIntent().getExtras().isEmpty()){ // 是显示 假期工(007.004)还是兼职 (007.002)
-			String whichForSearch = getIntent().getExtras().getString("postPropertyCode");
-			searchConditionDTO.setPostPropertyCode(whichForSearch);
-		}
-		
-		postListView.setPullRefreshEnable(false);
-		postListView.setPullLoadEnable(true);
-		postListView.setAutoLoadEnable(false);
-		postListView.setXListViewListener(this);
-		postListView.setOnItemClickListener(this);
-		postAdapter = new SearchResultAdapter(this);
-		postListView.setAdapter(postAdapter);
-		
-		// 中附近地图得到地图在屏幕的范围
-		MyEvents.post(Constants.kEVENT_GET_SCREEN_BOUND, 0);
-	}
-	
-	/**
-	 * 加载职位
-	 */
-	@Background
-	void loadAdvanced(SearchConditionDTO conditions){
-		if(conditions==null)conditions = new SearchConditionDTO();
-		LatLng myLocation = ZcdhApplication.getInstance().getMyLocation();
-		conditions.setLat(myLocation.latitude);
-		conditions.setLon(myLocation.longitude);
-		nearbyService
-				.findSearchPostDTOByAdvancedSearch(getUserId(),
-						conditions,
-						currentPage, Constants.Page_SIZE)
-				.identify(
-						kREQ_ID_fromMapToAdvancedSearchList = RequestChannel
-								.getChannelUniqueID(),
-						this);
-		currentPage++;
-	}
-	
-	
-	void showPosts(int total){
-		String key = searchConditionDTOForFilter.getKeyWord();
-		if (StringUtils.isBlank(key)) {
-			key = searchConditionDTO.getKeyWord();// 关键字
-		}
-		if (StringUtils.isBlank(key)) {
-			key = conditionValuesName.get(1); // 职位类别
-		}
-		String cidi = "";
-		String city = "";
-		if (selectedAreas!=null && selectedAreas.size()>0) {
-			for(String k : selectedAreas.keySet()){
-				city += selectedAreas.get(k).getName() + ",";
-			}
+    private boolean hasNextPage;
+
+
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        MyEvents.register(this);
+
+    }
+
+    @AfterViews
+    void bindViews() {
+        String title = getIntent().getStringExtra("title");
+        SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), title);
+        nearbyService = RemoteServiceManager.getRemoteService(IRpcNearByService.class);
+        searchConditionDTO.setPostPropertyCode(Constants.POST_PROPERTY_JIANZHI);
+        if (!getIntent().getExtras().isEmpty() && null != getIntent().getExtras().getString("postPropertyCode")) { // 是显示 假期工(007.004)还是兼职 (007.002)
+            searchConditionDTO.setPostPropertyCode(getIntent().getExtras().getString("postPropertyCode"));
+        }
+
+        postListView.setPullRefreshEnable(false);
+        postListView.setPullLoadEnable(true);
+        postListView.setAutoLoadEnable(false);
+        postListView.setXListViewListener(this);
+        postListView.setOnItemClickListener(this);
+        postAdapter = new SearchResultAdapter(this);
+        postListView.setAdapter(postAdapter);
+
+        // 中附近地图得到地图在屏幕的范围
+        MyEvents.post(Constants.kEVENT_GET_SCREEN_BOUND, 0);
+    }
+
+    /**
+     * 加载职位
+     */
+    @Background
+    void loadAdvanced(SearchConditionDTO conditions) {
+        if (conditions == null) conditions = new SearchConditionDTO();
+        LatLng myLocation = ZcdhApplication.getInstance().getMyLocation();
+        conditions.setLat(myLocation.latitude);
+        conditions.setLon(myLocation.longitude);
+        nearbyService
+                .findSearchPostDTOByAdvancedSearch(getUserId(),
+                        conditions,
+                        currentPage, Constants.Page_SIZE)
+                .identify(
+                        kREQ_ID_fromMapToAdvancedSearchList = RequestChannel
+                                .getChannelUniqueID(),
+                        this);
+        currentPage++;
+    }
+
+
+    void showPosts(int total) {
+        String key = searchConditionDTOForFilter.getKeyWord();
+        if (StringUtils.isBlank(key)) {
+            key = searchConditionDTO.getKeyWord();// 关键字
+        }
+        if (StringUtils.isBlank(key)) {
+            key = conditionValuesName.get(1); // 职位类别
+        }
+        String cidi = "";
+        String city = "";
+        if (selectedAreas != null && selectedAreas.size() > 0) {
+            for (String k : selectedAreas.keySet()) {
+                city += selectedAreas.get(k).getName() + ",";
+            }
 //			city = city.substring(city.length()-1, city.length());
-		} else {
-			city = "全国";
+        } else {
+            city = "全国";
 /*			if(!isAdvance){
-			}else{
+            }else{
 				city = "全国";
 			}
-*/		}
-		cidi += city;
-		if(!TextUtils.isEmpty(key)){
-			cidi += ","+ key;
-		}
-		cidi += total + " 个职位"; 
-		Log.i(TAG, cidi +"");
-		resultDescriptionTxt.setText(cidi);
-	}
-	
-	@OnActivityResult(AdvancedSearchActivity.kREQUEST_ADVANCE_SEARCH)
-	void onResultCondition(int resultCode, Intent data) {
-		if (resultCode == RESULT_OK && data.getExtras() != null) {
-				searchConditionDTOForFilter = (SearchConditionDTO) data
-					.getExtras().getSerializable(
-							AdvancedSearchActivity.kDATA_CONDITIONS);
-			conditionValuesName = (HashMap<Integer, String>) data.getExtras()
-					.getSerializable(AdvancedSearchActivity.kDATA_VALUES_NAME);
+*/
+        }
+        cidi += city;
+        if (!TextUtils.isEmpty(key)) {
+            cidi += "," + key;
+        }
+        cidi += total + " 个职位";
+        Log.i(TAG, cidi + "");
+        resultDescriptionTxt.setText(cidi);
+    }
 
-			selectedAreas = (HashMap<String, JobObjectiveAreaDTO>) data.getExtras()
-					.getSerializable(AdvancedSearchActivity.kDATA_SELECTED_AREAS);
-			
-			clearnAdvanceConditionBtn.setVisibility(View.VISIBLE);
-			
-			currentPage = 1;
-			
-			isAdvance = true;
-			posts.clear();
-			postAdapter.updateItems(posts);
-			//
-			searchConditionDTOForFilter.setPostPropertyCode(searchConditionDTO.getPostPropertyCode());
-			loadAdvanced(searchConditionDTOForFilter);
-		}
+    @OnActivityResult(AdvancedSearchActivity.kREQUEST_ADVANCE_SEARCH)
+    void onResultCondition(int resultCode, Intent data) {
+        if (resultCode == RESULT_OK && data.getExtras() != null) {
+            searchConditionDTOForFilter = (SearchConditionDTO) data
+                    .getExtras().getSerializable(
+                            AdvancedSearchActivity.kDATA_CONDITIONS);
+            conditionValuesName = (HashMap<Integer, String>) data.getExtras()
+                    .getSerializable(AdvancedSearchActivity.kDATA_VALUES_NAME);
 
-	}
-	
-	
-	@Click(R.id.filterBtn)
-	void onFilterBtn() {
-		PartTimerAdvacedSearchActivity_.intent(this)
-		.conditionDTO(searchConditionDTOForFilter)
-		.conditionValuesName(conditionValuesName)
-		.selectedAreas(selectedAreas)
-		.selectedWeek(selectedWeek)
-		.startForResult(AdvancedSearchActivity.kREQUEST_ADVANCE_SEARCH);
-	}
-	
-	@Click(R.id.clearnAdvanceConditionBtn)
-	void onClearConditions(){
-		searchConditionDTOForFilter = new SearchConditionDTO();
-		conditionValuesName.clear();
-		selectedWeek.clear();
-		selectedAreas.clear();
-		posts.clear();
-		postAdapter.updateItems(posts);
-		clearnAdvanceConditionBtn.setVisibility(View.GONE);
-		loadAdvanced(searchConditionDTO);
-	}
+            selectedAreas = (HashMap<String, JobObjectiveAreaDTO>) data.getExtras()
+                    .getSerializable(AdvancedSearchActivity.kDATA_SELECTED_AREAS);
 
-	@Override
-	public void receive(String key, Object msg) {
-		if(Constants.kEVENT_RECIVE_SCREEN_BOUND.equals(key)){
-			Log.i("EVEN_BOUND part", "OK");
-			if(msg!=null){
+            clearnAdvanceConditionBtn.setVisibility(View.VISIBLE);
+
+            currentPage = 1;
+
+            isAdvance = true;
+            posts.clear();
+            postAdapter.updateItems(posts);
+            //
+            searchConditionDTOForFilter.setPostPropertyCode(searchConditionDTO.getPostPropertyCode());
+            loadAdvanced(searchConditionDTOForFilter);
+        }
+
+    }
+
+
+    @Click(R.id.filterBtn)
+    void onFilterBtn() {
+        PartTimerAdvacedSearchActivity_.intent(this)
+                .conditionDTO(searchConditionDTOForFilter)
+                .conditionValuesName(conditionValuesName)
+                .selectedAreas(selectedAreas)
+                .selectedWeek(selectedWeek)
+                .startForResult(AdvancedSearchActivity.kREQUEST_ADVANCE_SEARCH);
+    }
+
+    @Click(R.id.clearnAdvanceConditionBtn)
+    void onClearConditions() {
+        searchConditionDTOForFilter = new SearchConditionDTO();
+        conditionValuesName.clear();
+        selectedWeek.clear();
+        selectedAreas.clear();
+        posts.clear();
+        postAdapter.updateItems(posts);
+        clearnAdvanceConditionBtn.setVisibility(View.GONE);
+        loadAdvanced(searchConditionDTO);
+    }
+
+    @Override
+    public void receive(String key, Object msg) {
+        if (Constants.kEVENT_RECIVE_SCREEN_BOUND.equals(key)) {
+            Log.i("EVEN_BOUND part", "OK");
+            if (msg != null) {
 //				screenBounds = (List<LbsParam>) msg;
-				loadAdvanced(searchConditionDTO);
-			}
-		}
-	}
+                loadAdvanced(searchConditionDTO);
+            }
+        }
+    }
 
-	@Override
-	public void onRequestStart(String reqId) {
-		
-	}
+    @Override
+    public void onRequestStart(String reqId) {
 
-	@Override
-	public void onRequestSuccess(String reqId, Object result) {
-		if(reqId.equals(kREQ_ID_fromMapToAdvancedSearchList)){
-			Page<JobEntPostDTO> page = null;
+    }
 
-			if (result != null) {
-				page = (Page<JobEntPostDTO>) result;
-				if (page.getElements() != null) {
-					posts.addAll(page.getElements());
-					hasNextPage = page.hasNextPage();
-					postAdapter.updateItems(posts);
-					
-				}
-			}
-			listbarRl.setVisibility(View.VISIBLE);
-			boolean empty = !(posts!=null && posts.size()>0);
-			emptyTipView.isEmpty(empty);
-			if(empty){
-				postListView.setVisibility(View.GONE);
-			}else{
-				postListView.setVisibility(View.VISIBLE);
-			}
-			showPosts(page==null?0:page.getTotalRows());
-		}
-	}
+    @Override
+    public void onRequestSuccess(String reqId, Object result) {
+        if (reqId.equals(kREQ_ID_fromMapToAdvancedSearchList)) {
+            Page<JobEntPostDTO> page = null;
 
-	@Override
-	public void onRequestFinished(String reqId) {
-		new Handler().postDelayed(new Runnable() {
-			public void run() {
-				onComplete(hasNextPage);
-			}
+            if (result != null) {
+                page = (Page<JobEntPostDTO>) result;
+                if (page.getElements() != null) {
+                    posts.addAll(page.getElements());
+                    hasNextPage = page.hasNextPage();
+                    postAdapter.updateItems(posts);
 
-		}, 1000);
-	}
-	@UiThread
-	void onComplete(boolean hasNextPage) {
-		postListView.stopLoadMore();
-		postListView.setPullLoadEnable(hasNextPage);
-	}
+                }
+            }
+            listbarRl.setVisibility(View.VISIBLE);
+            boolean empty = !(posts != null && posts.size() > 0);
+            emptyTipView.isEmpty(empty);
+            if (empty) {
+                postListView.setVisibility(View.GONE);
+            } else {
+                postListView.setVisibility(View.VISIBLE);
+            }
+            showPosts(page == null ? 0 : page.getTotalRows());
+        }
+    }
 
-	@Override
-	public void onRequestError(String reqID, Exception error) {
-		emptyTipView.showException((ZcdhException)error, this);
-	}
+    @Override
+    public void onRequestFinished(String reqId) {
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                onComplete(hasNextPage);
+            }
 
-	@Override
-	public void onRefresh() {
-		// TODO Auto-generated method stub
-		
-	}
+        }, 1000);
+    }
 
-	@Override 
-	public void onLoadMore() {
-		// TODO Auto-generated method stub
-		loadAdvanced(isAdvance?searchConditionDTOForFilter:searchConditionDTO);
-	}
+    @UiThread
+    void onComplete(boolean hasNextPage) {
+        postListView.stopLoadMore();
+        postListView.setPullLoadEnable(hasNextPage);
+    }
 
-	@Override
-	public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-		long postId = posts.get(position - 1).getPostId();
-		DetailsFrameActivity_.intent(this).postId(postId)
-				.switchable(true).currentIndex(position - 1)
-				.entId(posts.get(position - 1).getEntId())
-				.posts(posts).start();
-		
-	}
+    @Override
+    public void onRequestError(String reqID, Exception error) {
+        emptyTipView.showException((ZcdhException) error, this);
+    }
 
-	@Override
-	public void loadData() {
-		loadAdvanced(isAdvance?searchConditionDTOForFilter:searchConditionDTO);
-	}
-	
+    @Override
+    public void onRefresh() {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onLoadMore() {
+        // TODO Auto-generated method stub
+        loadAdvanced(isAdvance ? searchConditionDTOForFilter : searchConditionDTO);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+        long postId = posts.get(position - 1).getPostId();
+        DetailsFrameActivity_.intent(this).postId(postId)
+                .switchable(true).currentIndex(position - 1)
+                .entId(posts.get(position - 1).getEntId())
+                .posts(posts).start();
+
+    }
+
+    @Override
+    public void loadData() {
+        loadAdvanced(isAdvance ? searchConditionDTOForFilter : searchConditionDTO);
+    }
+
 }

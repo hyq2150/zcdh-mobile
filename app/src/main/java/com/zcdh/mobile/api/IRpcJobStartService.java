@@ -1,7 +1,7 @@
 /** 
 *  IRpcJobStartService 
 * 
-*  Created Date: 2015-08-12 17:07:57 
+*  Created Date: 2015-10-12 17:31:51 
 *  
 */  
 package com.zcdh.mobile.api;  
@@ -25,7 +25,7 @@ public interface IRpcJobStartService   {
     *  @author focus, 2014-12-31 上午11:28:03 
     */  
     @RpcMethod("findGuideViewByHtml")
-    public RequestChannel<List<String>> findGuideViewByHtml(@Param("lat") Double lat, @Param("lon") Double lon, @Param("deviceType") Integer deviceType);
+    public RequestChannel<List<String>> findGuideViewByHtml(@Param("lat")  Double lat, @Param("lon")  Double lon, @Param("deviceType")  Integer deviceType);
     /** 
     * 图片 引导页 
     *  @param lat 
@@ -34,7 +34,7 @@ public interface IRpcJobStartService   {
     *  @author focus, 2014-12-31 上午11:28:12 
     */  
     @RpcMethod("findGuideViewByImg")
-    public RequestChannel<List<ImgDTO>> findGuideViewByImg(@Param("lat") Double lat, @Param("lon") Double lon, @Param("deviceType") Integer deviceType);
+    public RequestChannel<List<ImgDTO>> findGuideViewByImg(@Param("lat")  Double lat, @Param("lon")  Double lon, @Param("deviceType")  Integer deviceType);
     /** 
     * html 闪屏 
     *  @param lat 
@@ -43,7 +43,7 @@ public interface IRpcJobStartService   {
     *  @author focus, 2014-12-31 上午11:27:30 
     */  
     @RpcMethod("findFlashScreenByHtml")
-    public RequestChannel<List<String>> findFlashScreenByHtml(@Param("lat") Double lat, @Param("lon") Double lon, @Param("deviceType") Integer deviceType);
+    public RequestChannel<List<String>> findFlashScreenByHtml(@Param("lat")  Double lat, @Param("lon")  Double lon, @Param("deviceType")  Integer deviceType);
     /** 
     * 图片 闪屏 
     *  @param lat 
@@ -53,7 +53,7 @@ public interface IRpcJobStartService   {
     *  @author focus, 2014-12-31 上午11:27:42 
     */  
     @RpcMethod("findFlashScreenByImg")
-    public RequestChannel<List<ImgDTO>> findFlashScreenByImg(@Param("lat") Double lat, @Param("lon") Double lon, @Param("deviceType") Integer deviceType);
+    public RequestChannel<List<ImgDTO>> findFlashScreenByImg(@Param("lat")  Double lat, @Param("lon")  Double lon, @Param("deviceType")  Integer deviceType);
     /** 
     * 根据所在城市等获取闪屏广告图片 
     *  @param lat 纬度 
@@ -67,7 +67,7 @@ public interface IRpcJobStartService   {
     *  @author liyuan, 2015-5-20 下午2:43:51 
     */  
     @RpcMethod("findFlashScreenByImgForCity")
-    public RequestChannel<List<ImgDTO>> findFlashScreenByImgForCity(@Param("lat") Double lat, @Param("lon") Double lon, @Param("province") String province, @Param("city") String city, @Param("district") String district, @Param("street") String street, @Param("deviceType") Integer deviceType);
+    public RequestChannel<List<ImgDTO>> findFlashScreenByImgForCity(@Param("lat")  Double lat, @Param("lon")  Double lon, @Param("province")  String province, @Param("city")  String city, @Param("district")  String district, @Param("street")  String street, @Param("deviceType")  Integer deviceType);
 
 
  } 

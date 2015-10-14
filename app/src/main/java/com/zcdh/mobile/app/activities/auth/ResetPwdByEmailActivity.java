@@ -45,7 +45,8 @@ public class ResetPwdByEmailActivity extends BaseActivity implements RequestList
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), getString(R.string.reset_pwd));
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+			getString(R.string.reset_pwd));
 		userService = RemoteServiceManager.getRemoteService(IRpcJobUservice.class);
 	}
 

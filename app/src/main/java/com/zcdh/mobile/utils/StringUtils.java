@@ -59,10 +59,7 @@ public class StringUtils {
 		int i = s.substring(0, 1).getBytes()[0];
 		if (i >= 65 && i <= 90) {
 			i += 32;
-			StringBuffer sb = new StringBuffer();
-			sb.append((char) i);
-			sb.append(s.substring(1));
-			return sb.toString();
+		    return String.valueOf((char) i) + s.substring(1);
 		} else {
 			return s;
 		}
@@ -92,7 +89,7 @@ public class StringUtils {
 	 * @return 经过重复的字符窜
 	 */
 	public static String buildRepeatString(String s, int n) {
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < n; i++) {
 			sb.append(s);
 		}
@@ -106,7 +103,7 @@ public class StringUtils {
 	 * @return
 	 */
 	public static String buildLikeWord(String keyword) {
-		return new StringBuffer("%").append(keyword).append("%").toString();
+		return "%" + keyword + "%";
 	}
 
 	/**
@@ -122,11 +119,11 @@ public class StringUtils {
 		try {
 			matcher = Pattern.compile(regex).matcher(input);
 			List<String> l = null;
-			list = new ArrayList<List<String>>();
+			list = new ArrayList<>();
 			while (matcher.find()) {
-				l = new ArrayList<String>();
+				l = new ArrayList<>();
 				for (int i = 1; i <= matcher.groupCount(); i++) {
-					l.add(new String(matcher.group(i)));
+					l.add(matcher.group(i));
 				}
 				list.add(l);
 			}
@@ -152,10 +149,10 @@ public class StringUtils {
 		Matcher matcher = null;
 		try {
 			matcher = Pattern.compile(regex).matcher(input);
-			list = new ArrayList<String>();
+			list = new ArrayList<>();
 			while (matcher.find()) {
 				for (int i = 1; i <= matcher.groupCount(); i++) {
-					list.add(new String(matcher.group(i)));
+					list.add(matcher.group(i));
 				}
 			}
 			return list.size() > 0 ? list : null;
@@ -229,7 +226,7 @@ public class StringUtils {
 	 * @return
 	 */
 	public static boolean containsPattern(String str, String pattern) {
-		return !str.matches("^(?!.*?" + pattern.toString() + ").*$");
+		return !str.matches("^(?!.*?" + pattern + ").*$");
 	}
 
 	/**
@@ -270,8 +267,8 @@ public class StringUtils {
 	 * @return
 	 */
 	public static boolean isBoolean(String str) {
-		if (str == null) return false;
-		return "true".equals(str) || "false".equals(str) || "1".equals(str) || "0".equals(str) || "yes".equals(str) || "no".equals(str);
+	    return str != null && ("true".equals(str) || "false".equals(str) || "1".equals(str)
+		    || "0".equals(str) || "yes".equals(str) || "no".equals(str));
 	}
 
 	/**
@@ -328,7 +325,7 @@ public class StringUtils {
 		Matcher matcher = Pattern.compile(REG_URL).matcher(srt);
 		if (!matcher.find()) return null;
 
-		List<String> urls = new ArrayList<String>();
+		List<String> urls = new ArrayList<>();
 		do {
 			String url = matcher.group();
 			// 正则可匹配无协议开头的网址，依照习惯，一般为http://
@@ -337,7 +334,7 @@ public class StringUtils {
 			}
 			urls.add(url);
 		} while (matcher.find());
-		return urls.toArray(new String[0]);
+		return urls.toArray(new String[urls.size()]);
 	}
 
 	/**
@@ -368,7 +365,7 @@ public class StringUtils {
 	public static List<String> findTopics(String content) {
 		Pattern pattern = Pattern.compile("#([^#]+)#");
 		Matcher m = pattern.matcher(content);
-		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<>();
 		while (m.find()) {
 			String name = m.group(1);
 			if (list.contains(name)) continue;
@@ -389,7 +386,7 @@ public class StringUtils {
 	public static List<String> findAtUserAlias(String content) {
 		Pattern pattern = Pattern.compile("@([^@ :/\\\\]+)");
 		Matcher m = pattern.matcher(content);
-		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<>();
 		while (m.find()) {
 			String name = m.group(1);
 			if (list.contains(name)) continue;
@@ -466,7 +463,7 @@ public class StringUtils {
 	 * @return
 	 */
 	public static String sqlIN(String prefix, int count) {
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < count; i++) {
 			sb.append("?,");
 		}
@@ -696,7 +693,7 @@ public class StringUtils {
 	}
 
 	public static HashMap<String, String> getParams(String raw_params) {
-		HashMap<String, String> params = new HashMap<String, String>();
+		HashMap<String, String> params = new HashMap<>();
 		if(raw_params!=null){
 			for (String key_value_pair : raw_params.split(",")) {
 				if (key_value_pair.contains("=")) {
@@ -707,5 +704,25 @@ public class StringUtils {
 			}
 		}
 		return params;
+	}
+
+	/**
+	 * 用于超过TextView字数是，后面用.....表示
+	 * @param t
+	 *            字符串
+	 * @param length
+	 *            字数
+	 * @return
+	 */
+	public static String changed(String t, int length) {
+		if(t!=null){
+			if (t.length() > length) {
+				t = t.substring(0, length).toString() + ".....";
+				return t;
+			} else
+				return t;
+		}else
+			return t="";
+
 	}
 }

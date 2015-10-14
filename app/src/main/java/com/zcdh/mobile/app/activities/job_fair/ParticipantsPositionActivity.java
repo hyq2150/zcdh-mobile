@@ -101,14 +101,14 @@ public class ParticipantsPositionActivity extends BaseActivity implements
 	private int pageSize = 10;
 	private YuYinInputView yuyinView;
 	private List<JobFairPost> fairList;
-	private List<JobEntPostDTO> posts = new ArrayList<JobEntPostDTO>();
+	private List<JobEntPostDTO> posts = new ArrayList<>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(),
-				getResources().getString(R.string.participants_position));
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+			getResources().getString(R.string.participants_position));
 		jobfairService = RemoteServiceManager
 				.getRemoteService(IRpcJobFairService.class);
 		inflater = LayoutInflater.from(this);
@@ -185,7 +185,7 @@ public class ParticipantsPositionActivity extends BaseActivity implements
 
 	@Click(R.id.filterBtn)
 	void onFilter() {
-		ActivityDispatcher.to_ParcitipantsIndustry(true, 0, fairId, this);
+		ActivityDispatcher.toParcitipantsIndustry(true, 0, fairId, this);
 	}
 
 	@Click(R.id.micBtn)
@@ -235,8 +235,8 @@ public class ParticipantsPositionActivity extends BaseActivity implements
 					adapter.addToBottom(pageJobFairPost.getElements());
 				}
 				for (int i = 0; i < pageJobFairPost.getElements().size(); i++) {
-					JobFairPost post = (JobFairPost) (pageJobFairPost
-							.getElements().get(i));
+					JobFairPost post = pageJobFairPost
+							.getElements().get(i);
 					JobEntPostDTO post2 = new JobEntPostDTO();
 					post2.setPostId(post.getPostId());
 					post2.setEntId(post.getEntId());
@@ -350,7 +350,7 @@ public class ParticipantsPositionActivity extends BaseActivity implements
 		public ParticipantsPositionAdapter() {
 			super();
 			// TODO Auto-generated constructor stub
-			fairList = new ArrayList<JobFairPost>();
+			fairList = new ArrayList<>();
 		}
 
 		@Override

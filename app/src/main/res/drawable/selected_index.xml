@@ -3,6 +3,6 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
    <item android:drawable="@color/activity_bg" android:state_pressed="true"/>
     <item android:drawable="@color/listitem_selected" android:state_selected="true"/>
-    <item android:drawable="@color/listitem_selected"></item>
+    <item android:drawable="@color/listitem_selected"/>
 
 </selector>

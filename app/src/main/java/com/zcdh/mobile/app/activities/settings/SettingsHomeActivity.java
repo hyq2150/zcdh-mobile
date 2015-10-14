@@ -2,7 +2,6 @@ package com.zcdh.mobile.app.activities.settings;
 
 import com.zcdh.mobile.R;
 import com.zcdh.mobile.api.IRpcJobUservice;
-import com.zcdh.mobile.app.Constants;
 import com.zcdh.mobile.app.ZcdhApplication;
 import com.zcdh.mobile.app.activities.auth.LoginActivity_;
 import com.zcdh.mobile.app.activities.auth.LoginHelper;
@@ -49,11 +48,12 @@ public class SettingsHomeActivity extends BaseActivity implements Subscriber,
 
     public static final int REQUEST_CODE_SETTING = 0x102;
 
+
     String kREQ_ID_isOpenUserMatchSet;
 
     private IRpcJobUservice jobUservice;
 
-    ArrayList<String> settings = new ArrayList<String>();
+    ArrayList<String> settings = new ArrayList<>();
 
     @ViewById(R.id.sv_settings)
     ScrollView scrollView;
@@ -77,7 +77,7 @@ public class SettingsHomeActivity extends BaseActivity implements Subscriber,
     @AfterViews
     void bindViews() {
         // 设置标题
-        SystemServicesUtils.setActionBarCustomTitle(this,
+        SystemServicesUtils.displayCustomTitle(this,
                 getSupportActionBar(), getString(R.string.title_settings_home));
 
         // ScrollView滚动至最顶端，以显示搜索历史的ListView
@@ -91,39 +91,39 @@ public class SettingsHomeActivity extends BaseActivity implements Subscriber,
 
     void inflat() {
         // 初始化设置列表
-        ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
+        ArrayList<HashMap<String, Object>> list = new ArrayList<>();
         // 修改密码
-        HashMap<String, Object> item = new HashMap<String, Object>();
+        HashMap<String, Object> item = new HashMap<>();
         // 推送设置
-        item = new HashMap<String, Object>();
+        item = new HashMap<>();
         item.put(simple_adapter_key, getString(R.string.activity_title_push));
         list.add(item);
 
         // 开启匹配度
         if (isMatchOpened) {
-            item = new HashMap<String, Object>();
+            item = new HashMap<>();
             item.put(simple_adapter_key,
                     getString(R.string.activity_title_match));
             list.add(item);
         }
 
         // 软件评分
-        item = new HashMap<String, Object>();
+        item = new HashMap<>();
         item.put(simple_adapter_key, getString(R.string.gradeForApp));
         list.add(item);
 
         // 关于我们
-        item = new HashMap<String, Object>();
+        item = new HashMap<>();
         item.put(simple_adapter_key, getString(R.string.about));
         list.add(item);
 
         // 检查更新
-        item = new HashMap<String, Object>();
+        item = new HashMap<>();
         item.put(simple_adapter_key, getString(R.string.checkForUpgrade));
         list.add(item);
 
         // 系统引导
-        item = new HashMap<String, Object>();
+        item = new HashMap<>();
         item.put(simple_adapter_key, getString(R.string.gettingStart));
         list.add(item);
 
@@ -213,8 +213,8 @@ public class SettingsHomeActivity extends BaseActivity implements Subscriber,
         LoginHelper.doExit(this);
         setResult(RESULT_OK);
         LoginActivity_.intent(this).is_exited(true).start();
-        Intent exitActionFilter = new Intent(Constants.ACTION_EXIT);
-        sendBroadcast(exitActionFilter);
+//        Intent exitActionFilter = new Intent(Constants.ACTION_EXIT);
+//        sendBroadcast(exitActionFilter);
         finish();
     }
 

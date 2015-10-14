@@ -5,6 +5,7 @@ import com.zcdh.mobile.api.model.JobEntPostDTO;
 import com.zcdh.mobile.app.Constants;
 import com.zcdh.mobile.app.ZcdhApplication;
 import com.zcdh.mobile.app.activities.auth.LoginActivity_;
+import com.zcdh.mobile.app.activities.base.BaseFragment;
 import com.zcdh.mobile.framework.activities.FWTabBarFragmentActivity;
 import com.zcdh.mobile.utils.SystemServicesUtils;
 
@@ -28,20 +29,23 @@ import java.util.List;
  * @author yangjiannan
  */
 @OptionsMenu(R.menu.action_details)
-@EActivity(R.layout.activity_details_frame)
+@EActivity(R.layout.fw_tab_layout)
 public class DetailsFrameActivity extends FWTabBarFragmentActivity implements
-        FWTabBarFragmentActivity.PagerSelectedListener {
+        FWTabBarFragmentActivity.PagerSelectedListener,BaseFragment.IFragmentCallback {
 
     private static final String TAG = DetailsFrameActivity.class
             .getSimpleName();
 
     protected boolean cancelFavorite;
 
-    private PostDetailsFragment_ postDetailsFragment;
+    //职位详情
+    private PostDetailsFragment postDetailsFragment;
 
-    private EntDetailFragment_ entDetailFragment;
+    //企业详情
+    private EntDetailFragment entDetailFragment;
 
-    private MainEntMorePostsFragment_ morePostsList;
+    //其他职位
+    private MainEntMorePostsFragment morePostsList;
 
     @Extra
     boolean isFair = false;
@@ -68,7 +72,7 @@ public class DetailsFrameActivity extends FWTabBarFragmentActivity implements
 
     @AfterViews
     void bindViews() {
-        SystemServicesUtils.setActionBarCustomTitle(this,
+        SystemServicesUtils.displayCustomTitle(this,
                 getSupportActionBar(), "正在加载...");
         initFragments();
     }
@@ -77,8 +81,7 @@ public class DetailsFrameActivity extends FWTabBarFragmentActivity implements
      * 初始化fragment 与 Viewpager 组合
      */
     private void initFragments() {
-        tabTitle = new String[]{getString(R.string.post_detail),
-                getString(R.string.ent_detail), getString(R.string.all_posts)};
+        tabTitle=getResources().getStringArray(R.array.post_array);
         Bundle bundle = new Bundle();
         bundle.putLong(Constants.kENT_ID, entId);
         bundle.putLong(Constants.kPOST_ID, postId);
@@ -105,7 +108,6 @@ public class DetailsFrameActivity extends FWTabBarFragmentActivity implements
             Intent data = new Intent();
             data.putExtra(Constants.kPOST_ID, postId);
             setResult(RESULT_OK, data);
-
         }
         finish();
     }
@@ -121,9 +123,9 @@ public class DetailsFrameActivity extends FWTabBarFragmentActivity implements
         }
     }
 
-    public void goesPager(int page) {
-        mViewPager.setCurrentItem(page);
-    }
+//    public void toPage(int page) {
+//        mViewPager.setCurrentItem(page);
+//    }
 
     @OnActivityResult(Constants.REQUEST_CODE_COMMENT)
     void onCommentBack(int resultCode, Intent data) {
@@ -165,5 +167,11 @@ public class DetailsFrameActivity extends FWTabBarFragmentActivity implements
     public void refresh(long entId) {
         entDetailFragment.loadData(entId);
         morePostsList.loadData(entId);
+    }
+
+    @Override
+    public <T> void onCall(T t) {
+//        toPage(integer);
+        mViewPager.setCurrentItem((Integer) t);
     }
 }

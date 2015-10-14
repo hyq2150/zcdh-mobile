@@ -11,6 +11,6 @@
         android:divider="@color/divider"
         android:dividerHeight="@dimen/dividerHeight"
         android:background="@drawable/listview_background"
-        ></ListView>
+        />
 
 </LinearLayout>

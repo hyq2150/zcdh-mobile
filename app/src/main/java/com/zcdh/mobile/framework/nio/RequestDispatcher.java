@@ -1,11 +1,11 @@
 package com.zcdh.mobile.framework.nio;
 
+import com.zcdh.core.nio.except.ZcdhException;
+import com.zcdh.core.utils.StringUtils;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import com.zcdh.core.nio.except.ZcdhException;
-import com.zcdh.core.utils.StringUtils;
 
 
 /**
@@ -17,10 +17,10 @@ import com.zcdh.core.utils.StringUtils;
 public class RequestDispatcher {
 	
 	//用于在异步请求返回结果是调用相应的发起者
-	private static final HashMap<String, RequestListener> requestListners = new HashMap<String, RequestListener>();
+	private static final HashMap<String, RequestListener> requestListners = new HashMap<>();
 	
 	//用于订阅接收每个请求产生的请求ID
-	private static final ArrayList<RequestListener> subscribers = new ArrayList<RequestListener>();
+	private static final ArrayList<RequestListener> subscribers = new ArrayList<>();
 
 	/**
 	 * 取得用于处理当前请求的监听器
@@ -88,12 +88,9 @@ public class RequestDispatcher {
 						len += fs_self.length;
 					}
 					fs = new Field[len];
-					for (int i = 0; i < fs_parent.length; i++) {
-						fs[i] = fs_parent[i];
-					}
-					for (int i = 0; i < fs_self.length; i++) {
-						fs[fs_parent.length + i] = fs_self[i];
-					}
+				    System.arraycopy(fs_parent, 0, fs, 0, fs_parent.length);
+				    System.arraycopy(fs_self, 0, fs, fs_parent.length,
+					    fs_self.length);
 					
 					//if(requestListener instanceof SearchActivity){
 						

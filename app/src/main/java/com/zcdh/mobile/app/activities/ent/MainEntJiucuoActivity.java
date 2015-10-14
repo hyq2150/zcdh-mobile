@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.zcdh.mobile.R;
 import com.zcdh.mobile.api.IRpcJobEnterpriseService;
-import com.zcdh.mobile.api.model.LeaveMessageDTO;
 import com.zcdh.mobile.api.model.LeaveMsgDTO;
 import com.zcdh.mobile.app.ZcdhApplication;
 import com.zcdh.mobile.app.views.iflytek.YuYinInputView;
@@ -68,9 +67,9 @@ public class MainEntJiucuoActivity extends BaseActivity implements RequestListen
 
 	@AfterViews
 	void bindViews() {
-		SystemServicesUtils.setActionBarCustomTitle(this,
-				getSupportActionBar(),
-				getString(R.string.activity_title_jiucuo));
+		SystemServicesUtils.displayCustomTitle(this,
+			getSupportActionBar(),
+			getString(R.string.activity_title_jiucuo));
 		enterpriseService = RemoteServiceManager.
 				getRemoteService(IRpcJobEnterpriseService.class);
 	}

@@ -72,14 +72,14 @@ public class AdvancedSearchActivity extends BaseActivity {
 	 * 保存每一项选择的值名称
 	 */
 	@Extra
-	HashMap<Integer, String> conditionValuesName = new HashMap<Integer, String>();
+	HashMap<Integer, String> conditionValuesName = new HashMap<>();
 
 	/**
 	 * 选择的地区
 	 * 
 	 */
 	@Extra
-	HashMap<String, JobObjectiveAreaDTO> selectedAreas = new HashMap<String, JobObjectiveAreaDTO>();
+	HashMap<String, JobObjectiveAreaDTO> selectedAreas = new HashMap<>();
 	
 	/**
 	 * 搜索条件
@@ -97,10 +97,10 @@ public class AdvancedSearchActivity extends BaseActivity {
 
 		// 设置标题
 		if(isAdvanceSearch){
-			SystemServicesUtils.setActionBarCustomTitle(this,
-					getSupportActionBar(), "高级查询");
+			SystemServicesUtils.displayCustomTitle(this,
+				getSupportActionBar(), "高级查询");
 		}else{
-			SystemServicesUtils.setActionBarCustomTitle(this,
+			SystemServicesUtils.displayCustomTitle(this,
 				getSupportActionBar(), getString(R.string.title_filter));
 		}
 
@@ -124,8 +124,8 @@ public class AdvancedSearchActivity extends BaseActivity {
 		// 多选确定
 		if (item.getItemId() == R.id.action_clear) {
 			conditionDTO = new SearchConditionDTO();
-			conditionValuesName = new HashMap<Integer, String>();
-			selectedAreas = new HashMap<String, JobObjectiveAreaDTO>();
+			conditionValuesName = new HashMap<>();
+			selectedAreas = new HashMap<>();
 			searchSettoingAdapter.update();
 			shouldClear();
 			return false;
@@ -141,8 +141,6 @@ public class AdvancedSearchActivity extends BaseActivity {
 
 	@Click(R.id.searchBtn)
 	void onSearch() {
-		// SearchResultsActivity_.intent(this).extraConditionDTO(conditionDTO)
-		// .flags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT).start();
 		Intent data = new Intent();
 		data.putExtra(kDATA_CONDITIONS, conditionDTO);
 		data.putExtra(kDATA_VALUES_NAME, conditionValuesName);
@@ -152,10 +150,10 @@ public class AdvancedSearchActivity extends BaseActivity {
 		data.putExtra(Constants.kRESULT_CODE, RESULT_OK);
 		data.putExtra(Constants.kREQUEST_CODE, kREQUEST_ADVANCE_SEARCH);
 
-		data.setAction(Constants.kACTION_CONDITION);
+//		data.setAction(Constants.kACTION_CONDITION);
 		
-		sendBroadcast(data);
-		
+//		sendBroadcast(data);
+		setResult(RESULT_OK,data);
 		finish();
 
 	}
@@ -179,7 +177,7 @@ public class AdvancedSearchActivity extends BaseActivity {
 			.startForResult(PostsActivity.kREQUEST_POST);
 		}
 		if (position == 2) {// 行业
-			ActivityDispatcher.to_Industry(true, this);
+			ActivityDispatcher.toIndustry(true, this);
 		}
 		if (position == 3) {// 发布时间
 			ParamsActivity_.intent(this)
@@ -197,7 +195,7 @@ public class AdvancedSearchActivity extends BaseActivity {
 			ParamsActivity_
 					.intent(this)
 					.paramCategoryCode(
-							ParamsActivity.kCODE_PARAM_COMPANY_NATURE)
+						ParamsActivity.kCODE_PARAM_COMPANY_NATURE)
 					.selectedParamCode(conditionDTO.getPropertyCode())
 					.startForResult(ParamsActivity.kREQUEST_PARAM);
 		}
@@ -229,7 +227,7 @@ public class AdvancedSearchActivity extends BaseActivity {
 			selectedAreas = (HashMap<String, JobObjectiveAreaDTO>) data
 					.getExtras()
 					.getSerializable(AreaActivity.kDATA_AREA_BUNLDE);
-			List<String> areaCodes = new ArrayList<String>();
+			List<String> areaCodes = new ArrayList<>();
 			for (String key : selectedAreas.keySet()) {
 				JobObjectiveAreaDTO jobAreaDto = selectedAreas.get(key);
 				areaCodes.add(jobAreaDto.getCode());
@@ -344,7 +342,7 @@ public class AdvancedSearchActivity extends BaseActivity {
 		}
 
 		public void update() {
-			searchConditionsNames = new ArrayList<String>();
+			searchConditionsNames = new ArrayList<>();
 			searchConditionsNames.add(0, getString(R.string.search_area));
 			searchConditionsNames.add(0, getString(R.string.search_post));
 			searchConditionsNames.add(0, getString(R.string.search_industry));
@@ -375,13 +373,13 @@ public class AdvancedSearchActivity extends BaseActivity {
 		}
 
 		@Override
-		public View getView(int p, View contentView, ViewGroup arg2) {
+		public View getView(int p, View contentView, ViewGroup parent) {
 
 			Holder h = null;
 			if (contentView == null) {
 				h = new Holder();
 				contentView = LayoutInflater.from(getBaseContext()).inflate(
-						R.layout.simple_listview_item_clearable, null);
+						R.layout.simple_listview_item_clearable, parent,false);
 
 				h.itemName = (TextView) contentView
 						.findViewById(R.id.itemNameText);

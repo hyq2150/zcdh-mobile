@@ -85,7 +85,7 @@ public class AddEduExpActivity extends BaseActivity implements RequestListener {
 		super.onCreate(savedInstanceState);
 		eduDto = new JobEducationDTO();
 		eduDto.setUserId(getUserId());
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(), "添加教育经历");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "添加教育经历");
 		userService = RemoteServiceManager.getRemoteService(IRpcJobUservice.class);
 	}
 

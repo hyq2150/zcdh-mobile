@@ -1,39 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout style="@style/activityBody2"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    style="@style/activityBody"
-     >
-    
-    
-<LinearLayout
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/lly_email"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/content_left_right"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
         android:paddingRight="@dimen/content_left_right"
-         android:background="@drawable/listview_background" 
-         android:layout_marginTop="25dp">
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="当前邮箱为:" />
+
+        <TextView
+            android:id="@+id/tv_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="ssssssss"
+            android:textColor="@color/post_item_addr_and_edu_font1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
 
         <EditText
             android:id="@+id/emailEditText"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
+            android:layout_marginBottom="-10dp"
+            android:background="@drawable/line"
             android:hint="请输入邮箱地址"
-            android:drawablePadding="5dp"
-            android:textColor="@color/font_color"
-            android:textSize="@dimen/font_size_nomarl"
             android:inputType="textEmailAddress"
-            android:background="@android:color/transparent" />
+            android:textColor="@color/font_color"
+            android:textSize="@dimen/font_size_nomarl" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/font_ee" />
     </LinearLayout>
-    
-<Button
+
+    <Button
         android:id="@+id/bindBtn"
+        style="@style/fontMiddel"
         android:layout_width="fill_parent"
         android:layout_height="45dp"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/btn_login"
+        android:layout_margin="30dp"
+        android:background="@drawable/button_sub_bg"
         android:text="提 交"
-        android:textColor="@color/white"
-        android:textSize="@dimen/font_size_middle" />
+        android:textColor="@color/white" />
+
 </LinearLayout>

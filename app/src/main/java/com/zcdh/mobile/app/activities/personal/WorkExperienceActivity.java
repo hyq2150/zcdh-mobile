@@ -28,7 +28,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -74,7 +73,7 @@ public class WorkExperienceActivity extends BaseActivity implements RequestListe
 	/**
 	 * 工作经验
 	 */
-	private List<JobWorkExperienceDTO> workExpList = new ArrayList<JobWorkExperienceDTO>();
+	private List<JobWorkExperienceDTO> workExpList = new ArrayList<>();
 	
 	/**
 	 * 标识是否编辑状态
@@ -98,7 +97,8 @@ public class WorkExperienceActivity extends BaseActivity implements RequestListe
 
 		jobUservice = RemoteServiceManager.getRemoteService(IRpcJobUservice.class);
 
-		SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), getString(R.string.activity_title_work_experience));
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+			getString(R.string.activity_title_work_experience));
 
 		workExpAdapter = new WorkExpAdapter();
 		emptyView = new EmptyTipView(this);
@@ -210,7 +210,7 @@ public class WorkExperienceActivity extends BaseActivity implements RequestListe
 	/**
 	 * 改变菜单按钮
 	 * 
-	 * @param edit
+	 *
 	 */
 	void setMenuState() {
 		MenuItem rightMenuItem = menu.getItem(0);
@@ -236,7 +236,7 @@ public class WorkExperienceActivity extends BaseActivity implements RequestListe
 			if (result != null) {
 				workExpList = (List<JobWorkExperienceDTO>) result;
 			} else {
-				workExpList = new ArrayList<JobWorkExperienceDTO>();
+				workExpList = new ArrayList<>();
 			}
 			
 			emptyView.isEmpty(!(workExpList.size()>0));
@@ -297,7 +297,8 @@ public class WorkExperienceActivity extends BaseActivity implements RequestListe
 				convertView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.work_exp_item, null);
 				h.companyNameText = (TextView) convertView.findViewById(R.id.companyNameText);
 				h.subTitelText = (TextView) convertView.findViewById(R.id.subTitleText);
-				h.delBtn = (LinearLayout) convertView.findViewById(R.id.delImgBtn);
+				h.workTimeText=(TextView) convertView.findViewById(R.id.worktimeTxt);
+				h.delBtn = (ImageView) convertView.findViewById(R.id.delImgBtn);
 				h.delBtn.setOnClickListener(WorkExperienceActivity.this);
 				h.accesoryImg = (ImageView) convertView.findViewById(R.id.accessoryImg);
 				convertView.setTag(h);
@@ -314,11 +315,11 @@ public class WorkExperienceActivity extends BaseActivity implements RequestListe
 			String startTime = workExp.getStartTime() != null ? sdf.format(workExp.getStartTime()) : "";
 
 			String endTime = workExp.getEndTime() != null ? sdf.format(workExp.getEndTime()) : "";
-
 			String subTitle = String.format("%s / %s~%s", postName, startTime, endTime);
 
-			h.companyNameText.setText(commpanyName);
-			h.subTitelText.setText(subTitle);
+			h.companyNameText.setText("公司:   "+commpanyName);
+			h.subTitelText.setText("职位:   "+postName);
+			h.workTimeText.setText("时间:   "+subTitle);
 			h.delBtn.setTag(workExp.getWepPostId());
 			Log.i("delBtn tag", workExp.getWepPostId() + "");
 
@@ -336,7 +337,8 @@ public class WorkExperienceActivity extends BaseActivity implements RequestListe
 		class ViewHolder {
 			TextView companyNameText;
 			TextView subTitelText;
-			LinearLayout delBtn;
+			TextView workTimeText;
+			ImageView delBtn;
 			ImageView accesoryImg;
 		}
 	}

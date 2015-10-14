@@ -1,48 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/activity_bg" >
-
-    <LinearLayout
-        android:id="@+id/addSubscriptionRl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:clickable="true"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="15dp" 
-        android:background="@drawable/add_workexp_btn_bg">
-
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@drawable/more_active"
-            android:duplicateParentState="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/content_left_right"
-            android:text="添加订阅"
-            android:textColor="@color/btn_add_text_color"
-            android:duplicateParentState="true"
-            android:textSize="@dimen/font_size_nomarl" />
-    </LinearLayout>
-    
+    android:background="@color/font_ee" >
 
     <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/subScriptionListView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
         android:divider="@null"
-        android:dividerHeight="10dp" />
+        android:dividerHeight="10dp"/>
+    <LinearLayout
+        android:id="@+id/addSubscriptionRl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@color/white"
+        android:clickable="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="15dp" >
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ivs1"
+            android:background="@drawable/add2"
+            android:duplicateParentState="true" />
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:duplicateParentState="true"
+            android:text="订阅职位"
+            android:textColor="@color/blues"
+            android:textSize="@dimen/font_size_nomarl" />
+    </LinearLayout>
+
+</RelativeLayout>

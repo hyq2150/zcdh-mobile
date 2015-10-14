@@ -30,14 +30,14 @@ public class TableInfo {
 	
 	private Id id;
 	
-	public final HashMap<String, Property> propertyMap = new HashMap<String, Property>();
-	public final HashMap<String, OneToMany> oneToManyMap = new HashMap<String, OneToMany>();
-	public final HashMap<String, ManyToOne> manyToOneMap = new HashMap<String, ManyToOne>();
+	public final HashMap<String, Property> propertyMap = new HashMap<>();
+	public final HashMap<String, OneToMany> oneToManyMap = new HashMap<>();
+	public final HashMap<String, ManyToOne> manyToOneMap = new HashMap<>();
 	
 	private boolean checkDatabese;//在对实体进行数据库操作的时候查询是否已经有表了，只需查询一遍，用此标示
 	
 	
-	private static final HashMap<String, TableInfo> tableInfoMap = new HashMap<String, TableInfo>();
+	private static final HashMap<String, TableInfo> tableInfoMap = new HashMap<>();
 	
 	private TableInfo(){}
 	

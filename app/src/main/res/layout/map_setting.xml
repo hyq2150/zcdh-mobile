@@ -1,46 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:gravity="center"
     android:background="@drawable/round_corner_purse_white"
-    android:orientation="vertical"
-    android:paddingBottom="15dp"
-    android:paddingLeft="25dp"
-    android:paddingRight="25dp"
-    android:paddingTop="15dp" >
+    android:gravity="center"
+    android:orientation="vertical" >
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="25dp"
         android:orientation="horizontal" >
 
         <ImageButton
             android:id="@+id/mapType2dBtn"
-            android:layout_width="120dp"
+            android:layout_width="140dp"
             android:layout_height="60dp"
-            android:background="@color/white"
-            android:padding="5dp"
             android:scaleType="fitXY"
+            android:background="@color/white"
             android:src="@drawable/mapflat_active" />
 
         <ImageButton
             android:id="@+id/mapType3dBtn"
-            android:layout_width="120dp"
+            android:layout_width="140dp"
             android:layout_height="60dp"
-            android:layout_marginLeft="2dp"
-            android:background="@color/white"
-            android:padding="5dp"
+            android:layout_marginLeft="10dp"
             android:scaleType="fitXY"
+            android:background="@color/white"
             android:src="@drawable/mapset_normal" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:weightSum="2"
         android:orientation="horizontal" >
 
         <TextView
@@ -48,6 +46,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingBottom="4dp"
+            android:layout_weight="1"
             android:paddingTop="2dp"
             android:text="2D地图"
             android:textColor="@color/greyTxt"
@@ -56,28 +55,21 @@
         <TextView
             android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:layout_weight="0.57"
             android:gravity="center"
             android:paddingBottom="4dp"
             android:paddingTop="2dp"
             android:text="卫星地图"
             android:textColor="@color/greyTxt"
             android:textSize="@dimen/font_size_small" />
-    </LinearLayout>
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:background="@color/divider"
-        android:visibility="gone" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingBottom="10dp"
-        android:paddingLeft="36dp"
         android:paddingTop="10dp"
         android:visibility="gone" >
 
@@ -97,53 +89,48 @@
             android:checked="false" />
     </LinearLayout>
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@color/divider"
-        android:visibility="visible" />
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
+    <com.zcdh.mobile.app.views.SegmentedGroup
+        android:id="@+id/segmented2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="20dp"
-        android:visibility="visible" >
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:paddingTop="20dp" >
 
-
-        <com.zcdh.mobile.app.views.SegmentedGroup
-            android:id="@+id/segmented2"
+        <RadioButton
+            android:id="@+id/quanzhiBtn"
+            android:layout_weight="1"
+            style="@style/RadioButton1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal" >
+            android:background="@drawable/mapbtn1"
+            android:checked="true"
+            android:gravity="center"
+            android:text="全职 "
+            android:textColor="@color/greyTxt" />
 
-            <RadioButton
-                android:id="@+id/quanzhiBtn"
-                style="@style/RadioButton1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="全职 " />
+        <RadioButton
+            android:id="@+id/jianzhiBtn"
+            android:layout_weight="1"
+            style="@style/RadioButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/mapbtn2"
+            android:gravity="center"
+            android:text="兼职"
+            android:textColor="@color/greyTxt" />
 
-            <RadioButton
-                android:id="@+id/jianzhiBtn"
-                style="@style/RadioButton1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="兼职" />
+        <RadioButton
+            android:id="@+id/jiaqiBtn"
+            style="@style/RadioButton1"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/mapbtn3"
+            android:gravity="center"
+            android:text="假期工"
+            android:textColor="@color/greyTxt" />
+    </com.zcdh.mobile.app.views.SegmentedGroup>
 
-            <RadioButton
-                android:id="@+id/jiaqiBtn"
-                style="@style/RadioButton1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="假期工" />
-        </com.zcdh.mobile.app.views.SegmentedGroup>
-    </RelativeLayout>
-
-    
 </LinearLayout>

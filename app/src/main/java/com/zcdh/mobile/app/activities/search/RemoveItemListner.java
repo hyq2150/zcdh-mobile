@@ -12,5 +12,5 @@ public interface RemoveItemListner {
 	 * @param key 
 	 * 删除对象的标识值，标示值可能是职位code， 或者是地区code，等等
 	 */
-	public void onRemoveItem(Object key);
+	void onRemoveItem(Object key);
 }

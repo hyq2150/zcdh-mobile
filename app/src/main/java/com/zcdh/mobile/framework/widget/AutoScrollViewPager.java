@@ -230,7 +230,7 @@ public class AutoScrollViewPager extends ViewPager {
         private final WeakReference<AutoScrollViewPager> autoScrollViewPager;
 
         public MyHandler(AutoScrollViewPager autoScrollViewPager) {
-            this.autoScrollViewPager = new WeakReference<AutoScrollViewPager>(autoScrollViewPager);
+            this.autoScrollViewPager = new WeakReference<>(autoScrollViewPager);
         }
 
         @Override

@@ -1,5 +1,14 @@
 package com.zcdh.mobile.app.activities.settings;
 
+import com.zcdh.mobile.R;
+import com.zcdh.mobile.app.Constants;
+import com.zcdh.mobile.app.activities.start_at.GettingStartedActivity;
+import com.zcdh.mobile.app.views.LoadingIndicator;
+import com.zcdh.mobile.framework.K;
+import com.zcdh.mobile.framework.activities.BaseActivity;
+import com.zcdh.mobile.utils.SharedPreferencesUtil;
+import com.zcdh.mobile.utils.SystemServicesUtils;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
@@ -9,17 +18,9 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
-import com.zcdh.mobile.R;
-import com.zcdh.mobile.app.Constants;
-import com.zcdh.mobile.app.activities.start_at.GettingStartedActivity;
-import com.zcdh.mobile.app.views.LoadingIndicator;
-import com.zcdh.mobile.framework.K;
-import com.zcdh.mobile.framework.activities.BaseActivity;
-import com.zcdh.mobile.utils.SharedPreferencesUtil;
-import com.zcdh.mobile.utils.SystemServicesUtils;
 /**
  * 系统引导
  * @author yangjiannan
@@ -37,14 +38,14 @@ public class UserGuideActivity extends BaseActivity {
 	
 	@AfterViews
 	void bindViews(){
-		SystemServicesUtils.setActionBarCustomTitle(this,
-				getSupportActionBar(), "功能介绍");
+		SystemServicesUtils.displayCustomTitle(this,
+			getSupportActionBar(), "功能介绍");
 		
 		final LoadingIndicator indicator = new LoadingIndicator(this);
 		
 		indicator.show();
 		browser.getSettings().setJavaScriptEnabled(true);// 可用JS
-		browser.setScrollBarStyle(0);// 滚动条风格，为0就是不给滚动条留空间，滚动条覆盖在网页上
+		browser.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);// 滚动条风格，为0就是不给滚动条留空间，滚动条覆盖在网页上
 		browser.setWebViewClient(new WebViewClient() {
 			public boolean shouldOverrideUrlLoading(final WebView view,
 					final String url) {

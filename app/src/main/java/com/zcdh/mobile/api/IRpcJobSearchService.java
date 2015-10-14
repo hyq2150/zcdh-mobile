@@ -1,7 +1,7 @@
 /** 
 *  IRpcJobSearchService 
 * 
-*  Created Date: 2015-08-12 17:07:57 
+*  Created Date: 2015-10-12 17:31:51 
 *  
 */  
 package com.zcdh.mobile.api;  
@@ -33,7 +33,7 @@ public interface IRpcJobSearchService   {
     *  @author focus, 2014-4-7 上午10:14:54 
     */  
     @RpcMethod("findJobSearchTagDTOByPage")
-    public RequestChannel<Page<JobSearchTagDTO>> findJobSearchTagDTOByPage(@Param("tagType") String tagType, @Param("currentPge") Integer currentPge, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<JobSearchTagDTO>> findJobSearchTagDTOByPage(@Param("tagType")  String tagType, @Param("currentPge")  Integer currentPge, @Param("pageSize")  Integer pageSize);
     /** 
     * 高级搜索 
     *  @param highSearchDTO 
@@ -41,7 +41,7 @@ public interface IRpcJobSearchService   {
     *  @author focus, 2014-4-1 下午5:25:16 
     */  
     @RpcMethod("findEntPostDTOByHighSearch")
-    public RequestChannel<Page<JobEntPostDTO>> findEntPostDTOByHighSearch(@Param("highSearchDTO") SearchConditionDTO highSearchDTO, @Param("currentPge") Integer currentPge, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<JobEntPostDTO>> findEntPostDTOByHighSearch(@Param("highSearchDTO")  SearchConditionDTO highSearchDTO, @Param("currentPge")  Integer currentPge, @Param("pageSize")  Integer pageSize);
 
 
  } 

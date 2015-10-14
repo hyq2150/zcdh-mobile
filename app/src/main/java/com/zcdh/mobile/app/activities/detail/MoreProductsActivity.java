@@ -57,7 +57,7 @@ public class MoreProductsActivity extends BaseActivity implements RequestListene
 	
 	IRpcJobEnterpriseService jobEnterpriseService;
 
-	List<EntProductDTO> productList = new ArrayList<EntProductDTO>();
+	List<EntProductDTO> productList = new ArrayList<>();
 
 	long entId;
 
@@ -70,7 +70,7 @@ public class MoreProductsActivity extends BaseActivity implements RequestListene
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(), "公司产品");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "公司产品");
 
 		entId = getIntent().getLongExtra(Constants.kENT_ID,0l);
 		jobEnterpriseService = RemoteServiceManager.getRemoteService(IRpcJobEnterpriseService.class);

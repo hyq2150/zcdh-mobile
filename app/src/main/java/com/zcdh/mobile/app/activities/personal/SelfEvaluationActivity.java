@@ -4,8 +4,27 @@
  */
 package com.zcdh.mobile.app.activities.personal;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.zcdh.comm.entity.Page;
+import com.zcdh.mobile.R;
+import com.zcdh.mobile.api.IRpcJobUservice;
+import com.zcdh.mobile.api.model.BasicSysCommentTagDTO;
+import com.zcdh.mobile.api.model.CommentTagDTO;
+import com.zcdh.mobile.api.model.UserCommentDTO;
+import com.zcdh.mobile.app.activities.personal.widget.TagsDialog;
+import com.zcdh.mobile.app.activities.personal.widget.TagsDialog.TagsDialogListener;
+import com.zcdh.mobile.app.dialog.ProcessDialog;
+import com.zcdh.mobile.app.views.EditableDialog;
+import com.zcdh.mobile.app.views.EditableDialog.EditableDialogListener;
+import com.zcdh.mobile.app.views.TagsContainer;
+import com.zcdh.mobile.app.views.iflytek.YuYinInputView;
+import com.zcdh.mobile.app.views.iflytek.YuyinInputListner;
+import com.zcdh.mobile.framework.activities.BaseActivity;
+import com.zcdh.mobile.framework.adapters.PredicateAdapter;
+import com.zcdh.mobile.framework.nio.RemoteServiceManager;
+import com.zcdh.mobile.framework.nio.RequestChannel;
+import com.zcdh.mobile.framework.nio.RequestListener;
+import com.zcdh.mobile.utils.StringUtils;
+import com.zcdh.mobile.utils.SystemServicesUtils;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
@@ -28,33 +47,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.zcdh.comm.entity.Page;
-import com.zcdh.mobile.R;
-import com.zcdh.mobile.api.IRpcJobUservice;
-import com.zcdh.mobile.api.model.BasicSysCommentTagDTO;
-import com.zcdh.mobile.api.model.CommentTagDTO;
-import com.zcdh.mobile.api.model.UserCommentDTO;
-import com.zcdh.mobile.app.activities.personal.widget.TagsDialog;
-import com.zcdh.mobile.app.activities.personal.widget.TagsDialog.TagsDialogListener;
-import com.zcdh.mobile.app.dialog.ProcessDialog;
-import com.zcdh.mobile.app.views.EditableDialog;
-import com.zcdh.mobile.app.views.EditableDialog.EditableDialogListener;
-import com.zcdh.mobile.app.views.iflytek.YuYinInputView;
-import com.zcdh.mobile.app.views.iflytek.YuyinInputListner;
-import com.zcdh.mobile.app.views.LoadingIndicator;
-import com.zcdh.mobile.app.views.TagsContainer;
-import com.zcdh.mobile.framework.activities.BaseActivity;
-import com.zcdh.mobile.framework.adapters.PredicateAdapter;
-import com.zcdh.mobile.framework.nio.RemoteServiceManager;
-import com.zcdh.mobile.framework.nio.RequestChannel;
-import com.zcdh.mobile.framework.nio.RequestListener;
-import com.zcdh.mobile.utils.StringUtils;
-import com.zcdh.mobile.utils.SystemServicesUtils;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author jeason, 2014-5-16 上午11:10:41
@@ -107,8 +105,8 @@ public class SelfEvaluationActivity extends BaseActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(),
-				"自我评价");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+			"自我评价");
 		userService = RemoteServiceManager
 				.getRemoteService(IRpcJobUservice.class);
 	
@@ -423,7 +421,7 @@ public class SelfEvaluationActivity extends BaseActivity implements
 
 		public TagsAdapter(boolean withAddBtn) {
 			mWithAddBtn = withAddBtn;
-			this.expressions = new ArrayList<Object>();
+			this.expressions = new ArrayList<>();
 			//setAddBtn();
 		}
 
@@ -492,7 +490,7 @@ public class SelfEvaluationActivity extends BaseActivity implements
 			if (expression instanceof CommentTagDTO) {
 				CommentTagDTO tag = (CommentTagDTO) expression;
 
-				view = inflater.inflate(R.layout.basic_evaluation_tag, null);
+				view = inflater.inflate(R.layout.basic_evaluation_tag, parentView,false);
 				TextView tag_name = (TextView) view
 						.findViewById(R.id.tv_tag_name);
 				tag_name.setText(tag.getTagName());
@@ -519,7 +517,7 @@ public class SelfEvaluationActivity extends BaseActivity implements
 
 			} else {
 				BasicSysCommentTagDTO tag = (BasicSysCommentTagDTO) expression;
-				view = inflater.inflate(R.layout.basic_evaluation_tag, null);
+				view = inflater.inflate(R.layout.basic_evaluation_tag, parentView,false);
 				TextView tag_name = (TextView) view
 						.findViewById(R.id.tv_tag_name);
 				ImageView selectIV = (ImageView) view

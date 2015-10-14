@@ -73,7 +73,7 @@ public class EntAlbumActivity extends BaseActivity implements RequestListener, O
 		super.onCreate(savedInstanceState);
 		entId = getIntent().getLongExtra("entId", 0l);
 		entService = RemoteServiceManager.getRemoteService(IRpcJobEnterpriseService.class);
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(), "公司环境");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "公司环境");
 	}
 
 	@AfterViews
@@ -93,7 +93,7 @@ public class EntAlbumActivity extends BaseActivity implements RequestListener, O
 	@Background
 	void getData() {
 		entService.findEntPhotoByPage(entId, currentPage, pageSize)
-		.identify(kREQ_ID_findEntPhotoByPage=RequestChannel.getChannelUniqueID(), this);;
+		.identify(kREQ_ID_findEntPhotoByPage=RequestChannel.getChannelUniqueID(), this);
 	}
 
 	/*
@@ -203,7 +203,7 @@ public class EntAlbumActivity extends BaseActivity implements RequestListener, O
 		 * @author jeason, 2014-6-5 下午3:54:05
 		 */
 		public ImagesAdapter() {
-			mImgs = new ArrayList<ImgURLDTO>();
+			mImgs = new ArrayList<>();
 		}
 
 		public void updateItems(List<ImgURLDTO> comments) {

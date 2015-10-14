@@ -52,15 +52,6 @@ public class TextAdapter extends ArrayAdapter<HashMap<String, String>> {
 		};
 	}
 
-//	public TextAdapter(Context context, String[] arrayData, int sId, int nId) {
-//		super(context, R.string.no_data, arrayData);
-//		mContext = context;
-//		mArrayData = arrayData;
-//		selectedDrawble = mContext.getResources().getDrawable(sId);
-//		normalDrawbleId = nId;
-//		init();
-//	}
-
 	/**
 	 * 设置选中的position,并通知列表刷新
 	 */
@@ -153,7 +144,7 @@ public class TextAdapter extends ArrayAdapter<HashMap<String, String>> {
 	 * 重新定义菜单选项单击接口
 	 */
 	public interface OnItemClickListener {
-		public void onItemClick(View view, int position);
+		void onItemClick(View view, int position);
 	}
 
 }

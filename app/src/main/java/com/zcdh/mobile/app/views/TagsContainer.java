@@ -270,6 +270,6 @@ public class TagsContainer extends LinearLayout {
 	}
 
 	public interface OnTagClickListener {
-		public void onTagClick(int position);
+		void onTagClick(int position);
 	}
 }

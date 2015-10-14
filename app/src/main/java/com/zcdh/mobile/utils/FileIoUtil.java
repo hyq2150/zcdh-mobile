@@ -11,7 +11,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OptionalDataException;
 import java.io.OutputStreamWriter;
 
 import android.os.Environment;
@@ -86,7 +85,8 @@ public class FileIoUtil {
 		
 	}
 	
-	public static Object readfileToObject(String filename) throws FileException, OptionalDataException, ClassNotFoundException, IOException{
+	public static Object readfileToObject(String filename) throws FileException,
+		ClassNotFoundException, IOException{
 		if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {//判断内存卡是否加载
 		    File targetFile=new File(filename);
 		    

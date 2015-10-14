@@ -90,7 +90,7 @@ public class QRScanActivity extends BaseActivity implements Callback,
 	}
 
 	public void setNeedCapture(boolean isNeedCapture) {
-		this.isNeedCapture = isNeedCapture;
+		this.isNeedCapture = true;
 	}
 
 	public int getX() {
@@ -158,7 +158,7 @@ public class QRScanActivity extends BaseActivity implements Callback,
 	boolean flag = true;
 
 	protected void light() {
-		if (flag == true) {
+		if (flag) {
 			flag = false;
 			// 开闪光灯
 			CameraManager.get().openLight();
@@ -252,7 +252,8 @@ public class QRScanActivity extends BaseActivity implements Callback,
 								if (!RegisterUtil.isRegisterUser(this)) {
 									Toast.makeText(this, "尚未登录！",
 											Toast.LENGTH_SHORT).show();
-									ActivityDispatcher.to_login(this);
+									ActivityDispatcher.toLogin(
+										this);
 									finish();
 									return;
 								}
@@ -278,7 +279,7 @@ public class QRScanActivity extends BaseActivity implements Callback,
 						Toast.makeText(this,
 								getResources().getString(R.string.login_first),
 								Toast.LENGTH_SHORT).show();
-						ActivityDispatcher.to_login(this);
+						ActivityDispatcher.toLogin(this);
 						finish();
 					}
 				} else {
@@ -309,7 +310,7 @@ public class QRScanActivity extends BaseActivity implements Callback,
 		public MyHandler(QRScanActivity activity) {
 			super();
 			// TODO Auto-generated constructor stub
-			mActivity = new WeakReference<QRScanActivity>(activity);
+			mActivity = new WeakReference<>(activity);
 		}
 
 		@Override
@@ -336,7 +337,7 @@ public class QRScanActivity extends BaseActivity implements Callback,
 	private void doSign(final String url) {
 		if (!RegisterUtil.isRegisterUser(this)) {
 			Toast.makeText(this, "尚未登录！", Toast.LENGTH_SHORT).show();
-			ActivityDispatcher.to_login(this);
+			ActivityDispatcher.toLogin(this);
 			return;
 		}
 		if (ZcdhApplication.getInstance().getJobUserResumeMiddleDTO() != null
@@ -362,7 +363,7 @@ public class QRScanActivity extends BaseActivity implements Callback,
 	private void doSignIn(final String url) {
 		if (!RegisterUtil.isRegisterUser(this)) {
 			Toast.makeText(this, "尚未登录！", Toast.LENGTH_SHORT).show();
-			ActivityDispatcher.to_login(this);
+			ActivityDispatcher.toLogin(this);
 			return;
 		}
 		BackgroundExecutor.execute(new Task("", 0, "") {

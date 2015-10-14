@@ -107,8 +107,8 @@ public class JobFairsActivity extends BaseActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(),
-				"招聘会");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+			"招聘会");
 		inflater = LayoutInflater.from(this);
 		service = RemoteServiceManager
 				.getRemoteService(IRpcJobFairService.class);
@@ -196,7 +196,7 @@ public class JobFairsActivity extends BaseActivity implements
 		if (!RegisterUtil.isRegisterUser(this)) {
 			Toast.makeText(JobFairsActivity.this, "尚未登录！", Toast.LENGTH_SHORT)
 					.show();
-			ActivityDispatcher.to_login(this);
+			ActivityDispatcher.toLogin(this);
 			return;
 		}
 		getMyFairsData();
@@ -243,7 +243,7 @@ public class JobFairsActivity extends BaseActivity implements
 		private List<JobFairExtListDTO> fairList;
 
 		public JobfairsAdapter() {
-			fairList = new ArrayList<JobFairExtListDTO>();
+			fairList = new ArrayList<>();
 		}
 
 		@Override

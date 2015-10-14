@@ -38,7 +38,7 @@ public class SqlBuilder {
 		
 		List<KeyValue> keyValueList = getSaveKeyValueListByEntity(entity);
 		
-		StringBuffer strSQL=new StringBuffer();
+		StringBuilder strSQL=new StringBuilder();
 		SqlInfo sqlInfo = null;
 		if(keyValueList!=null && keyValueList.size()>0){
 			
@@ -69,7 +69,7 @@ public class SqlBuilder {
 	
 	public static List<KeyValue> getSaveKeyValueListByEntity(Object entity){
 		
-		List<KeyValue> keyValueList = new ArrayList<KeyValue>();
+		List<KeyValue> keyValueList = new ArrayList<>();
 		
 		TableInfo table=TableInfo.get(entity.getClass());
 		Object idvalue = table.getId().getValue(entity);
@@ -114,11 +114,11 @@ public class SqlBuilder {
 		if(idvalue == null ){
 			throw new DbException("getDeleteSQL:"+entity.getClass()+" id value is null");
 		}
-		StringBuffer strSQL = new StringBuffer(getDeleteSqlBytableName(table.getTableName()));
-		strSQL.append(" WHERE ").append(id.getColumn()).append("=?");
-		
-		SqlInfo sqlInfo = new SqlInfo();
-		sqlInfo.setSql(strSQL.toString());
+
+	    SqlInfo sqlInfo = new SqlInfo();
+		sqlInfo.setSql(
+			getDeleteSqlBytableName(table.getTableName()) + " WHERE " + id.getColumn()
+				+ "=?");
 		sqlInfo.addValue(idvalue);
 		
 		return sqlInfo;
@@ -133,12 +133,11 @@ public class SqlBuilder {
 		if(null == idValue) {
 			throw new DbException("getDeleteSQL:idValue is null");
 		}
-		
-		StringBuffer strSQL = new StringBuffer(getDeleteSqlBytableName(table.getTableName()));
-		strSQL.append(" WHERE ").append(id.getColumn()).append("=?");
-		
-		SqlInfo sqlInfo = new SqlInfo();
-		sqlInfo.setSql(strSQL.toString());
+
+	    SqlInfo sqlInfo = new SqlInfo();
+		sqlInfo.setSql(
+			getDeleteSqlBytableName(table.getTableName()) + " WHERE " + id.getColumn()
+				+ "=?");
 		sqlInfo.addValue(idValue);
 		
 		return sqlInfo;
@@ -152,7 +151,7 @@ public class SqlBuilder {
 	 */
 	public static String buildDeleteSql(Class<?> clazz , String strWhere){
 		TableInfo table=TableInfo.get(clazz);
-		StringBuffer strSQL = new StringBuffer(getDeleteSqlBytableName(table.getTableName()));
+		StringBuilder strSQL = new StringBuilder(getDeleteSqlBytableName(table.getTableName()));
 		
 		if(!TextUtils.isEmpty(strWhere)){
 			strSQL.append(" WHERE ");
@@ -167,28 +166,24 @@ public class SqlBuilder {
 	
 
 	private static String getSelectSqlByTableName(String tableName){
-		return new StringBuffer("SELECT * FROM ").append(tableName).toString();
+		return "SELECT * FROM " + tableName;
 	}
 
 
 	public static String getSelectSQL(Class<?> clazz,Object idValue){
 		TableInfo table=TableInfo.get(clazz);
-		
-		StringBuffer strSQL = new StringBuffer(getSelectSqlByTableName(table.getTableName()));
-		strSQL.append(" WHERE ");
-		strSQL.append(getPropertyStrSql(table.getId().getColumn(), idValue));
-		
-		return strSQL.toString();
+
+	    return getSelectSqlByTableName(table.getTableName()) + " WHERE "
+		    + getPropertyStrSql(table.getId().getColumn(), idValue);
 	}
 	
 	public static SqlInfo getSelectSqlAsSqlInfo(Class<?> clazz,Object idValue){
 		TableInfo table=TableInfo.get(clazz);
-		
-		StringBuffer strSQL = new StringBuffer(getSelectSqlByTableName(table.getTableName()));
-		strSQL.append(" WHERE ").append(table.getId().getColumn()).append("=?");
-		
-		SqlInfo sqlInfo = new SqlInfo();
-		sqlInfo.setSql(strSQL.toString());
+
+	    SqlInfo sqlInfo = new SqlInfo();
+		sqlInfo.setSql(
+			getSelectSqlByTableName(table.getTableName()) + " WHERE " + table.getId()
+				.getColumn() + "=?");
 		sqlInfo.addValue(idValue);
 		
 		return sqlInfo;
@@ -202,7 +197,7 @@ public class SqlBuilder {
 	public static String getSelectSQLByWhere(Class<?> clazz,String strWhere){
 		TableInfo table=TableInfo.get(clazz);
 		
-		StringBuffer strSQL = new StringBuffer(getSelectSqlByTableName(table.getTableName()));
+		StringBuilder strSQL = new StringBuilder(getSelectSqlByTableName(table.getTableName()));
 		
 		if(!TextUtils.isEmpty(strWhere)){
 			strSQL.append(" WHERE ").append(strWhere);
@@ -222,7 +217,7 @@ public class SqlBuilder {
 			throw new DbException("this entity["+entity.getClass()+"]'s id value is null");
 		}
 		
-		List<KeyValue> keyValueList = new ArrayList<KeyValue>();
+		List<KeyValue> keyValueList = new ArrayList<>();
 		//添加属性
 		Collection<Property> propertys = table.propertyMap.values();
 		for(Property property : propertys){
@@ -241,7 +236,7 @@ public class SqlBuilder {
 		if(keyValueList == null || keyValueList.size()==0) return null ;
 		
 		SqlInfo sqlInfo = new SqlInfo();
-		StringBuffer strSQL=new StringBuffer("UPDATE ");
+		StringBuilder strSQL=new StringBuilder("UPDATE ");
 		strSQL.append(table.getTableName());
 		strSQL.append(" SET ");
 		for(KeyValue kv : keyValueList){
@@ -262,7 +257,7 @@ public class SqlBuilder {
 		
 		TableInfo table=TableInfo.get(entity.getClass());
 		
-		List<KeyValue> keyValueList = new ArrayList<KeyValue>();
+		List<KeyValue> keyValueList = new ArrayList<>();
 		
 		//添加属性
 		Collection<Property> propertys = table.propertyMap.values();
@@ -283,7 +278,7 @@ public class SqlBuilder {
 		}
 		
 		SqlInfo sqlInfo = new SqlInfo();
-		StringBuffer strSQL=new StringBuffer("UPDATE ");
+		StringBuilder strSQL=new StringBuilder("UPDATE ");
 		strSQL.append(table.getTableName());
 		strSQL.append(" SET ");
 		for(KeyValue kv : keyValueList){
@@ -304,7 +299,7 @@ public class SqlBuilder {
 		TableInfo table=TableInfo.get(clazz);
 		
 		Id id=table.getId();
-		StringBuffer strSQL = new StringBuffer();
+		StringBuilder strSQL = new StringBuilder();
 		strSQL.append("CREATE TABLE IF NOT EXISTS ");
 		strSQL.append(table.getTableName());
 		strSQL.append(" ( ");
@@ -353,7 +348,7 @@ public class SqlBuilder {
 	 * @return eg1: name='afinal'  eg2: id=100
 	 */
 	private static String getPropertyStrSql(String key,Object value){
-		StringBuffer sbSQL = new StringBuffer(key).append("=");
+		StringBuilder sbSQL = new StringBuilder(key).append("=");
 		if(value instanceof String || value instanceof java.util.Date || value instanceof java.sql.Date){
 			sbSQL.append("'").append(value).append("'");
 		}else{

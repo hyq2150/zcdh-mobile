@@ -103,7 +103,7 @@ public class EditTranningExp extends BaseActivity implements RequestListener, Ed
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		tranning_id = getIntent().getLongExtra(TRANNING_ID_KEY, 0l);
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(), "添加培训经历");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "添加培训经历");
 
 		userService = RemoteServiceManager.getRemoteService(IRpcJobUservice.class);
 
@@ -142,10 +142,7 @@ public class EditTranningExp extends BaseActivity implements RequestListener, Ed
 	boolean changed = false;
 
 	private void notifyDataChanged() {
-		changed = false;
-		if (!ObjectUtils.compareTrainningDTO(trainDtoAfter, trainDtoOriginal)) {
-			changed = true;
-		}
+	    changed = !ObjectUtils.compareTrainningDTO(trainDtoAfter, trainDtoOriginal);
 		supportInvalidateOptionsMenu();
 	}
 

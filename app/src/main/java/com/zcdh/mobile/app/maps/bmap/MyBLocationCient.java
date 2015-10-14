@@ -1,7 +1,6 @@
 package com.zcdh.mobile.app.maps.bmap;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;

@@ -48,6 +48,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -92,7 +93,7 @@ public class SubscriptionAddActivity extends BaseActivity implements RequestList
 	 * 编辑表单
 	 */
 	@ViewById(R.id.formContainer)
-	LinearLayout formContainer;
+	LinearLayoutCompat formContainer;
 
 	/**
 	 * 选择行业
@@ -129,7 +130,7 @@ public class SubscriptionAddActivity extends BaseActivity implements RequestList
 	/**
 	 * 订阅结果
 	 */
-	List<JobEntPostDTO> subscriptions = new ArrayList<JobEntPostDTO>();
+	List<JobEntPostDTO> subscriptions = new ArrayList<>();
 
 	@Extra
 	JobUserSubscriptionDTO subscriptionDTO = new JobUserSubscriptionDTO();
@@ -223,13 +224,14 @@ public class SubscriptionAddActivity extends BaseActivity implements RequestList
 	void bindViews() {
 		jobUservice = RemoteServiceManager.getRemoteService(IRpcJobUservice.class);
 		searchService = RemoteServiceManager.getRemoteService(IRpcJobSearchService.class);
-		SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), "");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "");
 
 		/*
 		 * 如果是编辑或查看订阅
 		 */
 		if (isEdit) {
-			SystemServicesUtils.setActionBarCustomTitle(getApplicationContext(), getSupportActionBar(), "订阅列表");
+			SystemServicesUtils.displayCustomTitle(getApplicationContext(),
+				getSupportActionBar(), "订阅列表");
 			/*
 			 * if(subscriptionDTO!=null){
 			 * industryText.setText(subscriptionDTO.getIndustryName());
@@ -261,7 +263,8 @@ public class SubscriptionAddActivity extends BaseActivity implements RequestList
 			subScriptionListView.setEmptyView(emptyView);
 			loadSubscriptions();
 		} else {
-			SystemServicesUtils.setActionBarCustomTitle(getApplicationContext(), getSupportActionBar(), "添加订阅");
+			SystemServicesUtils.displayCustomTitle(getApplicationContext(),
+				getSupportActionBar(), "添加订阅");
 			subScriptionListView.setVisibility(View.GONE);
 		}
 	}
@@ -503,7 +506,8 @@ public class SubscriptionAddActivity extends BaseActivity implements RequestList
 				holder.content = (TextView) convertView.findViewById(R.id.content);
 				holder.distance = (TextView) convertView.findViewById(R.id.distance);
 				holder.ll_tags_container = (TagsContainer) convertView.findViewById(R.id.ll_tags);
-				holder.location_and_requirement = (TextView) convertView.findViewById(R.id.location_and_education_and_matchrate);
+				holder.location_and_requirement = (TextView) convertView.findViewById(R.id.location);
+				holder.requirement = (TextView) convertView.findViewById(R.id.education_and_matchrate);
 				holder.publish_time = (TextView) convertView.findViewById(R.id.publish_time);
 				holder.salary = (TextView) convertView.findViewById(R.id.salary);
 				holder.title = (TextView) convertView.findViewById(R.id.title);
@@ -519,11 +523,12 @@ public class SubscriptionAddActivity extends BaseActivity implements RequestList
 			}
 
 			JobEntPostDTO post = subscriptions.get(position);
-			holder.location_and_requirement.setText(post.getAreaName() + "/" + post.getDegree());
+			holder.location_and_requirement.setText(post.getAreaName());
+			holder.requirement.setText(post.getDegree());
 			holder.publish_time.setText(DateUtils.getDateByFormat(post.getPublishDate(), "yyyy-MM-dd"));// .getDateByFormatNUM(post.getPublishDate()));
 			holder.salary.setText(post.getSalary());
 			holder.title.setText(post.getPostAliases());
-			holder.content.setText(subscriptions.get(position).getEntName());
+			holder.content.setText(StringUtils.changed(subscriptions.get(position).getEntName(),15));
 			double distance = subscriptions.get(position).getDistance();
 			if (distance == 0) { // 如果为0 不显示
 				holder.distance.setVisibility(View.GONE);
@@ -555,6 +560,7 @@ public class SubscriptionAddActivity extends BaseActivity implements RequestList
 		private TextView content;
 		private TextView salary;
 		private TextView location_and_requirement;
+		private TextView requirement;
 		private TextView distance;
 		private TagsContainer ll_tags_container;
 	}
@@ -586,10 +592,7 @@ public class SubscriptionAddActivity extends BaseActivity implements RequestList
 		if (!StringUtils.isBlank(subscriptionDTO.getPostCode())) {
 			return true;
 		}
-		if (!StringUtils.isBlank(subscriptionDTO.getIndustryCode())) {
-			return true;
-		}
-		return false;
+	    return !StringUtils.isBlank(subscriptionDTO.getIndustryCode());
 	}
 
 	void showTip() {
@@ -610,7 +613,7 @@ public class SubscriptionAddActivity extends BaseActivity implements RequestList
 		TextView postText = (TextView) v.findViewById(R.id.postText);
 		TextView areaText = (TextView) v.findViewById(R.id.areaTxt);
 		ImageView accesoryImg = (ImageView) v.findViewById(R.id.accessoryImg);
-		View delBtn = (LinearLayout) v.findViewById(R.id.delImgBtn);
+		View delBtn = v.findViewById(R.id.delImgBtn);
 
 		delBtn.setTag(subscriptionDTO.getSubId());
 

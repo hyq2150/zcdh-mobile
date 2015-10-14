@@ -19,7 +19,6 @@ package com.photoview;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
-import android.util.FloatMath;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.ScaleGestureDetector.OnScaleGestureListener;
@@ -51,12 +50,12 @@ public abstract class VersionedGestureDetector {
 
 	public abstract boolean isScaling();
 
-	public static interface OnGestureListener {
-		public void onDrag(float dx, float dy);
+	public interface OnGestureListener {
+		void onDrag(float dx, float dy);
 
-		public void onFling(float startX, float startY, float velocityX, float velocityY);
+		void onFling(float startX, float startY, float velocityX, float velocityY);
 
-		public void onScale(float scaleFactor, float focusX, float focusY);
+		void onScale(float scaleFactor, float focusX, float focusY);
 	}
 
 	private static class CupcakeDetector extends VersionedGestureDetector {

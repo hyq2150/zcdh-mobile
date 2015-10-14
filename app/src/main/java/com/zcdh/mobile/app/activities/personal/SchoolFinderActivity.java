@@ -4,8 +4,15 @@
  */
 package com.zcdh.mobile.app.activities.personal;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.zcdh.mobile.R;
+import com.zcdh.mobile.framework.activities.BaseActivity;
+import com.zcdh.mobile.utils.DbUtil;
+import com.zcdh.mobile.utils.StringUtils;
+import com.zcdh.mobile.utils.SystemServicesUtils;
 
 import net.tsz.afinal.FinalDb;
 import net.tsz.afinal.db.sqlite.DbModel;
@@ -33,15 +40,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.zcdh.mobile.R;
-import com.zcdh.mobile.framework.activities.BaseActivity;
-import com.zcdh.mobile.utils.DbUtil;
-import com.zcdh.mobile.utils.StringUtils;
-import com.zcdh.mobile.utils.SystemServicesUtils;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author jeason, 2014-5-13 下午3:28:25
@@ -70,9 +70,9 @@ public class SchoolFinderActivity extends BaseActivity implements OnRefreshListe
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(), "学校选择");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "学校选择");
 		dbTool = DbUtil.create(this);
-		dbms_cache = new ArrayList<DbModel>();
+		dbms_cache = new ArrayList<>();
 		inflater = LayoutInflater.from(this);
 		empty_view = inflater.inflate(R.layout.school_empty_view, null);
 		et_school = (EditText) empty_view.findViewById(R.id.et_school);
@@ -118,6 +118,11 @@ public class SchoolFinderActivity extends BaseActivity implements OnRefreshListe
 			@Override
 			public void afterTextChanged(Editable s) {
 				onSearch(s.toString(), 0);
+				if (!StringUtils.isBlank(search_bar.getText().toString())) {
+					et_school.setText(search_bar.getText().toString());
+				}else{
+					et_school.setText("");
+				}
 			}
 		});
 		lvMajor.setMode(Mode.PULL_FROM_END);
@@ -201,7 +206,7 @@ public class SchoolFinderActivity extends BaseActivity implements OnRefreshListe
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			if (convertView == null) convertView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.simple_listview_item_accessory, null);
+			if (convertView == null) convertView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.simple_listview_item_accessory, parent,false);
 			TextView school = (TextView) convertView.findViewById(R.id.itemNameText);
 			school.setText(getItem(position).getString("school_name"));
 			return convertView;

@@ -22,7 +22,7 @@ public class FollowerListFakeActivity extends FakeActivity {
 	}
 
 	public void setResultForChecked(ArrayList<String> checked) {
-		HashMap<String, Object> res = new HashMap<String, Object>();
+		HashMap<String, Object> res = new HashMap<>();
 		res.put("selected", checked);
 		res.put("platform", platform);
 		setResult(res);
@@ -49,7 +49,7 @@ public class FollowerListFakeActivity extends FakeActivity {
 		}
 
 		boolean hasNext = false;
-		ArrayList<Following> data = new ArrayList<Following>();
+		ArrayList<Following> data = new ArrayList<>();
 		if ("SinaWeibo".equals(platformName)) {
 			// users[id, name, description]
 			@SuppressWarnings("unchecked")

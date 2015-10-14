@@ -50,7 +50,7 @@
         android:orientation="horizontal"
         android:padding="7dp" >
 
-        <include layout="@layout/search_comm_bar"/>
+        <include layout="@layout/search_ent_bar"/>
        <!--  <EditText
             android:id="@+id/search_text"
             android:layout_width="0dip"

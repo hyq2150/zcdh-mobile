@@ -211,7 +211,7 @@ public class WXPayActivity extends BaseActivity {
 		}
 	}
 
-	private static enum LocalRetCode {
+	private enum LocalRetCode {
 		ERR_OK, ERR_HTTP, ERR_JSON, ERR_OTHER
 	}
 
@@ -345,7 +345,7 @@ public class WXPayActivity extends BaseActivity {
 			nonceStr = genNonceStr();
 			json.put("noncestr", nonceStr);
 
-			List<NameValuePair> packageParams = new LinkedList<NameValuePair>();
+			List<NameValuePair> packageParams = new LinkedList<>();
 			packageParams.add(new BasicNameValuePair("bank_type", "WX"));
 			packageParams.add(new BasicNameValuePair("body", "千足金箍棒"));
 			packageParams.add(new BasicNameValuePair("fee_type", "1"));
@@ -364,7 +364,7 @@ public class WXPayActivity extends BaseActivity {
 			timeStamp = genTimeStamp();
 			json.put("timestamp", timeStamp);
 
-			List<NameValuePair> signParams = new LinkedList<NameValuePair>();
+			List<NameValuePair> signParams = new LinkedList<>();
 			signParams.add(new BasicNameValuePair("appid", Constants.APP_ID));
 			signParams.add(new BasicNameValuePair("appkey", APP_KEY));
 			signParams.add(new BasicNameValuePair("noncestr", nonceStr));
@@ -393,7 +393,7 @@ public class WXPayActivity extends BaseActivity {
 		req.timeStamp = String.valueOf(timeStamp);
 		req.packageValue = "Sign=" + packageValue;
 
-		List<NameValuePair> signParams = new LinkedList<NameValuePair>();
+		List<NameValuePair> signParams = new LinkedList<>();
 		signParams.add(new BasicNameValuePair("appid", req.appId));
 		signParams.add(new BasicNameValuePair("appkey", APP_KEY));
 		signParams.add(new BasicNameValuePair("noncestr", req.nonceStr));

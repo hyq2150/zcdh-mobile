@@ -14,10 +14,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.zcdh.mobile.R;
 import com.zcdh.mobile.api.model.JobLanguageDTO;
@@ -46,8 +44,8 @@ public class LanguageAdapter extends PredicateAdapter {
 
 		mActivity = activity;
 		inflater = LayoutInflater.from(activity);
-		skills = new ArrayList<JobLanguageDTO>();
-		selectedSkills = new ArrayList<JobLanguageDTO>();
+		skills = new ArrayList<>();
+		selectedSkills = new ArrayList<>();
 		levelSelector = new LanguageLevelSelector(activity);
 
 	}
@@ -75,7 +73,7 @@ public class LanguageAdapter extends PredicateAdapter {
 
 	@Override
 	public View getView(final int position, ViewGroup parentView) {
-		View view = inflater.inflate(R.layout.skill_tags_item_no_level, null);
+		View view = inflater.inflate(R.layout.skill_tags_item_no_level, parentView,false);
 		TextView tv_name = (TextView) view.findViewById(R.id.skillNameText);
 		ImageView selectIV = (ImageView) view.findViewById(R.id.iv_indicator);
 		tv_name.setOnClickListener(new OnClickListener() {

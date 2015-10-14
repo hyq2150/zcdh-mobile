@@ -226,34 +226,34 @@ public class TagsDialog {
 		 * 重写此方法 联网加载数据到Adapter
 		 * @author jeason, 2014-7-25 下午4:18:34
 		 */
-		public void onInitialTags();
+		void onInitialTags();
 		/**
 		 * 对话框消失
 		 * @author jeason, 2014-7-25 下午4:15:49
 		 */
-		public void onDialogDismiss();
+		void onDialogDismiss();
 		
 		/**
 		 * 当搜索框内容变化时
 		 * @param content
 		 * @author jeason, 2014-7-25 下午4:15:01
 		 */
-		public void onSearchWordChanged(String content);
+		void onSearchWordChanged(String content);
 		
 		/**
 		 * 当按下搜索按钮
 		 * @param keyword
 		 * @author jeason, 2014-7-25 下午4:14:42
 		 */
-		public void onSearch(String keyword);
+		void onSearch(String keyword);
 		
 		/**
 		 * 换一组
 		 * @author jeason, 2014-7-25 下午4:14:10
 		 */
-		public void onShift();
+		void onShift();
 		
-		public void onEditableConfirm(int key, String content);
+		void onEditableConfirm(int key, String content);
 	}
 	
 }

@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/activityBody"
+<LinearLayout style="@style/activityBody"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <!-- 选择行业 -->
 
-    <LinearLayout
+    <android.support.v7.widget.LinearLayoutCompat
         android:id="@+id/formContainer"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" 
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:divider="@drawable/divider_line"
+        app:showDividers="middle|end">
 
         <RelativeLayout
             android:id="@+id/industryRl"
@@ -20,7 +23,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:gravity="center_vertical"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 style="@style/fontNormal"
@@ -52,15 +55,9 @@
                 android:paddingLeft="15dp"
                 android:paddingRight="5dp"
                 android:singleLine="true"
-                android:textColor="@color/grey1"
-                android:text="请选择行业" >
-            </TextView>
+                android:text="请选择行业"
+                android:textColor="@color/grey1"/>
         </RelativeLayout>
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="@dimen/dividerHeight"
-            android:background="@color/divider" />
 
         <!-- 选择职位 -->
 
@@ -71,7 +68,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:gravity="center_vertical"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 style="@style/fontNormal"
@@ -104,14 +101,9 @@
                 android:paddingRight="5dp"
                 android:singleLine="true"
                 android:text="请选择职位"
-                android:textColor="@color/grey1" >
-            </TextView>
+                android:textColor="@color/grey1"/>
         </RelativeLayout>
 
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="@dimen/dividerHeight"
-            android:background="@color/divider" />
 
         <!-- 选择地区 -->
 
@@ -122,8 +114,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:gravity="center_vertical"
-            android:orientation="vertical"
-             >
+            android:orientation="vertical">
 
             <TextView
                 style="@style/fontNormal"
@@ -156,16 +147,10 @@
                 android:paddingRight="5dp"
                 android:singleLine="true"
                 android:text="请选择地区"
-                android:textColor="@color/grey1" >
-            </TextView>
+                android:textColor="@color/grey1"/>
         </RelativeLayout>
+    </android.support.v7.widget.LinearLayoutCompat>
 
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="@dimen/dividerHeight"
-            android:background="@color/divider" />
-    </LinearLayout>
-    
 
     <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/subScriptionListView"

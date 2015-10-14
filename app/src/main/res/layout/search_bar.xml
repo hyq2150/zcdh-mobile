@@ -137,7 +137,9 @@
                 android:singleLine="false"
                 android:paddingLeft="5dp"
                 android:textColor="@color/font_color"
-                android:textSize="@dimen/font_size_nomarl" />
+                android:textSize="@dimen/font_size_nomarl"
+                android:hint="@string/search_keywords"
+                android:inputType="text"/>
 
             <!-- 标签按钮 -->
 
@@ -149,6 +151,7 @@
                 android:layout_marginRight="10dp"
                 android:background="@color/transparent"
                 android:src="@drawable/tag_toggle_normal"
+                android:visibility="gone"
                 android:scaleType="centerInside" />
         </FrameLayout>
     </RelativeLayout>

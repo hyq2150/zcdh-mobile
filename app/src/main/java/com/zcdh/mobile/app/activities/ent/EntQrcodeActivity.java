@@ -70,8 +70,8 @@ public class EntQrcodeActivity extends BaseActivity {
 
 	@AfterViews
 	void bindView() {
-		SystemServicesUtils.setActionBarCustomTitle(EntQrcodeActivity.this,
-				getSupportActionBar(), "企业二维码");
+		SystemServicesUtils.displayCustomTitle(EntQrcodeActivity.this,
+			getSupportActionBar(), "企业二维码");
 		enterpriseService = RemoteServiceManager
 				.getRemoteService(IRpcJobEnterpriseService.class);
 

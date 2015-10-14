@@ -369,11 +369,7 @@ public class DateUtils {
 		boolean leap;
 		if (year % 4 == 0) {
 			if (year % 100 == 0) {
-				if (year % 400 == 0) {
-					leap = true;
-				} else {
-					leap = false;
-				}
+			    leap = year % 400 == 0;
 			} else {
 				leap = true;
 			}
@@ -478,7 +474,7 @@ public class DateUtils {
 	 * 获得时间序列 EG:2008-01-01~2008-01-31,2008-02-01~2008-02-29
 	 */
 	public static List<String> getMonthSqu(String fromDate, String toDate) {
-		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<>();
 		int count = getMonthCountBySQU(fromDate, toDate);
 		int syear = Integer.parseInt(getDateByFormat(
 				getDateByStrToYMD(fromDate), YEAR));

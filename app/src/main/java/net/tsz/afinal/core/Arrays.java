@@ -17,6 +17,8 @@
 
 package net.tsz.afinal.core;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.AbstractList;
@@ -120,11 +122,13 @@ public class Arrays {
             return a.length;
         }
 
+        @NonNull
         @Override
         public Object[] toArray() {
             return a.clone();
         }
 
+        @NonNull
         @SuppressWarnings("unchecked")
 		@Override
         public <T> T[] toArray(T[] contents) {
@@ -156,7 +160,7 @@ public class Arrays {
      * @return a {@code List} of the elements of the specified array.
      */
     public static <T> List<T> asList(T... array) {
-        return new ArrayList<T>(array);
+        return new ArrayList<>(array);
     }
 
     /**

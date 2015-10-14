@@ -27,7 +27,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,9 +38,9 @@ import java.util.List;
 
 /**
  * 意见反馈
- * 
+ *
  * @author yangjiannan
- * 
+ *
  */
 @EActivity(R.layout.activity_feedback)
 public class FeedBackActivity extends BaseActivity implements RequestListener {
@@ -69,27 +68,28 @@ public class FeedBackActivity extends BaseActivity implements RequestListener {
 	/**
 	 * 意见反馈列表
 	 */
-	@ViewById(R.id.feedBackListView)
-	ListView feedBackListView;
-	FeedBackAdapter feedBackAdapter;
+/*	@ViewById(R.id.feedBackListView)*/
+	//ListView feedBackListView;
+//	FeedBackAdapter feedBackAdapter;
 
 	/**
 	 * 反馈列表
 	 */
-	List<JobFeedBackListDTO> feedBackList = new ArrayList<JobFeedBackListDTO>();
+	List<JobFeedBackListDTO> feedBackList = new ArrayList<>();
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-	
+
 	JobFeedBackListDTO currentSendFeedBack;
 
 	@AfterViews
 	void bindViews() {
 
-		SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), getString(R.string.setting_feedback));
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+			getString(R.string.setting_feedback));
 		jobUservice = RemoteServiceManager.getRemoteService(IRpcJobUservice.class);
 
-		feedBackAdapter = new FeedBackAdapter();
-		feedBackListView.setAdapter(feedBackAdapter);
+		//feedBackAdapter = new FeedBackAdapter();
+		//.setAdapter(feedBackAdapter);
 		if(getUserId()>0){
 			loadFeedBack();
 		}
@@ -111,7 +111,7 @@ public class FeedBackActivity extends BaseActivity implements RequestListener {
 		jobUservice.addUserFeedBack(getUserId(), content).identify(kREQ_ID_addUserFeedBack = RequestChannel.getChannelUniqueID(), this);
 	}
 
-	@OptionsItem(android.R.id.home) 
+	@OptionsItem(android.R.id.home)
 	void onBack() {
 		finish();
 	}
@@ -125,10 +125,12 @@ public class FeedBackActivity extends BaseActivity implements RequestListener {
 			}else{
 				Toast.makeText(this, "请输入大于10个字内容", Toast.LENGTH_SHORT).show();
 			}*/
+			Toast.makeText(this, "提交成功", Toast.LENGTH_SHORT).show();
+			finish();
 		} else {
 			Toast.makeText(this, "请填写反馈内容", Toast.LENGTH_SHORT).show();
 		}
-		
+
 	}
 
 	class FeedBackAdapter extends BaseAdapter {
@@ -153,7 +155,7 @@ public class FeedBackActivity extends BaseActivity implements RequestListener {
 			ViewHolder h = null;
 			if (convertView == null) {
 				h = new ViewHolder();
-				convertView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.feedback_item, null);
+				convertView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.feedback_item, parent,false);
 				h.tallContainer1 = (RelativeLayout) convertView.findViewById(R.id.tallContainer1);
 				h.tallContainer2 = (RelativeLayout) convertView.findViewById(R.id.tallContainer2);
 
@@ -176,14 +178,14 @@ public class FeedBackActivity extends BaseActivity implements RequestListener {
 			}else{
 				feedBackItem = feedBackList.get(feedBackList.size() - position - 1);
 			}
-			
+
 			if (feedBackItem.getType() == 0) { // 用户反馈
 
 				h.tallContainer1.setVisibility(View.VISIBLE);
 				h.tallContainer2.setVisibility(View.GONE);
 
 				h.tallText1.setText(feedBackItem.getContent());
-				
+
 				h.taller1.setText(sdf.format(feedBackItem.getCreateTime()) + " 我");
 				if (portrait != null) h.head.initHeadWithUserPortrait(portrait);
 
@@ -228,14 +230,13 @@ public class FeedBackActivity extends BaseActivity implements RequestListener {
 			if (result != null) {
 				int success = (Integer) result;
 				if (success == 0) {
-					if(getUserId()==-1){
+					if(getUserId() ==-1){
 						currentSendFeedBack.setCreateTime(new Date());
 						feedBackList.add(currentSendFeedBack);
-						feedBackAdapter.notifyDataSetChanged();
-						
+//						feedBackAdapter.notifyDataSetChanged();
 					}else if(getUserId()>0){
 						loadFeedBack();
-					}	
+					}
 					feedBackEditText.setText("");
 				} else {
 					Toast.makeText(this, "服务异常, 提交反馈失败", Toast.LENGTH_SHORT).show();
@@ -249,16 +250,16 @@ public class FeedBackActivity extends BaseActivity implements RequestListener {
 				if (page.getElements() != null) {
 					feedBackList = page.getElements();
 				}
-				feedBackAdapter.notifyDataSetChanged();
+	//			feedBackAdapter.notifyDataSetChanged();
 			}
 		}
 
 		if (reqId.equals(KREQ_ID_FINDUSERPORTRAIT)) {
 			if (result != null) {
 				portrait = (JobUserPortraitDTO) result;
-				if (feedBackAdapter != null) {
-					feedBackAdapter.notifyDataSetChanged();
-				}
+//				if (feedBackAdapter != null) {
+//					feedBackAdapter.notifyDataSetChanged();
+//				}
 			}
 		}
 	}

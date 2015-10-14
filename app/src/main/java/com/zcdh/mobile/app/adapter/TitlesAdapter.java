@@ -73,7 +73,7 @@ public class TitlesAdapter extends BaseAdapter {
         ViewHolder holder;
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = LayoutInflater.from(context).inflate(R.layout.app_item_view, null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.app_item_view, parent,false);
             holder.image_view = (ImageView) convertView
                     .findViewById(R.id.iv_app_icons);
             holder.hotImg = (ImageView) convertView

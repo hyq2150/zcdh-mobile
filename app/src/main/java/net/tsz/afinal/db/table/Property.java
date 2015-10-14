@@ -45,17 +45,17 @@ public class Property {
 				if (dataType == String.class) {
 					set.invoke(receiver, value.toString());
 				} else if (dataType == int.class || dataType == Integer.class) {
-					set.invoke(receiver, value == null ? (Integer) null : Integer.parseInt(value.toString()));
+					set.invoke(receiver, value == null ? null : Integer.parseInt(value.toString()));
 				} else if (dataType == float.class || dataType == Float.class) {
-					set.invoke(receiver, value == null ? (Float) null: Float.parseFloat(value.toString()));
+					set.invoke(receiver, value == null ? null : Float.parseFloat(value.toString()));
 				} else if (dataType == double.class || dataType == Double.class) {
-					set.invoke(receiver, value == null ? (Double) null: Double.parseDouble(value.toString()));
+					set.invoke(receiver, value == null ? null : Double.parseDouble(value.toString()));
 				} else if (dataType == long.class || dataType == Long.class) {
-					set.invoke(receiver, value == null ? (Long) null: Long.parseLong(value.toString()));
+					set.invoke(receiver, value == null ? null : Long.parseLong(value.toString()));
 				} else if (dataType == Date.class || dataType == java.sql.Date.class) {
-					set.invoke(receiver, value == null ? (Date) null: FieldUtils.stringToDateTime(value.toString()));
+					set.invoke(receiver, value == null ? null : FieldUtils.stringToDateTime(value.toString()));
 				} else if (dataType == boolean.class || dataType == Boolean.class) {
-					set.invoke(receiver, value == null ? (Boolean) null: "1".equals(value.toString()));
+					set.invoke(receiver, value == null ? null : "1".equals(value.toString()));
 				} else {
 					set.invoke(receiver, value);
 				}

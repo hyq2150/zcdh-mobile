@@ -32,7 +32,7 @@
         <item name="android:typeface">monospace</item>
     </style>
 
-    <style name="Widget"></style>
+    <style name="Widget"/>
 
     <style name="Widget.TabPageIndicator" parent="Widget">
         <item name="android:gravity">center</item>

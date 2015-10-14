@@ -80,7 +80,7 @@ public class OrderDetailActivity extends BaseActivity implements RequestListener
 	protected void initUI() {
 		// TODO Auto-generated method stub
 		setTitle("");
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(), "订单详情");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "订单详情");
 		bindViews();
 	}
 
@@ -135,7 +135,7 @@ public class OrderDetailActivity extends BaseActivity implements RequestListener
 			}
 
 			protected void onPostExecute(OrderDTO result) {
-			};
+			}
 		}.execute();
 	}
 

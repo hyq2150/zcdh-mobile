@@ -7,9 +7,9 @@ package com.zcdh.mobile.app.views.iflytek;
  */
 public interface MyVoiceRecognizerListner {
 
-	public void onVoiceSearchOK();
+	void onVoiceSearchOK();
 	
-	public void doSearch(String keyWord);
+	void doSearch(String keyWord);
 	
-	public void onError(String error);
+	void onError(String error);
 }

@@ -1,23 +1,22 @@
 package com.zcdh.mobile.app.activities.start_at;
 
 import com.zcdh.mobile.R;
+import com.zcdh.mobile.app.activities.auth.LoginHelper;
+import com.zcdh.mobile.app.activities.auth.LoginListener;
 import com.zcdh.mobile.app.activities.main.NewMainActivity_;
 import com.zcdh.mobile.framework.activities.FWIntroduceActivity;
 import com.zcdh.mobile.utils.BitmapUtils;
 import com.zcdh.mobile.utils.SharedPreferencesUtil;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
 
-//import com.zcdh.mobile.app.activities.main.NewMainActivity_;
-
 /**
  * @author yangjiannan
  */
 public class GettingStartedActivity extends FWIntroduceActivity implements
-        OnPageChangeListener {
+        OnPageChangeListener,LoginListener {
 
     public static final String kGETTING_STARTED = "kGETTING_STARTED";
 
@@ -25,10 +24,12 @@ public class GettingStartedActivity extends FWIntroduceActivity implements
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        imageResIds = new int[]{R.drawable.guide001, R.drawable.guide002, R.drawable.guide003,
-                R.drawable.guide004};
+        imageResIds = new int[]{R.drawable.guide001, R.drawable.guide002, R.drawable.guide003};
+
         super.onCreate(savedInstanceState);
-        viewPageIndicator.setOnPageChangeListener(this);
+//        viewPageIndicator.setOnPageChangeListener(this);
+        viewPager.setOnPageChangeListener(this);
+        LoginHelper.getInstance(this, this).doLogin();
     }
 
     @Override
@@ -69,4 +70,8 @@ public class GettingStartedActivity extends FWIntroduceActivity implements
         }
     }
 
+    @Override
+    public void requestLoginFinished(int resultCode, String errorMsg) {
+
+    }
 }

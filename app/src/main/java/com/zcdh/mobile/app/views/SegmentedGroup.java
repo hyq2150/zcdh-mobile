@@ -7,7 +7,6 @@ import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.util.AttributeSet;
@@ -26,14 +25,14 @@ public class SegmentedGroup extends RadioGroup {
     public SegmentedGroup(Context context) {
         super(context);
         resources = getResources();
-        mTintColor = resources.getColor(R.color.radio_button_selected_color);
+        mTintColor = resources.getColor(R.color.systemcolor);
         oneDP = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, resources.getDisplayMetrics());
     }
 
     public SegmentedGroup(Context context, AttributeSet attrs) {
         super(context, attrs);
         resources = getResources();
-        mTintColor = resources.getColor(R.color.radio_button_selected_color);
+        mTintColor = resources.getColor(R.color.systemcolor);
         oneDP = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, resources.getDisplayMetrics());
     }
 
@@ -58,23 +57,23 @@ public class SegmentedGroup extends RadioGroup {
     public void updateBackground() {
         int count = super.getChildCount();
         if (count > 1) {
-            View child = getChildAt(0);
-            LayoutParams initParams = (LayoutParams) child.getLayoutParams();
-            LayoutParams params = new LayoutParams(initParams.width, initParams.height, initParams.weight);
-            params.setMargins(0, 0, -oneDP, 0);
-            child.setLayoutParams(params);
-            updateBackground(getChildAt(0), R.drawable.radio_checked_left, R.drawable.radio_unchecked_left);
+//            View child = getChildAt(0);
+//            LayoutParams initParams = (LayoutParams) child.getLayoutParams();
+//            LayoutParams params = new LayoutParams(initParams.width, initParams.height, initParams.weight);
+//            params.setMargins(0, 0, -oneDP, 0);
+//            child.setLayoutParams(params);
+            updateBackground(getChildAt(0), R.drawable.mapbg_blue1, R.drawable.mapbtn1);
             for (int i = 1; i < count - 1; i++) {
-                updateBackground(getChildAt(i), R.drawable.radio_checked_middle, R.drawable.radio_unchecked_middle);
-                View child2 = getChildAt(i);
-                initParams = (LayoutParams) child2.getLayoutParams();
-                params = new LayoutParams(initParams.width, initParams.height, initParams.weight);
-                params.setMargins(0, 0, -oneDP, 0);
-                child2.setLayoutParams(params);
+                updateBackground(getChildAt(i), R.drawable.mapbg_blue2, R.drawable.mapbtn2);
+//                View child2 = getChildAt(i);
+//                initParams = (LayoutParams) child2.getLayoutParams();
+//                params = new LayoutParams(initParams.width, initParams.height, initParams.weight);
+//                params.setMargins(0, 0, -oneDP, 0);
+//                child2.setLayoutParams(params);
             }
-            updateBackground(getChildAt(count - 1), R.drawable.radio_checked_right, R.drawable.radio_unchecked_right);
+            updateBackground(getChildAt(count - 1), R.drawable.mapbg_blue3, R.drawable.mapbtn3);
         } else if (count == 1) {
-            updateBackground(getChildAt(0), R.drawable.radio_checked_default, R.drawable.radio_unchecked_default);
+            updateBackground(getChildAt(0), R.drawable.mapbg_blue1, R.drawable.mapbtn1);
         }
     }
 
@@ -84,23 +83,23 @@ public class SegmentedGroup extends RadioGroup {
                 {android.R.attr.state_pressed},
                 {-android.R.attr.state_pressed, -android.R.attr.state_checked},
                 {-android.R.attr.state_pressed, android.R.attr.state_checked}},
-                new int[]{Color.GRAY, mTintColor, mCheckedTextColor});
+                new int[]{Color.WHITE, mTintColor, mCheckedTextColor});
         ((Button) view).setTextColor(colorStateList);
 
         //Redraw with tint color
         Drawable checkedDrawable = resources.getDrawable(checked).mutate();
         Drawable uncheckedDrawable = resources.getDrawable(unchecked).mutate();
-        ((GradientDrawable) checkedDrawable).setColor(mTintColor);
-        ((GradientDrawable) uncheckedDrawable).setStroke(oneDP, mTintColor);
+        //       ((GradientDrawable) checkedDrawable).setColor(mTintColor);
+//        ((GradientDrawable) uncheckedDrawable).setStroke(oneDP, mTintColor);
 
         //Create drawable
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{-android.R.attr.state_checked}, uncheckedDrawable);
+        stateListDrawable.addState(new int[]{-android.R.attr.state_checked}, uncheckedDrawable);
         stateListDrawable.addState(new int[]{android.R.attr.state_checked}, checkedDrawable);
-
         //Set button background
         if (Build.VERSION.SDK_INT >= 16) {
-           // view.setBackground(stateListDrawable);
+            // view.setBackground(stateListDrawable);
             view.setBackgroundDrawable(stateListDrawable);
         } else {
             view.setBackgroundDrawable(stateListDrawable);

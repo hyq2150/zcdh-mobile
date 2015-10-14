@@ -1,50 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    style="@style/activityBody"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    style="@style/activityBody">
+    android:orientation="vertical">
 
-    <RelativeLayout android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        >
-	    
-	    <ImageView
-	        android:id="@+id/logoImg"
-	        android:layout_width="128dp"
-	        android:layout_height="128dp"
-	        android:src="@drawable/logomessage_192x192" 
-	        android:layout_centerInParent="true"/>
-	    
-	    <TextView android:id="@+id/appVersionText"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_below="@id/logoImg"
-	        android:layout_centerHorizontal="true"
-	        android:layout_marginTop="30dp"
-	        android:text="职场导航"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/logoImg"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/logomessage_192x192" />
+
+        <TextView
+            android:id="@+id/appVersionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/logoImg"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="职场导航" />
     </RelativeLayout>
-    
-    <RelativeLayout android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        >
-        <ListView android:id="@+id/aboutListView"
-            android:layout_width="fill_parent"
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:id="@+id/tv_copyright"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:divider="@color/divider"
-            android:dividerHeight="@dimen/dividerHeight"
-            >
-            
-        </ListView>
-        
-        <TextView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="职场导航版权所有权© 2013-2018"
             android:textColor="@color/font_color"
-            android:textSize="@dimen/font_size_small"
-           android:layout_centerHorizontal="true"
-           android:layout_alignParentBottom="true"
-           android:text="职场导航版权所有权© 2013-2018"/>
-    </RelativeLayout>
+            android:textSize="@dimen/font_size_small" />
 
+        <ListView
+            android:id="@+id/aboutListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/tv_copyright"
+            android:divider="@color/divider"
+            android:dividerHeight="@dimen/dividerHeight">
+
+        </ListView>
+    </RelativeLayout>
 </LinearLayout>

@@ -23,7 +23,7 @@
             android:layout_centerHorizontal="true"
             android:singleLine="true"
             android:text="title"
-            android:textSize="12dp" 
+            android:textSize="12sp"
             android:visibility="visible"/>
         <ImageView
             android:id="@+id/iv_app_icons"

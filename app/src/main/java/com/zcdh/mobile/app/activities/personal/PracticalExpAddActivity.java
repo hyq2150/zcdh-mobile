@@ -1,10 +1,18 @@
 package com.zcdh.mobile.app.activities.personal;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
+import com.zcdh.mobile.R;
+import com.zcdh.mobile.api.IRpcJobUservice;
+import com.zcdh.mobile.api.model.JobPracticeDTO;
+import com.zcdh.mobile.app.ZcdhApplication;
+import com.zcdh.mobile.app.views.EditableDialog;
+import com.zcdh.mobile.app.views.EditableDialog.EditableDialogListener;
+import com.zcdh.mobile.framework.activities.BaseActivity;
+import com.zcdh.mobile.framework.nio.RemoteServiceManager;
+import com.zcdh.mobile.framework.nio.RequestChannel;
+import com.zcdh.mobile.framework.nio.RequestListener;
+import com.zcdh.mobile.framework.views.ListViewInScrollView;
+import com.zcdh.mobile.utils.StringUtils;
+import com.zcdh.mobile.utils.SystemServicesUtils;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
@@ -29,19 +37,11 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.zcdh.mobile.R;
-import com.zcdh.mobile.api.IRpcJobUservice;
-import com.zcdh.mobile.api.model.JobPracticeDTO;
-import com.zcdh.mobile.app.ZcdhApplication;
-import com.zcdh.mobile.app.views.EditableDialog;
-import com.zcdh.mobile.app.views.EditableDialog.EditableDialogListener;
-import com.zcdh.mobile.framework.activities.BaseActivity;
-import com.zcdh.mobile.framework.nio.RemoteServiceManager;
-import com.zcdh.mobile.framework.nio.RequestChannel;
-import com.zcdh.mobile.framework.nio.RequestListener;
-import com.zcdh.mobile.framework.views.ListViewInScrollView;
-import com.zcdh.mobile.utils.StringUtils;
-import com.zcdh.mobile.utils.SystemServicesUtils;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * 新增工作经验
@@ -110,10 +110,12 @@ public class PracticalExpAddActivity extends BaseActivity implements EditableDia
 	void bindViews() {
 
 		if (practicalExperiencePostDTO != null && practicalExperiencePostDTO.getPractice_id() != null && practicalExperiencePostDTO.getPractice_id() > 0) {
-			SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), getString(R.string.activiyt_practical_exp_edit));
+			SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+				getString(R.string.activiyt_practical_exp_edit));
 			postDesc.setText(practicalExperiencePostDTO.getPractice_description());
 		} else {
-			SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), getString(R.string.activiyt_practical_exp_add));
+			SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+				getString(R.string.activiyt_practical_exp_add));
 			practicalExperiencePostDTO = new JobPracticeDTO();
 		}
 		postDesc.addTextChangedListener(new TextWatcher() {
@@ -371,12 +373,12 @@ public class PracticalExpAddActivity extends BaseActivity implements EditableDia
 		}
 
 		@Override
-		public View getView(int p, View contentView, ViewGroup arg2) {
+		public View getView(int p, View contentView, ViewGroup parent) {
 
 			Holder h = null;
 			if (contentView == null) {
 				h = new Holder();
-				contentView = LayoutInflater.from(getBaseContext()).inflate(R.layout.simple_listview_item_pairing, null);
+				contentView = LayoutInflater.from(getBaseContext()).inflate(R.layout.simple_listview_item_pairing, parent,false);
 
 				h.itemName = (TextView) contentView.findViewById(R.id.itemNameText);
 				h.itemValue = (TextView) contentView.findViewById(R.id.secondItemNameText);

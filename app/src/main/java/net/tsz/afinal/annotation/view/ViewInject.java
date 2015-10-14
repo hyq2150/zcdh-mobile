@@ -23,10 +23,10 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME) 
 public @interface ViewInject {
-	public int id();
-	public String click() default "";
-	public String longClick() default "";
-	public String itemClick() default "";
-	public String itemLongClick() default "";
-	public Select select() default @Select(selected="") ;
+	int id();
+	String click() default "";
+	String longClick() default "";
+	String itemClick() default "";
+	String itemLongClick() default "";
+	Select select() default @Select(selected="") ;
 }

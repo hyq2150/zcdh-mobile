@@ -104,7 +104,7 @@ public class SubscriptionActivity extends BaseActivity implements OnClickListene
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_subscription_new);
 		holidayService = RemoteServiceManager.getRemoteService(IRpcHolidayService.class, this);
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(), "暑假工");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "暑假工");
 		initUI();
 		loadData();
 	}

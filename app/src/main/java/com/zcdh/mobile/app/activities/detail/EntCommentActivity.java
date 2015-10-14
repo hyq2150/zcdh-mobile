@@ -4,33 +4,6 @@
  */
 package com.zcdh.mobile.app.activities.detail;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Background;
-import org.androidannotations.annotations.Click;
-import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.ViewById;
-
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ToggleButton;
-
 import com.zcdh.comm.entity.Page;
 import com.zcdh.mobile.R;
 import com.zcdh.mobile.api.IRpcJobEnterpriseService;
@@ -51,6 +24,32 @@ import com.zcdh.mobile.framework.nio.RequestListener;
 import com.zcdh.mobile.utils.RegisterUtil;
 import com.zcdh.mobile.utils.StringUtils;
 import com.zcdh.mobile.utils.SystemServicesUtils;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout.LayoutParams;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author jeason, 2014-6-5 下午5:18:12
@@ -111,7 +110,7 @@ public class EntCommentActivity extends BaseActivity implements EditableDialogLi
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		entService = RemoteServiceManager.getRemoteService(IRpcJobEnterpriseService.class);
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(), "公司评价");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "公司评价");
 		inflater = LayoutInflater.from(this);
 		entId = getIntent().getLongExtra("entId", 0l);
 	}
@@ -147,7 +146,7 @@ public class EntCommentActivity extends BaseActivity implements EditableDialogLi
 		private List<CommentTagDTO> expressions;
 
 		public ExpressionsTagAdapter() {
-			this.expressions = new ArrayList<CommentTagDTO>();
+			this.expressions = new ArrayList<>();
 		//	setAddBtn();
 		}
 
@@ -194,7 +193,7 @@ public class EntCommentActivity extends BaseActivity implements EditableDialogLi
 			/*if (expression == null) {
 				return getAddButton();
 			}*/
-			View view = inflater.inflate(R.layout.basic_evaluation_tag, null);
+			View view = inflater.inflate(R.layout.basic_evaluation_tag, parentView,false);
 			TextView tag_name = (TextView) view.findViewById(R.id.tv_tag_name);
 			tag_name.setText(expression.getTagName());
 			tag_name.setOnClickListener(new OnClickListener() {
@@ -489,11 +488,8 @@ public class EntCommentActivity extends BaseActivity implements EditableDialogLi
 	}
 
 	private boolean isShowTip() {
-		comment = et_comment.getText().toString();
-		if (!StringUtils.isBlank(comment)) {
-			return true;
-		}
-		return tagEdit;
+	    comment = et_comment.getText().toString();
+	    return !StringUtils.isBlank(comment) || tagEdit;
 	}
 
 }

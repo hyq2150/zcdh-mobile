@@ -76,7 +76,7 @@ public class DefaultExceptionHandler implements UncaughtExceptionHandler,
 	 * 发送异常信息
 	 */
 	private void sendException(final String exString) {
-		if (K.debug == false) {
+		if (!K.debug) {
 			new Thread(new Runnable() {
 
 				@Override

@@ -79,12 +79,12 @@ public class CheckForUpgradeActivity extends BaseActivity implements DownloadPro
     void bindView() {
 
         //设置标题
-        SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(),
+        SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
                 getString(R.string.checkForUpgrade));
 
         // 显示当前版本号
         String currentVersionStr = getString(R.string.currentVersion);
-        currentVersionStr += updateAppService.getVerName(getApplicationContext());
+        currentVersionStr += UpdateAppService.getVerName(getApplicationContext());
         currentVersionText.setText(currentVersionStr);
 
         updateAppService = new UpdateAppService(getApplicationContext(), this);

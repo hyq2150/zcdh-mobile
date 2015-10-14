@@ -1,7 +1,7 @@
 /** 
 *  HotCityDTO 
 * 
-*  Created Date: 2015-08-12 17:07:57 
+*  Created Date: 2015-10-12 17:31:52 
 *  
 */  
 package com.zcdh.mobile.api.model;  

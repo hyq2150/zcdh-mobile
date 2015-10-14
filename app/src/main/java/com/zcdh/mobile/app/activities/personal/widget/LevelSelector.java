@@ -115,6 +115,6 @@ public class LevelSelector implements OnClickListener {
 	}
 
 	public interface LevelSelectorListener {
-		public void onLevelSelected(String paramcode);
+		void onLevelSelected(String paramcode);
 	}
 }

@@ -62,7 +62,7 @@ public class JobApplicationActivity extends BaseActivity implements IXListViewLi
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(), "职位跟踪");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "职位跟踪");
 		userService = RemoteServiceManager.getRemoteService(IRpcJobUservice.class);
 		adapter = new InfoAdapter(this);
 	}

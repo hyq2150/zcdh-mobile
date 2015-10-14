@@ -150,7 +150,7 @@ public class RecyclingPagerAdapter extends PagerAdapter {
 			holder = new ViewHolder();
 			view = LayoutInflater.from(context).inflate(
 					R.layout.framework_introduce_fragment, container, false);
-			holder.imageView = (ImageView) view.findViewById(R.id.image);
+			holder.imageView = (ImageView) view;
 			view.setTag(holder);
 		} else {
 			holder = (ViewHolder) view.getTag();

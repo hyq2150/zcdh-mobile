@@ -1,13 +1,14 @@
 package com.zcdh.mobile.framework.nio;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-
-import android.util.Log;
-
 import com.zcdh.core.nio.common.MsgRequest;
 import com.zcdh.core.nio.except.ZcdhException;
 import com.zcdh.mobile.framework.K;
+
+import android.util.Log;
+
+import java.lang.reflect.Type;
+import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * 
@@ -30,25 +31,25 @@ public class RequestChannel<T> implements RequestChannelInter<T> {
 	/**
 	 * 请求结果处理池
 	 */
-	private final static HashMap<String, RequestListener> REQUE_HASH_MAP = new HashMap<String, RequestListener>();
+	private final static HashMap<String, RequestListener> REQUE_HASH_MAP = new HashMap<>();
 
 	/**
 	 * 每次调用服务的时候，会有一个request id， 标识每次服务调用； 而如何将request id 从服务调用的地方到
 	 * 中间件发送数据的地方，藉由Threadlocal 保存。 ThreaLcoal 使用详情, 请Goolge、Baidu 之 :)
 	 */
-	private final static ThreadLocal<String> THREAD_LOCAL = new ThreadLocal<String>();
+	private final static ThreadLocal<String> THREAD_LOCAL = new ThreadLocal<>();
 
 	/**
 	 * 待发送数据暂存池
 	 */
-	private final static HashMap<String, MsgRequest> REQU_MSG_MAP = new HashMap<String, MsgRequest>();
+	private final static HashMap<String, MsgRequest> REQU_MSG_MAP = new HashMap<>();
 
 	/**
 	 * 
 	 * @param id
 	 * @param data
 	 *            要发送的数据
-	 * @param resultTye
+	 * @param resultType
 	 *            请求返回结果的数据类型
 	 * 
 	 *            将请求数据对象加入到待发送数据暂存池 1）服务调用服务方法后，会把待发送的数据放入 REQU_MSG_MAP 中；
@@ -136,7 +137,7 @@ public class RequestChannel<T> implements RequestChannelInter<T> {
 
 	public static void removeRequestListener(String... reqIds) {
 		if (reqIds != null) {
-			Log.e("removeRequestListener", reqIds + "");
+			Log.e("removeRequestListener", Arrays.toString(reqIds));
 			for (String string : reqIds) {
 				if (REQUE_HASH_MAP != null) {
 					Log.e("RequestChannel","removeRequestListener ed"+ string + ":"

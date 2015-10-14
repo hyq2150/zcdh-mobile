@@ -2,20 +2,46 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="actionBarSize">@dimen/main_tab_height</item>
+        <item name="actionBarSize">@dimen/actionbar_bar_height</item>
     </style>
 
+    <!-- 无ActionBar -->
+    <style name="AppThemeNoActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- ActionBar浮动 -->
+    <style name="AppThemeActionBarOverlay" parent="AppTheme">
+        <item name="windowActionBarOverlay">true</item>
+    </style>
+
+    <!--AlderDialog主题-->
+    <style name="AlertDialogCustom" parent="@android:style/Theme.Holo.Light.Dialog">
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
+    </style>
+
+
+    <!-- 主页左侧菜单对话框样式 -->
     <style name="pop_dialog_theme" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@color/dark_transprant</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowAnimationStyle">@style/MenuDialogAnimation</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:backgroundDimEnabled">true</item>
     </style>
+
+    <style name="MenuDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/dialog_show</item>
+        <item name="android:windowExitAnimation">@anim/dialog_hide</item>
+    </style>
+
     <style name="messageBoxStyle">
         <item name="android:background">@drawable/message_box_background</item>
         <item name="android:textSize">@dimen/font_size_nomarl</item>
@@ -25,6 +51,7 @@
         <item name="android:paddingTop">@dimen/message_box_pading_top_bottom</item>
         <item name="android:paddingBottom">@dimen/message_box_pading_top_bottom</item>
     </style>
+
     <style name="userinfo_panel_textview_title">
         <item name="android:textSize">@dimen/font_size_nomarl</item>
         <item name="android:duplicateParentState">true</item>
@@ -32,6 +59,7 @@
         <item name="android:paddingRight">5dp</item>
         <item name="android:textColor">@color/font_color</item>
     </style>
+
     <!-- 搜索面板下面的切换按钮样式 -->
     <style name="switchTagTabBtnStyle">
         <item name="android:paddingLeft">@dimen/tabbtn_padding_left</item>
@@ -43,6 +71,7 @@
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/tabbtn_switch_selector</item>
     </style>
+
     <!-- 列 -->
     <style name="row_item_style">
         <item name="android:paddingLeft">15dp</item>
@@ -51,14 +80,15 @@
         <item name="android:paddingRight">10dp</item>
         <item name="android:background">@drawable/list_item_silver_selector</item>
     </style>
+
     <style name="industry_listitem">
         <item name="android:paddingLeft">@dimen/simple_listiem_padding</item>
         <item name="android:paddingRight">@dimen/simple_listiem_padding</item>
         <item name="android:paddingTop">@dimen/simple_listiem_top</item>
         <item name="android:paddingBottom">@dimen/simple_listiem_bottom</item>
-        <!-- <item name="android:background">@drawable/list_item_grey_selector</item> -->
         <item name="android:background">@drawable/industry_listitem_silver_selector</item>
     </style>
+
     <style name="Widget.zcdh_tabpageindicator" parent="Widget">
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/zcdh_tab_indicator_bg</item>
@@ -73,27 +103,21 @@
         <item name="selectedColor">#FF000000</item>
         <item name="selectedBold">true</item>
     </style>
-    <style name="style_tabpageindicator" parent="AppTheme">
 
-        <!-- <item name="vpiTabPageIndicatorStyle">@style/Widget.TabPageIndicator</item> -->
+    <style name="style_tabpageindicator" parent="AppTheme">
         <item name="vpiTabPageIndicatorStyle">@style/Widget.zcdh_tabpageindicator</item>
     </style>
+
     <style name="edittext_style">
         <item name="android:padding">5dp</item>
         <item name="android:gravity">left|top</item>
-        <item name="android:background">@drawable/rect_bord_background</item>
+        <item name="android:background">@color/white</item>
         <item name="android:textSize">@dimen/font_size_nomarl</item>
     </style>
 
     <style name="PopupWindowAnimation">
         <item name="android:windowEnterAnimation">@anim/popshow_anim</item>
         <item name="android:windowExitAnimation">@anim/pophidden_anim</item>
-    </style>
-
-    <style name="main_title_bar_style">
-        <item name="android:background">@drawable/bg_titlebar_main</item>
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">@dimen/title_bar_height</item>
     </style>
 
     <style name="commom_text_field1">
@@ -119,11 +143,9 @@
     </style>
 
     <style name="activityBody">
-        <item name="android:paddingLeft">@dimen/content_left_right</item>
-        <item name="android:paddingRight">@dimen/content_left_right</item>
         <item name="android:paddingTop">@dimen/content_top_bottom</item>
         <item name="android:paddingBottom">@dimen/content_top_bottom</item>
-        <item name="android:background">@color/white</item>
+        <item name="android:background">@color/font_ee</item>
     </style>
 
     <!-- 正在处理的dialog -->
@@ -154,7 +176,6 @@
         <item name="android:paddingRight">@dimen/simple_listiem_padding</item>
         <item name="android:paddingTop">@dimen/simple_listiem_top</item>
         <item name="android:paddingBottom">@dimen/simple_listiem_bottom</item>
-        <!-- <item name="android:background">@drawable/list_item_grey_selector</item> -->
         <item name="android:background">@drawable/list_item_silver_selector</item>
     </style>
 
@@ -166,8 +187,8 @@
     <!-- ListView 最右边图标 -->
     <style name="listview_accessory">
         <item name="android:src">@drawable/ic_accssory</item>
-        <item name="android:width">@dimen/accessory_with</item>
-        <item name="android:height">@dimen/accessory_height</item>
+        <item name="android:layout_width">@dimen/accessory_with</item>
+        <item name="android:layout_height">@dimen/accessory_height</item>
     </style>
 
     <!-- 主菜单 -->
@@ -229,11 +250,6 @@
         <item name="android:textStyle">normal</item>
     </style>
 
-    <!-- 对话框淡入淡出 -->
-
-    <style name="fadeInOutDialog" parent="@style/pop_dialog_theme">
-        <!-- <item name="android:backgroundDimEnabled">false</item> -->
-    </style>
 
     <!-- 菜单项 -->
     <style name="menu_item">
@@ -311,6 +327,7 @@
         <item name="android:textSize">@dimen/font_size_nomarl</item>
         <item name="android:paddingLeft">5dp</item>
         <item name="android:paddingRight">5dp</item>
+        <item name="android:layout_marginRight">10dp</item>
     </style>
 
     <style name="message_desc_text">
@@ -318,6 +335,8 @@
         <item name="android:textSize">@dimen/font_size_small</item>
         <item name="android:textStyle">normal</item>
         <item name="android:paddingRight">5dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">10dp</item>
     </style>
 
     <style name="Widget.zcdh_tabpageindicator_middle_font" parent="Widget">
@@ -336,13 +355,7 @@
     </style>
 
     <style name="style_tabpageindicator_middle_font" parent="AppTheme">
-        <!-- <item name="vpiTabPageIndicatorStyle">@style/Widget.TabPageIndicator</item> -->
         <item name="vpiTabPageIndicatorStyle">@style/Widget.zcdh_tabpageindicator_middle_font</item>
-    </style>
-
-    <style name="no_actionbar_middle_font" parent="style_tabpageindicator_middle_font">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
     </style>
 
     <!-- 公司详情样式 -->
@@ -454,6 +467,83 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:windowFrame">@null</item>
+    </style>
+
+    <!-- 新的UI更改 版本号2.2.0 -->
+    <style name="edittext_style1">
+        <item name="android:padding">5dp</item>
+        <item name="android:gravity">left|top</item>
+        <item name="android:background">@drawable/rect_bord_background1</item>
+        <item name="android:textSize">@dimen/font_size_nomarl</item>
+    </style>
+    <style name="activityBody2">
+        <item name="android:paddingTop">@dimen/content_top_bottom</item>
+        <item name="android:paddingBottom">@dimen/content_top_bottom</item>
+        <item name="android:background">@color/white</item>
+    </style>
+    <style name="activityBody1">
+        <item name="android:paddingLeft">@dimen/content_left_right</item>
+        <item name="android:paddingRight">@dimen/content_left_right</item>
+        <item name="android:paddingTop">@dimen/content_top_bottom</item>
+        <item name="android:paddingBottom">@dimen/content_top_bottom</item>
+        <item name="android:background">@color/font_ee</item>
+    </style>
+    <style name="userinfo_panel_textview_title1">
+        <item name="android:textSize">@dimen/font_size_nomarl</item>
+        <item name="android:duplicateParentState">true</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:textColor">@color/blues</item>
+    </style>
+    <style name="list_item_content1">
+        <item name="android:textColor">@color/post_item_addr_and_edu_font1</item>
+        <item name="android:textSize">@dimen/font_size_small</item>
+    </style>
+    <style name="simple_listitem1">
+        <item name="android:paddingLeft">@dimen/simple_listiem_padding</item>
+        <item name="android:paddingRight">@dimen/simple_listiem_padding</item>
+        <item name="android:paddingTop">@dimen/simple_listiem_top</item>
+        <item name="android:paddingBottom">@dimen/simple_listiem_bottom</item>
+        <!-- <item name="android:background">@drawable/list_item_grey_selector</item> -->
+    </style>
+
+    <style name="chat_text_date_style">
+        <item name="android:padding">2dp</item>
+        <item name="android:paddingTop">2dip</item>
+        <item name="android:paddingBottom">2dip</item>
+        <item name="android:paddingLeft">12dip</item>
+        <item name="android:paddingRight">12dip</item>
+        <item name="android:textColor">@color/btn_gray_normal</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:background">@drawable/timestampe_bg</item>
+    </style>
+
+    <style name="chat_text_name_style">
+        <item name="android:textColor">#818181</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="chat_content_date_style">
+        <item name="android:minHeight">50dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:background">#bfbfbf</item>
+    </style>
+
+    <style name="MyDialogStyle">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:backgroundDimEnabled">true</item>
     </style>
 
 </resources>

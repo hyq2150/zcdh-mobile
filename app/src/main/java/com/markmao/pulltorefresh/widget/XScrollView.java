@@ -507,15 +507,15 @@ public class XScrollView extends ScrollView implements OnScrollListener {
      * onXScrolling when header/footer scroll back.
      */
     public interface OnXScrollListener extends OnScrollListener {
-        public void onXScrolling(View view);
+        void onXScrolling(View view);
     }
 
     /**
      * Implements this interface to get refresh/load more event.
      */
     public interface IXScrollViewListener {
-        public void onRefresh();
+        void onRefresh();
 
-        public void onLoadMore();
+        void onLoadMore();
     }
 }

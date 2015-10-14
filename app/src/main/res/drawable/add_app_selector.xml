@@ -6,7 +6,9 @@
 
             <solid android:color="#dddddd" />
             <stroke android:color="@color/grey1" android:width="1dp" android:dashWidth="4dp" android:dashGap="3dp"/>
-        </shape></item>
+        </shape>
+        
+        </item>
     <item ><shape android:shape="rectangle">
             <corners android:radius="3dp" />
 

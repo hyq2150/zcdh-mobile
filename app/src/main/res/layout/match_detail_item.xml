@@ -2,11 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:paddingBottom="@dimen/content_top_bottom"
     android:paddingLeft="@dimen/content_left_right"
     android:paddingRight="@dimen/content_left_right"
-    android:paddingTop="@dimen/content_top_bottom" >
+    android:paddingTop="@dimen/content_top_bottom">
 
     <TextView
         android:id="@+id/skillNameText"
@@ -14,7 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:textColor="@color/font_color"
-        android:textSize="@dimen/font_size_nomarl" />
+        android:textSize="@dimen/font_size_nomarl"
+        tools:text="cccccc"/>
 
     <TextView
         android:id="@+id/matchRateText"
@@ -22,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:textColor="@color/font_color"
-        android:textSize="@dimen/font_size_nomarl" />
+        android:textSize="@dimen/font_size_nomarl"
+        tools:text="cccccc"/>
 
 </RelativeLayout>

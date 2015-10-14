@@ -1,7 +1,7 @@
 /** 
 *  AdminAppConfigModelDTO 
 * 
-*  Created Date: 2015-08-12 17:07:56 
+*  Created Date: 2015-10-12 17:31:49 
 *  
 */  
 package com.zcdh.mobile.api.model;  
@@ -15,31 +15,24 @@ import java.math.*;
 public class AdminAppConfigModelDTO  implements Serializable { 
     //主键 
     private Long id  ; 
-    //配置类别,取值: 
-    // page-普通页面或菜单 
-    // message-消息 
-    // information-资讯 
-    private String conf_type  ; 
     //模块项编码 
     private String model_code  ; 
     //模块项名称 
     private String model_name  ; 
-    //模块项父类编码 
-    private String parent_model_code  ; 
-    //模块项层次级别 
-    private Integer model_level  ; 
-    //android文件编码 
-    private String android_file_code  ; 
-    //android跳转url 
-    private String android_url  ; 
-    //ios文件编码 
-    private String ios_file_code  ; 
-    //ios跳转url 
-    private String ios_url  ; 
-    //wp文件编码 
-    private String wp_file_code  ; 
-    //wp跳转url 
-    private String wp_url  ; 
+    //app模块父id 
+    private Long parent_id  ; 
+    //app的id 
+    private Long app_id  ; 
+    //框架模块类别编码 
+    // cover - 封面 
+    // guide - 引导页 
+    // register - 注册 
+    // login - 登录 
+    // mainframe - 主框架 
+    // businessmodule - 业务模块 
+    private String framemodel_type_code  ; 
+    //可配置项目代码 
+    private String custom_item_code  ; 
     //自定义参数,格式如:key1=value1,key2=value2 
     private String custom_param  ; 
     //打开类型,取值:1-URL 2-应用跳转 
@@ -48,20 +41,30 @@ public class AdminAppConfigModelDTO  implements Serializable {
     private Integer orders  ; 
     //引用记录id(用于关联旧的控制表的相应记录,以兼容旧版本) 
     private Long reference_id  ; 
-    //是否限制区域,取值:0-不限 1-限制 
-    private Integer is_restricted_area  ; 
-    //是否可见,取值:0-不可见 1-可见 
-    private Integer is_visible  ; 
-    //是否可用,取值:0-不可用 1-可用 
-    private Integer is_enabled  ; 
+    //引用记录类型,取值: 
+    // message - 消息 
+    // information - 资讯 
+    private String reference_type  ; 
     //备注 
     private String memo  ; 
-    //android 图片 (图片对象) 
-    private ImgURLDTO andoridImg  ; 
-    //IOS 图片 
-    private ImgURLDTO iosImg  ; 
-    //WP 图片 
-    private ImgURLDTO wpImg  ; 
+    //图片url 
+    private String imgUrl  ; 
+    //模块url 
+    private String modelUrl  ; 
+    //是否可用(是否可点击,0-否,1-是) 
+    private Integer isEnabled  ; 
+    //是否已选择(0-未选择,1-已选择) 
+    private Integer isSelected  ; 
+    //是否热门,取值: 0-不是 1-是 
+    private Integer is_hot  ; 
+    //是否最新,取值: 0-不是 1-是 
+    private Integer is_new  ; 
+    //打开类型为url时是否在url地址尾部添加用户id参数,取值: 0-不是 1-是 
+    private Integer is_url_autofilluserid  ; 
+    //定制项类别编码 
+    // 取值范围：text-文本 image - 图像 model-模块 modellist模块列表 
+    // @author liyuan, 2015-10-12 上午11:12:15 
+    private String custom_type_code  ; 
     /**
     *设定主键
     */
@@ -73,18 +76,6 @@ public class AdminAppConfigModelDTO  implements Serializable {
     */
     public Long getId() { 
         return  this.id;
-     }
-    /**
-    *设定配置类别,取值: page-普通页面或菜单 message-消息 information-资讯
-    */
-    public void setConf_type(String conf_type) { 
-        this.conf_type=conf_type;
-     }
-    /**
-    *获取配置类别,取值: page-普通页面或菜单 message-消息 information-资讯
-    */
-    public String getConf_type() { 
-        return  this.conf_type;
      }
     /**
     *设定模块项编码
@@ -111,100 +102,52 @@ public class AdminAppConfigModelDTO  implements Serializable {
         return  this.model_name;
      }
     /**
-    *设定模块项父类编码
+    *设定app模块父id
     */
-    public void setParent_model_code(String parent_model_code) { 
-        this.parent_model_code=parent_model_code;
+    public void setParent_id(Long parent_id) { 
+        this.parent_id=parent_id;
      }
     /**
-    *获取模块项父类编码
+    *获取app模块父id
     */
-    public String getParent_model_code() { 
-        return  this.parent_model_code;
+    public Long getParent_id() { 
+        return  this.parent_id;
      }
     /**
-    *设定模块项层次级别
+    *设定app的id
     */
-    public void setModel_level(Integer model_level) { 
-        this.model_level=model_level;
+    public void setApp_id(Long app_id) { 
+        this.app_id=app_id;
      }
     /**
-    *获取模块项层次级别
+    *获取app的id
     */
-    public Integer getModel_level() { 
-        return  this.model_level;
+    public Long getApp_id() { 
+        return  this.app_id;
      }
     /**
-    *设定android文件编码
+    *设定框架模块类别编码 cover - 封面 guide - 引导页 register - 注册 login - 登录 mainframe - 主框架 businessmodule - 业务模块
     */
-    public void setAndroid_file_code(String android_file_code) { 
-        this.android_file_code=android_file_code;
+    public void setFramemodel_type_code(String framemodel_type_code) { 
+        this.framemodel_type_code=framemodel_type_code;
      }
     /**
-    *获取android文件编码
+    *获取框架模块类别编码 cover - 封面 guide - 引导页 register - 注册 login - 登录 mainframe - 主框架 businessmodule - 业务模块
     */
-    public String getAndroid_file_code() { 
-        return  this.android_file_code;
+    public String getFramemodel_type_code() { 
+        return  this.framemodel_type_code;
      }
     /**
-    *设定android跳转url
+    *设定可配置项目代码
     */
-    public void setAndroid_url(String android_url) { 
-        this.android_url=android_url;
+    public void setCustom_item_code(String custom_item_code) { 
+        this.custom_item_code=custom_item_code;
      }
     /**
-    *获取android跳转url
+    *获取可配置项目代码
     */
-    public String getAndroid_url() { 
-        return  this.android_url;
-     }
-    /**
-    *设定ios文件编码
-    */
-    public void setIos_file_code(String ios_file_code) { 
-        this.ios_file_code=ios_file_code;
-     }
-    /**
-    *获取ios文件编码
-    */
-    public String getIos_file_code() { 
-        return  this.ios_file_code;
-     }
-    /**
-    *设定ios跳转url
-    */
-    public void setIos_url(String ios_url) { 
-        this.ios_url=ios_url;
-     }
-    /**
-    *获取ios跳转url
-    */
-    public String getIos_url() { 
-        return  this.ios_url;
-     }
-    /**
-    *设定wp文件编码
-    */
-    public void setWp_file_code(String wp_file_code) { 
-        this.wp_file_code=wp_file_code;
-     }
-    /**
-    *获取wp文件编码
-    */
-    public String getWp_file_code() { 
-        return  this.wp_file_code;
-     }
-    /**
-    *设定wp跳转url
-    */
-    public void setWp_url(String wp_url) { 
-        this.wp_url=wp_url;
-     }
-    /**
-    *获取wp跳转url
-    */
-    public String getWp_url() { 
-        return  this.wp_url;
+    public String getCustom_item_code() { 
+        return  this.custom_item_code;
      }
     /**
     *设定自定义参数,格式如:key1=value1,key2=value2
@@ -255,40 +198,16 @@ public class AdminAppConfigModelDTO  implements Serializable {
         return  this.reference_id;
      }
     /**
-    *设定是否限制区域,取值:0-不限 1-限制
+    *设定引用记录类型,取值: message - 消息 information - 资讯
     */
-    public void setIs_restricted_area(Integer is_restricted_area) { 
-        this.is_restricted_area=is_restricted_area;
+    public void setReference_type(String reference_type) { 
+        this.reference_type=reference_type;
      }
     /**
-    *获取是否限制区域,取值:0-不限 1-限制
+    *获取引用记录类型,取值: message - 消息 information - 资讯
     */
-    public Integer getIs_restricted_area() { 
-        return  this.is_restricted_area;
-     }
-    /**
-    *设定是否可见,取值:0-不可见 1-可见
-    */
-    public void setIs_visible(Integer is_visible) { 
-        this.is_visible=is_visible;
-     }
-    /**
-    *获取是否可见,取值:0-不可见 1-可见
-    */
-    public Integer getIs_visible() { 
-        return  this.is_visible;
-     }
-    /**
-    *设定是否可用,取值:0-不可用 1-可用
-    */
-    public void setIs_enabled(Integer is_enabled) { 
-        this.is_enabled=is_enabled;
-     }
-    /**
-    *获取是否可用,取值:0-不可用 1-可用
-    */
-    public Integer getIs_enabled() { 
-        return  this.is_enabled;
+    public String getReference_type() { 
+        return  this.reference_type;
      }
     /**
     *设定备注
@@ -303,40 +222,100 @@ public class AdminAppConfigModelDTO  implements Serializable {
         return  this.memo;
      }
     /**
-    *设定android 图片 (图片对象)
+    *设定图片url
     */
-    public void setAndoridImg(ImgURLDTO andoridImg) { 
-        this.andoridImg=andoridImg;
+    public void setImgUrl(String imgUrl) { 
+        this.imgUrl=imgUrl;
      }
     /**
-    *获取android 图片 (图片对象)
+    *获取图片url
     */
-    public ImgURLDTO getAndoridImg() { 
-        return  this.andoridImg;
+    public String getImgUrl() { 
+        return  this.imgUrl;
      }
     /**
-    *设定IOS 图片
+    *设定模块url
     */
-    public void setIosImg(ImgURLDTO iosImg) { 
-        this.iosImg=iosImg;
+    public void setModelUrl(String modelUrl) { 
+        this.modelUrl=modelUrl;
      }
     /**
-    *获取IOS 图片
+    *获取模块url
     */
-    public ImgURLDTO getIosImg() { 
-        return  this.iosImg;
+    public String getModelUrl() { 
+        return  this.modelUrl;
      }
     /**
-    *设定WP 图片
+    *设定是否可用(是否可点击,0-否,1-是)
     */
-    public void setWpImg(ImgURLDTO wpImg) { 
-        this.wpImg=wpImg;
+    public void setIsEnabled(Integer isEnabled) { 
+        this.isEnabled=isEnabled;
      }
     /**
-    *获取WP 图片
+    *获取是否可用(是否可点击,0-否,1-是)
     */
-    public ImgURLDTO getWpImg() { 
-        return  this.wpImg;
+    public Integer getIsEnabled() { 
+        return  this.isEnabled;
+     }
+    /**
+    *设定是否已选择(0-未选择,1-已选择)
+    */
+    public void setIsSelected(Integer isSelected) { 
+        this.isSelected=isSelected;
+     }
+    /**
+    *获取是否已选择(0-未选择,1-已选择)
+    */
+    public Integer getIsSelected() { 
+        return  this.isSelected;
+     }
+    /**
+    *设定是否热门,取值: 0-不是 1-是
+    */
+    public void setIs_hot(Integer is_hot) { 
+        this.is_hot=is_hot;
+     }
+    /**
+    *获取是否热门,取值: 0-不是 1-是
+    */
+    public Integer getIs_hot() { 
+        return  this.is_hot;
+     }
+    /**
+    *设定是否最新,取值: 0-不是 1-是
+    */
+    public void setIs_new(Integer is_new) { 
+        this.is_new=is_new;
+     }
+    /**
+    *获取是否最新,取值: 0-不是 1-是
+    */
+    public Integer getIs_new() { 
+        return  this.is_new;
+     }
+    /**
+    *设定打开类型为url时是否在url地址尾部添加用户id参数,取值: 0-不是 1-是
+    */
+    public void setIs_url_autofilluserid(Integer is_url_autofilluserid) { 
+        this.is_url_autofilluserid=is_url_autofilluserid;
+     }
+    /**
+    *获取打开类型为url时是否在url地址尾部添加用户id参数,取值: 0-不是 1-是
+    */
+    public Integer getIs_url_autofilluserid() { 
+        return  this.is_url_autofilluserid;
+     }
+    /**
+    *设定定制项类别编码 取值范围：text-文本 image - 图像 model-模块 modellist模块列表
+    */
+    public void setCustom_type_code(String custom_type_code) { 
+        this.custom_type_code=custom_type_code;
+     }
+    /**
+    *获取定制项类别编码 取值范围：text-文本 image - 图像 model-模块 modellist模块列表
+    */
+    public String getCustom_type_code() { 
+        return  this.custom_type_code;
      }
 
  } 

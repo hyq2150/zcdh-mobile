@@ -90,7 +90,7 @@ public class NetworkUtils {
 
 		// 对该行数据进行解析
 		// 例如：eth0 Link encap:Ethernet HWaddr 00:16:E8:3E:DF:67
-		if (result.length() > 0 && result.contains("HWaddr") == true) {
+		if (result.length() > 0 && result.contains("HWaddr")) {
 			String Mac = result.substring(result.indexOf("HWaddr") + 6,
 					result.length() - 1);
 			if (Mac.length() > 1) {
@@ -111,7 +111,7 @@ public class NetworkUtils {
 
 			// 执行命令cmd，只取结果中含有filter的这一行
 			while ((line = br.readLine()) != null
-					&& line.contains(filter) == false) {
+					&& !line.contains(filter)) {
 			}
 
 			result = line;
@@ -465,12 +465,9 @@ public class NetworkUtils {
 	public static boolean checkSimState(Context context) {
 		TelephonyManager tm = (TelephonyManager) context
 				.getSystemService(Context.TELEPHONY_SERVICE);
-		if (tm.getSimState() == TelephonyManager.SIM_STATE_ABSENT
-				|| tm.getSimState() == TelephonyManager.SIM_STATE_UNKNOWN) {
-			return false;
-		}
+	    return !(tm.getSimState() == TelephonyManager.SIM_STATE_ABSENT
+		    || tm.getSimState() == TelephonyManager.SIM_STATE_UNKNOWN);
 
-		return true;
 	}
 
 	/**

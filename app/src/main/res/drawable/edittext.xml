@@ -1,13 +1,13 @@
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item>
-        <shape android:shape="rectangle" >
+        <shape android:shape="rectangle">
 
             <!-- //框为矩形 -->
 
-          <!--   <solid android:color="#FFFFFF" /> -->
-            <!-- //用白色来填充里面 -->
-            <!-- //边框是1dp的线 -->
+            <solid android:color="@color/white" />
+            <!--//用白色来填充里面-->
+            <!--//边框是1dp的线-->
             <stroke
                 android:width="0.3dp"
                 android:color="@color/font_edit" />

@@ -1,7 +1,24 @@
 package com.zcdh.mobile.app.activities.job_fair;
 
-import java.lang.ref.WeakReference;
-import java.util.List;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
+import com.zcdh.mobile.R;
+import com.zcdh.mobile.api.IRpcJobFairService;
+import com.zcdh.mobile.api.model.JobEntShareDTO;
+import com.zcdh.mobile.api.model.JobFairDetailExtDTO;
+import com.zcdh.mobile.app.ActivityDispatcher;
+import com.zcdh.mobile.app.Constants;
+import com.zcdh.mobile.app.ZcdhApplication;
+import com.zcdh.mobile.app.qrcode.QRScanActivity;
+import com.zcdh.mobile.app.views.LoadingIndicator;
+import com.zcdh.mobile.framework.activities.BaseActivity;
+import com.zcdh.mobile.framework.nio.RemoteServiceManager;
+import com.zcdh.mobile.framework.nio.RequestChannel;
+import com.zcdh.mobile.framework.nio.RequestListener;
+import com.zcdh.mobile.share.Share;
+import com.zcdh.mobile.utils.RegisterUtil;
+import com.zcdh.mobile.utils.SystemServicesUtils;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
@@ -34,25 +51,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
-import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
-import com.zcdh.mobile.R;
-import com.zcdh.mobile.api.IRpcJobFairService;
-import com.zcdh.mobile.api.model.JobEntShareDTO;
-import com.zcdh.mobile.api.model.JobFairDetailExtDTO;
-import com.zcdh.mobile.app.ActivityDispatcher;
-import com.zcdh.mobile.app.Constants;
-import com.zcdh.mobile.app.ZcdhApplication;
-import com.zcdh.mobile.app.qrcode.QRScanActivity;
-import com.zcdh.mobile.app.views.LoadingIndicator;
-import com.zcdh.mobile.framework.activities.BaseActivity;
-import com.zcdh.mobile.framework.nio.RemoteServiceManager;
-import com.zcdh.mobile.framework.nio.RequestChannel;
-import com.zcdh.mobile.framework.nio.RequestListener;
-import com.zcdh.mobile.share.Share;
-import com.zcdh.mobile.utils.RegisterUtil;
-import com.zcdh.mobile.utils.SystemServicesUtils;
+import java.lang.ref.WeakReference;
+import java.util.List;
 
 /**
  * 招聘会详情
@@ -133,7 +133,7 @@ public class JobFairDetailActivityNew extends BaseActivity implements
 		public MyHandler(JobFairDetailActivityNew activity) {
 			super();
 			// TODO Auto-generated constructor stub
-			mActivity = new WeakReference<JobFairDetailActivityNew>(activity);
+			mActivity = new WeakReference<>(activity);
 		}
 
 		@Override
@@ -167,8 +167,8 @@ public class JobFairDetailActivityNew extends BaseActivity implements
 		jobfair_id = Long.valueOf(getIntent().getExtras().getString(
 				Constants.JOBFAIR_ID_KEY));
 		fair_status = getIntent().getExtras().getString(Constants.FAIR_STATUS);
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(),
-				"招聘会");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+			"招聘会");
 		jobfairService = RemoteServiceManager
 				.getRemoteService(IRpcJobFairService.class);
 		loading = new LoadingIndicator(this);
@@ -313,7 +313,7 @@ public class JobFairDetailActivityNew extends BaseActivity implements
 	void signUp() {
 		if (!RegisterUtil.isRegisterUser(this)) {
 			Toast.makeText(this, "尚未登录！", Toast.LENGTH_SHORT).show();
-			ActivityDispatcher.to_login(this);
+			ActivityDispatcher.toLogin(this);
 			return;
 		}
 		if (ZcdhApplication.getInstance().getJobUserResumeMiddleDTO() != null
@@ -331,7 +331,6 @@ public class JobFairDetailActivityNew extends BaseActivity implements
 		
 		if (joined) {
 			ActivityDispatcher.toRegisterListActivity(this, jobfair_id);
-			return;
 		} else {
 			switch (Integer.valueOf(fair_status)) {
 			case 1:
@@ -429,11 +428,7 @@ public class JobFairDetailActivityNew extends BaseActivity implements
 			if (result != null) {
 				jobFairDetail = (JobFairDetailExtDTO) result;
 				initViews();
-				if (jobFairDetail.getIsSignUp() == 1) {
-					joined = true;
-				} else {
-					joined = false;
-				}
+			    joined = jobFairDetail.getIsSignUp() == 1;
 				initJoinBtn();
 			}
 		}
@@ -488,12 +483,23 @@ public class JobFairDetailActivityNew extends BaseActivity implements
 	void sign(final String url) {
 		if (!RegisterUtil.isRegisterUser(this)) {
 			Toast.makeText(this, "尚未登录！", Toast.LENGTH_SHORT).show();
-			ActivityDispatcher.to_login(this);
+			ActivityDispatcher.toLogin(this);
+			return;
+		}
+		if (ZcdhApplication.getInstance().getJobUserResumeMiddleDTO() != null
+				&& ZcdhApplication.getInstance().getJobUserResumeMiddleDTO().getIsCanSignUp() == 0) {
+			if (ZcdhApplication.getInstance().getRequisiteDTO() != null
+					&& ZcdhApplication.getInstance().getRequisiteDTO().getIsUserRequisiteFilled() == 0) {
+				Toast.makeText(this, "资料尚未完整", Toast.LENGTH_SHORT).show();
+				ActivityDispatcher.toBasicInfo(this);
+				return;
+			}
+			Toast.makeText(this, "简历尚未完整", Toast.LENGTH_SHORT).show();
+			ActivityDispatcher.toMyResumeActivity(this);
 			return;
 		}
 		if (jobFairDetail.getIsSignIn() == 1) {
 			Toast.makeText(this, "你已签到", Toast.LENGTH_SHORT).show();
-			return;
 		} else {
 			switch (Integer.valueOf(fair_status)) {
 			case 1:
@@ -513,7 +519,7 @@ public class JobFairDetailActivityNew extends BaseActivity implements
 	private void sweep() {
 		if (!RegisterUtil.isRegisterUser(this)) {
 			Toast.makeText(this, "尚未登录！", Toast.LENGTH_SHORT).show();
-			ActivityDispatcher.to_login(this);
+			ActivityDispatcher.toLogin(this);
 			return;
 		}
 		if (ZcdhApplication.getInstance().getJobUserResumeMiddleDTO() != null

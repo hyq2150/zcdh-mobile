@@ -7,5 +7,5 @@ package com.zcdh.mobile.app.activities.nearby;
  */
 public interface VoiceSearchDialogListnner {
 
-	public void onVoiceResult(String sayContent);
+	void onVoiceResult(String sayContent);
 }

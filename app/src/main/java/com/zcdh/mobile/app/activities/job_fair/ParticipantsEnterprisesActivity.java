@@ -106,8 +106,8 @@ public class ParticipantsEnterprisesActivity extends BaseActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(),
-				getResources().getString(R.string.participants_enterprises));
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+			getResources().getString(R.string.participants_enterprises));
 		jobfairService = RemoteServiceManager
 				.getRemoteService(IRpcJobFairService.class);
 		inflater = LayoutInflater.from(this);
@@ -184,7 +184,7 @@ public class ParticipantsEnterprisesActivity extends BaseActivity implements
 
 	@Click(R.id.filterBtn)
 	void onFilter() {
-		ActivityDispatcher.to_ParcitipantsIndustry(true, 1, fairId, this);
+		ActivityDispatcher.toParcitipantsIndustry(true, 1, fairId, this);
 	}
 
 	private void setSearchTitle(int isSearchOnline, int isSearchOffline,
@@ -338,7 +338,7 @@ public class ParticipantsEnterprisesActivity extends BaseActivity implements
 		public ParticipantsPositionAdapter() {
 			super();
 			// TODO Auto-generated constructor stub
-			fairList = new ArrayList<JobFairEnt>();
+			fairList = new ArrayList<>();
 			options = new DisplayImageOptions.Builder().cacheInMemory(true)
 					.showImageOnFail(R.drawable.ent_logo)
 					.showImageForEmptyUri(R.drawable.ent_logo)

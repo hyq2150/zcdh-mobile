@@ -16,14 +16,14 @@
 
 package com.zcdh.mobile.app.views.photopicker;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
+
 import java.io.FileDescriptor;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.WeakHashMap;
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
 
 /**
  * This class provides several utilities to cancel bitmap decoding.
@@ -43,7 +43,7 @@ public class BitmapManager {
 
     private static final String TAG = "BitmapManager";
 
-    private static enum State {CANCEL, ALLOW}
+    private enum State {CANCEL, ALLOW}
 
     private static class ThreadStatus {
 
@@ -69,7 +69,7 @@ public class BitmapManager {
     public static class ThreadSet implements Iterable<Thread> {
 
         private final WeakHashMap<Thread, Object> mWeakCollection =
-                new WeakHashMap<Thread, Object>();
+                new WeakHashMap<>();
 
         public void add(Thread t) {
 
@@ -88,7 +88,7 @@ public class BitmapManager {
     }
 
     private final WeakHashMap<Thread, ThreadStatus> mThreadStatus =
-            new WeakHashMap<Thread, ThreadStatus>();
+            new WeakHashMap<>();
 
     private static BitmapManager sManager = null;
 
@@ -156,12 +156,9 @@ public class BitmapManager {
     public synchronized boolean canThreadDecoding(Thread t) {
 
         ThreadStatus status = mThreadStatus.get(t);
-        if (status == null) {
-            // allow decoding by default
-            return true;
-        }
+        // allow decoding by default
+        return status == null || (status.mState != State.CANCEL);
 
-        return (status.mState != State.CANCEL);
     }
 
     public synchronized void allowThreadDecoding(Thread t) {
@@ -186,11 +183,7 @@ public class BitmapManager {
      */
     public synchronized void dump() {
 
-        Iterator<Map.Entry<Thread, ThreadStatus>> i =
-                mThreadStatus.entrySet().iterator();
-
-        while (i.hasNext()) {
-            Map.Entry<Thread, ThreadStatus> entry = i.next();
+        for (Map.Entry<Thread, ThreadStatus> entry : mThreadStatus.entrySet()) {
             Log.v(TAG, "[Dump] Thread " + entry.getKey() + " ("
                     + entry.getKey().getId()
                     + ")'s status is " + entry.getValue());

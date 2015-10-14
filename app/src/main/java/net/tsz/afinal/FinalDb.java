@@ -44,7 +44,7 @@ public class FinalDb {
 
 	private static final String TAG = "FinalDb";
 
-	private static HashMap<String, FinalDb> daoMap = new HashMap<String, FinalDb>();
+	private static HashMap<String, FinalDb> daoMap = new HashMap<>();
 
 	private SQLiteDatabase db;
 	private DaoConfig config;
@@ -686,7 +686,7 @@ public class FinalDb {
 		debugSql(strSQL);
 		Cursor cursor = db.rawQuery(strSQL, null);
 		try {
-			List<T> list = new ArrayList<T>();
+			List<T> list = new ArrayList<>();
 			while (cursor.moveToNext()) {
 				T t = CursorUtils.getEntity(cursor, clazz, this);
 				list.add(t);
@@ -725,7 +725,7 @@ public class FinalDb {
 	public List<DbModel> findDbModelListBySQL(String strSQL) {
 		debugSql(strSQL);
 		Cursor cursor = db.rawQuery(strSQL, null);
-		List<DbModel> dbModelList = new ArrayList<DbModel>();
+		List<DbModel> dbModelList = new ArrayList<>();
 		try {
 			while (cursor.moveToNext()) {
 				dbModelList.add(CursorUtils.getDbModel(cursor));
@@ -897,7 +897,7 @@ public class FinalDb {
 	}
 
 	public interface DbUpdateListener {
-		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion);
+		void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion);
 	}
 
 }

@@ -8,9 +8,7 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
 
-import android.R.bool;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -34,7 +32,6 @@ import com.baidu.mapapi.map.Overlay;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.model.LatLngBounds;
-import com.baidu.mapapi.overlayutil.PoiOverlay;
 import com.baidu.mapapi.search.core.CityInfo;
 import com.baidu.mapapi.search.core.PoiInfo;
 import com.baidu.mapapi.search.core.SearchResult;
@@ -151,7 +148,7 @@ OnGetPoiSearchResultListener, OnMapLoadedCallback, OnMapStatusChangeListener, On
 	
 	@AfterViews
 	void bindViews(){
-		SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), "周边");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "周边");
 		
 //		if(getIntent().getExtras()!=null)
 //			current_poi = getIntent().getIntExtra("index", 0);

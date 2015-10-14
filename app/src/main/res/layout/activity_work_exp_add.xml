@@ -34,6 +34,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="@string/job_description"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
                 android:textColor="@color/font_color"
                 android:textSize="@dimen/font_size_nomarl" />
 

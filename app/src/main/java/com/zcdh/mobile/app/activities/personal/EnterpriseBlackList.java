@@ -75,9 +75,9 @@ public class EnterpriseBlackList extends BaseActivity implements RequestListener
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		entItems = new ArrayList<JobUserBlackListDTO>();
+		entItems = new ArrayList<>();
 		empty_view = new EmptyTipView(this);
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(), "企业黑名单");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "企业黑名单");
 		userService = RemoteServiceManager.getRemoteService(IRpcJobUservice.class);
 	}
 
@@ -195,7 +195,7 @@ public class EnterpriseBlackList extends BaseActivity implements RequestListener
 
 		@Override
 		public View getView(final int position, View convertView, ViewGroup parent) {
-			if (convertView == null) convertView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.simple_listview_item_accessory, null);
+			if (convertView == null) convertView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.simple_listview_item_accessory, parent,false);
 			TextView school = (TextView) convertView.findViewById(R.id.itemNameText);
 			school.setText(getItem(position).getEntName());
 			ImageView ivDelete = (ImageView) convertView.findViewById(R.id.btn_delete);

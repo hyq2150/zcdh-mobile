@@ -11,16 +11,16 @@ import com.zcdh.mobile.api.model.JobSearchTagDTO;
  */
 public interface SearchBarListener {
 
-	public void onTagClick(JobSearchTagDTO tag);
+	void onTagClick(JobSearchTagDTO tag);
 	
-	public void onKeywordSearch(String keyword);
+	void onKeywordSearch(String keyword);
 	
-	public void onVoiceResult(String sayContent);
+	void onVoiceResult(String sayContent);
 	
-	public void onSwitchMode(ImageButton v);
+	void onSwitchMode(ImageButton v);
 	
-	public void onVoiceEnd();
+	void onVoiceEnd();
 	
-	public void onShow(boolean show);
+	void onShow(boolean show);
 	
 }

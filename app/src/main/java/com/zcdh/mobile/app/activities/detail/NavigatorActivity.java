@@ -4,30 +4,6 @@
  */
 package com.zcdh.mobile.app.activities.detail;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Click;
-import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.Extra;
-import org.androidannotations.annotations.ViewById;
-
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.mapapi.map.BaiduMap;
@@ -69,6 +45,30 @@ import com.zcdh.mobile.app.maps.bmap.MyBMap;
 import com.zcdh.mobile.app.views.EmptyTipView;
 import com.zcdh.mobile.framework.activities.BaseActivity;
 import com.zcdh.mobile.utils.StringUtils;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
+import org.androidannotations.annotations.ViewById;
+
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author jeason, 2014-7-18 上午9:13:14
@@ -567,7 +567,7 @@ public class NavigatorActivity extends BaseActivity implements OnMapLoadedCallba
 	}
 
 	private class RouteStepAdapter extends BaseAdapter {
-		List<RouteStep> mItems = new ArrayList<RouteStep>();
+		List<RouteStep> mItems = new ArrayList<>();
 
 		public void clear(){
 			mItems.clear();
@@ -608,7 +608,7 @@ public class NavigatorActivity extends BaseActivity implements OnMapLoadedCallba
 			DetailViewHolder holder;
 			if (convertView == null) {
 				holder = new DetailViewHolder();
-				convertView = LayoutInflater.from(NavigatorActivity.this).inflate(R.layout.transportation_detail, null);
+				convertView = LayoutInflater.from(NavigatorActivity.this).inflate(R.layout.transportation_detail, parent,false);
 				holder.imgIcon = (ImageView) convertView.findViewById(R.id.imgIcon);
 				holder.detailText = (TextView) convertView.findViewById(R.id.detailText);
 				convertView.setTag(holder);

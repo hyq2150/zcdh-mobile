@@ -110,7 +110,7 @@ public class PicViewer extends FakeActivity implements OnTouchListener {
                 matrix.postTranslate(event.getX() - prev.x, event.getY()
                         - prev.y);
             } else if (mode == ZOOM) {
-                float newDist = (float) spacing(event);
+                float newDist = spacing(event);
                 if (newDist > 10f) {
                     matrix.set(savedMatrix);
                     float tScale = newDist / dist;

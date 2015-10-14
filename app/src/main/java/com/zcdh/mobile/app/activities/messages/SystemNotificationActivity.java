@@ -1,5 +1,4 @@
 /**
- * 
  * @author jeason, 2014-7-21 下午2:55:27
  */
 package com.zcdh.mobile.app.activities.messages;
@@ -53,247 +52,267 @@ import java.util.List;
  * 系统资讯页面
  */
 @EActivity(R.layout.messages)
-public class SystemNotificationActivity extends BaseActivity implements RequestListener, 
-		OnItemClickListener, OnRefreshListener2<ListView>, DataLoadInterface {
+public class SystemNotificationActivity extends BaseActivity implements RequestListener,
+        OnItemClickListener, OnRefreshListener2<ListView>, DataLoadInterface {
 
-	IRpcNearByService nearbyService;
+    IRpcNearByService nearbyService;
 
-	@ViewById(R.id.listview)
-	PullToRefreshListView ptlListView;
+    @ViewById(R.id.listview)
+    PullToRefreshListView ptlListView;
 
-	private int currentPage = 1;
+    private int currentPage = 1;
 
-	private final int PageSize = 10;
+    private final int PageSize = 10;
 
-	long msg_id;
+    long msg_id;
 
-	String K_REQ_ID_FINDSUBINFORMATIONLISTBYID;
+    String K_REQ_ID_FINDSUBINFORMATIONLISTBYID;
 
-	Page<InformationDTO> infos;
+    Page<InformationDTO> infos;
 
-	InfoAdapter adapter;
+    InfoAdapter adapter;
 
-	EmptyTipView emptyView;
+    EmptyTipView emptyView;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(), "系统通知");
-		msg_id = getIntent().getLongExtra("id", 0l);
-		nearbyService = RemoteServiceManager.getRemoteService(IRpcNearByService.class);
-	}
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "系统通知");
+        msg_id = getIntent().getLongExtra("id", 0l);
+        nearbyService = RemoteServiceManager.getRemoteService(IRpcNearByService.class);
+    }
 
-	@AfterViews
-	void afterView() {
-		emptyView = new EmptyTipView(this);
+    @AfterViews
+    void afterView() {
+        emptyView = new EmptyTipView(this);
 
-		ptlListView.getRefreshableView().setDivider(null);
-		ptlListView.getRefreshableView().setDividerHeight(5);
+        ptlListView.getRefreshableView().setDivider(null);
+        ptlListView.getRefreshableView().setDividerHeight(5);
 
-		ptlListView.setMode(Mode.BOTH);
-		ptlListView.setOnItemClickListener(this);
-		ptlListView.setOnRefreshListener(this);
-		ptlListView.setEmptyView(emptyView);
-		adapter = new InfoAdapter(this);
-		ptlListView.setAdapter(adapter);
+        ptlListView.setMode(Mode.BOTH);
+        ptlListView.setOnItemClickListener(this);
+        ptlListView.setOnRefreshListener(this);
+        ptlListView.setEmptyView(emptyView);
+        adapter = new InfoAdapter(this);
+        ptlListView.setAdapter(adapter);
 
-		findInfos();
-	}
-	
-	public void loadData(){
-		findInfos();
-	}
+        findInfos();
+    }
 
-	@Background
-	void findInfos() {
-		nearbyService.findSubInformationListById(msg_id, getUserId(), currentPage, PageSize).identify(K_REQ_ID_FINDSUBINFORMATIONLISTBYID = RequestChannel.getChannelUniqueID(), this);
-	}
+    public void loadData() {
+        findInfos();
+    }
 
-	@Override
-	public void onRequestStart(String reqId) {
+    @Background
+    void findInfos() {
+        nearbyService.findSubInformationListById(msg_id, getUserId(), currentPage, PageSize)
+                .identify(K_REQ_ID_FINDSUBINFORMATIONLISTBYID = RequestChannel.getChannelUniqueID(),
+                        this);
+    }
 
-	}
+    @Override
+    public void onRequestStart(String reqId) {
 
-	@Override
-	public void onRequestSuccess(String reqId, Object result) {
-		if (reqId.equals(K_REQ_ID_FINDSUBINFORMATIONLISTBYID)) {
-			if (result != null) {
-				infos = (Page<InformationDTO>) result;
-				if (infos.getCurrentPage() == 1) {
-					adapter.updateAllItems(infos.getElements());
-				} else {
-					adapter.addToBottom(infos.getElements());
-				}
-				// checkUnRead();
-			}
-			emptyView.isEmpty(infos==null);
-		}
+    }
 
-	}
+    @Override
+    public void onRequestSuccess(String reqId, Object result) {
+        if (reqId.equals(K_REQ_ID_FINDSUBINFORMATIONLISTBYID)) {
+            if (result != null) {
+                infos = (Page<InformationDTO>) result;
+                if (infos.getCurrentPage() == 1) {
+                    adapter.updateAllItems(infos.getElements());
+                } else {
+                    adapter.addToBottom(infos.getElements());
+                }
+                // checkUnRead();
+            }
+            emptyView.isEmpty(infos == null);
+        }
 
-	@Override
-	public void onRequestFinished(String reqId) {
+    }
 
-	}
+    @Override
+    public void onRequestFinished(String reqId) {
 
-	@Override
-	public void onRequestError(String reqID, Exception error) {
-		emptyView.showException(((ZcdhException)error).getErrCode(), this);
-	}
+    }
 
-	@Override
-	public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-		NewsBrowserActivity_.intent(this).url(((InformationDTO) adapter.getItem(position - 1)).getAnroidURL()).title(((InformationDTO) adapter.getItem(position - 1)).getTitle()).start();
-	}
+    @Override
+    public void onRequestError(String reqID, Exception error) {
+        emptyView.showException(((ZcdhException) error).getErrCode(), this);
+    }
 
-	@Override
-	public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
-		getLatest();
-		onComplete();
-	}
+    @Override
+    public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+        NewsBrowserActivity_.intent(this)
+                .url(((InformationDTO) adapter.getItem(position - 1)).getAnroidURL())
+                .title(((InformationDTO) adapter.getItem(position - 1)).getTitle()).start();
+    }
 
-	/**
-	 * 
-	 * @author jeason, 2014-6-6 下午4:47:07
-	 */
-	private void getLatest() {
-		currentPage = 1;
-		findInfos();
-		onComplete();
-	}
+    @Override
+    public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+        getLatest();
+        onComplete();
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2
-	 * #onPullUpToRefresh(com.handmark.pulltorefresh.library.PullToRefreshBase)
-	 */
-	@Override
-	public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-		getMore();
-	}
+    /**
+     *
+     * @author jeason, 2014-6-6 下午4:47:07
+     */
+    private void getLatest() {
+        currentPage = 1;
+        findInfos();
+        onComplete();
+    }
 
-	/**
-	 * 
-	 * @author jeason, 2014-6-6 下午4:47:05
-	 */
-	private void getMore() {
-		if (infos == null) {
-			currentPage = 1;
-		} else {
-			if (infos.hasNextPage()) {
-				currentPage = infos.getNextPage();
-			} else {
-				onComplete();
-				Toast.makeText(this, getResources().getString(R.string.no_more_data), Toast.LENGTH_SHORT).show();
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2
+     * #onPullUpToRefresh(com.handmark.pulltorefresh.library.PullToRefreshBase)
+     */
+    @Override
+    public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+        getMore();
+    }
 
-				return;
-			}
-		}
-		findInfos();
-		onComplete();
-	}
+    /**
+     *
+     * @author jeason, 2014-6-6 下午4:47:05
+     */
+    private void getMore() {
+        if (infos == null) {
+            currentPage = 1;
+        } else {
+            if (infos.hasNextPage()) {
+                currentPage = infos.getNextPage();
+            } else {
+                onComplete();
+                Toast.makeText(this, getResources().getString(R.string.no_more_data),
+                        Toast.LENGTH_SHORT).show();
 
-	@UiThread
-	void onComplete() {
-		ptlListView.onRefreshComplete();
-	}
+                return;
+            }
+        }
+        findInfos();
+        onComplete();
+    }
 
-	private class InfoAdapter extends BaseAdapter {
-		private DisplayImageOptions options;
-		private Context mContext;
-		private List mItems;
+    @UiThread
+    void onComplete() {
+        if (ptlListView.isRefreshing()) {
+            ptlListView.onRefreshComplete();
+        }
+    }
 
-		public InfoAdapter(Context context) {
-			mContext = context;
-			mItems = new ArrayList();
-			options = new DisplayImageOptions.Builder()
-			.cacheInMemory(true)
-			.cacheOnDisk(true).considerExifParams(true)
-			.build();
-		}
+    private class InfoAdapter extends BaseAdapter {
 
-		public void updateAllItems(List items) {
-			mItems.clear();
-			mItems.addAll(items);
-			notifyDataSetChanged();
-		}
+        private DisplayImageOptions options;
 
-		public void addToBottom(List items) {
-			mItems.addAll(items);
-		}
+        private Context mContext;
 
-		@Override
-		public int getCount() {
-			return mItems.size();
-		}
+        private List mItems;
 
-		@Override
-		public Object getItem(int position) {
-			return mItems.get(position);
-		}
+        public InfoAdapter(Context context) {
+            mContext = context;
+            mItems = new ArrayList();
+            options = new DisplayImageOptions.Builder()
+                    .cacheInMemory(true)
+                    .cacheOnDisk(true).considerExifParams(true)
+                    .build();
+        }
 
-		@Override
-		public long getItemId(int position) {
-			return position;
-		}
+        public void updateAllItems(List items) {
+            mItems.clear();
+            mItems.addAll(items);
+            notifyDataSetChanged();
+        }
 
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			InfoViewHolder holder;
-			if (convertView == null) {
+        public void addToBottom(List items) {
+            mItems.addAll(items);
+        }
 
-				convertView = LayoutInflater.from(mContext).inflate(R.layout.info_item, null);
+        @Override
+        public int getCount() {
+            return mItems.size();
+        }
 
-				holder = new InfoViewHolder();
-				holder.icon = (ImageView) convertView.findViewById(R.id.icon);
-				holder.flag = (TextView) convertView.findViewById(R.id.flag);
-				holder.note = (TextView) convertView.findViewById(R.id.tv_note);
-				holder.title = (TextView) convertView.findViewById(R.id.tv_title);
-				holder.tv_time = (TextView) convertView.findViewById(R.id.tv_time);
-				convertView.setTag(holder);
+        @Override
+        public Object getItem(int position) {
+            return mItems.get(position);
+        }
 
-			} else {
-				holder = (InfoViewHolder) convertView.getTag();
-			}
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
 
-			if (mItems.get(position) instanceof InformationDTO) {
-				holder.initWithInformationDTO((InformationDTO) mItems.get(position));
-			}
-			return convertView;
-		}
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            InfoViewHolder holder;
+            if (convertView == null) {
 
-		public class InfoViewHolder {
-			public ImageView icon;
-			public TextView title;
-			public TextView note;
-			public TextView flag;
-			public TextView tv_time;
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.info_item, null);
 
-			/**
-			 * @param informationDTO
-			 * @author jeason, 2014-7-4 上午11:44:03 企业回信
-			 */
-			public void initWithInformationDTO(InformationDTO informationDTO) {
+                holder = new InfoViewHolder();
+                holder.icon = (ImageView) convertView.findViewById(R.id.icon);
+                holder.flag = (TextView) convertView.findViewById(R.id.flag);
+                holder.note = (TextView) convertView.findViewById(R.id.tv_note);
+                holder.title = (TextView) convertView.findViewById(R.id.tv_title);
+                holder.tv_time = (TextView) convertView.findViewById(R.id.tv_time);
+                convertView.setTag(holder);
 
-				if (informationDTO.getAndoridImg() != null) 
-					ImageLoader.getInstance().displayImage(informationDTO.getAndoridImg().getMedium(), icon, options);
-				if (informationDTO.getIsRead() == 0) {
-					title.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.redpoint, 0);
-					title.setCompoundDrawablePadding(-5);
-				} else {
-					title.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-					title.setCompoundDrawablePadding(-5);
-				}
-				if (!StringUtils.isBlank(informationDTO.getTitle())) title.setText(informationDTO.getTitle());
+            } else {
+                holder = (InfoViewHolder) convertView.getTag();
+            }
 
-				note.setVisibility(View.GONE);
-				flag.setVisibility(View.GONE);
-				tv_time.setText(DateUtils.getDateByFormatYMDHM(informationDTO.getPushTime()));
-			}
+            if (mItems.get(position) instanceof InformationDTO) {
+                holder.initWithInformationDTO((InformationDTO) mItems.get(position));
+            }
+            return convertView;
+        }
 
-		}
-	}
+        public class InfoViewHolder {
+
+            public ImageView icon;
+
+            public TextView title;
+
+            public TextView note;
+
+            public TextView flag;
+
+            public TextView tv_time;
+
+            /**
+             * @param informationDTO
+             * @author jeason, 2014-7-4 上午11:44:03 企业回信
+             */
+            public void initWithInformationDTO(InformationDTO informationDTO) {
+
+                if (informationDTO.getAndoridImg() != null) {
+                    ImageLoader.getInstance()
+                            .displayImage(informationDTO.getAndoridImg().getMedium(), icon,
+                                    options);
+                }
+                if (informationDTO.getIsRead() == 0) {
+                    title.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.redpoint, 0);
+                    title.setCompoundDrawablePadding(-5);
+                } else {
+                    title.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                    title.setCompoundDrawablePadding(-5);
+                }
+                if (!StringUtils.isBlank(informationDTO.getTitle())) {
+                    title.setText(informationDTO.getTitle());
+                }
+
+                note.setVisibility(View.GONE);
+                flag.setVisibility(View.GONE);
+                tv_time.setText(DateUtils.getDateByFormatYMDHM(informationDTO.getPushTime()));
+            }
+
+        }
+    }
 
 }

@@ -4,9 +4,8 @@ import com.zcdh.mobile.R;
 import com.zcdh.mobile.api.model.CheckUserRequisiteDTO;
 import com.zcdh.mobile.app.Constants;
 import com.zcdh.mobile.app.ZcdhApplication;
-import com.zcdh.mobile.app.activities.BackupMainActivity;
+import com.zcdh.mobile.app.activities.newsmodel.NewsBrowserActivity_;
 import com.zcdh.mobile.app.activities.personal.BasicInfoActivity_;
-import com.zcdh.mobile.framework.events.MyEvents;
 
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
@@ -34,13 +33,13 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.Map;
 
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.sina.weibo.SinaWeibo;
@@ -57,6 +56,53 @@ import cn.sharesdk.wechat.moments.WechatMoments;
  */
 public class SystemServicesUtils {
 
+    /**
+     * 获取AppID
+     *
+     * @param context
+     * @return
+     */
+    public static long getAppID(Context context) {
+        long appid = 1l;
+        try {
+            appid = (long) context.getPackageManager().getApplicationInfo(
+                    context.getPackageName(),
+                    PackageManager.GET_META_DATA).metaData
+                    .getInt(Constants.APPID);
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            appid = 1l;
+        }
+        return appid;
+    }
+
+    /**
+     * 获取渠道号
+     *
+     * @param context
+     * @return
+     */
+    public static String getChannel(Context context) {
+        String channel = "";
+        try {
+            channel = context.getPackageManager().getApplicationInfo(
+                    context.getPackageName(),
+                    PackageManager.GET_META_DATA).metaData
+                    .get(Constants.CHANNEL).toString();
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            channel = "zcdh";
+        }
+        return channel;
+    }
+
+    /**
+     * 隐藏ActionBar
+     *
+     * @param activity 对应的Activity
+     */
     public static void hideActionbar(AppCompatActivity activity) {
         ActionBar actionBar = activity.getSupportActionBar();
         if (actionBar != null) {
@@ -64,101 +110,54 @@ public class SystemServicesUtils {
         }
     }
 
-    public static void displayCustomedTitle(Context context, ActionBar actionbar, int title_res) {
-        displayCustomedTitle(context, actionbar, context.getResources().getString(title_res));
-    }
-
     /**
-     * @version 1.0
-     * @author jeason
-     * @created 2014年4月3日
+     * @param activity
+     * @param customParam
+     * @param modelName
+     * @param androidUrl
      */
-    public static void displayCustomedTitle(Context context, ActionBar actionbar, String title) {
-        actionbar.setBackgroundDrawable(context.getResources().getDrawable(R.color.menu_normal));
-
-        // actionbar.setHomeButtonEnabled(true);
-        // actionbar.setDisplayHomeAsUpEnabled(true);
-        // actionbar.setDisplayShowHomeEnabled(true);
-        actionbar.setHomeAsUpIndicator(R.drawable.menu_back);
-        actionbar.setDisplayShowCustomEnabled(true);
-        actionbar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME
-                | ActionBar.DISPLAY_HOME_AS_UP);
-
-        ActionBar.LayoutParams params = new ActionBar.LayoutParams(LayoutParams.WRAP_CONTENT,
-                LayoutParams.WRAP_CONTENT, Gravity.CENTER);
-        View view = LayoutInflater.from(context).inflate(R.layout.actionbar_title, null);
-        actionbar.setCustomView(view, params);
-        TextView tvTitle = (TextView) actionbar.getCustomView().findViewById(R.id.actionBarTitle);
-        tvTitle.setText(title);
-//		actionbar.setDisplayHomeAsUpEnabled(false);
-
-    }
-
-    /**
-     * actiobar 标题居中
-     */
-    public static void setActionBarCustomTitle(Context context, ActionBar actionbar, String title) {
-
-        // setActionBarCustomTitleAndIcon(context, actionbar, title, 0);
-        displayCustomedTitle(context, actionbar, title);
-    }
-
-    /**
-     *
-     * @param context
-     * @param actionbar
-     * @param title
-     * @param icon
-     */
-    public static void setActionBarCustomTitleAndIcon(Context context, ActionBar actionbar,
-            String title, int icon) {
-        if (icon != 0) {
-            actionbar.setIcon(icon);
+    public static void openWithWebView(Activity activity, String customParam, String modelName, String androidUrl) {
+        Bundle data = new Bundle();
+        for (Map.Entry<String, String> param : StringUtils.getParams(customParam).entrySet()) {
+            Log.e("SystemServiceUtils", param.getKey() + " : " + param.getValue());
+            data.putString(param.getKey(), param.getValue());
         }
-
-        actionbar.setBackgroundDrawable(context.getResources().getDrawable(R.color.menu_normal));
-
-        actionbar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME
-                | ActionBar.DISPLAY_HOME_AS_UP);
-
-        ActionBar.LayoutParams params = new ActionBar.LayoutParams(LayoutParams.WRAP_CONTENT,
-                LayoutParams.WRAP_CONTENT, Gravity.CENTER);
-        View view = LayoutInflater.from(context).inflate(R.layout.actionbar_title, null);
-        actionbar.setCustomView(view, params);
-        TextView tvTitle = (TextView) actionbar.getCustomView().findViewById(R.id.actionBarTitle);
-        tvTitle.setText(title);
-        actionbar.setDisplayHomeAsUpEnabled(true);
-
+        NewsBrowserActivity_.IntentBuilder_ ib = NewsBrowserActivity_
+                .intent(activity);
+        ib.get().putExtras(data);
+        ib.title(modelName);
+        ib.url(androidUrl).start();
     }
 
     /**
-     * @author jeason, 2014-4-7 上午9:14:51
+     * 自定义ActionBar颜色及标题居中
+     *
+     * @param context   上下文对象
+     * @param actionbar ActionBar对象
+     * @param title     标题
      */
-    public static void set_login(Activity activity, Long uid) {
-        // 设置zcdh_uid的值
-        // 用微博登录成功的状态
-        // 缓存在application
-        ZcdhApplication application = (ZcdhApplication) activity.getApplication();
-        application.setZcdh_uid(uid);
+    public static void displayCustomTitle(Context context, ActionBar actionbar, String title) {
+        //第一次初始化，后面只需要改标题
+        if (actionbar.getCustomView() == null) {
+            actionbar.setBackgroundDrawable(context.getResources().getDrawable(R.color.menu_normal));
+            actionbar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME
+                    | ActionBar.DISPLAY_HOME_AS_UP);
+            actionbar.setHomeAsUpIndicator(R.drawable.menu_back);
+            ActionBar.LayoutParams params = new ActionBar.LayoutParams(LayoutParams.WRAP_CONTENT,
+                    LayoutParams.WRAP_CONTENT, Gravity.CENTER);
+            View view = LayoutInflater.from(context).inflate(R.layout.actionbar_title, null);
+            actionbar.setCustomView(view, params);
+        }
+        TextView tvTitle = (TextView) actionbar.getCustomView().findViewById(R.id.actionBarTitle);
+        tvTitle.setText(title);
+    }
 
-        // 缓存在SharedPreferences
-        SharedPreferences sharedPreferences = activity
-                .getSharedPreferences("User", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putLong("zcdh_uid", uid);
-        editor.commit();
-
-        // 向主页面发送finish
-        MyEvents.post(BackupMainActivity.kMSG_RESTART_APP, 1);
-
-        activity.finish();
+    public static void displayCustomTitle(Context context, ActionBar actionbar, int title_res) {
+        displayCustomTitle(context, actionbar, context.getResources().getString(title_res));
     }
 
     public static long getZCDH_UID(Context activity) {
-        SharedPreferences sharedPreferences = activity
-                .getSharedPreferences("User", Context.MODE_PRIVATE);
-        long zcdh_uid = sharedPreferences.getLong("zcdh_uid", 0l);
-        return zcdh_uid;
+        return activity.getSharedPreferences("User", Context.MODE_PRIVATE).getLong("zcdh_uid", 0l);
     }
 
     /**
@@ -208,7 +207,6 @@ public class SystemServicesUtils {
     }
 
     /**
-     *
      * @param c
      * @param v
      */
@@ -220,7 +218,7 @@ public class SystemServicesUtils {
     }
 
     public static HashMap<String, Object> getPlatformDevInfo(String name) {
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
+        HashMap<String, Object> hashMap = new HashMap<>();
 
         if (Wechat.NAME.equals(name)) {
             hashMap.put("Id", 1);
@@ -381,10 +379,7 @@ public class SystemServicesUtils {
     public static boolean hasBind(Context context) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         String flag = sp.getString("bind_flag", "");
-        if ("ok".equalsIgnoreCase(flag)) {
-            return true;
-        }
-        return false;
+        return "ok".equalsIgnoreCase(flag);
     }
 
     public static void setBind(Context context, boolean flag) {
@@ -433,13 +428,31 @@ public class SystemServicesUtils {
         return ok;
     }
 
+    /**
+     *
+     * @param name
+     * @return
+     */
+    public static Object getInstance(String name){
+        Class c=getClass(name);
+        Object o=null;
+        try {
+            o=c.newInstance();
+        } catch (InstantiationException ex) {
+            ex.printStackTrace();
+        } catch (IllegalAccessException ex) {
+            ex.printStackTrace();
+        }
+        return o;
+    }
+
+
     public static Class<?> getClass(String className) {
 
         Class<?> clazz = null;
         try {
             clazz = Class.forName(className);
         } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -483,12 +496,11 @@ public class SystemServicesUtils {
                 File pic = new File(dir, System.currentTimeMillis() + ".jpg");
                 return Uri.fromFile(pic);
             } catch (Exception e) {
-                Log.w("com.zcdh.mobile.utils.SystemServicesUtils.getPicUri",
-                        "not fund dir>>" + e.getMessage());
+                e.printStackTrace();
             }
         } else {
             // 没有SDcard
-            Toast.makeText(context, "no sdcard", Toast.LENGTH_SHORT).show();
+            ToastUtil.show("no sdcard");
         }
         return null;
     }

@@ -4,8 +4,14 @@
  */
 package com.zcdh.mobile.app.activities.personal;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.zcdh.mobile.R;
+import com.zcdh.mobile.api.model.InformationDTO;
+import com.zcdh.mobile.api.model.JobApplyDTO;
+import com.zcdh.mobile.api.model.JobApplyListDTO;
+import com.zcdh.mobile.api.model.JobEntAccessListDTO;
+import com.zcdh.mobile.api.model.JobInterviewListDTO;
+import com.zcdh.mobile.utils.DateUtils;
+import com.zcdh.mobile.utils.StringUtils;
 
 import android.content.Context;
 import android.util.Log;
@@ -16,14 +22,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.zcdh.mobile.R;
-import com.zcdh.mobile.api.model.InformationDTO;
-import com.zcdh.mobile.api.model.JobApplyDTO;
-import com.zcdh.mobile.api.model.JobApplyListDTO;
-import com.zcdh.mobile.api.model.JobEntAccessListDTO;
-import com.zcdh.mobile.api.model.JobInterviewListDTO;
-import com.zcdh.mobile.utils.DateUtils;
-import com.zcdh.mobile.utils.StringUtils;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author jeason, 2014-5-19 下午4:42:42
@@ -68,7 +68,7 @@ public class InfoAdapter extends BaseAdapter {
 		InfoViewHolder holder;
 		if (convertView == null) {
 
-			convertView = LayoutInflater.from(mContext).inflate(R.layout.info_item, null);
+			convertView = LayoutInflater.from(mContext).inflate(R.layout.info_item, parent,false);
 
 			holder = new InfoViewHolder();
 			holder.icon = (ImageView) convertView.findViewById(R.id.icon);

@@ -15,7 +15,7 @@
         android:ellipsize="end"
         android:singleLine="true"
         style="@style/fontNormal"
-        android:text="item"></TextView>
+        android:text="item"/>
     
     <ImageView android:id="@+id/accessoryImg" 
         android:layout_width="@dimen/accessory_with"
@@ -38,5 +38,5 @@
         android:maxWidth="200dp"
         android:hint="请输入实践名称（限50个汉字）"
         style="@style/fontNormal"
-        android:text="value"></TextView>
+        android:text="value"/>
 </RelativeLayout>

@@ -30,9 +30,9 @@ public class MainEntProductDetailActivity extends BaseActivity {
 
 	@AfterViews
 	void bindViews() {
-		SystemServicesUtils.setActionBarCustomTitle(getApplicationContext(),
-				getSupportActionBar(),
-				getString(R.string.activity_title_product_detal));
+		SystemServicesUtils.displayCustomTitle(getApplicationContext(),
+			getSupportActionBar(),
+			getString(R.string.activity_title_product_detal));
 		webView.loadUrl(productUrl);
 		loadUrl(webView, productUrl);
 		Log.i("url-----", productUrl);

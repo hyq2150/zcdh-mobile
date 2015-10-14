@@ -52,9 +52,9 @@ import java.util.Locale;
 
 /**
  * 新增工作经验
- * 
+ *
  * @author yangjiannan
- * 
+ *
  */
 @EActivity(R.layout.activity_work_exp_add)
 @OptionsMenu(R.menu.save)
@@ -86,7 +86,7 @@ public class WorkExpAddActivity extends BaseActivity implements EditableDialogLi
 
 	/**
 	 * 工作描述
-	 * 
+	 *
 	 */
 	@ViewById(R.id.postDesc)
 	EditText postDesc;
@@ -121,9 +121,11 @@ public class WorkExpAddActivity extends BaseActivity implements EditableDialogLi
 	void bindViews() {
 
 		if (jobWorkExperienceId > 0) {
-			SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), getString(R.string.activiyt_work_exp_edit));
+			SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+				getString(R.string.activiyt_work_exp_edit));
 		} else {
-			SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), getString(R.string.activiyt_work_exp_add));
+			SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+				getString(R.string.activiyt_work_exp_add));
 		}
 		postDesc.addTextChangedListener(new TextWatcher() {
 
@@ -306,7 +308,7 @@ public class WorkExpAddActivity extends BaseActivity implements EditableDialogLi
 			JobObjectiveIndustryDTO ind = new JobObjectiveIndustryDTO();
 			ind.setCode(jobWorkExperiencePostDTO.getIndustryCode());
 			ind.setName(jobWorkExperiencePostDTO.getIndustryName());
-			HashMap<String, JobObjectiveIndustryDTO> selectionIndusties = new HashMap<String, JobObjectiveIndustryDTO>();
+			HashMap<String, JobObjectiveIndustryDTO> selectionIndusties = new HashMap<>();
 			selectionIndusties.put(ind.getCode(), ind);
 			IndustryActivity_.intent(this).signle(true).selectedIndustries(selectionIndusties).startForResult(
 				IndustryActivity.kREQUEST_INDUSTRY);
@@ -328,9 +330,9 @@ public class WorkExpAddActivity extends BaseActivity implements EditableDialogLi
 
 	/**
 	 * 设置日期
-	 * 
+	 *
 	 * @param start :0 开始 1 结束
-	 * 
+	 *
 	 */
 	void setDateAction(final int start) {
 
@@ -358,7 +360,7 @@ public class WorkExpAddActivity extends BaseActivity implements EditableDialogLi
 				}
 
 				if (start == 1) {// 结束时间
-						
+
 					if (jobWorkExperiencePostDTO.getStartTime() != null && jobWorkExperiencePostDTO.getStartTime().getTime() >= tempDate.getTime()) {
 
 						Toast.makeText(getApplication(), "结束时间应大于开始时间", Toast.LENGTH_SHORT).show();
@@ -382,7 +384,7 @@ public class WorkExpAddActivity extends BaseActivity implements EditableDialogLi
 
 	/**
 	 * 接收选择的行业
-	 * 
+	 *
 	 * @param resultCode
 	 * @param data
 	 */
@@ -401,7 +403,7 @@ public class WorkExpAddActivity extends BaseActivity implements EditableDialogLi
 
 	/**
 	 * 接收选择的职位类别
-	 * 
+	 *
 	 * @param resultCode
 	 * @param data
 	 */
@@ -422,9 +424,9 @@ public class WorkExpAddActivity extends BaseActivity implements EditableDialogLi
 
 	/**
 	 * 高级搜索设置表单列表适配
-	 * 
+	 *
 	 * @author yangjiannan
-	 * 
+	 *
 	 */
 	class WorkExpFromAdapter extends BaseAdapter {
 
@@ -461,21 +463,21 @@ public class WorkExpAddActivity extends BaseActivity implements EditableDialogLi
 			h.itemName.setText(titles[p]);
 			String valueName = "";
 			switch (p) {
-			case 0:// 公司名称
-				valueName = jobWorkExperiencePostDTO.getCorName();
-				break;
-			case 1:// 开始时间
-				if (jobWorkExperiencePostDTO.getStartTime() != null) valueName = sdf.format(jobWorkExperiencePostDTO.getStartTime());
-				break;
-			case 2:// 结束时间
-				if (jobWorkExperiencePostDTO.getEndTime() != null) valueName = sdf.format(jobWorkExperiencePostDTO.getEndTime());
-				break;
-			case 3:// 行业类别
-				valueName = jobWorkExperiencePostDTO.getIndustryName();
-				break;
-			case 4: // 职位类别
-				valueName = jobWorkExperiencePostDTO.getPostName();
-				break;
+				case 0:// 公司名称
+					valueName = jobWorkExperiencePostDTO.getCorName();
+					break;
+				case 1:// 开始时间
+					if (jobWorkExperiencePostDTO.getStartTime() != null) valueName = sdf.format(jobWorkExperiencePostDTO.getStartTime());
+					break;
+				case 2:// 结束时间
+					if (jobWorkExperiencePostDTO.getEndTime() != null) valueName = sdf.format(jobWorkExperiencePostDTO.getEndTime());
+					break;
+				case 3:// 行业类别
+					valueName = jobWorkExperiencePostDTO.getIndustryName();
+					break;
+				case 4: // 职位类别
+					valueName = jobWorkExperiencePostDTO.getPostName();
+					break;
 			}
 
 			if (!StringUtils.isBlank(valueName)) {

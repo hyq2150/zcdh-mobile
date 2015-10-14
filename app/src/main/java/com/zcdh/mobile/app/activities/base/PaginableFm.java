@@ -4,8 +4,17 @@
  */
 package com.zcdh.mobile.app.activities.base;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.markmao.pulltorefresh.widget.XListView;
+import com.markmao.pulltorefresh.widget.XListView.IXListViewListener;
+import com.umeng.analytics.MobclickAgent;
+import com.zcdh.mobile.R;
+import com.zcdh.mobile.app.activities.job_fair.CategoryDropDownFilter;
+import com.zcdh.mobile.app.activities.job_fair.CategoryDropDownFilter.onFilterListener;
+import com.zcdh.mobile.app.dialog.ProcessDialog;
+import com.zcdh.mobile.app.views.EmptyTipView;
+import com.zcdh.mobile.framework.nio.RequestChannel;
+import com.zcdh.mobile.framework.nio.RequestListener;
+import com.zcdh.mobile.utils.RegisterUtil;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -27,17 +36,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.markmao.pulltorefresh.widget.XListView;
-import com.markmao.pulltorefresh.widget.XListView.IXListViewListener;
-import com.umeng.analytics.MobclickAgent;
-import com.zcdh.mobile.R;
-import com.zcdh.mobile.app.activities.job_fair.CategoryDropDownFilter;
-import com.zcdh.mobile.app.activities.job_fair.CategoryDropDownFilter.onFilterListener;
-import com.zcdh.mobile.app.dialog.ProcessDialog;
-import com.zcdh.mobile.app.views.EmptyTipView;
-import com.zcdh.mobile.framework.nio.RequestChannel;
-import com.zcdh.mobile.framework.nio.RequestListener;
-import com.zcdh.mobile.utils.RegisterUtil;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author jeason, 2014-6-19 下午8:19:16 包含PulltorefreshListview的可分页的Fragment
@@ -113,7 +113,7 @@ public abstract class PaginableFm<T> extends BaseFragment implements
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.activity_jobfar_posts, null);
+		View v = inflater.inflate(R.layout.activity_jobfar_posts, container,false);
 		
 		categoryTipsView = (RelativeLayout) v.findViewById(R.id.categoryTipsView);
 		categorySelected = (TextView) v.findViewById(R.id.categorySelectedvalueText);
@@ -396,7 +396,7 @@ public abstract class PaginableFm<T> extends BaseFragment implements
 		private List<T> mInfos;
 	
 		public ViewsAdapter() {
-			mInfos = new ArrayList<T>();
+			mInfos = new ArrayList<>();
 		}
 	
 		public List<T> getItems() {

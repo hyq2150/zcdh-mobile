@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            
+            android:visibility="gone"
             android:text="  2014-05-21 12:12  我"
             android:textColor="@color/font_color"
             android:textSize="@dimen/font_size_nomarl" />
@@ -28,11 +28,13 @@
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/Head"
             android:layout_below="@id/taller1"
+            android:background="@drawable/tall_bg2"
             android:paddingBottom="18dp"
             android:paddingLeft="8dp"
             android:paddingRight="18dp"
             android:paddingTop="5dp"
             android:text="asdfasdf"
+            android:visibility="gone"
             android:textColor="@color/font_color"
             android:textSize="@dimen/font_size_nomarl" />
 
@@ -44,6 +46,7 @@
             android:layout_height="50dp"
             android:layout_alignParentRight="true"
             android:layout_alignTop="@+id/tall1"
+            android:visibility="gone"
             android:clickable="true" />
     </RelativeLayout>
 
@@ -62,6 +65,7 @@
             android:layout_alignParentLeft="true"
             android:text="客服  2014-05-21 12:12 "
             android:textColor="@color/font_color"
+            android:visibility="gone"
             android:textSize="@dimen/font_size_nomarl" />
         
         <TextView
@@ -70,9 +74,11 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/Head1"
             android:layout_below="@id/taller2"
+            android:background="@drawable/tall_bg1"
             android:paddingBottom="18dp"
             android:paddingLeft="18dp"
             android:paddingRight="8dp"
+            android:visibility="gone"
             android:paddingTop="5dp"
             android:text="asfdasdfasdfasdf"
             android:textColor="@color/font_color"
@@ -86,6 +92,7 @@
             android:layout_height="50dp"
             android:layout_alignParentLeft="true"
             android:layout_alignTop="@+id/tall2"
+            android:visibility="gone"
             android:clickable="true" />
     </RelativeLayout>
 

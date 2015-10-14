@@ -5,7 +5,7 @@
     <item
         android:id="@+id/action_OK"
         android:textColor="@color/white"
-        android:title="@string/sure"
+        android:title="@string/save"
         app:showAsAction="ifRoom" />
 
 </menu>

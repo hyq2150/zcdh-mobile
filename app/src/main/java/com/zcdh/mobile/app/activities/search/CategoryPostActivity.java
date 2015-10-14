@@ -77,13 +77,13 @@ RemoveItemListner, YuyinInputListner {
 	StickyListHeadersAdapter categoryAdapter;
 	
 	//职位类别分类
-	List<ZcdhCategoryPost> categorys = new ArrayList<ZcdhCategoryPost>();
+	List<ZcdhCategoryPost> categorys = new ArrayList<>();
 	//职位类别
-	List<ZcdhCategoryPost> categorysPost = new ArrayList<ZcdhCategoryPost>();
+	List<ZcdhCategoryPost> categorysPost = new ArrayList<>();
 	/**
 	 *  搜索的职位
 	 */
-	List<ZcdhPost> posts =  new ArrayList<ZcdhPost>();
+	List<ZcdhPost> posts = new ArrayList<>();
 	
 	String[] sections ;
 	int[] sectionIndices;
@@ -125,7 +125,7 @@ RemoveItemListner, YuyinInputListner {
 	 * 已选择的职位
 	 */
 	@Extra
-	HashMap<String ,JobObjectivePostDTO> selectedPosts = new HashMap<String, JobObjectivePostDTO>();
+	HashMap<String ,JobObjectivePostDTO> selectedPosts = new HashMap<>();
 	
 	FinalDb finalDb;
 
@@ -163,7 +163,8 @@ RemoveItemListner, YuyinInputListner {
 	
 	@AfterViews
 	void bindViews(){
-		SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), getString(R.string.title_category_posts));
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+			getString(R.string.title_category_posts));
 		categoryListView.setOnItemClickListener(this);
 		postsAdapter = new PostChosenAdapter(this, posts);
 		postsAdapter.setHightlinght(true);
@@ -223,7 +224,7 @@ RemoveItemListner, YuyinInputListner {
 	 * 显示已选择的项
 	 */
 	void showSelectItems(){
-		HashMap<String, String> _items = new HashMap<String, String>();
+		HashMap<String, String> _items = new HashMap<>();
 		for (String key : selectedPosts.keySet()) {
 			_items.put(key, selectedPosts.get(key).getName());
 		}

@@ -19,7 +19,7 @@ import java.util.HashMap;
 
 public class DbModel {
 
-	private HashMap<String, Object> dataMap = new HashMap<String, Object>();
+	private HashMap<String, Object> dataMap = new HashMap<>();
 	
 	public Object get(String column){
 		return dataMap.get(column);

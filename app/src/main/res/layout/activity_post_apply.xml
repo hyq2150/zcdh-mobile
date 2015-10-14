@@ -1,180 +1,175 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 职位申请 -->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
     style="@style/activityBody"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <!-- 职位申请 -->
-    <ScrollView android:id="@+id/scrollView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical" >
+            android:layout_height="110dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/round_cornor_shape"
+            android:orientation="vertical"
+            android:padding="5dp">
 
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="110dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/round_cornor_shape"
-                android:orientation="vertical"
-                android:padding="5dp" >
-
-                <RelativeLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="bottom" >
-
-                    <!-- 企业图标 -->
-
-                    <ImageView
-                        android:id="@+id/entIconImg"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_alignParentLeft="true"
-                        android:src="@drawable/companylogo" />
-
-                    <!-- 企业名称 -->
-
-                    <TextView
-                        android:id="@+id/entNameText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@id/entIconImg"
-                        android:singleLine="true"
-                        android:text="珠海威风电子厂"
-                        android:textColor="@color/font_color"
-                        android:textSize="@dimen/font_size_big"
-                        android:textStyle="bold" />
-
-                    <!-- 岗位名称 -->
-
-                    <TextView
-                        android:id="@+id/postNameText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/entNameText"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@id/entIconImg"
-                        android:text="模具钳工"
-                        android:textColor="@color/sub_title"
-                        android:textSize="@dimen/font_size_middle"
-                        android:textStyle="bold" />
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_gravity="bottom"
-                    android:gravity="right"
-                    android:orientation="horizontal"
-                    android:paddingRight="10dp" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:text="招聘人数  "
-                        android:textColor="@color/font_color"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/employCountText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:text="5"
-                        android:textColor="@color/red"
-                        android:textSize="16sp" />
-
-                    <View
-                        android:layout_width="20dp"
-                        android:layout_height="fill_parent" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:text="已申请人数  "
-                        android:textColor="@color/font_color"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/appliedText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:text="2"
-                        android:textColor="@color/red"
-                        android:textSize="16sp" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- 企业特殊要求 -->
-
-            <LinearLayout
-                android:id="@+id/specialContainerLl"
+            <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="5dp"
-                android:orientation="vertical"
-                android:visibility="gone" >
+                android:gravity="bottom">
+
+                <!-- 企业图标 -->
+
+                <ImageView
+                    android:id="@+id/entIconImg"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentLeft="true"
+                    android:src="@drawable/companylogo" />
+
+                <!-- 企业名称 -->
 
                 <TextView
+                    android:id="@+id/entNameText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="企业特殊要求"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/entIconImg"
+                    android:singleLine="true"
+                    android:text="珠海威风电子厂"
                     android:textColor="@color/font_color"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/font_size_big"
+                    android:textStyle="bold" />
 
-                <com.zcdh.mobile.framework.views.ListViewInScrollView
-                    android:id="@+id/specialListView"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:background="@drawable/listview_background"
-                    android:cacheColorHint="#00000000"
-                    android:divider="@color/divider"
-                    android:dividerHeight="@dimen/dividerHeight" />
-            </LinearLayout>
+                <!-- 岗位名称 -->
 
-            <!-- 补充说明 -->
+                <TextView
+                    android:id="@+id/postNameText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/entNameText"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/entIconImg"
+                    android:text="模具钳工"
+                    android:textColor="@color/sub_title"
+                    android:textSize="@dimen/font_size_middle"
+                    android:textStyle="bold" />
+            </RelativeLayout>
 
             <LinearLayout
-                android:id="@+id/remarkContainer"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="5dp"
-                android:orientation="vertical" >
+                android:layout_gravity="bottom"
+                android:gravity="right"
+                android:orientation="horizontal"
+                android:paddingRight="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="我要补充说明"
+                    android:layout_gravity="bottom"
+                    android:text="招聘人数  "
                     android:textColor="@color/font_color"
                     android:textSize="16sp" />
 
-                <EditText
-                    android:id="@+id/remarkEditTxt"
-                    android:layout_width="fill_parent"
+                <TextView
+                    android:id="@+id/employCountText"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/round_cornor_shape"
-                    android:gravity="top"
-                    android:imeOptions="flagNoExtractUi"
-                    android:minLines="5"
-                    android:padding="5dp"
-                    android:textColorHighlight="#00000000" />
+                    android:layout_gravity="bottom"
+                    android:text="5"
+                    android:textColor="@color/red"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="fill_parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:text="已申请人数  "
+                    android:textColor="@color/font_color"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/appliedText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:text="2"
+                    android:textColor="@color/red"
+                    android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
 
-</LinearLayout>
+        <!-- 企业特殊要求 -->
+
+        <LinearLayout
+            android:id="@+id/specialContainerLl"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="企业特殊要求"
+                android:textColor="@color/font_color"
+                android:textSize="16sp" />
+
+            <com.zcdh.mobile.framework.views.ListViewInScrollView
+                android:id="@+id/specialListView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/listview_background"
+                android:cacheColorHint="#00000000"
+                android:divider="@color/divider"
+                android:dividerHeight="@dimen/dividerHeight" />
+        </LinearLayout>
+
+        <!-- 补充说明 -->
+
+        <LinearLayout
+            android:id="@+id/remarkContainer"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我要补充说明"
+                android:textColor="@color/font_color"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/remarkEditTxt"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_cornor_shape"
+                android:gravity="top"
+                android:imeOptions="flagNoExtractUi"
+                android:minLines="5"
+                android:padding="5dp"
+                android:textColorHighlight="#00000000" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

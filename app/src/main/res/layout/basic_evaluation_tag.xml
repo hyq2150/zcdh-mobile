@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:background="@drawable/tags"
         android:duplicateParentState="true"
         android:orientation="horizontal" >
 
@@ -26,14 +27,14 @@
             android:singleLine="true"
             android:ellipsize="none"
             android:text="标签"
-            android:textColor="@color/evaluation_blue" />
+            />
 
         <ImageView
             android:id="@+id/iv_indicator"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:layout_gravity="center_vertical"
-            android:background="@drawable/input_clear_normal"
+            android:background="@drawable/clear"
             android:visibility="gone" />
     </LinearLayout>
 

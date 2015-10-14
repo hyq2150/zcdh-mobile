@@ -1,7 +1,9 @@
 package com.zbar.lib.decode;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import com.zbar.lib.ZbarManager;
+import com.zbar.lib.bitmap.PlanarYUVLuminanceSource;
+import com.zcdh.mobile.R;
+import com.zcdh.mobile.app.qrcode.QRScanActivity;
 
 import android.graphics.Bitmap;
 import android.os.Environment;
@@ -9,10 +11,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 
-import com.zbar.lib.ZbarManager;
-import com.zbar.lib.bitmap.PlanarYUVLuminanceSource;
-import com.zcdh.mobile.R;
-import com.zcdh.mobile.app.qrcode.QRScanActivity;
+import java.io.File;
+import java.io.FileOutputStream;
 
 /**
  * 作者: 陈涛(1076559197@qq.com)

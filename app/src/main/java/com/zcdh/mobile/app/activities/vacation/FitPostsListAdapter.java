@@ -1,6 +1,7 @@
 package com.zcdh.mobile.app.activities.vacation;
 
-import java.util.List;
+import com.zcdh.mobile.R;
+import com.zcdh.mobile.api.model.FitPostListDTO;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,8 +10,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.zcdh.mobile.R;
-import com.zcdh.mobile.api.model.FitPostListDTO;
+import java.util.List;
 
 public class FitPostsListAdapter extends BaseAdapter {
 	
@@ -48,7 +48,7 @@ public class FitPostsListAdapter extends BaseAdapter {
 		// TODO Auto-generated method stub
 		Holder h = null;
 		if (convertView == null) {
-			convertView = LayoutInflater.from(context).inflate(R.layout.fitpostslist_popwindow, null);
+			convertView = LayoutInflater.from(context).inflate(R.layout.fitpostslist_popwindow, parent,false);
 			h = new Holder();
 			h.cityNameTxt = (TextView) convertView.findViewById(R.id.cityname_text);
 			h.postCountTxt = (TextView) convertView.findViewById(R.id.post_count_text);

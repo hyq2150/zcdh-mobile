@@ -1,10 +1,15 @@
 package com.zcdh.mobile.app.activities.settings;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
+import com.zcdh.mobile.R;
+import com.zcdh.mobile.api.IRpcJobUservice;
+import com.zcdh.mobile.api.model.JobSettingDTO;
+import com.zcdh.mobile.app.Constants;
+import com.zcdh.mobile.framework.activities.BaseActivity;
+import com.zcdh.mobile.framework.nio.RemoteServiceManager;
+import com.zcdh.mobile.framework.nio.RequestChannel;
+import com.zcdh.mobile.framework.nio.RequestListener;
+import com.zcdh.mobile.utils.StringUtils;
+import com.zcdh.mobile.utils.SystemServicesUtils;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
@@ -26,16 +31,11 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.zcdh.mobile.R;
-import com.zcdh.mobile.api.IRpcJobUservice;
-import com.zcdh.mobile.api.model.JobSettingDTO;
-import com.zcdh.mobile.app.Constants;
-import com.zcdh.mobile.framework.activities.BaseActivity;
-import com.zcdh.mobile.framework.nio.RemoteServiceManager;
-import com.zcdh.mobile.framework.nio.RequestChannel;
-import com.zcdh.mobile.framework.nio.RequestListener;
-import com.zcdh.mobile.utils.StringUtils;
-import com.zcdh.mobile.utils.SystemServicesUtils;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * 订阅推送设置
@@ -100,7 +100,7 @@ public class PushSettingActivity extends BaseActivity implements RequestListener
 	@ViewById(R.id.intervalText)
 	TextView pushIntervalText;
 
-	HashMap<String, JobSettingDTO> settings = new HashMap<String, JobSettingDTO>();
+	HashMap<String, JobSettingDTO> settings = new HashMap<>();
 
 	/**
 	 * 推送间隔选项
@@ -121,7 +121,8 @@ public class PushSettingActivity extends BaseActivity implements RequestListener
 	
 	@AfterViews
 	void bindViews() {
-		SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), getString(R.string.activity_title_push));
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+			getString(R.string.activity_title_push));
 		jobUservice = RemoteServiceManager.getRemoteService(IRpcJobUservice.class);
 		loadSettings();
 	}
@@ -252,7 +253,7 @@ public class PushSettingActivity extends BaseActivity implements RequestListener
 				updateSetting(st);
 				showSettings();
 			}
-		}, date.HOUR_OF_DAY, date.MINUTE, true);
+		}, Calendar.HOUR_OF_DAY, Calendar.MINUTE, true);
 
 		// 设置点击其他不能取消
 		datePickerDialog.setCancelable(true);

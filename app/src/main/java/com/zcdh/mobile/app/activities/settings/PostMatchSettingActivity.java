@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
-import org.androidannotations.annotations.CheckedChange;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
@@ -15,12 +14,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.SeekBar.OnSeekBarChangeListener;
-import android.widget.Toast;
 
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.zcdh.core.nio.except.ZcdhException;
@@ -87,7 +84,7 @@ public class PostMatchSettingActivity extends BaseActivity implements
 	/**
 	 * 设置项数据
 	 */
-	HashMap<String, JobSettingDTO> settings = new HashMap<String, JobSettingDTO>();
+	HashMap<String, JobSettingDTO> settings = new HashMap<>();
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -115,8 +112,8 @@ public class PostMatchSettingActivity extends BaseActivity implements
 	@AfterViews
 	void bindViews() {
 
-		SystemServicesUtils.setActionBarCustomTitle(this,
-				getSupportActionBar(), "岗位匹配");
+		SystemServicesUtils.displayCustomTitle(this,
+			getSupportActionBar(), "岗位匹配");
 
 		matchSettingSB
 				.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {

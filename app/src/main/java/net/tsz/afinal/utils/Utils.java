@@ -15,13 +15,13 @@
  */
 package net.tsz.afinal.utils;
 
-import java.io.File;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Environment;
 import android.os.StatFs;
 import android.util.Log;
+
+import java.io.File;
 
 public class Utils {
 	
@@ -149,8 +149,8 @@ public class Utils {
 
     public static final long crc64Long(byte[] buffer) {
         long crc = INITIALCRC;
-        for (int k = 0, n = buffer.length; k < n; ++k) {
-            crc = sCrcTable[(((int) crc) ^ buffer[k]) & 0xff] ^ (crc >> 8);
+        for (byte aBuffer : buffer) {
+            crc = sCrcTable[(((int) crc) ^ aBuffer) & 0xff] ^ (crc >> 8);
         }
         return crc;
     }

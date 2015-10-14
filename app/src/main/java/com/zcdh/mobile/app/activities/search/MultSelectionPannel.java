@@ -56,7 +56,7 @@ public class MultSelectionPannel implements OnClickListener {
 	 * 
 	 * @param activity
 	 */
-	HashMap<String, String> items = new HashMap<String, String>();
+	HashMap<String, String> items = new HashMap<>();
 
 	public static int max = 3;
 

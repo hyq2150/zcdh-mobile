@@ -46,6 +46,7 @@ import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
@@ -83,6 +84,9 @@ import java.util.List;
 public class PostDetailsFragment extends BaseFragment implements
         RequestListener, OnClickListener, Subscriber, OnRefreshListener2,
         OnPullGetTextListener, DataLoadInterface {
+
+    //解耦Fragment和Activity,一般不在Fragment中直接调用Activity的方法，通过接口解耦
+    private IFragmentCallback mCallback;
 
     // 查询职位详情ID
     private String kREQ_ID_findExtJobEntPostDetailDTO;
@@ -453,7 +457,8 @@ public class PostDetailsFragment extends BaseFragment implements
     // 公司其他职位
     @Click(R.id.moreBtnLl)
     void onMoreBtn() {
-        ((DetailsFrameActivity_) getActivity()).goesPager(2);
+//        ((DetailsFrameActivity_) getActivity()).toPage(2);
+        mCallback.onCall(2);
     }
 
     /**
@@ -514,7 +519,7 @@ public class PostDetailsFragment extends BaseFragment implements
                     .getTechniclRquire();
 
             // 设置标题：以企业名称为title
-            SystemServicesUtils.setActionBarCustomTitle(getActivity(),
+            SystemServicesUtils.displayCustomTitle(getActivity(),
                     ((AppCompatActivity) getActivity()).getSupportActionBar(), post.getEntName());
 
             // 显示职位基本信息
@@ -772,7 +777,7 @@ public class PostDetailsFragment extends BaseFragment implements
         if (reqId.equals(kREQ_ID_findExtJobEntPostDetailDTO)) {
             emptyTipView.startLoadingAnim();
             contentScroll.setVisibility(View.GONE);
-            SystemServicesUtils.setActionBarCustomTitle(getActivity(),
+            SystemServicesUtils.displayCustomTitle(getActivity(),
                     ((AppCompatActivity) getActivity()).getSupportActionBar(), "正在加载...");
         }
     }
@@ -835,7 +840,7 @@ public class PostDetailsFragment extends BaseFragment implements
         if (error != null) {
             Log.e(TAG, error.getStackTrace() + "");
         }
-        SystemServicesUtils.setActionBarCustomTitle(getActivity(),
+        SystemServicesUtils.displayCustomTitle(getActivity(),
                 ((AppCompatActivity) getActivity()).getSupportActionBar(), "加载失败");
     }
 
@@ -857,7 +862,7 @@ public class PostDetailsFragment extends BaseFragment implements
         @Override
         public View getView(int position, ViewGroup parentView) {
             View view = LayoutInflater.from(getActivity()).inflate(
-                    R.layout.skill_tags_item, null);
+                    R.layout.skill_tags_item, parentView,false);
             TextView skillLevelText = (TextView) view
                     .findViewById(R.id.skillLevelText);
             TextView skView = (TextView) view.findViewById(R.id.skillNameText);
@@ -1081,12 +1086,14 @@ public class PostDetailsFragment extends BaseFragment implements
     @Override
     public String getText(Mode mode) {
         DetailsFrameActivity activity = (DetailsFrameActivity) getActivity();
+        String text = "";
 
         switch (mode) {
             case PULL_FROM_START:
                 if (activity.switchable()) {
-                    if (activity.getCurrentIndex() > 0) {
-                        return activity.getPosts().get(activity.getCurrentIndex() - 1)
+                    if (activity.getCurrentIndex() > 0 && activity.getPosts().get(activity.getCurrentIndex() - 1)
+                            .getPostAliases() != null) {
+                        text = activity.getPosts().get(activity.getCurrentIndex() - 1)
                                 .getPostAliases();
                     }
                 }
@@ -1094,17 +1101,29 @@ public class PostDetailsFragment extends BaseFragment implements
             case PULL_FROM_END:
                 if (activity.switchable()) {
                     if (activity.getPosts() != null) {
-                        if (activity.getCurrentIndex() < activity.getPosts().size() - 1) {
-                            return activity.getPosts().get(activity.getCurrentIndex() + 1)
+                        if (activity.getCurrentIndex() < activity.getPosts().size() - 1 && activity.getPosts().get(activity.getCurrentIndex() + 1)
+                                .getPostAliases() != null) {
+                            text = activity.getPosts().get(activity.getCurrentIndex() + 1)
                                     .getPostAliases();
                         }
                     }
                 }
                 break;
             default:
+                text = "";
                 break;
         }
-        return "";
+        return text;
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mCallback= (IFragmentCallback) activity;
+        } catch(RuntimeException e) {
+            throw new ClassCastException("The activity must implements IFragmentCallback");
+        }
     }
 
 }

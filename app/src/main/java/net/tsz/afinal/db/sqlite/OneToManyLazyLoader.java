@@ -31,10 +31,10 @@ public class OneToManyLazyLoader<O,M> {
      */
     public List<M> getList(){
         if(entities==null){
-            this.db.loadOneToMany((O)this.ownerEntity,this.ownerClazz,this.listItemClazz);
+            this.db.loadOneToMany(this.ownerEntity,this.ownerClazz,this.listItemClazz);
         }
         if(entities==null){
-            entities =new ArrayList<M>();
+            entities = new ArrayList<>();
         }
         return entities;
     }

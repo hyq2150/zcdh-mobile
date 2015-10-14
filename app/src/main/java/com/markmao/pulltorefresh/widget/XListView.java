@@ -442,7 +442,7 @@ public class XListView extends ListView implements OnScrollListener {
      * onXScrolling when header/footer scroll back.
      */
     public interface OnXScrollListener extends OnScrollListener {
-        public void onXScrolling(View view);
+        void onXScrolling(View view);
     }
 
     /**
@@ -451,8 +451,8 @@ public class XListView extends ListView implements OnScrollListener {
      * @author markmjw
      */
     public interface IXListViewListener {
-        public void onRefresh();
+        void onRefresh();
 
-        public void onLoadMore();
+        void onLoadMore();
     }
 }

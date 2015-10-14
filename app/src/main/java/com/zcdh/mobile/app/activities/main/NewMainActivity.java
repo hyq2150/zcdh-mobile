@@ -1,5 +1,13 @@
 package com.zcdh.mobile.app.activities.main;
 
+import com.easemob.chat.EMChatManager;
+import com.easemob.chat.EMConversation;
+import com.easemob.chat.EMGroupManager;
+import com.easemob.chat.EMMessage;
+import com.easemob.chat.TextMessageBody;
+import com.huanxin.Constant;
+import com.huanxin.DemoHXSDKHelper;
+import com.huanxin.adapter.EMCallBackAdapter;
 import com.zcdh.mobile.R;
 import com.zcdh.mobile.app.Constants;
 import com.zcdh.mobile.app.ZcdhApplication;
@@ -10,18 +18,15 @@ import com.zcdh.mobile.app.activities.search.AdvancedSearchActivity;
 import com.zcdh.mobile.app.activities.search.AreaActivity;
 import com.zcdh.mobile.app.activities.settings.PostMatchSettingActivity;
 import com.zcdh.mobile.app.activities.settings.SettingsHomeActivity;
-import com.zcdh.mobile.app.push.MyPushMessageReceiver;
+import com.zcdh.mobile.framework.K;
 import com.zcdh.mobile.framework.activities.BaseActivity;
-import com.zcdh.mobile.framework.events.MyEvents;
-import com.zcdh.mobile.framework.events.MyEvents.Subscriber;
 import com.zcdh.mobile.utils.NetworkUtils;
+import com.zcdh.mobile.utils.ToastUtil;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.OnActivityResult;
-import org.androidannotations.annotations.WindowFeature;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -29,99 +34,31 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
-import android.view.Window;
-import android.widget.Toast;
 
 /**
  * 程序主框架页面
  *
  * @author jeason, 2014-7-25 下午1:42:56
  */
-@WindowFeature(Window.FEATURE_NO_TITLE)
 @EActivity(R.layout.layout_content)
-public class NewMainActivity extends BaseActivity implements Subscriber {
+public class NewMainActivity extends BaseActivity {
 
     private static final String TAG = NewMainActivity.class.getSimpleName();
 
     private long exitTime = 0;
 
-    // 接收登录成功广播
-    private BroadcastReceiver loginSuccessReceiver;
-
-    private BroadcastReceiver msgReceiver;
-
-    // 注销成功
-    private BroadcastReceiver exitSuccessReceiver;
-
     // 网络状态
     private NetworkStatusChangedReceiver networkStatusChangedReceiver;
 
-    // 基本资料变更
-    private BroadcastReceiver profileUpdatedReceiver;
-
-    // 查询条件接收
-    private BroadcastReceiver conditionForSearchReceiver;
-
+    //匹配模式改变
     private BroadcastReceiver matchRateModeChangeReceiver;
-
-    // 修改用户头像
-    private BroadcastReceiver modifiedUserPhotoReceiver;
-
-    // 本地广播
-    private LocalBroadcastManager localBroadcastManager;
-
-    private boolean flag_need_refresh;
 
     private MainPageFragment fragmentMain;
 
     @Override
     protected void onCreate(Bundle bundle) {
-
-        localBroadcastManager = LocalBroadcastManager.getInstance(this);
-        msgReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                Log.i(TAG, "PushMessage 刷新消息");
-
-                fragmentMain.refreshMessage();
-            }
-        };
-
-        registerReceiver(msgReceiver, new IntentFilter(
-                MyPushMessageReceiver.NEW_MSG));
-
-        // 登录成功
-        loginSuccessReceiver = new BroadcastReceiver() {
-
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                if (Constants.LOGIN_RESULT_ACTION.equals(intent.getAction())) {
-                    // 标识需要重新加载和刷新侧边菜单
-                    int resultCode = intent.getIntExtra(Constants.kRESULT_CODE,
-                            -1);
-                    if (resultCode == Constants.kLOGIN_RESULT_SUCCESS) {
-                        flag_need_refresh = true;
-                    }
-                }
-            }
-        };
-        IntentFilter intentFilter = new IntentFilter(
-                Constants.LOGIN_RESULT_ACTION);
-        localBroadcastManager.registerReceiver(loginSuccessReceiver,
-                intentFilter);
-
-        // 注销成功
-        exitSuccessReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                flag_need_refresh = true;
-            }
-        };
-        IntentFilter existIntentFilter = new IntentFilter(Constants.ACTION_EXIT);
-        this.registerReceiver(exitSuccessReceiver, existIntentFilter);
-
+        super.onCreate(bundle);
         // 网络状态改变
         networkStatusChangedReceiver = new NetworkStatusChangedReceiver();
         IntentFilter networkStatusIntentFilter = new IntentFilter();
@@ -131,41 +68,6 @@ public class NewMainActivity extends BaseActivity implements Subscriber {
                 .addAction("android.net.wifi.WIFI_STATE_CHANGED");
         this.registerReceiver(networkStatusChangedReceiver,
                 networkStatusIntentFilter);
-
-        // 基本资料修改变更
-        profileUpdatedReceiver = new BroadcastReceiver() {
-
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                flag_need_refresh = true;
-            }
-        };
-        IntentFilter profielUpdatedIntentFilter = new IntentFilter(
-                Constants.ACTION_UPDATE_PROFILE);
-        this.registerReceiver(profileUpdatedReceiver, profielUpdatedIntentFilter);
-
-        // 高级查询，条件筛选
-        conditionForSearchReceiver = new BroadcastReceiver() {
-
-            @Override
-            public void onReceive(Context context, Intent intent) {
-
-                int requestCode = intent.getIntExtra(Constants.kREQUEST_CODE,
-                        -1);
-                int resultCode = intent.getIntExtra(Constants.kRESULT_CODE, -1);
-
-                // 高级查询
-                if (requestCode == AdvancedSearchActivity.kREQUEST_ADVANCE_SEARCH) {
-                    fragmentMain.onResultDispatch(
-                            AdvancedSearchActivity.kREQUEST_ADVANCE_SEARCH,
-                            resultCode, intent);
-                }
-            }
-        };
-        IntentFilter conditionIntentFilter = new IntentFilter(
-                Constants.kACTION_CONDITION);
-        this.registerReceiver(conditionForSearchReceiver, conditionIntentFilter);
-
         // 开启岗位匹配模式
         matchRateModeChangeReceiver = new BroadcastReceiver() {
 
@@ -177,21 +79,43 @@ public class NewMainActivity extends BaseActivity implements Subscriber {
         this.registerReceiver(matchRateModeChangeReceiver, new IntentFilter(
                 PostMatchSettingActivity.kACTION_MATCH_MODE));
 
-        // 修改用户头像
-        modifiedUserPhotoReceiver = new BroadcastReceiver() {
+        loginHx();
+    }
 
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                fragmentMain.reloadMenuDialog();
-                updateUserIcon();
-            }
-        };
-        this.registerReceiver(modifiedUserPhotoReceiver, new IntentFilter(
-                Constants.kACTION_MODIFIED_PHOTO));
-        super.onCreate(bundle);
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        fragmentMain.reloadMenuDialog(true);
+        fragmentMain.refreshData();
+        fragmentMain.refreshAppModule();
+        loginHx();
+    }
 
-        MyEvents.register(this);
+    /**
+     * 登陆成功回调
+     */
+    @OnActivityResult(Constants.REQUEST_CODE_LOGIN)
+    void onResultLoginSuccess(int resultCode,Intent data) {
+        if (resultCode==RESULT_OK) {
+            fragmentMain.reloadMenuDialog(true);
+            fragmentMain.refreshData();
+            fragmentMain.refreshAppModule();
 
+            loginHx();
+        }
+    }
+    /**
+     * 退出登录回调
+     * @param resultCode 请求码
+     * @param data 返回数据Intent
+     */
+    @OnActivityResult(SettingsHomeActivity.REQUEST_CODE_SETTING)
+    void onResultSetting(int resultCode,Intent data) {
+        if (resultCode==RESULT_OK) {
+            fragmentMain.reloadMenuDialog(true);
+            fragmentMain.refreshData();
+            fragmentMain.refreshAppModule();
+        }
     }
 
     /**
@@ -203,6 +127,16 @@ public class NewMainActivity extends BaseActivity implements Subscriber {
         fragmentMain.onResultDispatch(
                 AdvancedSearchActivity.kREQUEST_ADVANCE_SEARCH, resultCode,
                 data);
+    }
+
+    /**
+     * 账户管理页面的回调
+     */
+    @OnActivityResult(Constants.REQUEST_CODE_ACCOUNT_MANAGER)
+    void onResultAccountManager(int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            fragmentMain.reloadMenuDialog(false);
+        }
     }
 
     /**
@@ -236,9 +170,21 @@ public class NewMainActivity extends BaseActivity implements Subscriber {
 
     }
 
+    /**
+     * 客服消息页面回调
+     * @param resultCode
+     * @param data
+     */
+    @OnActivityResult(Constants.REQUEST_CODE_MESSAGE)
+    void onResultHxMsg(int resultCode, Intent data) {
+        fragmentMain.onResultDispatch(
+                Constants.REQUEST_CODE_MESSAGE, resultCode,
+                data);
+    }
+
     @AfterViews
     public void bindViews() {
-        if (fragmentMain==null) {
+        if (fragmentMain == null) {
             fragmentMain = new MainPageFragment_();
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager
@@ -249,7 +195,7 @@ public class NewMainActivity extends BaseActivity implements Subscriber {
     }
 
     /**
-     * 捕捉返回键，如果当前显示菜单，刚隐藏
+     * 捕捉返回键，如果当前显示菜单，先隐藏
      */
     @Override
     public void onBackPressed() {
@@ -260,16 +206,13 @@ public class NewMainActivity extends BaseActivity implements Subscriber {
         } else if (NearbyMapFragment.isShowPostList) {
             fragmentMain.getNearbyFragment().switchMode();
         } else {
-
             if ((System.currentTimeMillis() - exitTime) > 3000) {
-                Toast.makeText(getApplicationContext(), "再按一次退出职场导航",
-                        Toast.LENGTH_SHORT).show();
+                ToastUtil.show(R.string.press_again_to_exit);
                 exitTime = System.currentTimeMillis();
             } else {
                 ZcdhApplication.getInstance().exit();
                 finish();
                 super.onBackPressed();
-                // System.exit(0);
             }
         }
     }
@@ -291,80 +234,83 @@ public class NewMainActivity extends BaseActivity implements Subscriber {
 
     @Override
     protected void onDestroy() {
-
-        localBroadcastManager.unregisterReceiver(loginSuccessReceiver);
-
         unregisterReceiver(networkStatusChangedReceiver);
-        unregisterReceiver(exitSuccessReceiver);
-        unregisterReceiver(profileUpdatedReceiver);
-        unregisterReceiver(conditionForSearchReceiver);
         unregisterReceiver(matchRateModeChangeReceiver);
-        unregisterReceiver(modifiedUserPhotoReceiver);
-        unregisterReceiver(msgReceiver);
-        MyEvents.unregister(this);
         super.onDestroy();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        super.onActivityResult(requestCode, resultCode, data);
-        // 如果登录成功 刷新左侧栏的界面 并发出一条广播提醒消息Fragment进行更新列表操作
-        if (requestCode == Constants.REQUEST_CODE_LOGIN
-                && resultCode == RESULT_OK) {
-            fragmentMain.reloadMenuDialog();
-            sendBroadcast(new Intent(MyPushMessageReceiver.NEW_MSG));
-        }
-
-        if (requestCode == SettingsHomeActivity.REQUEST_CODE_SETTING
-                && resultCode == Activity.RESULT_OK) {
-            fragmentMain.reloadMenuDialog();
-            sendBroadcast(new Intent(MyPushMessageReceiver.NEW_MSG));
-        }
-
-    }
-
-    @Override
-    public void onResume() {
-        if (flag_need_refresh) {
-            // 重新加载侧边栏菜单
-            fragmentMain.reloadMenuDialog();
-            // 获取头像
-            fragmentMain.loadPortal();
-            // 刷新所有数据
-            fragmentMain.refreshData();
-
-            flag_need_refresh = false;
-        }
-        super.onResume();
-    }
-
-   /* @Override
-    public void onOpen() {
-        MyEvents.post(Constants.KEVENT_SILDMENU_STATUS,
-                Constants.KSTATUS_SILDMENU_OPEN);
-    }
-
-    @Override
-    public void onClosed() {
-        MyEvents.post(Constants.KEVENT_SILDMENU_STATUS,
-                Constants.KSTATUS_SILDMENU_CLOSED);
-    }*/
-
-    /***
-     * 更新主界面右上角用户头像
+    /**
+     * 环信即时通讯登录
      */
-    public void updateUserIcon() {
+    public void loginHx() {
+        long zcdhId=getUserId();
+        final String username=ZcdhApplication.getInstance().getUserName();
+        final String password=ZcdhApplication.getInstance().getPassword();
+        if (zcdhId>0 && username!=null && password!=null) {
+            ((DemoHXSDKHelper)DemoHXSDKHelper.getInstance()).login(username, password,
+                    new EMCallBackAdapter() {
+                        @Override
+                        public void onSuccess() {
+                            // 登陆成功，保存用户名密码
+                            ZcdhApplication.getInstance().setUserName(username);
+                            ZcdhApplication.getInstance().setPassword(password);
+                            try {
+                                // ** 第一次登录或者之前logout后再登录，加载所有本地群和回话
+                                // ** manually load all local groups and
+                                EMGroupManager.getInstance().loadAllGroups();
+                                EMChatManager.getInstance().loadAllConversations();
 
-        fragmentMain.loadPortal();
+                                Log.e(TAG, "环信已经登录！！！！！！！！ ");
 
-    }
+                                sendMessageToCustomer();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                // 取好友或者群聊失败，不让进入主页面
+                                runOnUiThread(new Runnable() {
+                                    public void run() {
+                                        ToastUtil.showLong(R.string.huanxin_login_failed);
+                                    }
+                                });
+                            }
+                        }
 
-    @Override
-    public void receive(String key, Object msg) {
-        if (Constants.kEVENT_NOTIFICATION_MESSAGE.equals(key)) {
-            Log.i(TAG, "MyPushMessage 刷新消息");
+                        @Override
+                        public void onError(final int code, final String message) {
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    ToastUtil.showLong(R.string.huanxin_login_failed);
+                                }
+                            });
+                        }
+                    });
         }
     }
 
+    /**
+     * 登录完成后主动给客服发送一条消息，便于客服人员主动联系客户
+     */
+    private void sendMessageToCustomer() {
+        String adminName;
+        if (K.AppVersion.appVersion.equals(K.AppVersion.Versions.release)) {
+            adminName=Constant.ADMIN_USERNAME_RELEASE;
+        } else {
+            adminName=Constant.ADMIN_USERNAME_DEBUG;
+        }
+        //获取到与聊天人的会话对象。参数username为聊天人的userid或者groupid，后文中的username皆是如此
+        EMConversation conversation = EMChatManager.getInstance()
+                .getConversation(adminName);
+        //创建一条文本消息
+        EMMessage message = EMMessage.createSendMessage(EMMessage.Type.TXT);
+        //如果是群聊，设置chattype,默认是单聊
+        message.setChatType(EMMessage.ChatType.Chat);
+        //设置消息body
+        TextMessageBody txtBody = new TextMessageBody(Constant.DEFAULT_MESSAGE);
+        message.addBody(txtBody);
+        //设置接收人
+        message.setReceipt(adminName);
+        //把消息加入到此会话对象中
+        conversation.addMessage(message);
+        //发送消息
+        EMChatManager.getInstance().sendMessage(message, null);
+    }
 }

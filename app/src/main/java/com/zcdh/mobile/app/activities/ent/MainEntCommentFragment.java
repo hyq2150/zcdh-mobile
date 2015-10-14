@@ -157,7 +157,7 @@ public class MainEntCommentFragment extends BaseFragment implements RequestListe
 		 * @author jeason, 2014-6-5 下午3:54:05
 		 */
 		public CommentsAdapter() {
-			mComments = new ArrayList<CommentDTO>();
+			mComments = new ArrayList<>();
 		}
 
 		public void updateItems(List<CommentDTO> comments) {

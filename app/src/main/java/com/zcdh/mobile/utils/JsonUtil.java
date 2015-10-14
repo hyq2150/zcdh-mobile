@@ -33,10 +33,9 @@ public class JsonUtil {
 	// .configure(MapperFeature.USE_WRAPPER_NAME_AS_PROPERTY_NAME , true)
 	// .configure(MapperFeature.AUTO_DETECT_GETTERS, false)
 	// .configure(MapperFeature.AUTO_DETECT_SETTERS, false)
-	;
-	
 
-	/**
+
+    /**
 	 * 将对象转换为JSON字符串
 	 * 
 	 * @author caijianqing, 2013-4-3 下午1:27:13

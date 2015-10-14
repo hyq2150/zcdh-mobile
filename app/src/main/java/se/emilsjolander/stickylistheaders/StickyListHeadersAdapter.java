@@ -36,5 +36,5 @@ public interface StickyListHeadersAdapter extends ListAdapter {
 	 */
 	long getHeaderId(int position);
 	
-	public void notifyDataSetChanged();
+	void notifyDataSetChanged();
 }

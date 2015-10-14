@@ -3,11 +3,14 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
+    android:background="@color/font_ee"
     android:clickable="true" >
 
     <LinearLayout
+        android:id="@+id/languagetags"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/tags"
         android:duplicateParentState="true" >
 
         <TextView
@@ -17,10 +20,9 @@
             android:layout_height="wrap_content"
             android:duplicateParentState="true"
             android:gravity="center"
-            android:padding="@dimen/content_left_right"
+            android:padding="@dimen/message_box_pading_top_bottom"
             android:singleLine="true"
             android:text="afasdfadf"
-            android:textColor="@color/tag_jingtong"
             android:textSize="@dimen/font_size_nomarl" />
     </LinearLayout>
 
@@ -36,7 +38,7 @@
             android:layout_height="20dp"
             android:layout_gravity="center_vertical"
             android:layout_margin="5dp"
-            android:background="@drawable/icon_yes"
+            android:background="@color/transparent"
             android:clickable="true"
             android:duplicateParentState="true"
             android:paddingRight="10dp"

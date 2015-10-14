@@ -1,7 +1,8 @@
 package com.zcdh.mobile.app.activities.search;
 
-import java.util.HashMap;
-import java.util.List;
+import com.zcdh.mobile.R;
+import com.zcdh.mobile.api.model.JobObjectivePostDTO;
+import com.zcdh.mobile.biz.entities.ZcdhPost;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,15 +12,14 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.zcdh.mobile.R;
-import com.zcdh.mobile.api.model.JobObjectivePostDTO;
-import com.zcdh.mobile.biz.entities.ZcdhPost;
+import java.util.HashMap;
+import java.util.List;
 
 public class PostChosenAdapter extends BaseAdapter{
 	
 	List<ZcdhPost> posts; 
 	
-	HashMap<String, JobObjectivePostDTO> selectedPosts = new HashMap<String, JobObjectivePostDTO>();
+	HashMap<String, JobObjectivePostDTO> selectedPosts = new HashMap<>();
 	
 	Context context;
 	
@@ -60,37 +60,37 @@ public class PostChosenAdapter extends BaseAdapter{
 
 	@Override
 	public View getView(int p, View contentView, ViewGroup arg2) {
-		
+
 		Holder h = null;
 		if (contentView == null) {
 			h = new Holder();
 			contentView = LayoutInflater.from(context)
 					.inflate(R.layout.simple_listview_item_checker, null);
-			
+
 			h.itemName = (TextView) contentView
 					.findViewById(R.id.itemNameText);
 			h.checkerImg = (ImageView) contentView.findViewById(R.id.checkerImg);
-			
+
 			contentView.setTag(h);
 		} else {
 			h = (Holder) contentView.getTag();
-			
+
 		}
-		
+
 		h.itemName.setText(posts.get(p).getPost_name());
 		if(heightlight){
 			h.itemName.setTextColor(context.getResources().getColor(R.color.result_hightlight));
 		}else{
 			h.itemName.setTextColor(context.getResources().getColor(R.color.font_color));
 		}
-		
+
 		String code = posts.get(p).getPost_code();
 		if(selectedPosts.containsKey(code)){
 			h.checkerImg.setVisibility(View.VISIBLE);
 		}else{
 			h.checkerImg.setVisibility(View.GONE);
 		}
-		
+
 		return contentView;
 	}
 

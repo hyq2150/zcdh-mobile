@@ -113,7 +113,7 @@ public class FollowListPage extends FollowerListFakeActivity implements OnClickL
 
 	public void onClick(View v) {
 		if (v.equals(llTitle.getBtnRight())) {
-			ArrayList<String> selected = new ArrayList<String>();
+			ArrayList<String> selected = new ArrayList<>();
 			for (int i = 0, size = adapter.getCount(); i < size; i++) {
 				if (adapter.getItem(i).checked) {
 					selected.add(adapter.getItem(i).atName);
@@ -156,8 +156,8 @@ public class FollowListPage extends FollowerListFakeActivity implements OnClickL
 			super(view);
 			curPage = -1;
 			hasNext = true;
-			map = new HashMap<String, Boolean>();
-			follows = new ArrayList<Following>();
+			map = new HashMap<>();
+			follows = new ArrayList<>();
 
 			llHeader = new PRTHeader(getContext());
 

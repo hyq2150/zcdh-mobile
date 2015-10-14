@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
-    android:background="#4e91cc"
+    android:background="#60000000"
     android:orientation="vertical" >
 
     <TextView
@@ -74,7 +74,7 @@
                         android:paddingTop="@dimen/levelPadding"
                         android:paddingBottom="@dimen/levelPadding"
                          android:tag="rw"
-                        android:text="会些" 
+                        android:text="一般" 
                         android:textColor="@color/level_title_selector"/>
 
                     <RadioButton
@@ -89,7 +89,7 @@
                         android:paddingTop="@dimen/levelPadding"
                         android:paddingBottom="@dimen/levelPadding"
                          android:tag="rw"
-                        android:text="知道"
+                        android:text="了解"
                         android:textColor="@color/level_title_selector"/>
                 </TableRow>
             </TableLayout>
@@ -168,7 +168,7 @@
                         android:paddingTop="@dimen/levelPadding"
                         android:paddingBottom="@dimen/levelPadding"
                         android:tag="lw"
-                        android:text="会些"
+                        android:text="一般"
                         android:textColor="@color/level_title_selector"/>
 
                     <RadioButton
@@ -183,7 +183,7 @@
                         android:paddingTop="@dimen/levelPadding"
                         android:paddingBottom="@dimen/levelPadding"
                         android:tag="lw"
-                        android:text="知道"
+                        android:text="了解"
                         android:textColor="@color/level_title_selector"/>
                 </TableRow>
             </TableLayout>

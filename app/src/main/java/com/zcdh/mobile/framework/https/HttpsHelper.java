@@ -77,8 +77,8 @@ public class HttpsHelper {
 			SSLContext context = SSLContext.getInstance("TLS");
 			context.init(new KeyManager[0], xtmArray, new SecureRandom());
 			SSLSocketFactory socketFactory = context.getSocketFactory();
-			((HttpsURLConnection) conn).setSSLSocketFactory(socketFactory);
-			((HttpsURLConnection) conn).setHostnameVerifier(HOSTNAME_VERIFIER);
+			conn.setSSLSocketFactory(socketFactory);
+			conn.setHostnameVerifier(HOSTNAME_VERIFIER);
 		}
 		conn.setConnectTimeout(5 * 1000);
 		conn.setRequestMethod("POST");

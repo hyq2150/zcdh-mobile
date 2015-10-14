@@ -8,13 +8,9 @@
 
 package cn.sharesdk.onekeyshare.theme.classic;
 
-import static com.mob.tools.utils.R.getBitmapRes;
-
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import com.mob.tools.gui.ViewPagerAdapter;
+import com.mob.tools.gui.ViewPagerClassic;
+import com.mob.tools.utils.UIHandler;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -32,12 +28,18 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
-import com.mob.tools.gui.ViewPagerAdapter;
-import com.mob.tools.gui.ViewPagerClassic;
-import com.mob.tools.utils.UIHandler;
 import cn.sharesdk.onekeyshare.CustomerLogo;
+
+import static com.mob.tools.utils.R.getBitmapRes;
 
 /** platform logo list gridview */
 public class PlatformGridView extends LinearLayout implements
@@ -233,7 +235,7 @@ public class PlatformGridView extends LinearLayout implements
 		}
 		lastClickTime = time;
 
-		ArrayList<Object> platforms = new ArrayList<Object>(1);
+		ArrayList<Object> platforms = new ArrayList<>(1);
 		platforms.add(v.getTag());
 		parent.onPlatformIconClick(v, platforms);
 	}
@@ -245,9 +247,9 @@ public class PlatformGridView extends LinearLayout implements
 		}
 		try {
 			Method m = View.class.getMethod("setOverScrollMode",
-					new Class[] { Integer.TYPE });
+				Integer.TYPE);
 			m.setAccessible(true);
-			m.invoke(view, new Object[] { Integer.valueOf(2) });
+			m.invoke(view, 2);
 		} catch (Throwable t) {
 			t.printStackTrace();
 		}
@@ -263,12 +265,12 @@ public class PlatformGridView extends LinearLayout implements
 
 		public PlatformAdapter(PlatformGridView platformGridView) {
 			this.platformGridView = platformGridView;
-			logos = new ArrayList<Object>();
+			logos = new ArrayList<>();
 			Platform[] platforms = platformGridView.platformList;
 			HashMap<String, String> hiddenPlatforms = platformGridView.hiddenPlatforms;
 			if (platforms != null) {
 				if (hiddenPlatforms != null && hiddenPlatforms.size() > 0) {
-					ArrayList<Platform> ps = new ArrayList<Platform>();
+					ArrayList<Platform> ps = new ArrayList<>();
 					for (Platform p : platforms) {
 						if (hiddenPlatforms.containsKey(p.getName())) {
 							continue;

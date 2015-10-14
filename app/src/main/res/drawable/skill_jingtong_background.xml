@@ -3,14 +3,14 @@
     android:shape="rectangle" >
 
     <corners
-        android:bottomLeftRadius="@dimen/skill_tag_radius"
-      />
+        android:bottomLeftRadius="10dp"
+        android:topLeftRadius="10dp" />
 
     <stroke
         android:width="@dimen/stroke_width"
         android:color="@color/toolbtn" />
 
-    <solid android:color="@color/white"/>
+    <solid android:color="@color/tag_jingtong1"/>
     <!-- <gradient
         android:endColor="@color/tag_jingtong"
         android:startColor="@color/tag_jingtong" /> -->

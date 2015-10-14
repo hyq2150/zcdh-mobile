@@ -1,12 +1,12 @@
 /** 
 *  IRpcJobUservice 
 * 
-*  Created Date: 2015-07-09 21:21:00 
+*  Created Date: 2015-10-12 17:31:50 
 *  
 */  
 package com.zcdh.mobile.api;  
 import java.util.*; 
-
+import java.math.*; 
 import com.zcdh.core.annotation.*; 
 import com.zcdh.mobile.api.model.*; 
 import com.zcdh.comm.entity.*; 
@@ -39,7 +39,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-3-28 下午6:27:21 
     */  
     @RpcMethod("register")
-    public RequestChannel<Integer> register(@Param("mobileNum") String mobileNum, @Param("pwd") String pwd, @Param("email") String email);
+    public RequestChannel<Integer> register(@Param("mobileNum")  String mobileNum, @Param("pwd")  String pwd, @Param("email")  String email);
     /** 
     * 通过QQ无绑定账号直接注册 
     *  @param openId 
@@ -47,7 +47,7 @@ public interface IRpcJobUservice   {
     *  @author danny, 2014-9-11 下午3:54:57 
     */  
     @RpcMethod("registerByQQ")
-    public RequestChannel<Integer> registerByQQ(@Param("openId") String openId, @Param("imgAttachDTO") ImgAttachDTO imgAttachDTO);
+    public RequestChannel<Integer> registerByQQ(@Param("openId")  String openId, @Param("imgAttachDTO")  ImgAttachDTO imgAttachDTO);
     /** 
     * 通过新浪微博无绑定账号直接注册 
     *  @param weiBoUserId 微博用户id 
@@ -55,7 +55,7 @@ public interface IRpcJobUservice   {
     *  @author danny, 2014-9-11 下午3:54:57 
     */  
     @RpcMethod("registerByWeibo")
-    public RequestChannel<Integer> registerByWeibo(@Param("weiBoUserId") String weiBoUserId, @Param("imgAttachDTO") ImgAttachDTO imgAttachDTO);
+    public RequestChannel<Integer> registerByWeibo(@Param("weiBoUserId")  String weiBoUserId, @Param("imgAttachDTO")  ImgAttachDTO imgAttachDTO);
     /** 
     * 登陆 
     *  @param mobileNum 
@@ -64,7 +64,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-3-28 下午6:27:45 
     */  
     @RpcMethod("login")
-    public RequestChannel<Integer> login(@Param("account") String account, @Param("pwd") String pwd);
+    public RequestChannel<Integer> login(@Param("account")  String account, @Param("pwd")  String pwd);
     /** 
     * 无需userId 登陆的  
     *  @return 
@@ -79,7 +79,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-4-2 下午11:09:16 
     */  
     @RpcMethod("loginByQQ")
-    public RequestChannel<Integer> loginByQQ(@Param("openId") String openId);
+    public RequestChannel<Integer> loginByQQ(@Param("openId")  String openId);
     /** 
     * 使用微博登陆：  
     *  @param weiBoUserId  
@@ -87,21 +87,21 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-4-2 下午11:09:30 
     */  
     @RpcMethod("loginByWeiBo")
-    public RequestChannel<Integer> loginByWeiBo(@Param("weiBoUserId") String weiBoUserId);
+    public RequestChannel<Integer> loginByWeiBo(@Param("weiBoUserId")  String weiBoUserId);
     /** 
     * 通过QQ 获取userId 
     *  @return   
     *  @author focus, 2014-4-3 上午10:17:57 
     */  
     @RpcMethod("findUserIdByQQ")
-    public RequestChannel<Long> findUserIdByQQ(@Param("openId") String openId);
+    public RequestChannel<Long> findUserIdByQQ(@Param("openId")  String openId);
     /** 
     * 通过WeiBo 获取userId 
     *  @return 
     *  @author focus, 2014-4-3 上午10:18:02 
     */  
     @RpcMethod("findUserIdByWeiBo")
-    public RequestChannel<Long> findUserIdByWeiBo(@Param("weiBouserId") String weiBouserId);
+    public RequestChannel<Long> findUserIdByWeiBo(@Param("weiBouserId")  String weiBouserId);
     /** 
     * 查找用户信息 
     *  @param account 
@@ -109,7 +109,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-3-28 下午6:44:56 
     */  
     @RpcMethod("findUserId")
-    public RequestChannel<Long> findUserId(@Param("account") String account);
+    public RequestChannel<Long> findUserId(@Param("account")  String account);
     /** 
     * 更新密码 
     *  @param account 
@@ -118,7 +118,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-3-28 下午6:47:23 
     */  
     @RpcMethod("updatePwd")
-    public RequestChannel<Integer> updatePwd(@Param("userId") Long userId, @Param("newPwd") String newPwd, @Param("oldPwd") String oldPwd);
+    public RequestChannel<Integer> updatePwd(@Param("userId")  Long userId, @Param("newPwd")  String newPwd, @Param("oldPwd")  String oldPwd);
     /** 
     * 绑定新的账号 
     *  @param account 
@@ -128,7 +128,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-4-3 下午2:00:01 
     */  
     @RpcMethod("bindNewAccount")
-    public RequestChannel<Integer> bindNewAccount(@Param("account") String account, @Param("email") String email, @Param("pwd") String pwd, @Param("loginType") String loginType, @Param("warrantyId") String warrantyId);
+    public RequestChannel<Integer> bindNewAccount(@Param("account")  String account, @Param("email")  String email, @Param("pwd")  String pwd, @Param("loginType")  String loginType, @Param("warrantyId")  String warrantyId);
     /** 
     * 绑定已经存在的账号 
     *  @param account 
@@ -139,7 +139,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-4-3 下午2:01:03 
     */  
     @RpcMethod("bindExistsAccount")
-    public RequestChannel<Integer> bindExistsAccount(@Param("account") String account, @Param("pwd") String pwd, @Param("loginType") String loginType, @Param("warrantyId") String warrantyId, @Param("img") ImgAttachDTO img);
+    public RequestChannel<Integer> bindExistsAccount(@Param("account")  String account, @Param("pwd")  String pwd, @Param("loginType")  String loginType, @Param("warrantyId")  String warrantyId, @Param("img")  ImgAttachDTO img);
     /** 
     * 取消绑定 
     *  @param account	账号 
@@ -150,7 +150,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-4-3 下午8:45:20 
     */  
     @RpcMethod("cancleAccountBind")
-    public RequestChannel<Integer> cancleAccountBind(@Param("account") String account, @Param("pwd") String pwd, @Param("bindType") String bindType, @Param("warrantyId") String warrantyId);
+    public RequestChannel<Integer> cancleAccountBind(@Param("account")  String account, @Param("pwd")  String pwd, @Param("bindType")  String bindType, @Param("warrantyId")  String warrantyId);
     /** 
     * 通过邮箱重置密码 
     *  基于Email的重置密码 
@@ -159,7 +159,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-4-6 下午4:45:00 
     */  
     @RpcMethod("resetPwdByEmail")
-    public RequestChannel<Integer> resetPwdByEmail(@Param("account") String account);
+    public RequestChannel<Integer> resetPwdByEmail(@Param("account")  String account);
     /** 
     * 查询用户详细信息的接口 
     *  @param userId 
@@ -167,7 +167,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-4-12 上午9:23:32 
     */  
     @RpcMethod("findJobUserInfoDTO")
-    public RequestChannel<JobUserInfoDTO> findJobUserInfoDTO(@Param("userId") Long userId);
+    public RequestChannel<JobUserInfoDTO> findJobUserInfoDTO(@Param("userId")  Long userId);
     /** 
     * 更新手机端的用户信息 
     *  @param userInfo	用户资料 
@@ -175,7 +175,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-4-11 下午2:58:16 
     */  
     @RpcMethod("updateJobUserInfoDTO")
-    public RequestChannel<Integer> updateJobUserInfoDTO(@Param("userInfo") JobUserInfoDTO userInfo);
+    public RequestChannel<Integer> updateJobUserInfoDTO(@Param("userInfo")  JobUserInfoDTO userInfo);
     /** 
     * 查询工作经历列表 
     *  @param userId 
@@ -183,7 +183,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-4-15 下午7:15:21 
     */  
     @RpcMethod("findJobWorkExperienceDTOByUserId")
-    public RequestChannel<List<JobWorkExperienceDTO>> findJobWorkExperienceDTOByUserId(@Param("userId") Long userId);
+    public RequestChannel<List<JobWorkExperienceDTO>> findJobWorkExperienceDTOByUserId(@Param("userId")  Long userId);
     /** 
     * 通过id 查找过工作经历岗位 
     *  @param wepPostId 
@@ -191,7 +191,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-4-15 下午8:29:27 
     */  
     @RpcMethod("findJobWorkExperiencePostDTO")
-    public RequestChannel<JobWorkExperiencePostDTO> findJobWorkExperiencePostDTO(@Param("wepPostId") Long wepPostId);
+    public RequestChannel<JobWorkExperiencePostDTO> findJobWorkExperiencePostDTO(@Param("wepPostId")  Long wepPostId);
     /** 
     * 添加 
     *  @param workExperience 
@@ -199,7 +199,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-4-15 下午7:17:57 
     */  
     @RpcMethod("addJobWorkExperience")
-    public RequestChannel<Integer> addJobWorkExperience(@Param("workExperience") JobWorkExperiencePostDTO workExperience);
+    public RequestChannel<Integer> addJobWorkExperience(@Param("workExperience")  JobWorkExperiencePostDTO workExperience);
     /** 
     * 更新 
     *  @param workExperience 
@@ -207,7 +207,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-4-15 下午7:18:44 
     */  
     @RpcMethod("updateJobWorkExperience")
-    public RequestChannel<Integer> updateJobWorkExperience(@Param("workExperience") JobWorkExperiencePostDTO workExperience);
+    public RequestChannel<Integer> updateJobWorkExperience(@Param("workExperience")  JobWorkExperiencePostDTO workExperience);
     /** 
     * 删除 
     *  @param wepPosId 
@@ -215,7 +215,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-4-15 下午8:45:34 
     */  
     @RpcMethod("removeJobWorkExperiencePost")
-    public RequestChannel<Integer> removeJobWorkExperiencePost(@Param("wepPostId") Long wepPostId);
+    public RequestChannel<Integer> removeJobWorkExperiencePost(@Param("wepPostId")  Long wepPostId);
     /** 
     * 查询个人教育经历列表 
     *  @param userId 
@@ -223,7 +223,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-4-15 下午8:47:50 
     */  
     @RpcMethod("findJobEducationByUserId")
-    public RequestChannel<JobEducationExperienceDTO> findJobEducationByUserId(@Param("userId") Long userId);
+    public RequestChannel<JobEducationExperienceDTO> findJobEducationByUserId(@Param("userId")  Long userId);
     /** 
     * 查找教育经历的详细 
     *  @param eduId 
@@ -231,7 +231,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-4-15 下午8:48:30 
     */  
     @RpcMethod("findJobEducationByEduId")
-    public RequestChannel<JobEducationDTO> findJobEducationByEduId(@Param("eduId") Long eduId);
+    public RequestChannel<JobEducationDTO> findJobEducationByEduId(@Param("eduId")  Long eduId);
     /** 
     * 通过id 查找培训经历 
     *  @param trainId 
@@ -239,7 +239,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-8 下午2:40:10 
     */  
     @RpcMethod("findTrainDTOByTrainId")
-    public RequestChannel<JobTrainDTO> findTrainDTOByTrainId(@Param("trainId") Long trainId);
+    public RequestChannel<JobTrainDTO> findTrainDTOByTrainId(@Param("trainId")  Long trainId);
     /** 
     * 添加教育经历 
     *  @param educationDTO 
@@ -247,7 +247,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-4-15 下午8:50:01 
     */  
     @RpcMethod("addEducation")
-    public RequestChannel<Integer> addEducation(@Param("educationDTO") JobEducationDTO educationDTO);
+    public RequestChannel<Integer> addEducation(@Param("educationDTO")  JobEducationDTO educationDTO);
     /** 
     * 添加培训经历 
     *  @param train 
@@ -255,7 +255,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-8 下午2:38:44 
     */  
     @RpcMethod("addTrain")
-    public RequestChannel<Integer> addTrain(@Param("train") JobTrainDTO train);
+    public RequestChannel<Integer> addTrain(@Param("train")  JobTrainDTO train);
     /** 
     * 更新 
     *  @param educationDTO 
@@ -263,7 +263,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-4-15 下午8:50:37 
     */  
     @RpcMethod("updateEducation")
-    public RequestChannel<Integer> updateEducation(@Param("educationDTO") JobEducationDTO educationDTO);
+    public RequestChannel<Integer> updateEducation(@Param("educationDTO")  JobEducationDTO educationDTO);
     /** 
     * 更新培训经历 
     *  @param train 
@@ -271,7 +271,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-8 下午2:37:08 
     */  
     @RpcMethod("updateTrain")
-    public RequestChannel<Integer> updateTrain(@Param("train") JobTrainDTO train);
+    public RequestChannel<Integer> updateTrain(@Param("train")  JobTrainDTO train);
     /** 
     * 删除学校教育 
     *  @param eduId 
@@ -279,7 +279,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-13 下午10:05:31 
     */  
     @RpcMethod("removeEdu")
-    public RequestChannel<Integer> removeEdu(@Param("eduId") Long eduId);
+    public RequestChannel<Integer> removeEdu(@Param("eduId")  Long eduId);
     /** 
     * 删除培训教育 
     *  @param trainId 
@@ -287,7 +287,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-13 下午10:05:43 
     */  
     @RpcMethod("removeTrainId")
-    public RequestChannel<Integer> removeTrainId(@Param("trainId") Long trainId);
+    public RequestChannel<Integer> removeTrainId(@Param("trainId")  Long trainId);
     /** 
     * 更新设置 
     *  @param userId 
@@ -295,7 +295,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-4-18 下午5:50:53 
     */  
     @RpcMethod("updateSetting")
-    public RequestChannel<Integer> updateSetting(@Param("settingDTO") JobSettingDTO settingDTO);
+    public RequestChannel<Integer> updateSetting(@Param("settingDTO")  JobSettingDTO settingDTO);
     /** 
     * 查找设置 
     *  @param userId 
@@ -303,7 +303,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-4-18 下午5:50:46 
     */  
     @RpcMethod("findJobSettingByUserId")
-    public RequestChannel<List<JobSettingDTO>> findJobSettingByUserId(@Param("userId") Long userId);
+    public RequestChannel<List<JobSettingDTO>> findJobSettingByUserId(@Param("userId")  Long userId);
     /** 
     * 查找个人的求职申请 
     *  @param userId 
@@ -313,7 +313,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-4-18 下午9:50:33 
     */  
     @RpcMethod("findJobApplyDTOByUserId")
-    public RequestChannel<Page<JobApplyDTO>> findJobApplyDTOByUserId(@Param("userId") Long userId, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<JobApplyDTO>> findJobApplyDTOByUserId(@Param("userId")  Long userId, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 求职申请的状态跟踪  
     *  @param userId 
@@ -321,7 +321,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-6-14 上午11:10:50 
     */  
     @RpcMethod("findJobTrackApplyByUserIdAndPostId")
-    public RequestChannel<List<JobTrackApplyDTO>> findJobTrackApplyByUserIdAndPostId(@Param("userId") Long userId, @Param("postId") Long postId);
+    public RequestChannel<List<JobTrackApplyDTO>> findJobTrackApplyByUserIdAndPostId(@Param("userId")  Long userId, @Param("postId")  Long postId);
     /** 
     * 查询个人求职意向 
     *  @param userId 
@@ -329,7 +329,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-7 下午4:34:28 
     */  
     @RpcMethod("findUserObjectiveDTO")
-    public RequestChannel<JobObjectiveDTO> findUserObjectiveDTO(@Param("userId") Long userId);
+    public RequestChannel<JobObjectiveDTO> findUserObjectiveDTO(@Param("userId")  Long userId);
     /** 
     * 更新个人求职意向 
     *  @param objective 
@@ -337,7 +337,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-7 下午4:38:42 
     */  
     @RpcMethod("updateObjectiveDTO")
-    public RequestChannel<Integer> updateObjectiveDTO(@Param("objective") JobObjectiveDTO objective);
+    public RequestChannel<Integer> updateObjectiveDTO(@Param("objective")  JobObjectiveDTO objective);
     /** 
     * 删除求职意向 
     *  @param objective 
@@ -345,7 +345,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-12 上午10:00:28 
     */  
     @RpcMethod("removeUserObjective")
-    public RequestChannel<Integer> removeUserObjective(@Param("objective") JobObjectiveDTO objective);
+    public RequestChannel<Integer> removeUserObjective(@Param("objective")  JobObjectiveDTO objective);
     /** 
     * 查询个人主页的DTO 
     *  @param userId 
@@ -353,7 +353,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-14 下午4:29:29 
     */  
     @RpcMethod("findJobUserHomePageDTO")
-    public RequestChannel<JobUserHomePageDTO> findJobUserHomePageDTO(@Param("userId") Long userId);
+    public RequestChannel<JobUserHomePageDTO> findJobUserHomePageDTO(@Param("userId")  Long userId);
     /** 
     * 查找个人主页的头部 
     *  @param userId 
@@ -361,7 +361,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-8 上午11:31:12 
     */  
     @RpcMethod("findJobUserHomePageTitleDTO")
-    public RequestChannel<JobUserHomePageTitleDTO> findJobUserHomePageTitleDTO(@Param("userId") Long userId);
+    public RequestChannel<JobUserHomePageTitleDTO> findJobUserHomePageTitleDTO(@Param("userId")  Long userId);
     /** 
     * 查找个人主页的中间部分的内容 
     *  @param userId 
@@ -369,7 +369,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-14 下午3:49:45 
     */  
     @RpcMethod("findJobUserHomePageMiddleDTO")
-    public RequestChannel<JobUserHomePageMiddleDTO> findJobUserHomePageMiddleDTO(@Param("userId") Long userId);
+    public RequestChannel<JobUserHomePageMiddleDTO> findJobUserHomePageMiddleDTO(@Param("userId")  Long userId);
     /** 
     * 更新个人主页的头像 
     *  @param imgAttachDTO 图片附件 
@@ -377,7 +377,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-8 下午12:21:32 
     */  
     @RpcMethod("updateImgInUserHomePage")
-    public RequestChannel<Integer> updateImgInUserHomePage(@Param("imgAttachDTO") ImgAttachDTO imgAttachDTO);
+    public RequestChannel<Integer> updateImgInUserHomePage(@Param("imgAttachDTO")  ImgAttachDTO imgAttachDTO);
     /** 
     * 签到 
     *  @param userId 
@@ -385,14 +385,14 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-8 上午11:49:54 
     */  
     @RpcMethod("signIn")
-    public RequestChannel<Integer> signIn(@Param("userId") Long userId);
+    public RequestChannel<Integer> signIn(@Param("userId")  Long userId);
     /** 
     * 个人简历 
     *  @param userId 
     *  @author focus, 2014-5-8 上午11:54:08 
     */  
     @RpcMethod("findJobUserResumeTitleDTO")
-    public RequestChannel<JobUserResumeTitleDTO> findJobUserResumeTitleDTO(@Param("userId") Long userId);
+    public RequestChannel<JobUserResumeTitleDTO> findJobUserResumeTitleDTO(@Param("userId")  Long userId);
     /** 
     * 查找当前页面中间的信息 
     *  @param userId 
@@ -400,7 +400,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-14 下午3:56:02 
     */  
     @RpcMethod("findJobUserResumeMiddleDTO")
-    public RequestChannel<JobUserResumeMiddleDTO> findJobUserResumeMiddleDTO(@Param("userId") Long userId);
+    public RequestChannel<JobUserResumeMiddleDTO> findJobUserResumeMiddleDTO(@Param("userId")  Long userId);
     /** 
     * 查询个人简历的主页 
     *  @param userId 
@@ -408,7 +408,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-14 下午4:31:51 
     */  
     @RpcMethod("findJobUserResumeHomePageDTO")
-    public RequestChannel<JobUserResumeHomePageDTO> findJobUserResumeHomePageDTO(@Param("userId") Long userId);
+    public RequestChannel<JobUserResumeHomePageDTO> findJobUserResumeHomePageDTO(@Param("userId")  Long userId);
     /** 
     * 更新个人简历中的头像 
     *  @param imgAttachDTO 
@@ -416,7 +416,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-8 下午12:23:09 
     */  
     @RpcMethod("updateImgInUserResume")
-    public RequestChannel<Integer> updateImgInUserResume(@Param("imgAttachDTO") ImgAttachDTO imgAttachDTO);
+    public RequestChannel<Integer> updateImgInUserResume(@Param("imgAttachDTO")  ImgAttachDTO imgAttachDTO);
     /** 
     * 查询用户的自我评价 
     *  @param userId 
@@ -424,14 +424,14 @@ public interface IRpcJobUservice   {
     *  @author hw, 2014-5-12 下午4:30:14 
     */  
     @RpcMethod("findUserComment")
-    public RequestChannel<UserCommentDTO> findUserComment(@Param("userId") Long userId);
+    public RequestChannel<UserCommentDTO> findUserComment(@Param("userId")  Long userId);
     /** 
     * 查找系统自我评价标签 
     *  @return 
     *  @author focus, 2014-5-8 下午3:03:43 
     */  
     @RpcMethod("findBasicSysCommentTagDTO")
-    public RequestChannel<Page<BasicSysCommentTagDTO>> findBasicSysCommentTagDTO(@Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<BasicSysCommentTagDTO>> findBasicSysCommentTagDTO(@Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 添加自我评价 
     *  @param tagList		标签的列表 
@@ -440,7 +440,7 @@ public interface IRpcJobUservice   {
     *  @author hw, 2014-5-12 下午4:09:42 
     */  
     @RpcMethod("addUserComment")
-    public RequestChannel<Integer> addUserComment(@Param("userId") Long userId, @Param("tagList") List<CommentTagDTO> tagList, @Param("comment") String comment);
+    public RequestChannel<Integer> addUserComment(@Param("userId")  Long userId, @Param("tagList")  List<CommentTagDTO> tagList, @Param("comment")  String comment);
     /** 
     * 查找个人的黑名单 
     *  @param userId	 
@@ -448,7 +448,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-8 下午3:10:31 
     */  
     @RpcMethod("findUserBlackListDTOByUserId")
-    public RequestChannel<List<JobUserBlackListDTO>> findUserBlackListDTOByUserId(@Param("userId") Long userId);
+    public RequestChannel<List<JobUserBlackListDTO>> findUserBlackListDTOByUserId(@Param("userId")  Long userId);
     /** 
     * 移除用户黑名单 
     *  @param userId 
@@ -457,7 +457,7 @@ public interface IRpcJobUservice   {
     *  @author hw, 2014-5-9 下午3:02:37 
     */  
     @RpcMethod("removeUserBlack")
-    public RequestChannel<Integer> removeUserBlack(@Param("userId") Long userId, @Param("entId") Long entId);
+    public RequestChannel<Integer> removeUserBlack(@Param("userId")  Long userId, @Param("entId")  Long entId);
     /** 
     * 查询意见反馈 
     *  @param userId 
@@ -467,7 +467,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-8 下午7:02:52 
     */  
     @RpcMethod("findUserFeedBackDTOByUserId")
-    public RequestChannel<Page<JobFeedBackListDTO>> findUserFeedBackDTOByUserId(@Param("userId") Long userId, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<JobFeedBackListDTO>> findUserFeedBackDTOByUserId(@Param("userId")  Long userId, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 添加意见反馈 
     *  @param userId	用户id 
@@ -476,7 +476,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-8 下午7:15:47 
     */  
     @RpcMethod("addUserFeedBack")
-    public RequestChannel<Integer> addUserFeedBack(@Param("userId") Long userId, @Param("content") String content);
+    public RequestChannel<Integer> addUserFeedBack(@Param("userId")  Long userId, @Param("content")  String content);
     /** 
     * 邮箱修改 
     *  @param userId	用户id 
@@ -486,7 +486,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-8 下午7:23:47 
     */  
     @RpcMethod("updateUserEmail")
-    public RequestChannel<Integer> updateUserEmail(@Param("userId") Long userId, @Param("pwd") String pwd, @Param("newEmail") String newEmail);
+    public RequestChannel<Integer> updateUserEmail(@Param("userId")  Long userId, @Param("pwd")  String pwd, @Param("newEmail")  String newEmail);
     /** 
     * 信息中心，查询面试邀请 
     *  @param userId 
@@ -496,7 +496,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-8 下午7:42:48 
     */  
     @RpcMethod("findUserInterview")
-    public RequestChannel<Page<JobInterviewListDTO>> findUserInterview(@Param("userId") Long userId, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<JobInterviewListDTO>> findUserInterview(@Param("userId")  Long userId, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 信息中心，查询面试邀请详情 
     *  @param interViewId 
@@ -504,7 +504,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-8 下午7:42:48 
     */  
     @RpcMethod("findUserInterviewDetail")
-    public RequestChannel<JobInterviewDTO> findUserInterviewDetail(@Param("interViewId") Long interViewId);
+    public RequestChannel<JobInterviewDTO> findUserInterviewDetail(@Param("interViewId")  Long interViewId);
     /** 
     * 信息中心，查询用户申请岗位列表 
     *  @param userId 
@@ -514,7 +514,7 @@ public interface IRpcJobUservice   {
     *  @author hw, 2014-5-13 下午3:15:00 
     */  
     @RpcMethod("findUserApply")
-    public RequestChannel<Page<JobApplyListDTO>> findUserApply(@Param("userId") Long userId, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<JobApplyListDTO>> findUserApply(@Param("userId")  Long userId, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 信息中心，查询企业访问个人简历列表 
     *  @param userId 
@@ -524,7 +524,7 @@ public interface IRpcJobUservice   {
     *  @author hw, 2014-5-13 下午3:20:14 
     */  
     @RpcMethod("findEntAccess")
-    public RequestChannel<Page<JobEntAccessListDTO>> findEntAccess(@Param("userId") Long userId, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<JobEntAccessListDTO>> findEntAccess(@Param("userId")  Long userId, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 查询用户订阅列表 
     *  @param userId 
@@ -534,7 +534,7 @@ public interface IRpcJobUservice   {
     *  @author hw, 2014-5-14 下午2:26:10 
     */  
     @RpcMethod("findUserSubscriptionList")
-    public RequestChannel<Page<JobUserSubscriptionDTO>> findUserSubscriptionList(@Param("userId") Long userId, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<JobUserSubscriptionDTO>> findUserSubscriptionList(@Param("userId")  Long userId, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 查询用户订阅 
     *  @param subId 
@@ -542,7 +542,7 @@ public interface IRpcJobUservice   {
     *  @author hw, 2014-5-14 下午2:26:10 
     */  
     @RpcMethod("findUserSubscription")
-    public RequestChannel<JobUserSubscriptionDTO> findUserSubscription(@Param("subId") Long subId);
+    public RequestChannel<JobUserSubscriptionDTO> findUserSubscription(@Param("subId")  Long subId);
     /** 
     * 添加用户订阅 
     *  @param jobUserSubscriptionDTO 
@@ -550,7 +550,7 @@ public interface IRpcJobUservice   {
     *  @author hw, 2014-5-14 下午2:47:41 
     */  
     @RpcMethod("addUserSubscription")
-    public RequestChannel<Integer> addUserSubscription(@Param("jobUserSubscriptionDTO") JobUserSubscriptionDTO jobUserSubscriptionDTO);
+    public RequestChannel<Integer> addUserSubscription(@Param("jobUserSubscriptionDTO")  JobUserSubscriptionDTO jobUserSubscriptionDTO);
     /** 
     * 更新用户订阅 
     *  @param jobUserSubscriptionDTO 
@@ -558,7 +558,7 @@ public interface IRpcJobUservice   {
     *  @author hw, 2014-5-14 下午2:47:52 
     */  
     @RpcMethod("updateUserSubscription")
-    public RequestChannel<Integer> updateUserSubscription(@Param("jobUserSubscriptionDTO") JobUserSubscriptionDTO jobUserSubscriptionDTO);
+    public RequestChannel<Integer> updateUserSubscription(@Param("jobUserSubscriptionDTO")  JobUserSubscriptionDTO jobUserSubscriptionDTO);
     /** 
     * 删除用户订阅 
     *  @param subId 
@@ -566,7 +566,7 @@ public interface IRpcJobUservice   {
     *  @author hw, 2014-5-14 下午2:48:04 
     */  
     @RpcMethod("removeUserSubscription")
-    public RequestChannel<Integer> removeUserSubscription(@Param("subId") Long subId);
+    public RequestChannel<Integer> removeUserSubscription(@Param("subId")  Long subId);
     /** 
     * 查询订阅的岗位的列表 
     *  @param postCode 
@@ -576,7 +576,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-28 下午3:58:46 
     */  
     @RpcMethod("findUserSubcriptionPostList")
-    public RequestChannel<Page<JobEntPostDTO>> findUserSubcriptionPostList(@Param("postCode") String postCode, @Param("areaCode") String areaCode, @Param("industryCode") String industryCode, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<JobEntPostDTO>> findUserSubcriptionPostList(@Param("postCode")  String postCode, @Param("areaCode")  String areaCode, @Param("industryCode")  String industryCode, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 通过关键字查找技能 
     *  @param keyWord	关键字：技能名称，岗位名称 
@@ -585,7 +585,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-21 上午9:34:14 
     */  
     @RpcMethod("findTechnicalBySearchKeyWord")
-    public RequestChannel<Page<JobTechnicalDTO>> findTechnicalBySearchKeyWord(@Param("keyWord") String keyWord, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<JobTechnicalDTO>> findTechnicalBySearchKeyWord(@Param("keyWord")  String keyWord, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 根据个人的求职意向查询技能 
     *  @param userId	用户id 
@@ -593,7 +593,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-14 上午10:40:43 
     */  
     @RpcMethod("findJobTechnicalByObjective")
-    public RequestChannel<Page<JobTechnicalDTO>> findJobTechnicalByObjective(@Param("userId") Long userId, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<JobTechnicalDTO>> findJobTechnicalByObjective(@Param("userId")  Long userId, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 查找用户的个人技能列表 
     *  @param userId	用户id 
@@ -601,7 +601,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-14 上午10:40:43 
     */  
     @RpcMethod("findJobTechnicalSelectedByUserId")
-    public RequestChannel<Page<JobTechnicalDTO>> findJobTechnicalSelectedByUserId(@Param("userId") Long userId, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<JobTechnicalDTO>> findJobTechnicalSelectedByUserId(@Param("userId")  Long userId, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 更新技能 
     *  @param technical 
@@ -609,7 +609,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-14 上午11:58:31 
     */  
     @RpcMethod("updateJobTechnicalBatch")
-    public RequestChannel<Integer> updateJobTechnicalBatch(@Param("technicals") List<JobTechnicalDTO> technicals, @Param("userId") Long userId);
+    public RequestChannel<Integer> updateJobTechnicalBatch(@Param("technicals")  List<JobTechnicalDTO> technicals, @Param("userId")  Long userId);
     /** 
     * 添加技能  
     *  @param technologyCode 
@@ -619,7 +619,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-22 下午7:41:48 
     */  
     @RpcMethod("addJobTechnical")
-    public RequestChannel<Integer> addJobTechnical(@Param("technologyCode") String technologyCode, @Param("paramCode") String paramCode, @Param("userId") Long userId);
+    public RequestChannel<Integer> addJobTechnical(@Param("technologyCode")  String technologyCode, @Param("paramCode")  String paramCode, @Param("userId")  Long userId);
     /** 
     * 更新技能 
     *  @param technologyCode 
@@ -629,7 +629,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-22 下午7:42:18 
     */  
     @RpcMethod("updateJobTechnical")
-    public RequestChannel<Integer> updateJobTechnical(@Param("technologyCode") String technologyCode, @Param("paramCode") String paramCode, @Param("userId") Long userId);
+    public RequestChannel<Integer> updateJobTechnical(@Param("technologyCode")  String technologyCode, @Param("paramCode")  String paramCode, @Param("userId")  Long userId);
     /** 
     * 删除个人技能 
     *  @param technicalId 
@@ -637,7 +637,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-14 上午11:58:39 
     */  
     @RpcMethod("removeJobTechnical")
-    public RequestChannel<Integer> removeJobTechnical(@Param("technicalId") Long technicalId);
+    public RequestChannel<Integer> removeJobTechnical(@Param("technicalId")  Long technicalId);
     /** 
     * 批量删除技能 
     *  @param ids 
@@ -645,7 +645,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-21 上午9:32:10 
     */  
     @RpcMethod("removeJobTechnicalBatch")
-    public RequestChannel<Integer> removeJobTechnicalBatch(@Param("ids") List<Long> ids);
+    public RequestChannel<Integer> removeJobTechnicalBatch(@Param("ids")  List<Long> ids);
     /** 
     * 更新个人的求职状态 
     *  @param jobStatusCode	个人求职装的编码 
@@ -654,7 +654,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-15 下午3:24:08 
     */  
     @RpcMethod("updateJobStatus")
-    public RequestChannel<Integer> updateJobStatus(@Param("jobStatusCode") String jobStatusCode, @Param("userId") Long userId);
+    public RequestChannel<Integer> updateJobStatus(@Param("jobStatusCode")  String jobStatusCode, @Param("userId")  Long userId);
     /** 
     * 查询个人的岗位收藏 
     *  @param userId 
@@ -662,7 +662,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-19 上午10:32:42 
     */  
     @RpcMethod("findJobUserFavoritesByUserId")
-    public RequestChannel<Page<JobUserFavoritesDTO>> findJobUserFavoritesByUserId(@Param("userId") Long userId, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<JobUserFavoritesDTO>> findJobUserFavoritesByUserId(@Param("userId")  Long userId, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 查找个人的语言 
     *  @param userId 
@@ -670,7 +670,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-23 上午11:34:09 
     */  
     @RpcMethod("findJobLanguageDTOByUserId")
-    public RequestChannel<List<JobLanguageDTO>> findJobLanguageDTOByUserId(@Param("userId") Long userId);
+    public RequestChannel<List<JobLanguageDTO>> findJobLanguageDTOByUserId(@Param("userId")  Long userId);
     /** 
     * 添加语言 
     *  @param language 
@@ -678,7 +678,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-23 上午11:39:29 
     */  
     @RpcMethod("addJobLanguage")
-    public RequestChannel<Integer> addJobLanguage(@Param("language") JobLanguageDTO language);
+    public RequestChannel<Integer> addJobLanguage(@Param("language")  JobLanguageDTO language);
     /** 
     * 删除语言 
     *  @param language 
@@ -686,7 +686,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-23 上午11:39:40 
     */  
     @RpcMethod("removeJobLanguage")
-    public RequestChannel<Integer> removeJobLanguage(@Param("language") JobLanguageDTO language);
+    public RequestChannel<Integer> removeJobLanguage(@Param("language")  JobLanguageDTO language);
     /** 
     * 更新语言 
     *  @param language 
@@ -694,14 +694,14 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-23 上午11:39:51 
     */  
     @RpcMethod("updateJobLanguage")
-    public RequestChannel<Integer> updateJobLanguage(@Param("language") JobLanguageDTO language);
+    public RequestChannel<Integer> updateJobLanguage(@Param("language")  JobLanguageDTO language);
     /** 
     * 查找所有的语言 
     *  @return 
     *  @author focus, 2014-5-23 下午4:24:55 
     */  
     @RpcMethod("findAllLanguage")
-    public RequestChannel<Page<JobLanguageDTO>> findAllLanguage(@Param("userId") Long userId, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<JobLanguageDTO>> findAllLanguage(@Param("userId")  Long userId, @Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     /** 
     * 检查用户信息 
     *  @param userId 
@@ -709,7 +709,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-5-29 下午12:03:57 
     */  
     @RpcMethod("CheckUserRequisite")
-    public RequestChannel<CheckUserRequisiteDTO> CheckUserRequisite(@Param("userId") Long userId);
+    public RequestChannel<CheckUserRequisiteDTO> CheckUserRequisite(@Param("userId")  Long userId);
     /** 
     * 是否是最新的系统 
     *  @param versionCode	版本号 
@@ -724,7 +724,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-7-10 下午12:00:56 
     */  
     @RpcMethod("isTheLastSystem")
-    public RequestChannel<Integer> isTheLastSystem(@Param("versionCode") Integer versionCode, @Param("deviceType") Integer deviceType);
+    public RequestChannel<Integer> isTheLastSystem(@Param("versionCode")  Integer versionCode, @Param("deviceType")  Integer deviceType);
     /** 
     * 添加错误日志 
     *  @param userId 
@@ -735,7 +735,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-7-10 下午5:44:23 
     */  
     @RpcMethod("addErrorLog")
-    public RequestChannel<Integer> addErrorLog(@Param("userId") Long userId, @Param("modelNumber") String modelNumber, @Param("sysVersion") String sysVersion, @Param("imgAttachDTO") ImgAttachDTO imgAttachDTO);
+    public RequestChannel<Integer> addErrorLog(@Param("userId")  Long userId, @Param("modelNumber")  String modelNumber, @Param("sysVersion")  String sysVersion, @Param("imgAttachDTO")  ImgAttachDTO imgAttachDTO);
     /** 
     * 查找用户的个人头像 
     *  @param userId 
@@ -743,7 +743,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-7-17 下午4:59:45 
     */  
     @RpcMethod("findUserPortrait")
-    public RequestChannel<JobUserPortraitDTO> findUserPortrait(@Param("userId") Long userId);
+    public RequestChannel<JobUserPortraitDTO> findUserPortrait(@Param("userId")  Long userId);
     /** 
     * 查询软件分享的内容 
     *  @param userId 
@@ -751,7 +751,7 @@ public interface IRpcJobUservice   {
     *  @author hw, 2014-7-18 下午6:01:56 
     */  
     @RpcMethod("findAppShareContent")
-    public RequestChannel<List<JobEntShareDTO>> findAppShareContent(@Param("userId") Long userId);
+    public RequestChannel<List<JobEntShareDTO>> findAppShareContent(@Param("userId")  Long userId);
     /** 
     * 预览简历 
     *  @param userId	用户的userId 
@@ -759,7 +759,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-8-8 上午10:08:05 
     */  
     @RpcMethod("previewResumeByUserId")
-    public RequestChannel<String> previewResumeByUserId(@Param("userId") Long userId);
+    public RequestChannel<String> previewResumeByUserId(@Param("userId")  Long userId);
     /** 
     * 添加登陆的详细信息 
     *  @param userLogin 
@@ -767,7 +767,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-8-15 下午4:01:34 
     */  
     @RpcMethod("addLoginInfo")
-    public RequestChannel<Integer> addLoginInfo(@Param("userLogin") JobUserLoginInfo userLogin);
+    public RequestChannel<Integer> addLoginInfo(@Param("userLogin")  JobUserLoginInfo userLogin);
     /** 
     * 发送手机验证码 
     *  @param mobilePhoneNo 手机号码 
@@ -775,7 +775,7 @@ public interface IRpcJobUservice   {
     *  @author danny, 2014-9-11 下午3:23:37 
     */  
     @RpcMethod("sendSMSVerificationCodeInRegister")
-    public RequestChannel<Integer> sendSMSVerificationCodeInRegister(@Param("mobilePhoneNo") String mobilePhoneNo);
+    public RequestChannel<Integer> sendSMSVerificationCodeInRegister(@Param("mobilePhoneNo")  String mobilePhoneNo);
     /** 
     * 验证手机验证码是否正确 
     *  @param mobilePhoneNo 手机号码 
@@ -784,7 +784,7 @@ public interface IRpcJobUservice   {
     *  @author danny, 2014-9-11 下午3:42:17 
     */  
     @RpcMethod("validSMSVerificationCodeInRegister")
-    public RequestChannel<Integer> validSMSVerificationCodeInRegister(@Param("mobilePhoneNo") String mobilePhoneNo, @Param("verificationCode") String verificationCode);
+    public RequestChannel<Integer> validSMSVerificationCodeInRegister(@Param("mobilePhoneNo")  String mobilePhoneNo, @Param("verificationCode")  String verificationCode);
     /** 
     * 修改密码时，发送的短信验证码 
     *  @param mobilePhoneNo	手机号码 
@@ -792,7 +792,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-9-25 下午2:11:14 
     */  
     @RpcMethod("sendSMSVerificationCodeInResertPwd")
-    public RequestChannel<Integer> sendSMSVerificationCodeInResertPwd(@Param("mobilePhoneNo") String mobilePhoneNo);
+    public RequestChannel<Integer> sendSMSVerificationCodeInResertPwd(@Param("mobilePhoneNo")  String mobilePhoneNo);
     /** 
     * 修改密码的短信验证码验证 
     *  @param mobilePhoneNo 
@@ -801,7 +801,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-9-25 下午2:12:53 
     */  
     @RpcMethod("validSMSVerificationCodeInResertPwd")
-    public RequestChannel<Integer> validSMSVerificationCodeInResertPwd(@Param("mobilePhoneNo") String mobilePhoneNo, @Param("verificationCode") String verificationCode);
+    public RequestChannel<Integer> validSMSVerificationCodeInResertPwd(@Param("mobilePhoneNo")  String mobilePhoneNo, @Param("verificationCode")  String verificationCode);
     /** 
     * 账号管理： 绑定 
     *  @param userId	用户id	 
@@ -811,7 +811,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-9-18 下午5:37:34 
     */  
     @RpcMethod("bindAccount")
-    public RequestChannel<Integer> bindAccount(@Param("userId") Long userId, @Param("bindType") String bindType, @Param("bindValue") String bindValue);
+    public RequestChannel<Integer> bindAccount(@Param("userId")  Long userId, @Param("bindType")  String bindType, @Param("bindValue")  String bindValue);
     /** 
     * 账号管理： 解除绑定 
     *  @param userId  		用户id 
@@ -821,7 +821,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-9-18 下午5:37:48 
     */  
     @RpcMethod("unBindAccount")
-    public RequestChannel<Integer> unBindAccount(@Param("userId") Long userId, @Param("bindType") String bindType, @Param("bindValue") String bindValue);
+    public RequestChannel<Integer> unBindAccount(@Param("userId")  Long userId, @Param("bindType")  String bindType, @Param("bindValue")  String bindValue);
     /** 
     * 更新用户绑定的手机号码 
     *  @param userId	用户id 
@@ -830,7 +830,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-9-23 上午10:45:27 
     */  
     @RpcMethod("updateBindUserMobile")
-    public RequestChannel<Integer> updateBindUserMobile(@Param("userId") Long userId, @Param("mobile") String mobile, @Param("verificationCode") String verificationCode);
+    public RequestChannel<Integer> updateBindUserMobile(@Param("userId")  Long userId, @Param("mobile")  String mobile, @Param("verificationCode")  String verificationCode);
     /** 
     * 添加账号密码 : 使用于第一次绑定手机号码，并且添加密码 
     *   
@@ -840,7 +840,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-9-25 下午4:08:26 
     */  
     @RpcMethod("bindUserMobileAndUpdatePwd")
-    public RequestChannel<Integer> bindUserMobileAndUpdatePwd(@Param("userId") Long userId, @Param("mobile") String mobile, @Param("pwd") String pwd);
+    public RequestChannel<Integer> bindUserMobileAndUpdatePwd(@Param("userId")  Long userId, @Param("mobile")  String mobile, @Param("pwd")  String pwd);
     /** 
     * 更新用户绑定的邮箱 
     *  @param userId	用户id 
@@ -849,7 +849,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-9-23 下午4:48:58 
     */  
     @RpcMethod("updateBindUserEmail")
-    public RequestChannel<Integer> updateBindUserEmail(@Param("userId") Long userId, @Param("email") String email);
+    public RequestChannel<Integer> updateBindUserEmail(@Param("userId")  Long userId, @Param("email")  String email);
     /** 
     * 账号管理：查询用户的账号管理 
     *  @param userId	用户id 
@@ -857,7 +857,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-9-18 下午5:42:16 
     */  
     @RpcMethod("findUserAccountManagerDTOByUserId")
-    public RequestChannel<List<UserAccountManagerDTO>> findUserAccountManagerDTOByUserId(@Param("userId") Long userId);
+    public RequestChannel<List<UserAccountManagerDTO>> findUserAccountManagerDTOByUserId(@Param("userId")  Long userId);
     /** 
     * 账号管理：查找管理第三方插件的图片 
     *  @param userId 
@@ -865,7 +865,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-9-18 下午5:51:06 
     */  
     @RpcMethod("findThirdImgURLDTOByUserId")
-    public RequestChannel<List<ThirdImgUrlDTO>> findThirdImgURLDTOByUserId(@Param("userId") Long userId);
+    public RequestChannel<List<ThirdImgUrlDTO>> findThirdImgURLDTOByUserId(@Param("userId")  Long userId);
     /** 
     * 绑定头像： 
     *   
@@ -882,7 +882,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-9-22 上午10:58:13 
     */  
     @RpcMethod("bindThirdPortrait")
-    public RequestChannel<Integer> bindThirdPortrait(@Param("bindType") String bindType, @Param("bindValue") String bindValue, @Param("imgAttachDTO") ImgAttachDTO imgAttachDTO);
+    public RequestChannel<Integer> bindThirdPortrait(@Param("bindType")  String bindType, @Param("bindValue")  String bindValue, @Param("imgAttachDTO")  ImgAttachDTO imgAttachDTO);
     /** 
     * 是否使用shareSDKMobile 发送短信 
     *  @return	 39 使用shareSDKMobile 发送短信 并且手机不存在, 40 使用服务端发送短信 并且手机号码不存在， <br>   
@@ -890,7 +890,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-9-26 下午2:10:38 
     */  
     @RpcMethod("isUserShareSDKMobileSendSM")
-    public RequestChannel<Integer> isUserShareSDKMobileSendSM(@Param("mobile") String mobile);
+    public RequestChannel<Integer> isUserShareSDKMobileSendSM(@Param("mobile")  String mobile);
     /** 
     * 是否打开匹配度设置 
     *  @param userId 
@@ -898,7 +898,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-9-30 下午2:39:47 
     */  
     @RpcMethod("isOpenUserMatchSet")
-    public RequestChannel<Integer> isOpenUserMatchSet(@Param("userId") Long userId);
+    public RequestChannel<Integer> isOpenUserMatchSet(@Param("userId")  Long userId);
     /** 
     * 通过手机号码修改密码 
     *  @param userId 	用户id 
@@ -907,7 +907,7 @@ public interface IRpcJobUservice   {
     *  @author focus, 2014-9-30 下午2:58:56 
     */  
     @RpcMethod("updatePWDByMobile")
-    public RequestChannel<Integer> updatePWDByMobile(@Param("mobile") String mobile, @Param("pwd") String pwd, @Param("verificationCode") String verificationCode);
+    public RequestChannel<Integer> updatePWDByMobile(@Param("mobile")  String mobile, @Param("pwd")  String pwd, @Param("verificationCode")  String verificationCode);
     /** 
     * 请求的设备的属性  
     *  手机型号		DECEIVE_NAME	 
@@ -931,7 +931,7 @@ public interface IRpcJobUservice   {
     *  @return 0 成功 
     */  
     @RpcMethod("addUserLog")
-    public RequestChannel<Integer> addUserLog(@Param("params") Map<String, String> params);
+    public RequestChannel<Integer> addUserLog(@Param("params")  Map<String,String> params);
     /** 
     * 使用微信登陆 
     *  @param openId 
@@ -939,7 +939,7 @@ public interface IRpcJobUservice   {
     *  @author liyuan, 2015-5-7 下午1:06:24 
     */  
     @RpcMethod("loginByWeChat")
-    public RequestChannel<Integer> loginByWeChat(@Param("openId") String openId);
+    public RequestChannel<Integer> loginByWeChat(@Param("openId")  String openId);
     /** 
     * 通过微信获取userId 
     *  @param openId 
@@ -947,7 +947,7 @@ public interface IRpcJobUservice   {
     *  @author liyuan, 2015-5-7 下午5:59:06 
     */  
     @RpcMethod("findUserIdByWeChat")
-    public RequestChannel<Long> findUserIdByWeChat(@Param("openId") String openId);
+    public RequestChannel<Long> findUserIdByWeChat(@Param("openId")  String openId);
     /** 
     * 通过微信无绑定账号直接注册 
     *  @param openId 
@@ -956,123 +956,182 @@ public interface IRpcJobUservice   {
     *  @author liyuan, 2015-5-12 上午10:54:46 
     */  
     @RpcMethod("registerByWeChat")
-    public RequestChannel<Integer> registerByWeChat(@Param("openId") String openId, @Param("imgAttachDTO") ImgAttachDTO imgAttachDTO);
+    public RequestChannel<Integer> registerByWeChat(@Param("openId")  String openId, @Param("imgAttachDTO")  ImgAttachDTO imgAttachDTO);
+    /** 
+    * 根据用户id获取实践经历列表 
+    *  @param user_id 
+    *  @return 
+    *  @author liyuan, 2015-7-15 下午6:15:30 
+    */  
+    @RpcMethod("findJobPracticeList")
+    public RequestChannel<List<JobPracticeDTO>> findJobPracticeList(@Param("user_id")  Long user_id);
+    /** 
+    * 删除实践经历实体 
+    *  @param practice_id 
+    *  @return 0-成功 其它-不成功 
+    *  @author liyuan, 2015-7-15 下午6:21:15 
+    */  
+    @RpcMethod("removeJobPractice")
+    public RequestChannel<Integer> removeJobPractice(@Param("practice_id")  Long practice_id);
+    /** 
+    * 添加实践经历实体 
+    *  @param practice 
+    *  @return 0-成功 其它-不成功 
+    *  @author liyuan, 2015-7-15 下午6:24:05 
+    */  
+    @RpcMethod("addJobPractice")
+    public RequestChannel<Integer> addJobPractice(@Param("practice")  JobPracticeDTO practice);
+    /** 
+    * 修改实践经历实体 
+    *  @param practice 
+    *  @return 0-成功 其它-不成功 
+    *  @author liyuan, 2015-7-15 下午6:25:07 
+    */  
+    @RpcMethod("updateJobPractice")
+    public RequestChannel<Integer> updateJobPractice(@Param("practice")  JobPracticeDTO practice);
+    /** 
+    * 根据用户id获取获奖经历列表 
+    *  @param user_id 
+    *  @return 
+    *  @author liyuan, 2015-7-15 下午6:33:55 
+    */  
+    @RpcMethod("findJobPrizesList")
+    public RequestChannel<List<JobPrizesDTO>> findJobPrizesList(@Param("user_id")  Long user_id);
+    /** 
+    * 删除获奖经历实体 
+    *  @param prizes_id 
+    *  @return 0-成功 其它-不成功 
+    *  @author liyuan, 2015-7-15 下午6:34:44 
+    */  
+    @RpcMethod("removeJobPrizes")
+    public RequestChannel<Integer> removeJobPrizes(@Param("prizes_id")  Long prizes_id);
+    /** 
+    * 添加获奖经历实体 
+    *  @param prizes 
+    *  @return 0-成功 其它-不成功 
+    *  @author liyuan, 2015-7-15 下午6:36:17 
+    */  
+    @RpcMethod("addJobPrizes")
+    public RequestChannel<Integer> addJobPrizes(@Param("prizes")  JobPrizesDTO prizes);
+    /** 
+    * 修改获奖经历实体 
+    *  @param prizes 
+    *  @return 0-成功 其它-不成功 
+    *  @author liyuan, 2015-7-15 下午6:36:59 
+    */  
+    @RpcMethod("updateJobPrizes")
+    public RequestChannel<Integer> updateJobPrizes(@Param("prizes")  JobPrizesDTO prizes);
+    /** 
+    * 判断给定的手机号码是否合法 
+    *  @param mobile 
+    *  @return 1- 合法 0-不合法 
+    *  @author liyuan, 2015-7-16 下午4:02:35 
+    */  
+    @RpcMethod("isValidMobilePhone")
+    public RequestChannel<Integer> isValidMobilePhone(@Param("mobile")  String mobile);
+    /** 
+    * 判断给定的邮箱号码是否合法 
+    *  @param email 
+    *  @return 1- 合法 0-不合法 
+    *  @author liyuan, 2015-7-17 上午11:31:58 
+    */  
+    @RpcMethod("isValidEmail")
+    public RequestChannel<Integer> isValidEmail(@Param("email")  String email);
+    /** 
+    * 获取手机和email的正则表达式 
+    *  @return regex_phone-手机正则表达式 regex_email-邮箱正则表达式 
+    *  @author liyuan, 2015-7-17 下午4:58:47 
+    */  
+    @RpcMethod("getMobileAndEmailRegex")
+    public RequestChannel<Map<String,String>> getMobileAndEmailRegex();
+    /** 
+    * 根据用户id获取求职用户对象信息 
+    *  @param userId 
+    *  @return 
+    *  @author liyuan, 2015-8-12 下午1:39:15 
+    */  
+    @RpcMethod("findJobUserDTOByUserId")
+    public RequestChannel<JobUserDTO> findJobUserDTOByUserId(@Param("userId")  Long userId);
+    /** 
+    * 登录到湖北公共招聘网 
+    *  @param account 
+    *  @param pwd 
+    *  @return 
+    *  @author liyuan, 2015-9-17 下午7:35:28 
+    */  
+    @RpcMethod("loginToHB")
+    public RequestChannel<HashMap<String,Object>> loginToHB(@Param("account")  String account, @Param("pwd")  String pwd);
+    /** 
+    * 根据账号获取用户id(湖北招聘网登录) 
+    *  @param account 
+    *  @return 
+    *  @author liyuan, 2015-9-18 下午1:54:44 
+    */  
+    @RpcMethod("findUserIdByHB")
+    public RequestChannel<Long> findUserIdByHB(@Param("account")  String account);
+    /** 
+    * 信息中心，查询面试邀请详情 
+    *  @param interViewId 
+    *  @return   
+    *  @author focus, 2014-5-8 下午7:42:48 
+    */  
+    @RpcMethod("findUserInterviewDetail2")
+    public RequestChannel<JobInterviewDTO> findUserInterviewDetail2(@Param("interViewId")  Long interViewId);
+    /** 
+    * 注册(模块化配置用) 
+    *  @param appId 
+    *  @param mobileNum 
+    *  @param pwd 
+    *  @param email 
+    *  @return 2 手机号码已经存在，3 email已经存在 ，0 注册成功 
+    *  @author liyuan, 2015-9-30 下午4:19:21 
+    */  
+    @RpcMethod("register2")
+    public RequestChannel<Integer> register2(@Param("appId")  Long appId, @Param("mobileNum")  String mobileNum, @Param("pwd")  String pwd, @Param("email")  String email);
+    /** 
+    * 绑定新的账号(模块化配置用) 
+    *  @param appId 
+    *  @param account 
+    *  @param email 
+    *  @param pwd 
+    *  @param loginType 登陆类型， QQ weiBo 如常量表 
+    *  @param warrantyId 授权id  QQ的为 openId  weiBo 的为weiBoUserId 
+    *  @return 0 成功， 8 账号已经存在 
+    *  @author liyuan, 2015-9-30 下午5:11:06 
+    */  
+    @RpcMethod("bindNewAccount2")
+    public RequestChannel<Integer> bindNewAccount2(@Param("appId")  Long appId, @Param("account")  String account, @Param("email")  String email, @Param("pwd")  String pwd, @Param("loginType")  String loginType, @Param("warrantyId")  String warrantyId);
+    /** 
+    * 通过QQ无绑定账号直接注册(模块化配置用) 
+    *  @param appId 
+    *  @param openId 
+    *  @param imgAttachDTO 
+    *  @return 0：注册成功，9：该QQ号已经绑定 
+    *  @author liyuan, 2015-9-30 下午5:35:05 
+    */  
+    @RpcMethod("registerByQQ2")
+    public RequestChannel<Integer> registerByQQ2(@Param("appId")  Long appId, @Param("openId")  String openId, @Param("imgAttachDTO")  ImgAttachDTO imgAttachDTO);
+    /** 
+    * 通过新浪微博无绑定账号直接注册(模块化配置用) 
+    *  @param appId 
+    *  @param weiBoUserId 微博用户id 
+    *  @param imgAttachDTO  
+    *  @return 0：注册成功，10：该微博号已经绑定 
+    *  @author liyuan, 2015-9-30 下午5:38:48 
+    */  
+    @RpcMethod("registerByWeibo2")
+    public RequestChannel<Integer> registerByWeibo2(@Param("appId")  Long appId, @Param("weiBoUserId")  String weiBoUserId, @Param("imgAttachDTO")  ImgAttachDTO imgAttachDTO);
+    /** 
+    * 通过微信无绑定账号直接注册(模块化配置用) 
+    *  @param appId 
+    *  @param openId 
+    *  @param imgAttachDTO 
+    *  @return 0：注册成功，44：该微信号已经绑定 
+    *  @author liyuan, 2015-9-30 下午5:41:37 
+    */  
+    @RpcMethod("registerByWeChat2")
+    public RequestChannel<Integer> registerByWeChat2(@Param("appId")  Long appId, @Param("openId")  String openId, @Param("imgAttachDTO")  ImgAttachDTO imgAttachDTO);
 
 
-    
-
-    
-    
-	/**
-	 * 根据用户id获取实践经历列表
-	 * @param user_id
-	 * @return
-	 * @author liyuan, 2015-7-15 下午6:15:30
-	 */
-	@RpcMethod("findJobPracticeList")
-	public RequestChannel<List<JobPracticeDTO>> findJobPracticeList(@Param("user_id") Long user_id);
-	
-	/**
-	 * 删除实践经历实体
-	 * @param practice_id
-	 * @return 0-成功 其它-不成功
-	 * @author liyuan, 2015-7-15 下午6:21:15
-	 */
-	@RpcMethod("removeJobPractice")
-	public RequestChannel<Integer> removeJobPractice(@Param("practice_id") Long practice_id);
-	
-	/**
-	 * 添加实践经历实体
-	 * @param practice
-	 * @return 0-成功 其它-不成功
-	 * @author liyuan, 2015-7-15 下午6:24:05
-	 */
-	@RpcMethod("addJobPractice")
-	public RequestChannel<Integer> addJobPractice(@Param("practice") JobPracticeDTO practice);
-	
-	/**
-	 * 修改实践经历实体
-	 * @param practice
-	 * @return 0-成功 其它-不成功
-	 * @author liyuan, 2015-7-15 下午6:25:07
-	 */
-	@RpcMethod("updateJobPractice")
-	public RequestChannel<Integer> updateJobPractice(@Param("practice") JobPracticeDTO practice);
-
-	
-	/**
-	 * 根据用户id获取获奖经历列表
-	 * @param user_id
-	 * @return
-	 * @author liyuan, 2015-7-15 下午6:33:55
-	 */
-	@RpcMethod("findJobPrizesList")
-	public RequestChannel<List<JobPrizesDTO>> findJobPrizesList(@Param("user_id") Long user_id);
-	
-	/**
-	 * 删除获奖经历实体
-	 * @param prizes_id
-	 * @return 0-成功 其它-不成功
-	 * @author liyuan, 2015-7-15 下午6:34:44
-	 */
-	@RpcMethod("removeJobPrizes")
-	public RequestChannel<Integer> removeJobPrizes(@Param("prizes_id") Long prizes_id);
-	
-	/**
-	 * 添加获奖经历实体
-	 * @param prizes
-	 * @return 0-成功 其它-不成功
-	 * @author liyuan, 2015-7-15 下午6:36:17
-	 */
-	@RpcMethod("addJobPrizes")
-	public RequestChannel<Integer> addJobPrizes(@Param("prizes") JobPrizesDTO prizes);
-	
-	/**
-	 * 修改获奖经历实体
-	 * @param prizes
-	 * @return 0-成功 其它-不成功
-	 * @author liyuan, 2015-7-15 下午6:36:59
-	 */
-	@RpcMethod("updateJobPrizes")
-	public RequestChannel<Integer> updateJobPrizes(@Param("prizes") JobPrizesDTO prizes);
-    
-	/**
-	 * 判断给定的手机号码是否合法
-	 * @param mobile
-	 * @return 1- 合法 0-不合法
-	 * @author liyuan, 2015-7-16 下午4:02:35
-	 */
-	@RpcMethod("isValidMobilePhone")
-	public RequestChannel<Integer> isValidMobilePhone(@Param("mobile") String mobile);
-	
-
-	/**
-	 * 判断给定的邮箱号码是否合法
-	 * @param email
-	 * @return 1- 合法 0-不合法
-	 * @author liyuan, 2015-7-17 上午11:31:58
-	 */
-	@RpcMethod("isValidEmail")
-	public RequestChannel<Integer> isValidEmail(@Param("email") String email);
-
-    
-	/**
-	 * 获取手机和email的正则表达式
-	 * @return regex_phone-手机正则表达式 regex_email-邮箱正则表达式
-	 * @author liyuan, 2015-7-17 下午4:58:47
-	 */
-	@RpcMethod("getMobileAndEmailRegex")
-	public RequestChannel<Map<String,String>> getMobileAndEmailRegex();
-
-	
-	/**
-	 * 根据用户id获取求职用户对象信息
-	 * @param userId
-	 * @return
-	 * @author liyuan, 2015-8-12 下午1:39:15
-	 */
-	public JobUserDTO findJobUserDTOByUserId(@Param("userId") Long userId);
-
-	
  } 
 

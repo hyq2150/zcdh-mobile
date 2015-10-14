@@ -1,41 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/activityBody"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@color/font_ee"
+    android:orientation="vertical" >
 
     <ScrollView
         android:id="@+id/sv_settings"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="none">
+        android:scrollbars="none" >
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/white"
+            android:orientation="vertical" >
 
             <com.zcdh.mobile.framework.views.ListViewInScrollView
                 android:id="@+id/settingsHomeListview"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/listview_background"
                 android:divider="@color/divider"
                 android:dividerHeight="@dimen/dividerHeight" />
-
-            <Button
-                android:id="@+id/exitBtn"
-                style="@style/fontMiddel"
-                android:layout_width="fill_parent"
-                android:layout_height="45dp"
-                android:layout_margin="30dp"
-                android:background="@drawable/button_sub_bg"
-                android:text="@string/singout"
-                android:textColor="@color/white"
-                android:visibility="gone" />
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/exitBtn"
+        style="@style/fontMiddel"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:layout_margin="30dp"
+        android:background="@drawable/button_sub_bg"
+        android:text="@string/singout"
+        android:textColor="@color/white"
+        android:visibility="gone" />
 
 </LinearLayout>

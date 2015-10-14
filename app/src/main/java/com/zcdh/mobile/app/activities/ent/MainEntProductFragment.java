@@ -57,7 +57,7 @@ public class MainEntProductFragment extends Fragment implements
 
 	IRpcJobEnterpriseService jobEnterpriseService;
 
-	List<EntProductDTO> productList = new ArrayList<EntProductDTO>();
+	List<EntProductDTO> productList = new ArrayList<>();
 
 	long entId;
 

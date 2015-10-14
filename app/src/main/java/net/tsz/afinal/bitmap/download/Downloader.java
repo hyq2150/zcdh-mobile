@@ -24,5 +24,5 @@ public interface Downloader  {
 	 * @param outputStream
 	 * @return
 	 */
-	public byte[] download(String urlString);
+	byte[] download(String urlString);
 }

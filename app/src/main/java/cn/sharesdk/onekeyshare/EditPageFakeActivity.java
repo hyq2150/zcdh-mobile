@@ -43,7 +43,7 @@ public class EditPageFakeActivity extends FakeActivity {
 		public Bitmap bitmap;
 	}
 
-	protected static interface ImageListResultsCallback {
+	protected interface ImageListResultsCallback {
 		void onFinish(ArrayList<ImageInfo> results);
 	}
 
@@ -129,7 +129,7 @@ public class EditPageFakeActivity extends FakeActivity {
 		Bitmap viewToShare = (Bitmap) shareParamMap.get("viewToShare");
 		String[] imageArray = (String[]) shareParamMap.get("imageArray");
 
-		shareImageList = new ArrayList<ImageInfo>();
+		shareImageList = new ArrayList<>();
 		if(!TextUtils.isEmpty(imagePath) && new File(imagePath).exists()) {
 			ImageInfo imageInfo = new ImageInfo();
 			imageInfo.paramName = "imagePath";
@@ -203,7 +203,7 @@ public class EditPageFakeActivity extends FakeActivity {
 	}
 
 	protected void setResultAndFinish() {
-		ArrayList<String> imageArray = new ArrayList<String>();
+		ArrayList<String> imageArray = new ArrayList<>();
 		if(shareImageList != null) {
 			for(ImageInfo imageInfo : shareImageList) {
 				if("imagePath".equals(imageInfo.paramName) || "imageUrl".equals(imageInfo.paramName)) {
@@ -222,12 +222,12 @@ public class EditPageFakeActivity extends FakeActivity {
 			}
 		}
 
-		HashMap<Platform, HashMap<String, Object>> editRes = new HashMap<Platform, HashMap<String,Object>>();
+		HashMap<Platform, HashMap<String, Object>> editRes = new HashMap<>();
 
 		for(Platform platform : platforms) {
 
 			if("FacebookMessenger".equals(platform.getName())) {
-				HashMap<String, Object> param = new HashMap<String, Object>(shareParamMap);
+				HashMap<String, Object> param = new HashMap<>(shareParamMap);
 				if(toFriendList != null && toFriendList.size() > 0) {
 					param.put("address", toFriendList.get(toFriendList.size() - 1));
 				}
@@ -248,7 +248,7 @@ public class EditPageFakeActivity extends FakeActivity {
 			editRes.put(platform, shareParamMap);
 		}
 
-		HashMap<String, Object> res = new HashMap<String, Object>();
+		HashMap<String, Object> res = new HashMap<>();
 		res.put("editRes", editRes);
 		setResult(res);
 		finish();

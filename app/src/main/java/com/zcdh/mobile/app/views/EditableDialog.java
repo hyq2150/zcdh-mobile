@@ -4,19 +4,16 @@
  */
 package com.zcdh.mobile.app.views;
 
+import com.zcdh.mobile.R;
+import com.zcdh.mobile.utils.StringUtils;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import com.zcdh.mobile.R;
-import com.zcdh.mobile.utils.StringUtils;
 
 /**
  * @author jeason, 2014-5-12 下午8:53:55
@@ -107,6 +104,6 @@ public class EditableDialog extends AlertDialog {
 	}
 
 	public interface EditableDialogListener {
-		public void onEditableConfirm(int key, String content);
+		void onEditableConfirm(int key, String content);
 	}
 }

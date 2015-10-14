@@ -1,272 +1,261 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical" >
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/postname"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:text="软件开发工程师（实习）"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/entname"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:text="珠海职场导航网络科技有限公司"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/post_adress"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:text="工作地点：珠海"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/work_time"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:text="工作期间："
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0.5dp"
+            android:layout_margin="5dp"
+            android:background="@color/blackGray" />
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:padding="5dp">
 
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="5dp" >
-
-                <TextView
-                    android:id="@+id/postname"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:paddingLeft="10dp"
-                    android:singleLine="true"
-                    android:text="软件开发工程师（实习）"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/entname"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:paddingLeft="10dp"
-                    android:singleLine="true"
-                    android:text="珠海职场导航网络科技有限公司"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/post_adress"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:paddingLeft="10dp"
-                    android:singleLine="true"
-                    android:text="工作地点：珠海"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/work_time"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:paddingLeft="10dp"
-                    android:singleLine="true"
-                    android:text="工作期间："
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-            <View
+            <TextView
+                android:id="@+id/tv_deposit"
                 android:layout_width="wrap_content"
-                android:layout_height="0.5dp"
-                android:layout_margin="5dp"
-                android:background="@color/blackGray" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp" >
-
-                <TextView
-                    android:id="@+id/tv_deposit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:padding="5dp"
-                    android:text="诚意金："
-                    android:textColor="@color/blackGray"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/deposit_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@id/tv_deposit"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
-                    android:padding="5dp"
-                    android:text="100元"
-                    android:textColor="@color/blackGray"
-                    android:textSize="20sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp" >
-
-                <TextView
-                    android:id="@+id/tv_amount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    android:text="数    量:"
-                    android:textColor="@color/blackGray"
-                    android:textSize="20sp" />
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true" >
-
-                    <TextView
-                        android:id="@+id/btn_minus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="#D9D9D9"
-                        android:clickable="true"
-                        android:padding="10dp"
-                        android:text="-"
-                        android:textColor="@color/white" >
-                    </TextView>
-
-                    <TextView
-                        android:id="@+id/et_amount"
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@id/btn_minus"
-                        android:layout_alignTop="@id/btn_minus"
-                        android:layout_marginLeft="5dp"
-                        android:layout_toRightOf="@id/btn_minus"
-                        android:background="#F2F2F2"
-                        android:gravity="center_horizontal"
-                        android:maxEms="4"
-                        android:padding="10dp"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:text="1"
-                        android:textColor="@color/black" />
-
-                    <TextView
-                        android:id="@+id/btn_plus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_toRightOf="@id/et_amount"
-                        android:background="#E46C0A"
-                        android:clickable="true"
-                        android:padding="10dp"
-                        android:text="+"
-                        android:textColor="@color/white" >
-                    </TextView>
-                </RelativeLayout>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="总价:"
-                    android:textColor="#ed6c0a"
-                    android:textSize="17sp" />
-
-                <TextView
-                    android:id="@+id/total_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="95元"
-                    android:textColor="#ed6c0a"
-                    android:textSize="17sp" />
-            </RelativeLayout>
-
-            <Button
-                android:id="@+id/btn_apply"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="#e46c0a"
-                android:paddingBottom="5dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="5dp"
-                android:paddingTop="5dp"
-                android:text="提交申请"
-                android:textColor="@color/white"
+                android:layout_alignParentBottom="true"
+                android:padding="5dp"
+                android:text="诚意金："
+                android:textColor="@color/blackGray"
                 android:textSize="20sp" />
 
-            <LinearLayout
-                android:layout_width="fill_parent"
+            <TextView
+                android:id="@+id/deposit_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/tv_deposit"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:padding="5dp"
+                android:text="100元"
+                android:textColor="@color/blackGray"
+                android:textSize="20sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/tv_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:padding="5dp"
+                android:text="数    量:"
+                android:textColor="@color/blackGray"
+                android:textSize="20sp" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true">
+
+                <TextView
+                    android:id="@+id/btn_minus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#D9D9D9"
+                    android:clickable="true"
+                    android:padding="10dp"
+                    android:text="-"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:id="@+id/et_amount"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/btn_minus"
+                    android:layout_alignTop="@id/btn_minus"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/btn_minus"
+                    android:background="#F2F2F2"
+                    android:gravity="center_horizontal"
+                    android:maxEms="4"
+                    android:padding="10dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="1"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/btn_plus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/et_amount"
+                    android:background="#E46C0A"
+                    android:clickable="true"
+                    android:padding="10dp"
+                    android:text="+"
+                    android:textColor="@color/white"/>
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="总价:"
+                android:textColor="#ed6c0a"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/total_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="95元"
+                android:textColor="#ed6c0a"
+                android:textSize="17sp" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_apply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="#e46c0a"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:text="提交申请"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_color_quote"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="请您仔细阅读以下合同条款："
+                android:textColor="@color/red"
+                android:textSize="14sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/bg_color_quote"
                 android:orientation="vertical"
-                android:padding="5dp" >
+                android:padding="5dp">
 
                 <TextView
+                    android:id="@+id/tv_contract_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="请您仔细阅读以下合同条款："
-                    android:textColor="@color/red"
-                    android:textSize="14sp" />
+                    android:paddingLeft="15dp"
+                    android:text="假期工合同条款："
+                    android:textColor="@color/blackGray"
+                    android:textSize="16sp" />
 
-                <RelativeLayout
+                <TextView
+                    android:id="@+id/agreement_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/bg_color_quote"
-                    android:orientation="vertical"
-                    android:padding="5dp" >
+                    android:layout_below="@id/tv_contract_title"
+                    android:padding="5dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="诚意金将由职场导航代收，由企业返还......x\nx\nx\nx\nx\nx\nx\nx\nx\n"
+                    android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/tv_contract_title"
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/agreement_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    android:paddingRight="10dp">
+
+                    <CheckBox
+                        android:id="@+id/is_agree"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:paddingLeft="15dp"
-                        android:text="假期工合同条款："
-                        android:textColor="@color/blackGray"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/agreement_content"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tv_contract_title"
-                        android:padding="5dp"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:text="诚意金将由职场导航代收，由企业返还......x\nx\nx\nx\nx\nx\nx\nx\nx\n"
-                        android:textSize="14sp" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_below="@id/agreement_content"
-                        android:layout_marginTop="20dp"
-                        android:orientation="horizontal"
-                        android:paddingRight="10dp" >
-
-                        <CheckBox
-                            android:id="@+id/is_agree"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:checked="false"
-                            android:scaleX="0.85"
-                            android:scaleY="0.85"
-                            android:text="同意条款"
-                            android:textColor="@color/black" />
-                    </LinearLayout>
-                </RelativeLayout>
-            </LinearLayout>
+                        android:checked="false"
+                        android:scaleX="0.85"
+                        android:scaleY="0.85"
+                        android:text="同意条款"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
-    </ScrollView>
-
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

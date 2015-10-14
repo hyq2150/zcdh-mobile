@@ -1,7 +1,7 @@
 /** 
 *  JobLanguageDTO 
 * 
-*  Created Date: 2015-08-12 17:07:57 
+*  Created Date: 2015-10-12 17:31:51 
 *  
 */  
 package com.zcdh.mobile.api.model;  
@@ -30,6 +30,7 @@ public class JobLanguageDTO  implements Serializable {
     private String hearSpeakParamName  ; 
     //0 不选中 ， 1 选中 
     private Integer isSelectedLanguage  ; 
+    private String paramName  ; 
     /**
     *设定主键id
     */
@@ -137,6 +138,18 @@ public class JobLanguageDTO  implements Serializable {
     */
     public Integer getIsSelectedLanguage() { 
         return  this.isSelectedLanguage;
+     }
+    /**
+    *无功能描述
+    */
+    public void setParamName(String paramName) { 
+        this.paramName=paramName;
+     }
+    /**
+    *无功能描述
+    */
+    public String getParamName() { 
+        return  this.paramName;
      }
 
  } 

@@ -392,7 +392,7 @@ public class MNioClient {
 						// 初始化
 						String methodName = method.getName();
 						String serviceName = "";
-						HashMap<String, Object> params = new HashMap<String, Object>();
+						HashMap<String, Object> params = new HashMap<>();
 
 						// 检查此接口是否被公布
 						RpcMethod rpcMethod = method
@@ -440,7 +440,7 @@ public class MNioClient {
 						Annotation[][] parameterAnnotations = method
 								.getParameterAnnotations();
 						// System.out.println("参赛类型："+parameterTypes.length+","+"注解数组："+parameterAnnotations.length);
-						if (parameterTypes.length != args.length) {
+						if (args!=null && parameterTypes.length != args.length) {
 							throw new ZcdhException(serviceName + "."
 									+ "methodName" + "：请求参数与注解参数要求不一致");
 						}
@@ -464,7 +464,7 @@ public class MNioClient {
 						Type resultType = GenericTypeUtils
 								.getGenericTypeRawType((ParameterizedType) method
 										.getGenericReturnType());
-						RequestChannel<Type> requestChannel = new RequestChannel<Type>();
+						RequestChannel<Type> requestChannel = new RequestChannel<>();
 						// MsgRequest 和 请求返回数据类型都放入数据暂存池
 						requestChannel.setTempDataPool(
 								RequestChannel.getChannelUniqueID(), req,

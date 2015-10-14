@@ -68,7 +68,7 @@ public class CompanyCommentsActivity extends BaseActivity implements RequestList
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(), "更多评论");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "更多评论");
 		entService = RemoteServiceManager.getRemoteService(IRpcJobEnterpriseService.class);
 		entId = getIntent().getLongExtra("entId", 0l);
 	}
@@ -91,7 +91,7 @@ public class CompanyCommentsActivity extends BaseActivity implements RequestList
 	@Background
 	void findComment() {
 		entService.findEntCommentDTO(entId, currentPage, pageSize)
-		.identify(kREQ_ID_findEntCommentDTO=RequestChannel.getChannelUniqueID(), this);;
+		.identify(kREQ_ID_findEntCommentDTO=RequestChannel.getChannelUniqueID(), this);
 	}
 
 	@Override
@@ -130,7 +130,7 @@ public class CompanyCommentsActivity extends BaseActivity implements RequestList
 		 * @author jeason, 2014-6-5 下午3:54:05
 		 */
 		public CommentsAdapter() {
-			mComments = new ArrayList<CommentDTO>();
+			mComments = new ArrayList<>();
 		}
 
 		public void updateItems(List<CommentDTO> comments) {

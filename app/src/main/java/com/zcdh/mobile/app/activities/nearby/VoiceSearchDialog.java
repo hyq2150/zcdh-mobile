@@ -1,6 +1,5 @@
 package com.zcdh.mobile.app.activities.nearby;
 
-import java.util.Timer;
 import java.util.UUID;
 
 import org.androidannotations.api.BackgroundExecutor;
@@ -8,31 +7,21 @@ import org.androidannotations.api.BackgroundExecutor.Task;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Html;
 import android.util.Log;
-import android.view.GestureDetector;
-import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.iflytek.cloud.speech.RecognizerListener;
 import com.iflytek.cloud.speech.RecognizerResult;
-import com.iflytek.cloud.speech.SpeechConstant;
 import com.iflytek.cloud.speech.SpeechError;
 import com.iflytek.cloud.speech.SpeechListener;
-import com.iflytek.cloud.speech.SpeechRecognizer;
-import com.iflytek.cloud.speech.SpeechUser;
-import com.iflytek.cloud.speech.SpeechUser.Login_State;
 import com.zcdh.mobile.R;
-import com.zcdh.mobile.app.ZcdhApplication;
 import com.zcdh.mobile.app.views.iflytek.JsonParser;
 import com.zcdh.mobile.framework.iflytek.MySpeechRecongizer;
 import com.zcdh.mobile.utils.StringUtils;

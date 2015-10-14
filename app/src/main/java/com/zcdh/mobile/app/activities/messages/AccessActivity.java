@@ -66,8 +66,8 @@ public class AccessActivity extends BaseActivity implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(),
-				R.string.hr_visitors);
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+			R.string.hr_visitors);
 		userService = RemoteServiceManager
 				.getRemoteService(IRpcJobUservice.class);
 		adapter = new InfoAdapter(this);

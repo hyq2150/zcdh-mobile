@@ -12,7 +12,7 @@ public class MyEvents {
 	public static final String kMSG_EXIT = "exit";// 退出
 	public static final String kMSG_AUTH_STATUS = "auth_status"; //登录状态
 	
-	private static final ArrayList<Subscriber> subs = new  ArrayList<Subscriber>();
+	private static final ArrayList<Subscriber> subs = new ArrayList<>();
 
 	public static void post(String key, Object msg){
 		for (Subscriber subscriber : subs) {
@@ -36,6 +36,6 @@ public class MyEvents {
 	
 	
 	public interface Subscriber{
-		public void receive(String key, Object msg);
+		void receive(String key, Object msg);
 	}
 }

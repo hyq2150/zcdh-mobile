@@ -1,7 +1,7 @@
 /** 
 *  IRpcJobFairList2TestService 
 * 
-*  Created Date: 2015-08-12 17:07:57 
+*  Created Date: 2015-10-12 17:31:51 
 *  
 */  
 package com.zcdh.mobile.api;  
@@ -17,9 +17,9 @@ import com.zcdh.mobile.framework.nio.RequestChannel;
 @RpcService("rpcJobFairList2TestService")
 public interface IRpcJobFairList2TestService   { 
     @RpcMethod("findJobFairList2Test")
-    public RequestChannel<Page<JobFairList2TestDTO>> findJobFairList2Test(@Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+    public RequestChannel<Page<JobFairList2TestDTO>> findJobFairList2Test(@Param("currentPage")  Integer currentPage, @Param("pageSize")  Integer pageSize);
     @RpcMethod("isUserSigninJobfair3")
-    public RequestChannel<Integer> isUserSigninJobfair3(@Param("fairId") Long fairId, @Param("userId") Long userId);
+    public RequestChannel<Integer> isUserSigninJobfair3(@Param("fairId")  Long fairId, @Param("userId")  Long userId);
 
 
  } 

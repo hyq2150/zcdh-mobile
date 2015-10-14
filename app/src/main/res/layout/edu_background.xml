@@ -3,7 +3,7 @@
     android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E6E6E6"
+    android:background="@color/font_ee"
     android:fadingEdge="none"
     android:scrollbars="vertical" >
 
@@ -26,6 +26,24 @@
             android:orientation="vertical" >
 
             <LinearLayout
+                android:id="@+id/ll_edu_experences_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_nocomments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rect_listitem_bg"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:text="暂无"
+                    android:textSize="@dimen/font_size_nomarl" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/ll_education_experences"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -35,8 +53,6 @@
                     android:id="@+id/btn_add_edu_exp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/add_edu_bg"
                     android:clickable="true"
@@ -48,38 +64,18 @@
                     android:paddingTop="15dp" >
 
                     <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@drawable/more_active"
-                        android:duplicateParentState="true" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:duplicateParentState="true"
+                        android:src="@drawable/add2" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:duplicateParentState="true"
                         android:text="添加教育经历"
-                        android:textColor="@color/btn_add_text_color"
-                        android:textSize="@dimen/font_size_nomarl" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_edu_experences_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical" >
-
-                    <TextView
-                        android:id="@+id/tv_nocomments"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/rect_listitem_bg"
-                        android:gravity="center"
-                        android:padding="20dp"
-                        android:text="暂无"
+                        android:textColor="@color/blues"
                         android:textSize="@dimen/font_size_nomarl" />
                 </LinearLayout>
             </LinearLayout>
@@ -88,14 +84,30 @@
                 android:id="@+id/ll_tranning_experences"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
                 android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/ll_tranning_experences_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rect_listitem_bg"
+                        android:gravity="center"
+                        android:padding="20dp"
+                        android:text="暂无"
+                        android:textSize="@dimen/font_size_nomarl" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/btn_add_tranning_exp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/add_edu_bg"
                     android:clickable="true"
@@ -107,37 +119,18 @@
                     android:paddingTop="15dp" >
 
                     <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@drawable/more_active"
-                        android:duplicateParentState="true" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:duplicateParentState="true"
+                        android:src="@drawable/add2" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="20dp"
                         android:duplicateParentState="true"
                         android:text="添加培训经历"
-                        android:textColor="@color/btn_add_text_color"
-                        android:textSize="@dimen/font_size_nomarl" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_tranning_experences_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical" >
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/rect_listitem_bg"
-                        android:gravity="center"
-                        android:padding="20dp"
-                        android:text="暂无"
+                        android:textColor="@color/blues"
                         android:textSize="@dimen/font_size_nomarl" />
                 </LinearLayout>
             </LinearLayout>

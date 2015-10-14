@@ -98,7 +98,7 @@ public class EditEduExpActivity extends BaseActivity implements RequestListener 
 		super.onCreate(savedInstanceState);
 		edu_id = getIntent().getLongExtra(EDU_ID_KEY, 0l);
 
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(), "添加教育经历");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), "添加教育经历");
 		userService = RemoteServiceManager.getRemoteService(IRpcJobUservice.class);
 
 	}
@@ -369,10 +369,7 @@ public class EditEduExpActivity extends BaseActivity implements RequestListener 
 	boolean changed = false;
 
 	private void notifyDataChanged() {
-		changed = false;
-		if (!ObjectUtils.compareJobEduDTO(eduDtoAfter, eduDtoOriginal)) {
-			changed = true;
-		}
+	    changed = !ObjectUtils.compareJobEduDTO(eduDtoAfter, eduDtoOriginal);
 		supportInvalidateOptionsMenu();
 	}
 

@@ -10,7 +10,10 @@ import com.zcdh.mobile.app.ActivityDispatcher;
 import com.zcdh.mobile.app.Constants;
 import com.zcdh.mobile.app.ZcdhApplication;
 import com.zcdh.mobile.app.activities.auth.LoginActivity_;
+import com.zcdh.mobile.app.activities.base.BaseFragment;
+import com.zcdh.mobile.app.activities.detail.EntDetailFragment;
 import com.zcdh.mobile.app.activities.detail.EntDetailFragment_;
+import com.zcdh.mobile.app.activities.detail.MainEntMorePostsFragment;
 import com.zcdh.mobile.app.activities.detail.MainEntMorePostsFragment_;
 import com.zcdh.mobile.app.activities.detail.SuperviseActivity_;
 import com.zcdh.mobile.framework.activities.FWTabBarFragmentActivity;
@@ -49,7 +52,7 @@ import java.util.List;
 @EActivity(R.layout.activity_main_ent)
 public class MainEntActivity extends FWTabBarFragmentActivity implements
         OnExtraPageChangeListener, RequestListener,
-        FWTabBarFragmentActivity.PagerSelectedListener {
+        FWTabBarFragmentActivity.PagerSelectedListener,BaseFragment.IFragmentCallback {
 
     private static final String TAG = MainEntActivity.class.getSimpleName();
 
@@ -66,22 +69,22 @@ public class MainEntActivity extends FWTabBarFragmentActivity implements
     /**
      * 公司详情
      */
-    private EntDetailFragment_ entDetailsFragment;
+    private EntDetailFragment entDetailsFragment;
 
     /**
      * 产品
      */
-    private MainEntProductFragment_ productsFragment;
+    private MainEntProductFragment productsFragment;
 
     /**
      * 评价
      */
-    private MainEntCommentFragment_ commentFragment;
+    private MainEntCommentFragment commentFragment;
 
     /**
      * 招聘
      */
-    private MainEntMorePostsFragment_ jobfairFragment;
+    private MainEntMorePostsFragment jobfairFragment;
 
     /**
      * 行业名称
@@ -162,7 +165,7 @@ public class MainEntActivity extends FWTabBarFragmentActivity implements
     void bindViews() {
         enterpriseService = RemoteServiceManager
                 .getRemoteService(IRpcJobEnterpriseService.class);
-        SystemServicesUtils.setActionBarCustomTitle(getApplicationContext(),
+        SystemServicesUtils.displayCustomTitle(getApplicationContext(),
                 getSupportActionBar(),
                 getString(R.string.activity_title_main_ent));
         entDetailsFragment = new EntDetailFragment_();
@@ -252,7 +255,7 @@ public class MainEntActivity extends FWTabBarFragmentActivity implements
                     getApplicationContext(),
                     getResources().getString(R.string.login_first_then_message),
                     Toast.LENGTH_SHORT).show();
-            ActivityDispatcher.to_login(this);
+            ActivityDispatcher.toLogin(this);
         } else {
             if (SystemServicesUtils.isCompleteInfo(this)) {
                 MainEntLiuyanActivity_.intent(this).entId(entId).type("001")
@@ -270,7 +273,7 @@ public class MainEntActivity extends FWTabBarFragmentActivity implements
             Toast.makeText(getApplicationContext(),
                     getResources().getString(R.string.login_first),
                     Toast.LENGTH_SHORT).show();
-            ActivityDispatcher.to_login(this);
+            ActivityDispatcher.toLogin(this);
         } else {
             MainEntJiucuoActivity_.intent(this).entId(entId).start();
         }
@@ -286,7 +289,7 @@ public class MainEntActivity extends FWTabBarFragmentActivity implements
                     getApplicationContext(),
                     getResources().getString(R.string.login_first_then_message),
                     Toast.LENGTH_SHORT).show();
-            ActivityDispatcher.to_login(this);
+            ActivityDispatcher.toLogin(this);
         } else {
             SuperviseActivity_.intent(this).entId(entId).start();
         }
@@ -517,5 +520,10 @@ public class MainEntActivity extends FWTabBarFragmentActivity implements
 
     @Override
     public void onPageSelected(int page) {
+    }
+
+    @Override
+    public <T> void onCall(T t) {
+
     }
 }

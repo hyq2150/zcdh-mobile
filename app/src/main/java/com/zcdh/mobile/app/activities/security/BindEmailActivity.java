@@ -20,8 +20,11 @@ import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
 
 import android.content.Intent;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.regex.Pattern;
@@ -45,6 +48,11 @@ public class BindEmailActivity extends BaseActivity implements RequestListener {
 
 	ProcessDialog processDialog;
 
+	@ViewById(R.id.tv_email)
+	TextView tvEmail;
+
+	@ViewById(R.id.lly_email)
+	LinearLayout lly_email;
 	@Extra
 	boolean update;
 
@@ -54,15 +62,17 @@ public class BindEmailActivity extends BaseActivity implements RequestListener {
 	@AfterViews
 	void bindViews() {
 		if (update) {
-			SystemServicesUtils.setActionBarCustomTitle(this,
-					getSupportActionBar(), "修改邮箱");
-			emailEditText.setText(updateEmail);
+			SystemServicesUtils.displayCustomTitle(this,
+				getSupportActionBar(), "修改邮箱");
+			lly_email.setVisibility(View.VISIBLE);
+			tvEmail.setText(updateEmail);
 			emailEditText.setSelectAllOnFocus(true);
 			getWindow().setSoftInputMode(
 					WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
 		} else {
-			SystemServicesUtils.setActionBarCustomTitle(this,
-					getSupportActionBar(), "绑定邮箱");
+			lly_email.setVisibility(View.GONE);
+			SystemServicesUtils.displayCustomTitle(this,
+				getSupportActionBar(), "绑定邮箱");
 		}
 		uservice = RemoteServiceManager.getRemoteService(IRpcJobUservice.class);
 		processDialog = new ProcessDialog(this);

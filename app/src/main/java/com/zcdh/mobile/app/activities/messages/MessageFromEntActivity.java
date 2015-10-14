@@ -71,8 +71,8 @@ public class MessageFromEntActivity extends BaseActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		SystemServicesUtils.displayCustomedTitle(this, getSupportActionBar(),
-				"企业回信");
+		SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(),
+			"企业回信");
 		msg_id = getIntent().getLongExtra("id", 0l);
 		nearbyService = RemoteServiceManager
 				.getRemoteService(IRpcNearByService.class);

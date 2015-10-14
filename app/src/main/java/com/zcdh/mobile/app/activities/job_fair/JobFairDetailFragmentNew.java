@@ -96,11 +96,12 @@ public class JobFairDetailFragmentNew extends BaseActivity implements RequestLis
 				SystemServicesUtils.hideActionbar(this);
 			}else {
 				if (!TextUtils.isEmpty(title)) {
-					SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(), title);
+					SystemServicesUtils.displayCustomTitle(this,
+						getSupportActionBar(), title);
 				}
 			}
 
-			HashMap<String, String> logMap = new HashMap<String, String>();
+			HashMap<String, String> logMap = new HashMap<>();
 			logMap.put("DECEIVE_TYPE", "Android");
 			logMap.put(Constants.COVER_ID,
 						String.valueOf(InformationTitleInfoId));
@@ -109,7 +110,7 @@ public class JobFairDetailFragmentNew extends BaseActivity implements RequestLis
 	@AfterViews
 	void bindViews() {
 		if (!TextUtils.isEmpty(title) && !isShowTitle) {
-			SystemServicesUtils.setActionBarCustomTitle(this, getSupportActionBar(),title);
+			SystemServicesUtils.displayCustomTitle(this, getSupportActionBar(), title);
 		}
 		processDialog = new ProcessDialog(this);
 		processDialog.show();
@@ -208,9 +209,10 @@ public class JobFairDetailFragmentNew extends BaseActivity implements RequestLis
 				super.onPageFinished(view, url);
 				if (TextUtils.isEmpty(title)
 						&& !TextUtils.isEmpty(view.getTitle())) {
-					SystemServicesUtils.setActionBarCustomTitle(
-							JobFairDetailFragmentNew.this, getSupportActionBar(),
-							view.getTitle());
+					SystemServicesUtils.displayCustomTitle(
+						JobFairDetailFragmentNew.this,
+						getSupportActionBar(),
+						view.getTitle());
 				}
 			}
 
@@ -219,6 +221,7 @@ public class JobFairDetailFragmentNew extends BaseActivity implements RequestLis
 	}
 
 	void loadUrl(WebView view, String url) {
+		processDialog.show();
 		view.loadUrl(url);
 	}
 
@@ -269,6 +272,7 @@ public class JobFairDetailFragmentNew extends BaseActivity implements RequestLis
 	@Override
 	public void onRequestFinished(String reqId) {
 		// TODO Auto-generated method stub
+		processDialog.dismiss();
 	}
 
 	@Override

@@ -4,26 +4,25 @@
  */
 package com.zcdh.mobile.app.activities.personal;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.zcdh.mobile.R;
+import com.zcdh.mobile.api.model.JobTechnicalDTO;
+import com.zcdh.mobile.app.activities.personal.widget.LevelSelector;
+import com.zcdh.mobile.app.activities.personal.widget.LevelSelector.LevelSelectorListener;
+import com.zcdh.mobile.framework.adapters.PredicateAdapter;
 
-import utils.ActionTarget;
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.zcdh.mobile.R;
-import com.zcdh.mobile.api.model.JobTechnicalDTO;
-import com.zcdh.mobile.app.activities.personal.widget.LevelSelector;
-import com.zcdh.mobile.app.activities.personal.widget.LevelSelector.LevelSelectorListener;
-import com.zcdh.mobile.framework.adapters.PredicateAdapter;
+import java.util.ArrayList;
+import java.util.List;
+
+import utils.ActionTarget;
 
 /**
  * @author jeason, 2014-5-22 下午2:43:05
@@ -41,8 +40,8 @@ public class SkillTagsAdapter extends PredicateAdapter {
 	public SkillTagsAdapter(Activity activity) {
 		mActivity = activity;
 		inflater = LayoutInflater.from(activity);
-		skills = new ArrayList<JobTechnicalDTO>();
-		selectedSkills = new ArrayList<JobTechnicalDTO>();
+		skills = new ArrayList<>();
+		selectedSkills = new ArrayList<>();
 		levelSelector = new LevelSelector(activity);
 	}
 
@@ -67,7 +66,7 @@ public class SkillTagsAdapter extends PredicateAdapter {
 
 	@Override
 	public View getView(final int position, ViewGroup parentView) {
-		View view = inflater.inflate(R.layout.skill_tags_item_no_level, null);
+		View view = inflater.inflate(R.layout.skill_tags_item_no_level, parentView,false);
 		TextView tv_name = (TextView) view.findViewById(R.id.skillNameText);
 		ImageView selectIV = (ImageView) view.findViewById(R.id.iv_indicator);
 		tv_name.setOnClickListener(new OnClickListener() {
